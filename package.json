@@ -41,14 +41,14 @@
 	],
 	"exports": {
 		".": {
+			"types": "./dist/esm/index.d.ts",
 			"import": "./dist/esm/index.js",
-			"require": "./dist/cjs/index.js",
-			"types": "./dist/esm/index.d.ts"
+			"require": "./dist/cjs/index.js"
 		},
 		"./*": {
+			"types": "./dist/esm/*",
 			"import": "./dist/esm/*",
-			"require": "./dist/cjs/*",
-			"types": "./dist/esm/*"
+			"require": "./dist/cjs/*"
 		}
 	}
 }

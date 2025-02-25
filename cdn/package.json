@@ -1,0 +1,11 @@
+{
+	"name": "cdn",
+	"version": "0.0.1",
+	"main": "index.js",
+	"author": "wxn0brP",
+	"license": "MIT",
+	"type": "module",
+	"dependencies": {
+		"esbuild": "^0.25.0"
+	}
+}
