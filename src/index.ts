@@ -4,6 +4,7 @@ import DataBaseRemote from "./client/database";
 import GraphRemote from "./client/graph";
 import genId from "./gen";
 import Relation from "./relation";
+import CustomFileCpu from "./file/customFileCpu";
 
 export {
     DataBase,
@@ -11,7 +12,8 @@ export {
     DataBaseRemote,
     GraphRemote,
     Relation,
-    genId
+    genId,
+    CustomFileCpu,
 }
 
 import type Id from "./types/Id";
@@ -29,5 +31,5 @@ export type {
     FindOpts,
     DbOpts,
     Data,
-    SearchOptions
+    SearchOptions,
 }
