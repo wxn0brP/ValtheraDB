@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/wxn0brP/ValtheraDB/compare/v0.1.0...v0.1.1) (2025-02-25)
+
+
+### Features
+
+* add CustomFileCpu to simplify custom storage format implementation ([0093dfc](https://github.com/wxn0brP/ValtheraDB/commit/0093dfc949fd3c80367ff94c9eceafef8731d373))
+* add support for custom file CPU implementations ([2d757fd](https://github.com/wxn0brP/ValtheraDB/commit/2d757fd6b97dbc727e8c3051c69b87926bf7ab29))
+
+
+### Bug Fixes
+
+* add function for custom file CPU implementations ([120fc0f](https://github.com/wxn0brP/ValtheraDB/commit/120fc0f43681dfba0da13fe8a0804b5442ae680c))
+
 ## [0.1.0](https://github.com/wxn0brP/database/compare/v0.0.8...v0.1.0) (2025-02-21)
 
 
