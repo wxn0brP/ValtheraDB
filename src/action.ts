@@ -85,7 +85,7 @@ class dbActionC {
         const file = cpath + getLastFile(cpath, this.options.maxFileSize);
 
         if (id_gen) arg._id = arg._id || gen();
-        this.fileCpu.add(file, arg);
+        await this.fileCpu.add(file, arg);
         return arg;
     }
 
