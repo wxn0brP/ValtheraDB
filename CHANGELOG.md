@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/wxn0brP/ValtheraDB/compare/v0.1.1...v0.1.2) (2025-02-25)
+
+
+### Features
+
+* add browser client support ([9d63a0e](https://github.com/wxn0brP/ValtheraDB/commit/9d63a0e00198b9482e3aa052f45852517348a0c6))
+
+
+### Bug Fixes
+
+* browser support ([cc71262](https://github.com/wxn0brP/ValtheraDB/commit/cc7126241797b030c43121db808a27fa396421b4))
+* CustomFileCpu update and remove operations ([d198ae2](https://github.com/wxn0brP/ValtheraDB/commit/d198ae29cabc1b7449ebcc810107122ff079cb27))
+
 ### [0.1.1](https://github.com/wxn0brP/ValtheraDB/compare/v0.1.0...v0.1.1) (2025-02-25)
 
 
