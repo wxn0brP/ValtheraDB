@@ -122,7 +122,7 @@ class DataBaseRemote {
      * Asynchronously updates one entry in a database or adds a new one if it doesn't exist.
      */
     async updateOneOrAdd(collection: string, search: Search, arg: Search, add_arg: Arg = {}, context: Context = {}, id_gen: boolean = true) {
-        return await this._request("updateOneOrAdd", [collection, search, arg, add_arg, id_gen, context]) as boolean;
+        return await this._request("updateOneOrAdd", [collection, search, arg, add_arg, context, id_gen]) as boolean;
     }
 
     /**
