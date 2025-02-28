@@ -1,0 +1,5 @@
+{
+    "watch": ["src"],
+    "cmd": "yarn build:esm",
+    "restart_cmd": "clear"
+}
