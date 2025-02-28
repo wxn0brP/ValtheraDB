@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.1.2...v0.2.0) (2025-02-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove duplicated code
+
+### Bug Fixes
+
+* incorrect argument order in updateOneOrAdd call ([cdf58a0](https://github.com/wxn0brP/ValtheraDB/commit/cdf58a06471f62f1bb4f8de0a1bd7edd376b943e))
+* operationUpdater, getSortedFiles, and getLastFile; replaced fs sync with fs.promises ([1e948ae](https://github.com/wxn0brP/ValtheraDB/commit/1e948ae4a84012c914a0279188c7a955150ecfa8))
+
+
+* remove duplicated code ([599b0aa](https://github.com/wxn0brP/ValtheraDB/commit/599b0aa6517692cf1d2c5ac4f95926becc8df682))
+
 ### [0.1.2](https://github.com/wxn0brP/ValtheraDB/compare/v0.1.1...v0.1.2) (2025-02-25)
 
 
