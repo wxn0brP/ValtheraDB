@@ -44,22 +44,22 @@ interface FileCpu {
 
     /**
    * Asynchronously removes entries from a file based on search criteria.
-   * @param cpath The path to the directory containing the files.
+   * @param file The path to the file.
    * @param arg The search criteria.
    * @param context Additional context for the operation.
    * @param one If `true`, removes only the first matching entry.
    * @returns A promise resolving to `true` if at least one entry was removed, otherwise `false`.
    */
     remove(
-        cpath: string,
+        file: string,
+        one: boolean,
         arg: Search,
-        context?: Context,
-        one?: boolean
+        context?: Context
     ): Promise<boolean>;
 
     /**
      * Asynchronously updates entries in a file based on search criteria and an updater function or object.
-     * @param cpath The path to the directory containing the files.
+     * @param file The path to the file.
      * @param arg The search criteria.
      * @param updater The updater function or object.
      * @param context Additional context for the operation.
@@ -67,11 +67,11 @@ interface FileCpu {
      * @returns A promise resolving to `true` if at least one entry was updated, otherwise `false`.
      */
     update(
-        cpath: string,
+        file: string,
+        one: boolean,
         arg: Search,
         updater: Updater,
         context?: Context,
-        one?: boolean
     ): Promise<boolean>;
 }
 

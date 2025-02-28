@@ -1,5 +1,4 @@
 import gen from "./gen";
-import { stringify } from "./format";
 import { Arg, Search, Updater } from "./types/arg";
 import { DbFindOpts, DbOpts, FindOpts } from "./types/options";
 import { Context } from "./types/types";
@@ -145,7 +144,14 @@ class dbActionC {
      */
     async update(collection: string, arg: Search, updater: Updater, context = {}) {
         this.checkCollection(collection);
-        return await this.fileCpu.update(this._getCollectionPath(collection), arg, updater, context);
+        return await operationUpdater(
+            this._getCollectionPath(collection),
+            this.fileCpu.update.bind(this.fileCpu),
+            false,
+            arg,
+            updater,
+            context
+        )
     }
 
     /**
@@ -153,7 +159,14 @@ class dbActionC {
      */
     async updateOne(collection: string, arg: Search, updater: Updater, context: Context = {}) {
         this.checkCollection(collection);
-        return await this.fileCpu.update(this._getCollectionPath(collection), arg, updater, context, true);
+        return await operationUpdater(
+            this._getCollectionPath(collection),
+            this.fileCpu.update.bind(this.fileCpu),
+            true,
+            arg,
+            updater,
+            context
+        )
     }
 
     /**
@@ -161,7 +174,13 @@ class dbActionC {
      */
     async remove(collection: string, arg: Search, context: Context = {}) {
         this.checkCollection(collection);
-        return await this.fileCpu.remove(this._getCollectionPath(collection), arg, context);
+        return await operationUpdater(
+            this._getCollectionPath(collection),
+            this.fileCpu.remove.bind(this.fileCpu),
+            false,
+            arg,
+            context
+        )
     }
 
     /**
@@ -169,7 +188,13 @@ class dbActionC {
      */
     async removeOne(collection: string, arg: Search, context: Context = {}) {
         this.checkCollection(collection);
-        return await this.fileCpu.remove(this._getCollectionPath(collection), arg, context, true);
+        return await operationUpdater(
+            this._getCollectionPath(collection),
+            this.fileCpu.remove.bind(this.fileCpu),
+            true,
+            arg,
+            context
+        );
     }
 
     /**
@@ -218,6 +243,23 @@ function getSortedFiles(path: string) {
             f: file + ".db"
         } as SortedFiles
     });
+}
+
+async function operationUpdater(
+    cpath: string,
+    worker: (file: string, one: boolean, ...args: any[]) => Promise<boolean>,
+    one: boolean,
+    ...args: any[]
+) {
+    let files = readdirSync(cpath).filter(file => !/\.tmp$/.test(file));
+    files.reverse();
+    let update = false;
+    for (const file of files) {
+        const updated = await worker(cpath + file, one, ...args);
+        if (one && updated) break;
+        update = update || updated;
+    }
+    return update;
 }
 
 export default dbActionC;

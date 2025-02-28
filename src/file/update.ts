@@ -1,4 +1,4 @@
-import { existsSync, promises, readdirSync } from "fs";
+import { existsSync, promises } from "fs";
 import { pathRepair, createRL } from "./utils";
 import { parse, stringify } from "../format";
 import hasFieldsAdvanced from "../utils/hasFieldsAdvanced";
@@ -9,7 +9,7 @@ import { Search, Updater } from "../types/arg";
 /**
  * Updates a file based on search criteria and an updater function or object.
  */
-async function updateWorker(file: string, search: Search, updater: Updater, context: Context = {}, one: boolean = false) {
+async function updateWorker(file: string, one: boolean, search: Search, updater: Updater, context: Context = {}) {
     file = pathRepair(file);
     if (!existsSync(file)) {
         await promises.writeFile(file, "");
@@ -54,19 +54,4 @@ async function updateWorker(file: string, search: Search, updater: Updater, cont
     return updated;
 }
 
-/**
- * Asynchronously updates entries in a file based on search criteria and an updater function or object.
- */
-async function update(cpath: string, arg: Search, updater: Updater, context: Context = {}, one: boolean = false) {
-    let files = readdirSync(cpath).filter(file => !/\.tmp$/.test(file));
-    files.reverse();
-    let update = false;
-    for (const file of files) {
-        const updated = await updateWorker(cpath + file, arg, updater, context, one);
-        if (one && updated) return true;
-        update = update || updated;
-    }
-    return update;
-}
-
-export default update;
+export default updateWorker;

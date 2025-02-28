@@ -52,7 +52,7 @@ class CustomFileCpu implements FileCpu {
         return result ? updateFindObject(result, findOpts) : false;
     }
 
-    async removeWorker(file: string, arg: Search, context: Context = {}, one = false): Promise<boolean> {
+    async remove(file: string, one: boolean, arg: Search, context: Context = {}): Promise<boolean> {
         file = pathRepair(file);
         let entries = await this._readFile(file);
         let removed = false;
@@ -76,19 +76,7 @@ class CustomFileCpu implements FileCpu {
         return true;
     }
 
-    async remove(cpath: string, arg: Search, context: Context = {}, one = false): Promise<boolean> {
-        let files = readdirSync(cpath).filter(file => !/\.tmp$/.test(file));
-        files.reverse();
-        let remove = false;
-        for (const file of files) {
-            const removed = await this.removeWorker(cpath + file, arg, context, one);
-            if (one && removed) break;
-            remove = remove || removed;
-        }
-        return remove;
-    }
-
-    async updateWorker(file: string, arg: Search, updater: Updater, context: Context = {}, one = false): Promise<boolean> {
+    async update(file: string, one: boolean, arg: Search, updater: Updater, context: Context = {}): Promise<boolean> {
         file = pathRepair(file);
         let entries = await this._readFile(file);
         let updated = false;
@@ -110,18 +98,6 @@ class CustomFileCpu implements FileCpu {
 
         await this._writeFile(file, entries);
         return true;
-    }
-
-    async update(cpath: string, arg: Search, updater: Updater, context: Context = {}, one = false): Promise<boolean> {
-        let files = readdirSync(cpath).filter(file => !/\.tmp$/.test(file));
-        files.reverse();
-        let update = false;
-        for (const file of files) {
-            const updated = await this.updateWorker(cpath + file, arg, updater, context, one);
-            if (one && updated) return true;
-            update = update || updated;
-        }
-        return update;
     }
 }
 

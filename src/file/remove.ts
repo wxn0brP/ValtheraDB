@@ -1,4 +1,4 @@
-import { existsSync, promises, appendFileSync, readdirSync } from "fs";
+import { existsSync, promises, appendFileSync } from "fs";
 import { pathRepair, createRL } from "./utils";
 import { parse } from "../format";
 import hasFieldsAdvanced from "../utils/hasFieldsAdvanced";
@@ -8,7 +8,7 @@ import { Context } from "../types/types";
 /**
  * Removes entries from a file based on search criteria.
  */
-async function removeWorker(file: string, search: Search, context: Context = {}, one: boolean = false) {
+async function removeWorker(file: string, one: boolean, search: Search, context: Context = {}) {
     file = pathRepair(file);
     if (!existsSync(file)) {
         await promises.writeFile(file, "");
@@ -46,19 +46,4 @@ async function removeWorker(file: string, search: Search, context: Context = {},
     return removed;
 }
 
-/**
- * Asynchronously removes entries from a file based on search criteria.
- */
-async function remove(cpath: string, arg: Search, context: Context = {}, one: boolean = false) {
-    let files = readdirSync(cpath).filter(file => !/\.tmp$/.test(file));
-    files.reverse();
-    let remove = false;
-    for (const file of files) {
-        const removed = await removeWorker(cpath + file, arg, context, one);
-        if (one && removed) break;
-        remove = remove || removed;
-    }
-    return remove;
-}
-
-export default remove;
+export default removeWorker;
