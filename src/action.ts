@@ -2,16 +2,13 @@ import gen from "./gen";
 import { Arg, Search, Updater } from "./types/arg";
 import { DbFindOpts, DbOpts, FindOpts } from "./types/options";
 import { Context } from "./types/types";
-import { SortedFiles } from "./types/types";
 import { SearchOptions } from "./types/searchOpts";
 import Data from "./types/data";
 import {
     existsSync,
     mkdirSync,
-    readdirSync,
-    rmSync,
-    writeFileSync,
-    statSync
+    statSync,
+    promises
 } from "fs";
 import FileCpu from "./types/fileCpu";
 
@@ -48,8 +45,9 @@ class dbActionC {
     /**
      * Get a list of available databases in the specified folder.
      */
-    getCollections() {
-        const collections = readdirSync(this.folder, { recursive: true, withFileTypes: true })
+    async getCollections() {
+        const allCollections = await promises.readdir(this.folder, { recursive: true, withFileTypes: true });
+        const collections = allCollections
             .filter(dirent => dirent.isDirectory())
             .map(dirent => {
                 if (dirent.parentPath === this.folder) return dirent.name;
@@ -62,17 +60,23 @@ class dbActionC {
     /**
      * Check and create the specified collection if it doesn't exist.
      */
-    checkCollection(collection: string) {
+    async checkCollection(collection: string) {
+        if (await this.issetCollection(collection)) return;
         const cpath = this._getCollectionPath(collection);
-        if (!existsSync(cpath)) mkdirSync(cpath, { recursive: true });
+        await promises.mkdir(cpath, { recursive: true });
     }
 
     /**
      * Check if a collection exists.
      */
-    issetCollection(collection: string) {
-        const path = this.folder + "/" + collection;
-        return existsSync(path);
+    async issetCollection(collection: string) {
+        const path = this._getCollectionPath(collection);
+        try {
+            await promises.access(path);
+            return true;
+        } catch {
+            return false;
+        }
     }
 
     /**
@@ -81,7 +85,7 @@ class dbActionC {
     async add(collection: string, arg: Arg, id_gen: boolean = true) {
         this.checkCollection(collection);
         const cpath = this._getCollectionPath(collection);
-        const file = cpath + getLastFile(cpath, this.options.maxFileSize);
+        const file = cpath + await getLastFile(cpath, this.options.maxFileSize);
 
         if (id_gen) arg._id = arg._id || gen();
         await this.fileCpu.add(file, arg);
@@ -97,7 +101,7 @@ class dbActionC {
 
         this.checkCollection(collection);
         const cpath = this._getCollectionPath(collection);
-        const files = getSortedFiles(cpath).map(f => f.f);
+        const files = await getSortedFiles(cpath);
         if (options.reverse) files.reverse();
         let datas = [];
 
@@ -130,7 +134,7 @@ class dbActionC {
     async findOne(collection: string, arg: SearchOptions, context: Context = {}, findOpts: FindOpts = {}) {
         this.checkCollection(collection);
         const cpath = this._getCollectionPath(collection);
-        const files = getSortedFiles(cpath).map(f => f.f);
+        const files = await getSortedFiles(cpath);
 
         for (let f of files) {
             let data = await this.fileCpu.findOne(cpath + f, arg, context, findOpts) as Data;
@@ -200,49 +204,48 @@ class dbActionC {
     /**
      * Removes a database collection from the file system.
      */
-    removeCollection(collection: string) {
-        rmSync(this.folder + "/" + collection, { recursive: true, force: true });
+    async removeCollection(collection: string) {
+        await promises.rm(this.folder + "/" + collection, { recursive: true, force: true });
     }
 }
 
 /**
  * Get the last file in the specified directory.
  */
-function getLastFile(path: string, maxFileSize: number = 1024 * 1024) {
+async function getLastFile(path: string, maxFileSize: number = 1024 * 1024) {
     if (!existsSync(path)) mkdirSync(path, { recursive: true });
-    const files = getSortedFiles(path);
+    const files = await getSortedFiles(path);
 
     if (files.length == 0) {
-        writeFileSync(path + "/1.db", "");
+        await promises.writeFile(path + "/1.db", "");
         return "1.db";
     }
 
     const last = files[files.length - 1];
-    const info = path + "/" + last.f;
+    const info = path + "/" + last;
 
-    if (statSync(info).size < maxFileSize) return last.f;
+    if (statSync(info).size < maxFileSize) return last;
 
-    const num = last.i + 1;
-    writeFileSync(path + "/" + num + ".db", "");
+    const num = parseInt(last.replace(".db", ""), 10) + 1;
+    await promises.writeFile(path + "/" + num + ".db", "");
     return num + ".db";
 }
 
 /**
  * Get all files in a directory sorted by name.
  */
-function getSortedFiles(path: string) {
-    const files = readdirSync(path).filter(file => file.endsWith(".db"));
-    if (files.length == 0) return [];
+async function getSortedFiles(folder: string): Promise<string[]> {
+    const files = await promises.readdir(folder, { withFileTypes: true });
 
-    const filesWithoutExt = files.map(file => parseInt(file.replace(".db", "")))
-    filesWithoutExt.sort();
-
-    return filesWithoutExt.map(file => {
-        return {
-            i: file,
-            f: file + ".db"
-        } as SortedFiles
-    });
+    return files
+        .filter(file => file.isFile() && !file.name.endsWith(".tmp"))
+        .map(file => file.name)
+        .filter(name => /^\d+\.db$/.test(name))
+        .sort((a, b) => {
+            const numA = parseInt(a, 10);
+            const numB = parseInt(b, 10);
+            return numA - numB;
+        });
 }
 
 async function operationUpdater(
@@ -251,8 +254,8 @@ async function operationUpdater(
     one: boolean,
     ...args: any[]
 ) {
-    let files = readdirSync(cpath).filter(file => !/\.tmp$/.test(file));
-    files.reverse();
+    const files = await getSortedFiles(cpath);
+
     let update = false;
     for (const file of files) {
         const updated = await worker(cpath + file, one, ...args);
