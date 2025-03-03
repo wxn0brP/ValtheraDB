@@ -1,0 +1,16 @@
+name: Build CDN Package
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: wxn0brP/workflow-dist/.github/workflows/build-ts.yml@main
+    with:
+      files: "cdn/dist package.json README.md"
+      branch: "cdn-dist"
+      customNpm: "build:cdn"

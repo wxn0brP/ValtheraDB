@@ -34,7 +34,8 @@
 		"build:cjs": "tsc -p tsconfig.cjs.json && tsc-alias -p tsconfig.cjs.json",
 		"build": "npm run build:esm && npm run build:cjs",
 		"prepare": "npm run build",
-		"postversion": "git push && git push --tags"
+		"postversion": "git push && git push --tags",
+		"build:cdn": "npm run build:esm && cd cdn && npm i && node index.js"
 	},
 	"files": [
 		"dist"
