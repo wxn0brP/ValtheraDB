@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.2.0...v0.3.0) (2025-03-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* removed deprecated CJS support
+
+### Features
+
+* build cdn workflow ([f9c55da](https://github.com/wxn0brP/ValtheraDB/commit/f9c55dad53f84235a8748531ee32865204cc5fe8))
+* update workflow ([877858d](https://github.com/wxn0brP/ValtheraDB/commit/877858d44516bc0ff105350c885ff6a497f716fa))
+
+
+* removed deprecated CJS support ([7e76330](https://github.com/wxn0brP/ValtheraDB/commit/7e7633059cc6e369067d70f9ac1da363cc999b00))
+
 ## [0.2.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.1.2...v0.2.0) (2025-02-28)
 
 
