@@ -2,8 +2,8 @@ import esbuild from "esbuild";
 
 esbuild.build({
     entryPoints: [
-        "../dist/esm/client/database.js",
-        "../dist/esm/client/graph.js"
+        "../dist/client/database.js",
+        "../dist/client/graph.js"
     ],
     outdir: "dist",
     format: "esm",
