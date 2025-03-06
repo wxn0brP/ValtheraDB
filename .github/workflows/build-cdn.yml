@@ -13,4 +13,4 @@ jobs:
     with:
       files: "cdn-dist"
       branch: "cdn-dist"
-      customCommands: "npm run build:cdn && mkdir cdn-dist && mv cdn/dist/* cdn-dist"
+      customCommands: "cd cdn && npm i && node index.js && cd .. && mkdir cdn-dist && mv cdn/dist/* cdn-dist"
