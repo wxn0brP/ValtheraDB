@@ -83,7 +83,7 @@ class dbActionC {
      * Add a new entry to the specified database.
      */
     async add(collection: string, arg: Arg, id_gen: boolean = true) {
-        this.checkCollection(collection);
+        await this.checkCollection(collection);
         const cpath = this._getCollectionPath(collection);
         const file = cpath + await getLastFile(cpath, this.options.maxFileSize);
 
@@ -99,7 +99,7 @@ class dbActionC {
         options.reverse = options.reverse || false;
         options.max = options.max || -1;
 
-        this.checkCollection(collection);
+        await this.checkCollection(collection);
         const cpath = this._getCollectionPath(collection);
         const files = await getSortedFiles(cpath);
         if (options.reverse) files.reverse();
@@ -132,7 +132,7 @@ class dbActionC {
      * Find the first matching entry in the specified database based on search criteria.
      */
     async findOne(collection: string, arg: SearchOptions, context: Context = {}, findOpts: FindOpts = {}) {
-        this.checkCollection(collection);
+        await this.checkCollection(collection);
         const cpath = this._getCollectionPath(collection);
         const files = await getSortedFiles(cpath);
 
@@ -147,7 +147,7 @@ class dbActionC {
      * Update entries in the specified database based on search criteria and an updater function or object.
      */
     async update(collection: string, arg: Search, updater: Updater, context = {}) {
-        this.checkCollection(collection);
+        await this.checkCollection(collection);
         return await operationUpdater(
             this._getCollectionPath(collection),
             this.fileCpu.update.bind(this.fileCpu),
@@ -162,7 +162,7 @@ class dbActionC {
      * Update the first matching entry in the specified database based on search criteria and an updater function or object.
      */
     async updateOne(collection: string, arg: Search, updater: Updater, context: Context = {}) {
-        this.checkCollection(collection);
+        await this.checkCollection(collection);
         return await operationUpdater(
             this._getCollectionPath(collection),
             this.fileCpu.update.bind(this.fileCpu),
@@ -177,7 +177,7 @@ class dbActionC {
      * Remove entries from the specified database based on search criteria.
      */
     async remove(collection: string, arg: Search, context: Context = {}) {
-        this.checkCollection(collection);
+        await this.checkCollection(collection);
         return await operationUpdater(
             this._getCollectionPath(collection),
             this.fileCpu.remove.bind(this.fileCpu),
@@ -191,7 +191,7 @@ class dbActionC {
      * Remove the first matching entry from the specified database based on search criteria.
      */
     async removeOne(collection: string, arg: Search, context: Context = {}) {
-        this.checkCollection(collection);
+        await this.checkCollection(collection);
         return await operationUpdater(
             this._getCollectionPath(collection),
             this.fileCpu.remove.bind(this.fileCpu),
