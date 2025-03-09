@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.3](https://github.com/wxn0brP/ValtheraDB/compare/v0.3.2...v0.3.3) (2025-03-09)
+
+
+### Bug Fixes
+
+* custom file CPU ([e031273](https://github.com/wxn0brP/ValtheraDB/commit/e031273c83c9c058c1d1372ca0e7b3d7c5abdbbf))
+
 ### [0.3.2](https://github.com/wxn0brP/ValtheraDB/compare/v0.3.1...v0.3.2) (2025-03-07)
 
 
