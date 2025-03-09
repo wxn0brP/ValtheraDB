@@ -6,10 +6,9 @@ import { FindOpts } from "../types/options";
 import hasFieldsAdvanced from "../utils/hasFieldsAdvanced";
 import updateFindObject from "../utils/updateFindObject";
 import { pathRepair } from "./utils";
-import { readdirSync } from "fs";
 
-type WriteFile = (file: string, data: any[]) => Promise<void>
-type ReadFile = (file: string) => Promise<any[]>
+export type WriteFile = (file: string, data: any[]) => Promise<void>
+export type ReadFile = (file: string) => Promise<any[]>
 
 class CustomFileCpu implements FileCpu {
     _readFile: ReadFile;
@@ -27,20 +26,13 @@ class CustomFileCpu implements FileCpu {
         await this._writeFile(file, entries);
     }
 
-    async addMany(file: string, data: Data[]): Promise<void> {
-        file = pathRepair(file);
-        let entries = await this._readFile(file);
-        entries = entries.concat(data);
-        await this._writeFile(file, entries);
-    }
-
     async find(file: string, arg: Search, context: Context = {}, findOpts: FindOpts = {}): Promise<any[] | false> {
         file = pathRepair(file);
         const entries = await this._readFile(file);
         const results = entries.filter(entry =>
             typeof arg === "function" ? arg(entry, context) : hasFieldsAdvanced(entry, arg)
         );
-        return results.length ? results.map(res => updateFindObject(res, findOpts)) : false;
+        return results.length ? results.map(res => updateFindObject(res, findOpts)) : [];
     }
 
     async findOne(file: string, arg: Search, context: Context = {}, findOpts: FindOpts = {}): Promise<any | false> {
