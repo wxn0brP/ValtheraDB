@@ -8,8 +8,10 @@ import CustomFileCpu from "./file/customFileCpu";
 
 export {
     DataBase,
+    DataBase as Valthera,
     Graph,
     DataBaseRemote,
+    DataBaseRemote as ValtheraRemote,
     GraphRemote,
     Relation,
     genId,
