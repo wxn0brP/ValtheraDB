@@ -1,4 +1,4 @@
-import { Context } from "vm";
+import { Context } from "../types/types";
 import { Search, Updater } from "../types/arg";
 import Data from "../types/data";
 import FileCpu from "../types/fileCpu";
