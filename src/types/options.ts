@@ -1,5 +1,10 @@
+import dbActionC from "../action";
+import executorC from "../executor";
+
 export interface DbOpts {
     maxFileSize?: number;
+    dbAction?: dbActionC;
+    executor?: executorC;
 }
 
 export interface DbFindOpts {

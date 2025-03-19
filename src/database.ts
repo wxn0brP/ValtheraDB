@@ -18,8 +18,8 @@ class DataBase {
 
     constructor(folder: string, options: DbOpts = {}, fileCpu?: FileCpu) {
         if(!fileCpu) fileCpu = vFileCpu;
-        this.dbAction = new dbActionC(folder, options, fileCpu);
-        this.executor = new executorC();
+        this.dbAction = options.dbAction || new dbActionC(folder, options, fileCpu);
+        this.executor = options.executor || new executorC();
     }
 
     /**
