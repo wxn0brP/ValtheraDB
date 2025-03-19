@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.4](https://github.com/wxn0brP/ValtheraDB/compare/v0.3.3...v0.3.4) (2025-03-19)
+
+
+### Features
+
+* add export alias ([60d5386](https://github.com/wxn0brP/ValtheraDB/commit/60d5386ea8d254afcbd5aadb373b6bde3d57f592))
+* implement in-memory database ([d72e6da](https://github.com/wxn0brP/ValtheraDB/commit/d72e6da42d171e2e443ded5b9d6521e94303d33e))
+
+
+### Bug Fixes
+
+* types ([9693b1b](https://github.com/wxn0brP/ValtheraDB/commit/9693b1b4aae12835e5eb1aff7db2d6d1911818d4))
+
 ### [0.3.3](https://github.com/wxn0brP/ValtheraDB/compare/v0.3.2...v0.3.3) (2025-03-09)
 
 
