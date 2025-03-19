@@ -31,7 +31,7 @@
 	},
 	"scripts": {
 		"build": "tsc && tsc-alias",
-		"prepare": "npm run build",
+		"prepare": "rm -rf dist && npm run build",
 		"postversion": "git push && git push --tags",
 		"build:cdn": "npm run build && cd cdn && node index.js"
 	},
