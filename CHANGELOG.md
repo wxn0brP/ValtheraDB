@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://github.com/wxn0brP/ValtheraDB/compare/v0.4.0...v0.4.1) (2025-03-21)
+
+
+### Bug Fixes
+
+* operationUpdater bug ([e255dd2](https://github.com/wxn0brP/ValtheraDB/commit/e255dd23deef6f4b3ce25f57d4cea5278869101f))
+
 ## [0.4.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.3.4...v0.4.0) (2025-03-19)
 
 
