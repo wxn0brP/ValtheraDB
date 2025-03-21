@@ -259,8 +259,8 @@ async function operationUpdater(
     let update = false;
     for (const file of files) {
         const updated = await worker(cpath + file, one, ...args);
-        if (one && updated) break;
         update = update || updated;
+        if (one && updated) break;
     }
     return update;
 }
