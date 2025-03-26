@@ -8,6 +8,11 @@ import { Context } from "./types/types";
 import FileCpu from "./types/fileCpu";
 import vFileCpu from "./file";
 import { Transaction } from "./types/transactions";
+import EventEmitter from "events";
+
+type DbActionsFns = keyof {
+    [K in keyof dbActionC as dbActionC[K] extends (...args: any[]) => any ? K : never]: any;
+}
 
 /**
  * Represents a database management class for performing CRUD operations.
@@ -16,11 +21,20 @@ import { Transaction } from "./types/transactions";
 class DataBase {
     dbAction: dbActionC;
     executor: executorC;
+    emiter: EventEmitter;
 
     constructor(folder: string, options: DbOpts = {}, fileCpu?: FileCpu) {
         if(!fileCpu) fileCpu = vFileCpu;
         this.dbAction = options.dbAction || new dbActionC(folder, options, fileCpu);
         this.executor = options.executor || new executorC();
+        this.emiter = new EventEmitter();
+    }
+
+    private async execute<T>(name: DbActionsFns, ...args: any[]) {
+        const result = await this.executor.addOp(this.dbAction[name].bind(this.dbAction), ...args) as T;
+        if (this.emiter.listeners(name).length !== 0) this.emiter.emit(name, args, result);
+        if (this.emiter.listeners("*").length !== 0) this.emiter.emit("*", name, args, result);
+        return result;
     }
 
     /**
@@ -34,70 +48,70 @@ class DataBase {
      * Get the names of all available databases.
      */
     async getCollections() {
-        return await this.executor.addOp(this.dbAction.getCollections.bind(this.dbAction)) as string[];
+        return await this.execute<string[]>("getCollections");
     }
 
     /**
      * Check and create the specified collection if it doesn't exist.
      */
     async checkCollection(collection: string) {
-        return await this.executor.addOp(this.dbAction.checkCollection.bind(this.dbAction), collection) as boolean;
+        return await this.execute<boolean>("checkCollection", collection);
     }
 
     /**
      * Check if a collection exists.
      */
     async issetCollection(collection: string) {
-        return await this.executor.addOp(this.dbAction.issetCollection.bind(this.dbAction), collection) as boolean;
+        return await this.execute<boolean>("issetCollection", collection);
     }
 
     /**
      * Add data to a database.
      */
     async add<T = Data>(collection: string, data: Arg, id_gen: boolean = true) {
-        return await this.executor.addOp(this.dbAction.add.bind(this.dbAction), collection, data, id_gen) as T;
+        return await this.execute<T>("add", collection, data, id_gen);
     }
 
     /**
      * Find data in a database.
      */
     async find<T = Data>(collection: string, search: Search, context: Context = {}, options: DbFindOpts = {}, findOpts: FindOpts = {}) {
-        return await this.executor.addOp(this.dbAction.find.bind(this.dbAction), collection, search, context, options, findOpts) as T[];
+        return await this.execute<T[]>("find", collection, search, context, options, findOpts);
     }
 
     /**
      * Find one data entry in a database.
      */
     async findOne<T = Data>(collection: string, search: Search, context: Context = {}, findOpts: FindOpts = {}) {
-        return await this.executor.addOp(this.dbAction.findOne.bind(this.dbAction), collection, search, context, findOpts) as (T | null);
+        return await this.execute<T | null>("findOne", collection, search, context, findOpts);
     }
 
     /**
      * Update data in a database.
      */
     async update(collection: string, search: Search, updater: Updater, context = {}) {
-        return await this.executor.addOp(this.dbAction.update.bind(this.dbAction), collection, search, updater, context) as boolean;
+        return await this.execute<boolean>("update", collection, search, updater, context);
     }
 
     /**
      * Update one data entry in a database.
      */
     async updateOne(collection: string, search: Search, updater: Updater, context: Context = {}) {
-        return await this.executor.addOp(this.dbAction.updateOne.bind(this.dbAction), collection, search, updater, context) as boolean;
+        return await this.execute<boolean>("updateOne", collection, search, updater, context);
     }
 
     /**
      * Remove data from a database.
      */
     async remove(collection: string, search: Search, context: Context = {}) {
-        return await this.executor.addOp(this.dbAction.remove.bind(this.dbAction), collection, search, context) as boolean;
+        return await this.execute<boolean>("remove", collection, search, context);
     }
 
     /**
      * Remove one data entry from a database.
      */
     async removeOne(collection: string, search: Search, context: Context = {}) {
-        return await this.executor.addOp(this.dbAction.removeOne.bind(this.dbAction), collection, search, context) as boolean;
+        return await this.execute<boolean>("removeOne", collection, search, context);
     }
 
     /**
@@ -119,14 +133,14 @@ class DataBase {
      * Removes a database collection from the file system.
      */
     async removeCollection(collection: string) {
-        return await this.executor.addOp(this.dbAction.removeCollection.bind(this.dbAction), collection) as boolean;
+        return await this.execute<boolean>("removeCollection", collection);
     }
 
     /**
      * Execute a transaction.
      */
     async transaction(collection: string, transaction: Transaction[]) {
-        return await this.executor.addOp(this.dbAction.transaction.bind(this.dbAction), collection, transaction) as boolean;
+        return await this.execute<boolean>("transaction", collection, transaction);
     }
 }
 
