@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.2](https://github.com/wxn0brP/ValtheraDB/compare/v0.4.1...v0.4.2) (2025-03-26)
+
+
+### Features
+
+* add transaction to DataBaseRemote ([da638f2](https://github.com/wxn0brP/ValtheraDB/commit/da638f2b28a80957de8146b7a0205b53de9b4ca1))
+* enhance data assignment logic in updateOne method for improved object handling ([e954d84](https://github.com/wxn0brP/ValtheraDB/commit/e954d84013632e6063d4ec8871c4905902f34f27))
+* implement transaction ([9dd06dc](https://github.com/wxn0brP/ValtheraDB/commit/9dd06dc7fa6d5bbe9a97a60fae84ec2f6173a8c2))
+* refactor database operations to use centralized execution method with event emission ([cf143c7](https://github.com/wxn0brP/ValtheraDB/commit/cf143c702a1c22bcc56aad4e76b139dd34cd1e3d))
+
+
+### Bug Fixes
+
+* integrate executor for database operations ([49d04d0](https://github.com/wxn0brP/ValtheraDB/commit/49d04d0f12fb547e6204f8dce909bc5f4d63ed6e))
+* update build workflow to include package.json ([b77bf14](https://github.com/wxn0brP/ValtheraDB/commit/b77bf145c5d1d80c4e99244d91a2539a6af93944))
+
 ### [0.4.1](https://github.com/wxn0brP/ValtheraDB/compare/v0.4.0...v0.4.1) (2025-03-21)
 
 
