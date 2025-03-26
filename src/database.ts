@@ -33,21 +33,21 @@ class DataBase {
      * Get the names of all available databases.
      */
     async getCollections() {
-        return await this.dbAction.getCollections();
+        return await this.executor.addOp(this.dbAction.getCollections.bind(this.dbAction)) as string[];
     }
 
     /**
      * Check and create the specified collection if it doesn't exist.
      */
     async checkCollection(collection: string) {
-        await this.dbAction.checkCollection(collection);
+        return await this.executor.addOp(this.dbAction.checkCollection.bind(this.dbAction), collection) as boolean;
     }
 
     /**
      * Check if a collection exists.
      */
     async issetCollection(collection: string) {
-        return await this.dbAction.issetCollection(collection);
+        return await this.executor.addOp(this.dbAction.issetCollection.bind(this.dbAction), collection) as boolean;
     }
 
     /**
@@ -118,7 +118,7 @@ class DataBase {
      * Removes a database collection from the file system.
      */
     async removeCollection(collection: string) {
-        await this.dbAction.removeCollection(collection);
+        return await this.executor.addOp(this.dbAction.removeCollection.bind(this.dbAction), collection) as boolean;
     }
 }
 
