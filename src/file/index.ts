@@ -5,6 +5,7 @@ import FileCpu from "../types/fileCpu";
 import { appendFileSync } from "fs";
 import { Arg } from "../types/arg";
 import { stringify } from "../format";
+import transactions from "./transactions";
 
 const vFileCpu: FileCpu = {
     add: async (file: string, data: Arg) => {
@@ -14,7 +15,8 @@ const vFileCpu: FileCpu = {
     find,
     findOne,
     update,
-    remove
+    remove,
+    transactions
 }
 
 export default vFileCpu;

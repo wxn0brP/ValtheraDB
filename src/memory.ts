@@ -7,6 +7,7 @@ import Data from "./types/data";
 import FileCpu from "./types/fileCpu";
 import { DbFindOpts, DbOpts, FindOpts } from "./types/options";
 import { SearchOptions } from "./types/searchOpts";
+import { Transaction } from "./types/transactions";
 import { Context } from "./types/types";
 
 class MemoryAction implements dbActionC {
@@ -137,6 +138,14 @@ class MemoryAction implements dbActionC {
      */
     async removeCollection(collection: string) {
         this.memory.delete(collection);
+    }
+
+    /**
+     * Executes a list of transactions on the specified database collection.
+     * @throws Error - Method not supported in memory.
+     */
+    transaction(collection: string, transactions: Transaction[]): Promise<void> {
+        throw new Error("Method not supported in memory.");
     }
 }
 

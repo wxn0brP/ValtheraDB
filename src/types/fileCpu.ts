@@ -1,6 +1,7 @@
 import { Search, Updater } from "./arg";
 import Data from "./data";
 import { FindOpts } from "./options";
+import { Transaction } from "./transactions";
 import { Context } from "./types";
 
 interface FileCpu {
@@ -73,6 +74,17 @@ interface FileCpu {
         updater: Updater,
         context?: Context,
     ): Promise<boolean>;
+
+    /**
+     * Executes a list of transactions on the specified database collection.
+     * @param file The path to the file.
+     * @param transactions An array of transactions to execute.
+     * @returns A promise resolved when all transactions have been executed.
+     */
+    transactions(
+        file: string,
+        transactions: Transaction[]
+    ): Promise<void>;
 }
 
 export default FileCpu;

@@ -7,6 +7,7 @@ import Data from "./types/data";
 import { Context } from "./types/types";
 import FileCpu from "./types/fileCpu";
 import vFileCpu from "./file";
+import { Transaction } from "./types/transactions";
 
 /**
  * Represents a database management class for performing CRUD operations.
@@ -119,6 +120,10 @@ class DataBase {
      */
     async removeCollection(collection: string) {
         return await this.executor.addOp(this.dbAction.removeCollection.bind(this.dbAction), collection) as boolean;
+    }
+
+    async transaction(collection: string, transaction: Transaction[]) {
+        return await this.executor.addOp(this.dbAction.transaction.bind(this.dbAction), collection, transaction) as boolean;
     }
 }
 

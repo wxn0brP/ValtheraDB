@@ -6,6 +6,7 @@ import { FindOpts } from "../types/options";
 import hasFieldsAdvanced from "../utils/hasFieldsAdvanced";
 import updateFindObject from "../utils/updateFindObject";
 import { pathRepair } from "./utils";
+import { Transaction } from "../types/transactions";
 
 export type WriteFile = (file: string, data: any[]) => Promise<void>
 export type ReadFile = (file: string) => Promise<any[]>
@@ -90,6 +91,10 @@ class CustomFileCpu implements FileCpu {
 
         await this._writeFile(file, entries);
         return true;
+    }
+
+    transactions(file: string, transactions: Transaction[]): Promise<void> {
+        throw new Error("Method not implemented.");
     }
 }
 

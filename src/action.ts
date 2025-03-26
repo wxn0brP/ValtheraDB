@@ -11,6 +11,7 @@ import {
     promises
 } from "fs";
 import FileCpu from "./types/fileCpu";
+import { Transaction } from "./types/transactions";
 
 /**
  * A class representing database actions on files.
@@ -206,6 +207,27 @@ class dbActionC {
      */
     async removeCollection(collection: string) {
         await promises.rm(this.folder + "/" + collection, { recursive: true, force: true });
+    }
+
+    /**
+     * Apply a series of transactions to a database collection.
+     */
+    async transaction(collection: string, transactions: Transaction[]) {
+        await this.checkCollection(collection);
+        const files = await getSortedFiles(this._getCollectionPath(collection));
+
+        if (files.length == 0) {
+            await promises.writeFile(this._getCollectionPath(collection) + "1.db", "");
+            files.push("1.db");
+        }
+
+        for (const file of files) {
+            await this.fileCpu.transactions(this._getCollectionPath(collection) + file, transactions);
+        }
+
+        console.log("Transactions applied successfully.");
+        console.log("Files:", files);
+        console.log("Transactions:", transactions);
     }
 }
 
