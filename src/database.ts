@@ -121,9 +121,23 @@ class DataBase {
         const res = await this.updateOne(collection, search, updater, context);
         if (!res) {
             const assignData = [];
-            if (typeof search === "object" && !Array.isArray(search)) assignData.push(search);
-            if (typeof updater === "object" && !Array.isArray(updater)) assignData.push(updater);
-            if (typeof add_arg === "object" && !Array.isArray(add_arg)) assignData.push(add_arg);
+            function assignDataPush(data: any) {
+                if (typeof data !== "object" || Array.isArray(data)) return;
+                const obj = {};
+                for (const key of Object.keys(data)) {
+                    if (key.startsWith("$")) {
+                        Object.keys(data[key]).forEach((k) => {
+                            obj[k] = data[key][k];
+                        })
+                    } else
+                    obj[key] = data[key];
+                }
+                assignData.push(obj);
+            }
+            
+            assignDataPush(search);
+            assignDataPush(updater);
+            assignDataPush(add_arg);
             await this.add(collection, Object.assign({}, ...assignData), id_gen);
         }
         return res as boolean;
