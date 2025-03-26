@@ -122,6 +122,9 @@ class DataBase {
         return await this.executor.addOp(this.dbAction.removeCollection.bind(this.dbAction), collection) as boolean;
     }
 
+    /**
+     * Execute a transaction.
+     */
     async transaction(collection: string, transaction: Transaction[]) {
         return await this.executor.addOp(this.dbAction.transaction.bind(this.dbAction), collection, transaction) as boolean;
     }

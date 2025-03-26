@@ -6,6 +6,7 @@ import { Arg, Search, Updater } from "../types/arg";
 import { DbFindOpts, FindOpts } from "../types/options";
 import { Context } from "../types/types";
 import Data from "../types/data";
+import { Transaction } from "../types/transactions";
 
 /**
  * Represents a database management class for performing CRUD operations.
@@ -130,6 +131,13 @@ class DataBaseRemote {
      */
     async removeCollection(name: string) {
         return await this._request<boolean>("removeCollection", [name]) as boolean;
+    }
+
+    /**
+     * Execute a transaction.
+     */
+    async transaction(collection: string, transaction: Transaction[]) {
+        return await this._request<boolean>("transaction", [collection, transaction]) as boolean;
     }
 }
 
