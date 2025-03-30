@@ -13,4 +13,5 @@ jobs:
   build:
     uses: wxn0brP/workflow-dist/.github/workflows/build-ts.yml@main
     with:
+      files: "dist package.json README.md LICENSE"
       publishToNpm: true
