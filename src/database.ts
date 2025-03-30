@@ -8,7 +8,7 @@ import { Context } from "./types/types";
 import FileCpu from "./types/fileCpu";
 import vFileCpu from "./file";
 import { Transaction } from "./types/transactions";
-import EventEmitter from "events";
+import { EventEmitter } from "events";
 
 type DbActionsFns = keyof {
     [K in keyof dbActionC as dbActionC[K] extends (...args: any[]) => any ? K : never]: any;
