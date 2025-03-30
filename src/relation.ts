@@ -6,7 +6,7 @@ export interface Databases {
     [key: string]: DataBase;
 }
 
-interface RelationConfig {
+export interface RelationConfig {
     from: string;
     localField: string;
     foreignField: string;
