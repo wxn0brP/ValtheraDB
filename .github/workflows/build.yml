@@ -4,10 +4,24 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'src/**/*.ts'
+      - 'package.json'
+      - 'tsconfig.json'
     tags:
       - '*'
-
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'src/**/*.ts'
+      - 'package.json'
+      - 'tsconfig.json'
   workflow_dispatch:
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:

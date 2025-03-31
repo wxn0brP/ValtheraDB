@@ -4,11 +4,18 @@ on:
   push:
     branches:
       - main
+    paths:
+      - '**/*.md'
   pull_request:
     branches:
       - main
-
+    paths:
+      - '**/*.md'
   workflow_dispatch:
+
+concurrency:
+  group: build-mdbook-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -36,6 +43,7 @@ jobs:
           git checkout --orphan gh-pages
           git rm -rf .
           cp -r docs/book/* .
+          rm -rf docs
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
           git add .
