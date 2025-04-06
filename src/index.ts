@@ -8,10 +8,8 @@ import CustomFileCpu from "./file/customFileCpu";
 import ValtheraMemory, { createMemoryValthera } from "./memory";
 
 export {
-    DataBase,
     DataBase as Valthera,
     Graph,
-    DataBaseRemote,
     DataBaseRemote as ValtheraRemote,
     GraphRemote,
     Relation,
@@ -21,22 +19,18 @@ export {
     createMemoryValthera
 }
 
-import type Id from "./types/Id";
-import type { Arg, Search, Updater } from "./types/arg";
-import type { DbFindOpts, FindOpts, DbOpts } from "./types/options";
-import type Data from "./types/data";
-import type { SearchOptions } from "./types/searchOpts";
-import type { RelationTypes } from "./relation";
+export type Id = import("./types/Id").Id;
 
-export type {
-    Id,
-    Arg,
-    Search,
-    Updater,
-    DbFindOpts,
-    FindOpts,
-    DbOpts,
-    Data,
-    SearchOptions,
-    RelationTypes
+export namespace ValtheraTypes {
+    export type Arg = import("./types/arg").Arg;
+    export type Search = import("./types/arg").Search;
+    export type Updater = import("./types/arg").Updater;
+    export type DbFindOpts = import("./types/options").DbFindOpts;
+    export type FindOpts = import("./types/options").FindOpts;
+    export type DbOpts = import("./types/options").DbOpts;
+    export type Data = import("./types/data").Data;
+    export type SearchOptions = import("./types/searchOpts").SearchOptions;
 }
+
+import type { RelationTypes } from "./relation";
+export type { RelationTypes };
