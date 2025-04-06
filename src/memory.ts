@@ -154,3 +154,14 @@ export default class ValtheraMemory extends DataBase {
         super("", { dbAction: new MemoryAction() });
     }
 }
+
+export function createMemoryValthera(data?: { [key: string]: Data[] }) {
+    const db = new ValtheraMemory();
+    if (!data) return db;
+
+    for (const collection of Object.keys(data)) {
+        (db.dbAction as MemoryAction).memory.set(collection, data[collection]);
+    }
+
+    return db;
+}

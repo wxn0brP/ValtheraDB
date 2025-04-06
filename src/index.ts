@@ -5,7 +5,7 @@ import GraphRemote from "./client/graph";
 import genId from "./gen";
 import Relation from "./relation";
 import CustomFileCpu from "./file/customFileCpu";
-import ValtheraMemory from "./memory";
+import ValtheraMemory, { createMemoryValthera } from "./memory";
 
 export {
     DataBase,
@@ -18,6 +18,7 @@ export {
     genId,
     CustomFileCpu,
     ValtheraMemory,
+    createMemoryValthera
 }
 
 import type Id from "./types/Id";
