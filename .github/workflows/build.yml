@@ -10,6 +10,7 @@ on:
       - 'tsconfig.json'
     tags:
       - '*'
+      
   pull_request:
     branches:
       - main
@@ -20,7 +21,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: build-${{ github.ref }}
+  group: build-main
   cancel-in-progress: true
 
 jobs:
