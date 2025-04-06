@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.4.2...v0.5.0) (2025-04-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* organize exports
+* refactor relation
+
+### Features
+
+* add createMemoryValthera ([98d7e91](https://github.com/wxn0brP/ValtheraDB/commit/98d7e91c02027e9c2dace69593f4fe81b13f39f2))
+* add GitHub Actions workflow for nightly builds and releases ([800432f](https://github.com/wxn0brP/ValtheraDB/commit/800432f2ff333adce2fc45c52bf56a0087aacddd))
+* enhance GitHub Actions ([7df8c22](https://github.com/wxn0brP/ValtheraDB/commit/7df8c228228b390275af8d21527e03ad9987a3de))
+* export RelationConfig interface ([5c03fbc](https://github.com/wxn0brP/ValtheraDB/commit/5c03fbcea0d8e96bf9067e15a376f44ad4f8c7be))
+* refactor relation ([a3f8ad4](https://github.com/wxn0brP/ValtheraDB/commit/a3f8ad4b72c06c73158bb3e8b28e16d8279394cd))
+* update GitHub Actions workflow to include additional files for publishing ([51bbf4a](https://github.com/wxn0brP/ValtheraDB/commit/51bbf4a9a1e83a2d991c7b2782369d73340aafc0))
+
+
+### Bug Fixes
+
+* update import statement for EventEmitter to use named import ([1889f4d](https://github.com/wxn0brP/ValtheraDB/commit/1889f4dee008448fb1233e485eb6d8201cbbfd87))
+
+
+* organize exports ([6f22eae](https://github.com/wxn0brP/ValtheraDB/commit/6f22eaedef9c0ad1faf68eb0ef14cbc611859636))
+
 ### [0.4.2](https://github.com/wxn0brP/ValtheraDB/compare/v0.4.1...v0.4.2) (2025-03-26)
 
 
