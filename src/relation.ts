@@ -2,97 +2,132 @@ import DataBase from "./database";
 import { Search } from "./types/arg";
 import { DbFindOpts } from "./types/options";
 
-export interface Databases {
-    [key: string]: DataBase;
-}
+export namespace RelationTypes {
+    export type Path = [string, string];
+    export type FieldPath = string[];
 
-export interface RelationConfig {
-    from: string;
-    localField: string;
-    foreignField: string;
-    as?: string;
-    multiple?: boolean;
-}
-
-class Relation {
-    private databases: Databases;
-
-    constructor(databases: Databases) {
-        this.databases = databases;
+    export interface DBS {
+        [key: string]: DataBase
     }
 
-    /**
-     * Resolves the relation path in format 'dbName.collectionName'.
-     */
-    private _resolvePath(path: string): { db: DataBase; collection: string } {
-        if (!path.includes(".")) {
-            throw new Error(`Invalid path format "${path}". Expected format 'dbName.collectionName'.`);
-        }
-
-        const sanitizedPath = path.replace(/\\\./g, "\uffff");
-        const [dbName, collectionName] = sanitizedPath.split(".", 2).map(part => part.replace(/\uffff/g, "."));
-
-        const db = this.databases[dbName];
-        if (!db) {
-            throw new Error(`Database "${dbName}" not found.`);
-        }
-
-        return { db, collection: collectionName };
+    export interface Relation {
+        [key: string]: RelationConfig
     }
 
-    /**
-     * Processes relations for a single item.
-     */
-    private async _processItemRelations(item: Record<string, any>, relations: Record<string, RelationConfig>): Promise<Record<string, any>> {
-        if (!item || typeof item !== "object") return item;
+    export interface RelationConfig {
+        path: Path;
+        pk?: string;
+        fk?: string;
+        as?: string;
+        select?: string[];
 
-        const result: Record<string, any> = { ...item };
+        findOpts?: DbFindOpts;
+        type?: "1" | "1n" | "nm"
+        relations?: Relation;
+    }
+}
 
-        for (const [field, relationConfig] of Object.entries(relations)) {
-            if (!relationConfig.from || !relationConfig.localField || !relationConfig.foreignField) {
-                console.warn(`Skipping invalid relation configuration for field: "${field}"`);
+async function processRelations(dbs: RelationTypes.DBS, cfg: RelationTypes.Relation, data: any) {
+    for (const [key, relation] of Object.entries(cfg)) {
+        const { pk = "_id", fk = "_id", type = "1" } = relation;
+
+        if (type === "1") {
+            const db = dbs[relation.path[0]];
+            const collection = relation.path[1];
+            const item = await db.findOne(collection, { [fk]: data[pk] }, {}, { select: relation.select || null });
+
+            const field = relation.as || key;
+            if (!item) {
+                data[field] = null;
                 continue;
             }
 
-            try {
-                const { db, collection } = this._resolvePath(relationConfig.from);
-                const searchQuery = { [relationConfig.foreignField]: item[relationConfig.localField] };
-                const fetchFn = relationConfig.multiple ? db.find.bind(db) : db.findOne.bind(db);
-
-                result[relationConfig.as || field] = await fetchFn(collection, searchQuery) || null;
-            } catch (error) {
-                console.error(`Error processing relation for field "${field}":`, error);
+            if (relation.relations) {
+                await processRelations(dbs, relation.relations, item);
             }
+            data[field] = item;
+        } else if (type === "1n") {
+            const db = dbs[relation.path[0]];
+            const collection = relation.path[1];
+            const items = await db.find(
+                collection,
+                { [fk]: data[pk] },
+                {},
+                relation.findOpts || {},
+                { select: relation.select || null }
+            );
+
+            const field = relation.as || key;
+            if (relation.relations) {
+                await Promise.all(items.map(item => processRelations(dbs, relation.relations, item)));
+            }
+            data[field] = items;
+        } else if (type === "nm") {
+            const db = dbs[relation.path[0]];
+            const collection = relation.path[1];
+            const items = await db.find(collection, {}, {}, {}, { select: relation.select || null });
+
+            const field = relation.as || key;
+            if (relation.relations) {
+                await Promise.all(items.map(item => processRelations(dbs, relation.relations, item)));
+            }
+            data[field] = items;
+        } else {
+            throw new Error(`Unknown relation type: ${relation.type}`);
         }
-
-        return result;
     }
+}
 
-    /**
-     * Finds multiple items with relations.
-     */
-    async find(
-        path: string,
-        search: Search,
-        relations: Record<string, RelationConfig> = {},
-        options: DbFindOpts = {}
-    ): Promise<Record<string, any>[]> {
-        const { db, collection } = this._resolvePath(path);
-        const items = await db.find(collection, search, {}, options);
-        return Promise.all(items.map(item => this._processItemRelations(item, relations)));
+function selectDataSelf(data: any, select: RelationTypes.FieldPath) {
+    if (!data) return null;
+    if (select.length === 0) return data;
+
+    if (Array.isArray(data))
+        return data.map(item => selectDataSelf(item, select));
+
+    return selectDataSelf(data[select[0]], select.slice(1));
+}
+
+function selectData(data: any, select: RelationTypes.FieldPath[]) {
+    if (select.length === 0) return data;
+    const newData = {};
+    for (const field of select) {
+        const key = field.map(f => f.replaceAll(".", "\\.")).join(".");
+        newData[key] = selectDataSelf(data, field);
     }
+    return newData;
+}
 
-    /**
-     * Finds a single item with relations.
-     */
+class Relation {
+    constructor(
+        public dbs: RelationTypes.DBS
+    ) { }
+
     async findOne(
-        path: string,
+        path: RelationTypes.Path,
         search: Search,
-        relations: Record<string, RelationConfig> = {}
-    ): Promise<Record<string, any> | null> {
-        const { db, collection } = this._resolvePath(path);
-        const item = await db.findOne(collection, search);
-        return item ? this._processItemRelations(item, relations) : null;
+        relations: RelationTypes.Relation,
+        select: RelationTypes.FieldPath[],
+    ) {
+        const db = this.dbs[path[0]];
+        const data = await db.findOne(path[1], search);
+        await processRelations(this.dbs, relations, data);
+
+        return selectData(data, select);
+    }
+
+    async find(
+        path: RelationTypes.Path,
+        search: Search,
+        relations: RelationTypes.Relation,
+        select: RelationTypes.FieldPath[],
+        findOpts: DbFindOpts = {},
+    ) {
+        const db = this.dbs[path[0]];
+        const data = await db.find(path[1], search, {}, findOpts);
+        await Promise.all(data.map(item => processRelations(this.dbs, relations, item)));
+
+        return data.map(item => selectData(item, select));
     }
 }
 

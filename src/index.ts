@@ -26,7 +26,7 @@ import type { Arg, Search, Updater } from "./types/arg";
 import type { DbFindOpts, FindOpts, DbOpts } from "./types/options";
 import type Data from "./types/data";
 import type { SearchOptions } from "./types/searchOpts";
-import type { RelationConfig } from "./relation";
+import type { RelationTypes } from "./relation";
 
 export type {
     Id,
@@ -38,5 +38,5 @@ export type {
     DbOpts,
     Data,
     SearchOptions,
-    RelationConfig
+    RelationTypes
 }
