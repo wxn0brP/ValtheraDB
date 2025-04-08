@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.2](https://github.com/wxn0brP/ValtheraDB/compare/v0.5.1...v0.5.2) (2025-04-08)
+
+
+### Features
+
+* add findStream method for streaming data retrieval ([6b061cb](https://github.com/wxn0brP/ValtheraDB/commit/6b061cb059a2a85ac22eda0de67967d6561e4d64))
+* refactor relation types into a separate module ([7a5031f](https://github.com/wxn0brP/ValtheraDB/commit/7a5031fecb565171c050792e2c769e3ce8cf7494))
+
 ### [0.5.1](https://github.com/wxn0brP/ValtheraDB/compare/v0.5.0...v0.5.1) (2025-04-06)
 
 ## [0.5.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.4.2...v0.5.0) (2025-04-06)
