@@ -1,3 +1,4 @@
+import DataBaseRemote from "../client/database";
 import DataBase from "../database";
 import { DbFindOpts } from "./options";
 
@@ -6,7 +7,7 @@ export namespace RelationTypes {
     export type FieldPath = string[];
 
     export interface DBS {
-        [key: string]: DataBase
+        [key: string]: DataBase | DataBaseRemote
     }
 
     export interface Relation {
