@@ -102,6 +102,13 @@ class MemoryAction implements dbActionC {
     }
 
     /**
+     * Find entries in the specified database based on search criteria and return a stream of results.
+     */
+    async *findStream(collection: string, arg: Search, context?: Context, findOpts?: FindOpts, limit?: number): AsyncGenerator<any> {
+        throw new Error("Method not implemented.");
+    }
+
+    /**
      * Update entries in the specified database based on search criteria and an updater function or object.
      */
     async update(collection: string, arg: Search, updater: Updater, context = {}) {

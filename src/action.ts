@@ -144,6 +144,23 @@ class dbActionC {
         return null;
     }
 
+    async *findStream(collection: string, arg: Search, context: Context = {}, findOpts: FindOpts = {}, limit: number = -1): AsyncGenerator<any> {
+        await this.checkCollection(collection);
+        const cpath = this._getCollectionPath(collection);
+        const files = await getSortedFiles(cpath);
+
+        let count = 0;
+        for (let f of files) {
+            for await (const data of this.fileCpu.findStream(cpath + f, arg, context, findOpts, limit)) {
+                yield data;
+                count++;
+                if (limit !== -1 && count >= limit) {
+                    return;
+                }
+            }
+        }
+    }
+
     /**
      * Update entries in the specified database based on search criteria and an updater function or object.
      */

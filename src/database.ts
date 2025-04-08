@@ -87,6 +87,13 @@ class DataBase {
     }
 
     /**
+     * Find data in a database as a stream.
+     */
+    async findStream<T = Data>(collection: string, search: Search, context: Context = {}, findOpts: FindOpts = {}, limit: number = -1) {
+        return await this.execute<AsyncGenerator<T>>("findStream", collection, search, context, findOpts, limit);
+    }
+
+    /**
      * Update data in a database.
      */
     async update(collection: string, search: Search, updater: Updater, context = {}) {

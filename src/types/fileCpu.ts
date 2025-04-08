@@ -1,6 +1,6 @@
 import { Search, Updater } from "./arg";
 import Data from "./data";
-import { FindOpts } from "./options";
+import { DbFindOpts, FindOpts } from "./options";
 import { Transaction } from "./transactions";
 import { Context } from "./types";
 
@@ -42,6 +42,23 @@ interface FileCpu {
         context?: Context,
         findOpts?: FindOpts
     ): Promise<any | false>;
+
+    /**
+     * Asynchronously finds entries in a file based on search criteria and returns a stream of results.
+     * @param file The path to the file.
+     * @param arg The search criteria.
+     * @param context Additional context for the search.
+     * @param findOpts Additional options for searching.
+     * @param limit The maximum number of entries to return.
+     * @returns An async generator yielding found entries.
+     */
+    findStream(
+        file: string,
+        arg: Search,
+        context?: Context,
+        findOpts?: FindOpts,
+        limit?: number
+    ): AsyncGenerator<any>;
 
     /**
    * Asynchronously removes entries from a file based on search criteria.

@@ -45,6 +45,10 @@ class CustomFileCpu implements FileCpu {
         return result ? updateFindObject(result, findOpts) : false;
     }
 
+    async* findStream(file: string, arg: Search, context?: Context, findOpts?: FindOpts, limit?: number): AsyncGenerator<any> {
+        throw new Error("Method not implemented.");
+    }
+
     async remove(file: string, one: boolean, arg: Search, context: Context = {}): Promise<boolean> {
         file = pathRepair(file);
         let entries = await this._readFile(file);

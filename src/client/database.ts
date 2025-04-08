@@ -92,6 +92,13 @@ class DataBaseRemote {
     }
 
     /**
+     * Find data in a database as a stream.
+     */
+    async findStream<T = Data>(collection: string, search: Search, context: Context = {}, dbFindOpts: DbFindOpts = {}, findOpts: FindOpts = {}) {
+        throw new Error("Method not implemented.");
+    }
+
+    /**
      * Update data in a database.
      */
     async update(collection: string, search: Search, updater: Updater, context: Context = {}) {
