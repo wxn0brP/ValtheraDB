@@ -32,5 +32,5 @@ export namespace ValtheraTypes {
     export type SearchOptions = import("./types/searchOpts").SearchOptions;
 }
 
-import type { RelationTypes } from "./relation";
+import type { RelationTypes } from "./types/relation";
 export type { RelationTypes };

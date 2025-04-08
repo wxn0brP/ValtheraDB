@@ -1,31 +1,6 @@
-import DataBase from "./database";
 import { Search } from "./types/arg";
 import { DbFindOpts } from "./types/options";
-
-export namespace RelationTypes {
-    export type Path = [string, string];
-    export type FieldPath = string[];
-
-    export interface DBS {
-        [key: string]: DataBase
-    }
-
-    export interface Relation {
-        [key: string]: RelationConfig
-    }
-
-    export interface RelationConfig {
-        path: Path;
-        pk?: string;
-        fk?: string;
-        as?: string;
-        select?: string[];
-
-        findOpts?: DbFindOpts;
-        type?: "1" | "1n" | "nm"
-        relations?: Relation;
-    }
-}
+import { RelationTypes } from "./types/relation";
 
 async function processRelations(dbs: RelationTypes.DBS, cfg: RelationTypes.Relation, data: any) {
     for (const [key, relation] of Object.entries(cfg)) {
