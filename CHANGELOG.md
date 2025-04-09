@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.3](https://github.com/wxn0brP/ValtheraDB/compare/v0.5.2...v0.5.3) (2025-04-09)
+
+
+### Features
+
+* add custom command to remove scripts from package.json in build workflow ([ff9a5b4](https://github.com/wxn0brP/ValtheraDB/commit/ff9a5b44585e8e7dd27e1098845b889108347298))
+* add data validation check in processRelations function ([b3843ec](https://github.com/wxn0brP/ValtheraDB/commit/b3843ec4a54f27200a897bd4c2610c5f94967b7a))
+* extend DBS interface to support DataBaseRemote type ([0c4840d](https://github.com/wxn0brP/ValtheraDB/commit/0c4840d2799610a3b0878dc8101ac86651a50f9b))
+
+
+### Bug Fixes
+
+* handle undefined select parameter in selectDataSelf function ([0c7889b](https://github.com/wxn0brP/ValtheraDB/commit/0c7889b009626e871e7f08c28eda778876b418a8))
+
 ### [0.5.2](https://github.com/wxn0brP/ValtheraDB/compare/v0.5.1...v0.5.2) (2025-04-08)
 
 
