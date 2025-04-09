@@ -3,6 +3,7 @@ import { DbFindOpts } from "./types/options";
 import { RelationTypes } from "./types/relation";
 
 async function processRelations(dbs: RelationTypes.DBS, cfg: RelationTypes.Relation, data: any) {
+    if (!data) return;
     for (const [key, relation] of Object.entries(cfg)) {
         const { pk = "_id", fk = "_id", type = "1" } = relation;
 
