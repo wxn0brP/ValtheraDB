@@ -56,7 +56,7 @@ async function processRelations(dbs: RelationTypes.DBS, cfg: RelationTypes.Relat
 
 function selectDataSelf(data: any, select: RelationTypes.FieldPath) {
     if (!data) return null;
-    if (select.length === 0) return data;
+    if (!select || select.length === 0) return data;
 
     if (Array.isArray(data))
         return data.map(item => selectDataSelf(item, select));
@@ -65,7 +65,7 @@ function selectDataSelf(data: any, select: RelationTypes.FieldPath) {
 }
 
 function selectData(data: any, select: RelationTypes.FieldPath[]) {
-    if (select.length === 0) return data;
+    if (!select || select.length === 0) return data;
     const newData = {};
     for (const field of select) {
         const key = field.map(f => f.replaceAll(".", "\\.")).join(".");
