@@ -10,7 +10,7 @@ import { SearchOptions } from "./types/searchOpts";
 import { Transaction } from "./types/transactions";
 import { Context } from "./types/types";
 
-class MemoryAction implements dbActionC {
+export class MemoryAction implements dbActionC {
     folder: string;
     options: DbOpts;
     fileCpu: FileCpu;
