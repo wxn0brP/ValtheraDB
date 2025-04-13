@@ -6,6 +6,7 @@ import genId from "./gen";
 import Relation from "./relation";
 import CustomFileCpu from "./file/customFileCpu";
 import ValtheraMemory, { createMemoryValthera } from "./memory";
+import { autoCreate } from "./autoCreate";
 
 export {
     DataBase as Valthera,
@@ -16,7 +17,8 @@ export {
     genId,
     CustomFileCpu,
     ValtheraMemory,
-    createMemoryValthera
+    createMemoryValthera,
+    autoCreate,
 }
 
 export type Id = import("./types/Id").Id;
