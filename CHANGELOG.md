@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.4](https://github.com/wxn0brP/ValtheraDB/compare/v0.5.3...v0.5.4) (2025-04-13)
+
+
+### Features
+
+* add logo to README and include SVG file ([9d2fb6f](https://github.com/wxn0brP/ValtheraDB/commit/9d2fb6fb039995988d63ab6088c756dbbc2e5d44))
+* export MemoryAction class for external usage ([4da2f95](https://github.com/wxn0brP/ValtheraDB/commit/4da2f958e4bbefd626e5d833b08ae05644dfa77e))
+
 ### [0.5.3](https://github.com/wxn0brP/ValtheraDB/compare/v0.5.2...v0.5.3) (2025-04-09)
 
 
