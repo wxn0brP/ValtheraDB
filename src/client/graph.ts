@@ -11,8 +11,24 @@ class GraphRemote {
     /**
      * Create a new database instance.
      */
-    constructor(remote: Remote) {
-        this.remote = remote;
+    constructor(remote: Remote | string) {
+        if (typeof remote === "string") {
+            const urlObj = new URL(remote);
+            const name = urlObj.username;
+            const auth = urlObj.password;
+            if (!name || !auth) throw new Error("Invalid remote database");
+            
+            urlObj.username = "";
+            urlObj.password = "";
+            const url = urlObj.toString().slice(0, -1);
+
+            this.remote = {
+                name,
+                url,
+                auth
+            };
+        } else this.remote = remote;
+        if (this.remote.url.endsWith("/")) this.remote.url = this.remote.url.slice(0, -1);
     }
 
     /**
@@ -23,7 +39,8 @@ class GraphRemote {
             db: this.remote.name,
             params
         };
-        const res = await ky.post(this.remote.url + "/db/" + type, {
+        const url = this.remote.url + "/db/" + type;
+        const res = await ky.post(url, {
             json: data,
             headers: {
                 "Authorization": this.remote.auth
