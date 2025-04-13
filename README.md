@@ -15,7 +15,7 @@ npm install @wxn0brp/db
 You can import the necessary classes from the package as follows:
 
 ```javascript
-import { DataBase, Graph, DataBaseRemote, GraphRemote, Relation, genId } from "@wxn0brp/db";
+import { Valthera, Graph, ValtheraRemote, GraphRemote, Relation, genId, ValtheraMemory, autoCreate } from "@wxn0brp/db";
 ```
 
 ## Documentation

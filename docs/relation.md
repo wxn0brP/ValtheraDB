@@ -1,51 +1,113 @@
 # Relation Class Documentation
 
-This documentation provides an overview of the `Relation` class, which is designed to manage and resolve relations between database collections.
+The `Relation` class provides a mechanism to handle relationships between collections in a database. It supports one-to-one, one-to-many, and many-to-many relationships.
 
 ## Class: `Relation`
 
-### Constructor: `Relation(databases)`
+### Constructor: `Relation(dbs)`
 Creates a new instance of the `Relation` class.
 
 - **Parameters:**
-  - `databases` (`Record<string, Database>`): An object containing database instances, where keys are database names.
+  - `dbs` (`RelationTypes.DBS`): An object mapping database names to `DataBase` or `DataBaseRemote` instances.
 
-### Method: `async find(path: string, search: object | Function, relations?: Record<string, any>, options?: object)`
-Finds items with relations based on the provided path and search criteria.
+---
 
-- **Parameters:**
-  - `path` (`string`): Path in format 'dbName.collectionName'.
-  - `search` (`object | Function`): The search query or function to execute.
-  - `relations` (`Record<string, any>`, optional): Relations configuration for resolving related data.
-  - `options` (`object`, optional): Additional search options.
-- **Returns:**
-  - `Promise<Array<object>>`: A promise that resolves with an array of items, each containing resolved relations.
-
-### Method: `async findOne(path: string, search: object | Function, relations?: Record<string, any>)`
-Finds one item with relations based on the provided path and search criteria.
+### Method: `async findOne(path, search, relations, select?)`
+Finds a single entry in a collection and resolves its relations.
 
 - **Parameters:**
-  - `path` (`string`): Path in format 'dbName.collectionName'.
-  - `search` (`object | Function`): The search query or function to execute.
-  - `relations` (`Record<string, any>`, optional): Relations configuration for resolving related data.
-- **Returns:**
-  - `Promise<object | null>`: A promise that resolves with the found item containing resolved relations or `null` if no match is found.
+  - `path` (`RelationTypes.Path`): A tuple specifying the database and collection.
+  - `search` (`Search`): The search criteria.
+  - `relations` (`RelationTypes.Relation`): The relations to resolve.
+  - `select` (`RelationTypes.FieldPath[]`, optional): Fields to select in the result.
 
-### Method: `private _processItemRelations(item: object, relations: Record<string, any>)`
-Processes relations for a single item.
+- **Returns:**
+  - `Promise<Object | null>`: The found entry with resolved relations, or `null` if no match is found.
+
+---
+
+### Method: `async find(path, search, relations, select?, findOpts?)`
+Finds multiple entries in a collection and resolves their relations.
 
 - **Parameters:**
-  - `item` (`object`): The item to process relations for.
-  - `relations` (`Record<string, any>`): Relations configuration.
-- **Returns:**
-  - `Promise<object>`: A promise that resolves with the processed item containing resolved relations.
+  - `path` (`RelationTypes.Path`): A tuple specifying the database and collection.
+  - `search` (`Search`): The search criteria.
+  - `relations` (`RelationTypes.Relation`): The relations to resolve.
+  - `select` (`RelationTypes.FieldPath[]`, optional): Fields to select in the results.
+  - `findOpts` (`DbFindOpts`, optional): Options for the find operation.
 
-### Private Method: `_resolvePath(path: string)`
-Resolves the relation path in the format 'dbName.collectionName'.
-
-- **Parameters:**
-  - `path` (`string`): The path to resolve, supporting escaped dots (`\.`).
 - **Returns:**
-  - `{ db: Database; collection: string }`: An object containing the resolved database and collection names.
-- **Throws:**
-  - `Error`: If the database does not exist or if the path format is invalid.
+  - `Promise<Object[]>`: An array of found entries with resolved relations.
+
+---
+
+### Relation Types
+
+The `Relation` class supports the following relation types:
+
+1. **One-to-One (`"1"`)**: Resolves a single related entry.
+2. **One-to-Many (`"1n"`)**: Resolves multiple related entries.
+3. **Many-to-Many (`"nm"`)**: Resolves all entries in the related collection.
+
+---
+
+### Example Usage
+
+```javascript
+import Relation from "@wxn0brp/db";
+import { autoCreate } from "@wxn0brp/db";
+
+// Create database instances
+const db1 = autoCreate("path/to/db1");
+const db2 = autoCreate("path/to/db2");
+
+// Define databases
+const dbs = {
+    db1,
+    db2
+};
+
+// Define relations
+const relations = {
+    author: {
+        path: ["db1", "users"],
+        pk: "authorId",
+        fk: "_id",
+        type: "1",
+        select: ["name", "email"]
+    },
+    comments: {
+        path: ["db2", "comments"],
+        pk: "_id",
+        fk: "postId",
+        type: "1n",
+        select: ["content", "createdAt"]
+    }
+};
+
+// Create a Relation instance
+const relation = new Relation(dbs);
+
+// Find a single post with relations
+const post = await relation.findOne(
+    ["db1", "posts"],
+    { _id: "post123" },
+    relations,
+    [["title"], ["author.name"], ["comments.content"]]
+);
+
+console.log(post);
+
+// Find multiple posts with relations
+const posts = await relation.find(
+    ["db1", "posts"],
+    { category: "tech" },
+    relations,
+    [["title"], ["author.name"], ["comments.content"]],
+    { max: 10 }
+);
+
+console.log(posts);
+```
+
+This example demonstrates how to use the `Relation` class to resolve relationships between collections in different databases.
