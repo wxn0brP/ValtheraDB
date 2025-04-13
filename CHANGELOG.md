@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.7](https://github.com/wxn0brP/ValtheraDB/compare/v0.5.6...v0.5.7) (2025-04-13)
+
+
+### Features
+
+* add autoCreate function for dynamic database instantiation ([3556ceb](https://github.com/wxn0brP/ValtheraDB/commit/3556ceba4d012c4ba768df4f3f956b6626dc772d))
+
 ### [0.5.6](https://github.com/wxn0brP/ValtheraDB/compare/v0.5.5...v0.5.6) (2025-04-13)
 
 
