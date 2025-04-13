@@ -162,7 +162,7 @@ export default class ValtheraMemory extends DataBase {
     }
 }
 
-export function createMemoryValthera(data?: { [key: string]: Data[] }) {
+export function createMemoryValthera<T = { [key: string]: Data[] }>(data?: T) {
     const db = new ValtheraMemory();
     if (!data) return db;
 
