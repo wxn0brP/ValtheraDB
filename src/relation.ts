@@ -64,8 +64,9 @@ function selectDataSelf(data: any, select: RelationTypes.FieldPath) {
     return selectDataSelf(data[select[0]], select.slice(1));
 }
 
-function selectData(data: any, select: RelationTypes.FieldPath[]) {
-    if (!select || select.length === 0) return data;
+function selectData(data: any, select?: RelationTypes.FieldPath[]) {
+    if (!select) return data;
+    if (!data && select.length === 0) return null;
     const newData = {};
     for (const field of select) {
         const key = field.map(f => f.replaceAll(".", "\\.")).join(".");
@@ -83,20 +84,21 @@ class Relation {
         path: RelationTypes.Path,
         search: Search,
         relations: RelationTypes.Relation,
-        select: RelationTypes.FieldPath[],
+        select?: RelationTypes.FieldPath[],
     ) {
         const db = this.dbs[path[0]];
         const data = await db.findOne(path[1], search);
         await processRelations(this.dbs, relations, data);
-
-        return selectData(data, select);
+        
+        const result = selectData(data, select);
+        return Object.keys(result).length === 0 ? null : result;
     }
 
     async find(
         path: RelationTypes.Path,
         search: Search,
         relations: RelationTypes.Relation,
-        select: RelationTypes.FieldPath[],
+        select?: RelationTypes.FieldPath[],
         findOpts: DbFindOpts = {},
     ) {
         const db = this.dbs[path[0]];
