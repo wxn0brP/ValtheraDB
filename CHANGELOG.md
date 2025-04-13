@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.5](https://github.com/wxn0brP/ValtheraDB/compare/v0.5.4...v0.5.5) (2025-04-13)
+
+
+### Features
+
+* make createMemoryValthera function generic for improved type flexibility ([2890ef1](https://github.com/wxn0brP/ValtheraDB/commit/2890ef169a7168dfcd9c106f00f7c3b4651f8ae2))
+
+
+### Bug Fixes
+
+* handle optional select parameter and improve data selection logic ([e4f12b6](https://github.com/wxn0brP/ValtheraDB/commit/e4f12b604c9ef1f5c8a2a8c88690e28f04043f62))
+
 ### [0.5.4](https://github.com/wxn0brP/ValtheraDB/compare/v0.5.3...v0.5.4) (2025-04-13)
 
 
