@@ -1,6 +1,6 @@
 {
 	"name": "@wxn0brp/db",
-	"version": "0.5.5",
+	"version": "0.5.6",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"description": "A simple file-based database management system with support for CRUD operations, custom queries, and graph structures.",

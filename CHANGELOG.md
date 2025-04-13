@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.6](https://github.com/wxn0brP/ValtheraDB/compare/v0.5.5...v0.5.6) (2025-04-13)
+
+
+### Features
+
+* enhance remote db config ([a267bce](https://github.com/wxn0brP/ValtheraDB/commit/a267bce83c823c916992cbab1068cd36ad31b0ec))
+
 ### [0.5.5](https://github.com/wxn0brP/ValtheraDB/compare/v0.5.4...v0.5.5) (2025-04-13)
 
 
