@@ -2,7 +2,7 @@ import esbuild from "esbuild";
 
 esbuild.build({
     entryPoints: [
-        "../dist/client/database.js",
+        "../dist/client/valthera.js",
         "../dist/client/graph.js"
     ],
     outdir: "dist",
