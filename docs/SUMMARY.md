@@ -1,6 +1,6 @@
 # Summary
 
-- [database](./database.md)
+- [valthera](./valthera.md)
 - [search_opts](./search_opts.md)
 - [find_opts](./find_opts.md)
 - [updater](./updater.md)

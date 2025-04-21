@@ -1,30 +1,27 @@
-# Remote Database and Graph Database Client Documentation
+# Remote Valthera and Graph Valthera Client Documentation
 
-## `remote` object structure.
-- `name` (`string`): The name of the database.
-- `url` (`string`): The URL of the remote database.
-- `auth` (`string`): The authentication token for accessing the database.
+## `remote` Object Structure
+- `name` (`string`): The name of the Valthera.
+- `url` (`string`): The URL of the remote Valthera.
+- `auth` (`string`): The authentication token for accessing the Valthera.
 
-## Class: `DataBaseRemote(remote)`
-`DataBaseRemote` is an extended version of the `DataBase` class, designed to handle API requests. It provides the same functionalities as `DataBase`, but enables remote communication, allowing you to interact with databases through HTTP requests.
+## Class: `ValtheraRemote(remote)`
+`ValtheraRemote` is an extended version of the `Valthera` class, designed to handle API requests. It provides the same functionalities as `Valthera`, but enables remote communication, allowing you to interact with Valthera through HTTP requests.
 
-## Example Usage
+### Example Usage
 ```javascript
-const remoteDB = new DataBaseRemote({
+const remoteDB = new ValtheraRemote({
     name: 'myRemoteDB',
     url: 'https://example.com/db',
     auth: 'your-auth-token'
 });
 ```
+or
+```javascript
+const remoteDB = new ValtheraRemote('https://dbName:token@example.com/db');
+```
 
 ## Class: `GraphRemote(remote)`
-`GraphRemote` is an extension of the `Graph` class, specifically designed for working with graph databases over HTTP. It supports querying and modifying graph data, providing methods tailored for graph operations such as adding nodes, edges, and executing graph queries.
+`GraphRemote` is an extension of the `Graph` class, specifically designed for working with graph Valthera's over HTTP. It supports querying and modifying graph data, providing methods tailored for graph operations such as adding nodes, edges, and executing graph queries.
 
-## Example Usage
-```javascript
-const remoteGraph = new GraphRemote({
-    name: 'myRemoteGraph',
-    url: 'https://example.com/db',
-    auth: 'your-auth-token'
-});
-```
+These constructors provide flexibility in initializing remote connections for both standard and graph-based Valthera databases.

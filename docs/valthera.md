@@ -1,17 +1,18 @@
-# DataBase Class Documentation
+## Valthera Class Documentation
 
-This documentation provides a detailed overview of the `DataBase` class, designed for performing CRUD operations on database collections. The class uses the `dbActionC` module for file-based operations and `executorC` for managing execution tasks.
+This documentation provides a detailed overview of the `Valthera` class, designed for performing CRUD operations on Valthera collections. The class uses the `dbActionC` module for file-based operations and `executorC` for managing execution tasks.
 
-## Class: `DataBase`
+### Class: `Valthera`
 
-### Constructor: `DataBase(folder, options={})`
-Creates a new instance of the `DataBase` class.
+### Constructor: `Valthera(folder, options={}, fileCpu?)`
+Creates a new instance of the `Valthera` class.
 
 - **Parameters:**
   - `folder` (`string`): The folder path where the database files are stored.
   - `options` (`object`): Optional configuration options.
     - `cacheThreshold` (`number`, default: 3): The threshold for caching entries.
     - `cacheTTL` (`number`, default: 300000): Time-to-live for cache entries in milliseconds (default: 5 minutes).
+  - `fileCpu` (`FileCpu`, optional): Custom file processor implementation. If not provided, defaults to `vFileCpu`.
 
 ### Method: `c(collection)`
 Creates a new instance of the `CollectionManager` class for the specified collection.
@@ -33,6 +34,9 @@ Checks and creates the specified collection if it doesn't exist.
 - **Parameters:**
   - `collection` (`string`): The name of the collection to check.
 
+- **Returns:**
+  - `Promise<boolean>`: A promise that resolves to `true` if the collection was created or already exists.
+
 ### Method: `async issetCollection(collection)`
 Checks if a collection exists.
 
@@ -48,10 +52,11 @@ Adds data to a specified collection.
   - `collection` (`string`): The name of the collection.
   - `data` (`Object`): The data to add.
   - `id_gen` (`boolean`, default: true): Whether to generate an ID for the entry.
-- **Returns:**
-  - `Promise<Object>`: A promise that resolves with the added data.
 
-### Method: `async find(collection, search, context={}, options={}, findOpts={})`
+- **Returns:**
+  - `Promise<T>`: A promise that resolves with the added data.
+
+### Method: `async find<T = Data>(collection, search, context={}, options={}, findOpts={})`
 Finds data in a collection based on a query.
 
 - **Parameters:**
@@ -62,10 +67,11 @@ Finds data in a collection based on a query.
     - `max` (`number`, default: -1): Maximum number of entries to return.
     - `reverse` (`boolean`, default: false): Whether to reverse the search results.
   - `findOpts` (`Object`): Options for updating the search result.
-- **Returns:**
-  - `Promise<Array<Object>>`: A promise that resolves with the matching data.
 
-### Method: `async findOne(collection, search, context={}, findOpts={})`
+- **Returns:**
+  - `Promise<Array<T>>`: A promise that resolves with the matching data.
+
+### Method: `async findOne<T = Data>(collection, search, context={}, findOpts={})`
 Finds one matching entry in a collection.
 
 - **Parameters:**
@@ -73,41 +79,58 @@ Finds one matching entry in a collection.
   - `search` (`function|Object`): The search query.
   - `context` (`Object`): The context object (for functions).
   - `findOpts` (`Object`): Options for updating the search result.
-- **Returns:**
-  - `Promise<Object|null>`: A promise that resolves with the found entry, or `null` if no match is found.
 
-### Method: `async update(collection, search, arg, context={})`
+- **Returns:**
+  - `Promise<T|null>`: A promise that resolves with the found entry, or `null` if no match is found.
+
+### Method: `async findStream<T = Data>(collection, search, context={}, findOpts={}, limit=-1)`
+Finds data in a collection as a stream.
+
+- **Parameters:**
+  - `collection` (`string`): The name of the collection.
+  - `search` (`function|Object`): The search query.
+  - `context` (`Object`): The context object (for functions).
+  - `findOpts` (`Object`): Options for updating the search result.
+  - `limit` (`number`, default: -1): Maximum number of entries to return.
+
+- **Returns:**
+  - `Promise<AsyncGenerator<T>>`: A promise that resolves with an asynchronous generator for streaming results.
+
+### Method: `async update(collection, search, updater, context={})`
 Updates data in a collection.
 
 - **Parameters:**
   - `collection` (`string`): The name of the collection.
   - `search` (`function|Object`): The search query.
-  - `arg` (`function|Object`): Update arguments.
+  - `updater` (`function|Object`): Update arguments.
   - `context` (`Object`): The context object (for functions).
+
 - **Returns:**
   - `Promise<boolean>`: A promise that resolves when the data is updated.
 
-### Method: `async updateOne(collection, search, arg, context={})`
+### Method: `async updateOne(collection, search, updater, context={})`
 Updates one entry in a collection.
 
 - **Parameters:**
   - `collection` (`string`): The name of the collection.
   - `search` (`function|Object`): The search query.
-  - `arg` (`function|Object`): Update arguments.
+  - `updater` (`function|Object`): Update arguments.
   - `context` (`Object`): The context object (for functions).
+
 - **Returns:**
   - `Promise<boolean>`: A promise that resolves when the data is updated.
 
-### Method: `async updateOneOrAdd(collection, search, arg, add_arg={}, context={}, id_gen=true)`
+### Method: `async updateOneOrAdd(collection, search, updater, add_arg={}, context={}, id_gen=true)`
 Updates one entry or adds a new one if it doesn't exist.
 
 - **Parameters:**
   - `collection` (`string`): The name of the collection.
   - `search` (`function|Object`): The search query.
-  - `arg` (`function|Object`): Update arguments.
-  - `add_arg` (`function|Object`): Data to add if no match is found.
+  - `updater` (`function|Object`): Update arguments.
+  - `add_arg` (`Object`): Data to add if no match is found.
   - `context` (`Object`): The context object (for functions).
   - `id_gen` (`boolean`, default: true): Whether to generate an ID for the new entry.
+
 - **Returns:**
   - `Promise<boolean>`: A promise that resolves to `true` if the entry was updated, otherwise `false`.
 
@@ -118,6 +141,7 @@ Removes data from a collection.
   - `collection` (`string`): The name of the collection.
   - `search` (`function|Object`): The search query.
   - `context` (`Object`): The context object (for functions).
+
 - **Returns:**
   - `Promise<boolean>`: A promise that resolves when the data is removed.
 
@@ -128,13 +152,25 @@ Removes one entry from a collection.
   - `collection` (`string`): The name of the collection.
   - `search` (`function|Object`): The search query.
   - `context` (`Object`): The context object (for functions).
+
 - **Returns:**
   - `Promise<boolean>`: A promise that resolves when the entry is removed.
 
-### Method: `removeCollection(collection)`
-Removes the specified collection from the database file system.
+### Method: `async removeCollection(collection)`
+Removes the specified collection from the Valthera file system.
 
 - **Parameters:**
   - `collection` (`string`): The name of the collection to remove.
+
 - **Returns:**
-  - `void`
+  - `Promise<boolean>`: A promise that resolves when the collection is removed.
+
+### Method: `async transaction(collection, transaction)`
+Executes a transaction on the specified collection.
+
+- **Parameters:**
+  - `collection` (`string`): The name of the collection.
+  - `transaction` (`Transaction[]`): An array of transaction operations.
+
+- **Returns:**
+  - `Promise<boolean>`: A promise that resolves when the transaction is executed.
