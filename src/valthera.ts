@@ -9,6 +9,7 @@ import FileCpu from "./types/fileCpu";
 import vFileCpu from "./file";
 import { Transaction } from "./types/transactions";
 import { EventEmitter } from "events";
+import { ValtheraCompatible } from "./types/valthera";
 
 type DbActionsFns = keyof {
     [K in keyof dbActionC as dbActionC[K] extends (...args: any[]) => any ? K : never]: any;
@@ -18,7 +19,7 @@ type DbActionsFns = keyof {
  * Represents a database management class for performing CRUD operations.
  * @class
  */
-class DataBase {
+class Valthera implements ValtheraCompatible {
     dbAction: dbActionC;
     executor: executorC;
     emiter: EventEmitter;
@@ -165,4 +166,4 @@ class DataBase {
     }
 }
 
-export default DataBase;
+export default Valthera;

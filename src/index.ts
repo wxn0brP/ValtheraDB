@@ -1,28 +1,37 @@
-import DataBase from "./database";
+import Valthera from "./valthera";
 import Graph from "./graph";
-import DataBaseRemote from "./client/database";
+import ValtheraRemote from "./client/valthera";
 import GraphRemote from "./client/graph";
 import genId from "./gen";
 import Relation from "./relation";
 import CustomFileCpu from "./file/customFileCpu";
 import ValtheraMemory, { createMemoryValthera } from "./memory";
-import { autoCreate } from "./autoCreate";
+import { ValtheraAutoCreate } from "./autoCreate";
+import { RelationTypes } from "./types/relation";
+import { ValtheraCompatible } from "./types/valthera";
 
 export {
-    DataBase as Valthera,
+    Valthera,
     Graph,
-    DataBaseRemote as ValtheraRemote,
+    ValtheraRemote,
     GraphRemote,
     Relation,
     genId,
     CustomFileCpu,
     ValtheraMemory,
     createMemoryValthera,
-    autoCreate,
+    ValtheraAutoCreate,
+}
+
+type GraphCompatible = Graph | GraphRemote;
+
+export type {
+    ValtheraCompatible,
+    RelationTypes,
+    GraphCompatible,
 }
 
 export type Id = import("./types/Id").Id;
-
 export namespace ValtheraTypes {
     export type Arg = import("./types/arg").Arg;
     export type Search = import("./types/arg").Search;
@@ -33,6 +42,3 @@ export namespace ValtheraTypes {
     export type Data = import("./types/data").Data;
     export type SearchOptions = import("./types/searchOpts").SearchOptions;
 }
-
-import type { RelationTypes } from "./types/relation";
-export type { RelationTypes };

@@ -1,5 +1,5 @@
 import dbActionC from "./action";
-import DataBase from "./database";
+import Valthera from "./valthera";
 import CustomFileCpu from "./file/customFileCpu";
 import genId from "./gen";
 import { Arg, Search, Updater } from "./types/arg";
@@ -156,7 +156,7 @@ export class MemoryAction implements dbActionC {
     }
 }
 
-export default class ValtheraMemory extends DataBase {
+export default class ValtheraMemory extends Valthera {
     constructor(...args: any[]) {
         super("", { dbAction: new MemoryAction() });
     }

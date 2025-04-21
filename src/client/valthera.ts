@@ -7,13 +7,14 @@ import { DbFindOpts, FindOpts } from "../types/options";
 import { Context } from "../types/types";
 import Data from "../types/data";
 import { Transaction } from "../types/transactions";
+import { ValtheraCompatible } from "../types/valthera";
 
 /**
  * Represents a database management class for performing CRUD operations.
  * Uses a remote database.
  * @class
  */
-class DataBaseRemote {
+class ValtheraRemote implements ValtheraCompatible {
     remote: Remote
 
     constructor(remote: Remote | string) {
@@ -111,8 +112,9 @@ class DataBaseRemote {
     /**
      * Find data in a database as a stream.
      */
-    async findStream<T = Data>(collection: string, search: Search, context: Context = {}, dbFindOpts: DbFindOpts = {}, findOpts: FindOpts = {}) {
+    async findStream<T = Data>(collection: string, search: Search, context: Context = {}, findOpts: FindOpts = {}, limit: number = -1) {
         throw new Error("Method not implemented.");
+        return await this._request("findStream", [collection, search, context, findOpts, limit]) as AsyncGenerator<T>;
     }
 
     /**
@@ -165,4 +167,4 @@ class DataBaseRemote {
     }
 }
 
-export default DataBaseRemote;
+export default ValtheraRemote;

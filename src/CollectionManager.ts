@@ -1,18 +1,11 @@
-import DataBase from "./database";
-import DataBaseRemote from "./client/database";
 import { Arg, Search, Updater } from "./types/arg";
 import { DbFindOpts, FindOpts } from "./types/options";
 import { Context } from "./types/types";
 import Data from "./types/data";
+import { ValtheraCompatible } from "./types/valthera";
 
 class CollectionManager {
-    db: DataBase | DataBaseRemote;
-    collection: string;
-
-    constructor(db: DataBase | DataBaseRemote, collection: string) {
-        this.db = db;
-        this.collection = collection;
-    }
+    constructor(private db: ValtheraCompatible, private collection: string) {}
 
     /**
      * Add data to a database.

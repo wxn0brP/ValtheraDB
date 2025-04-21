@@ -1,6 +1,7 @@
-import DataBaseRemote from "./client/database";
+import ValtheraRemote from "./client/valthera";
 import { Remote } from "./client/remote";
-import DataBase from "./database";
+import Valthera from "./valthera";
+import { ValtheraCompatible } from "./types/valthera";
 
 /**
  * Creates a database instance based on the provided configuration.
@@ -12,8 +13,8 @@ import DataBase from "./database";
  * @returns A new instance of DataBaseRemote or DataBase.
  */
 
-export function autoCreate(cfg: string | Remote) {
-    if (typeof cfg === "object") return new DataBaseRemote(cfg);
-    if (cfg.startsWith("http")) return new DataBaseRemote(cfg);
-    return new DataBase(cfg);
+export function ValtheraAutoCreate(cfg: string | Remote): ValtheraCompatible {
+    if (typeof cfg === "object") return new ValtheraRemote(cfg);
+    if (cfg.startsWith("http")) return new ValtheraRemote(cfg);
+    return new Valthera(cfg);
 }

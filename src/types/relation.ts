@@ -1,13 +1,12 @@
-import DataBaseRemote from "../client/database";
-import DataBase from "../database";
 import { DbFindOpts } from "./options";
+import { ValtheraCompatible } from "./valthera";
 
 export namespace RelationTypes {
     export type Path = [string, string];
     export type FieldPath = string[];
 
     export interface DBS {
-        [key: string]: DataBase | DataBaseRemote
+        [key: string]: ValtheraCompatible
     }
 
     export interface Relation {

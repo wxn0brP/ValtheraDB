@@ -1,4 +1,4 @@
-import DataBase from "./database";
+import Valthera from "./valthera";
 import Data from "./types/data";
 
 /**
@@ -6,10 +6,10 @@ import Data from "./types/data";
  * @class
  */
 class Graph {
-    db: DataBase
+    db: Valthera
 
     constructor(databaseFolder: string) {
-        this.db = new DataBase(databaseFolder);
+        this.db = new Valthera(databaseFolder);
     }
 
     /**
