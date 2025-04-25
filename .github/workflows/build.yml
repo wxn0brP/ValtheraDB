@@ -30,6 +30,7 @@ jobs:
     with:
       files: "dist package.json README.md LICENSE"
       publishToNpm: true
+      scriptsHandling: "remove-all"
       customCommands: |
         # remove scripts from package.json
         jq 'del(.scripts)' package.json > temp.json && mv temp.json package.json
