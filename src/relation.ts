@@ -2,110 +2,157 @@ import { Search } from "./types/arg";
 import { DbFindOpts } from "./types/options";
 import { RelationTypes } from "./types/relation";
 
-async function processRelations(dbs: RelationTypes.DBS, cfg: RelationTypes.Relation, data: any) {
-    if (!data) return;
-    for (const [key, relation] of Object.entries(cfg)) {
-        const { pk = "_id", fk = "_id", type = "1" } = relation;
+function pickByPath(obj: any, paths: string[][]): any {
+    const result = {};
+    for (const path of paths) {
+        let src = obj;
+        let dst = result;
+        for (let i = 0; i < path.length; i++) {
+            const k = path[i];
+            if (src == null) break;
+            if (i === path.length - 1) {
+                dst[k] = src[k];
+            } else {
+                dst[k] ||= {};
+                dst = dst[k];
+                src = src[k];
+            }
+        }
+    }
+    return result;
+}
+
+
+
+function convertSearchObjToSearchArray(obj: Record<string, any>, parentKeys: string[] = []): string[][] {
+    return Object.entries(obj).reduce((acc, [key, value]) => {
+        const currentPath = [...parentKeys, key];
+
+        if (!value) {
+            return acc;
+        } else if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+            return [...acc, ...convertSearchObjToSearchArray(value, currentPath)];
+        } else {
+            return [...acc, currentPath];
+        }
+    }, []);
+}
+
+async function processRelations(
+    dbs: RelationTypes.DBS,
+    cfg: RelationTypes.Relation,
+    data: any,
+    parentList: any[] | null = null
+) {
+    if (!data && !parentList) return;
+
+    const batchMode = Array.isArray(parentList);
+    const targets = batchMode ? parentList : [data];
+
+    for (const [key, rel] of Object.entries(cfg)) {
+        const {
+            pk = "_id",
+            fk = "_id",
+            type = "1",
+            path,
+            as = key,
+            select,
+            findOpts,
+            through
+        } = rel;
+
+        const [dbKey, coll] = path;
+        const db = dbs[dbKey];
 
         if (type === "1") {
-            const db = dbs[relation.path[0]];
-            const collection = relation.path[1];
-            const item = await db.findOne(collection, { [fk]: data[pk] }, {}, { select: relation.select || null });
-
-            const field = relation.as || key;
-            if (!item) {
-                data[field] = null;
-                continue;
+            for (const item of targets) {
+                const result = await db.findOne(coll, { [fk]: item[pk] }, { projection: select });
+                if (result && rel.relations) {
+                    await processRelations(dbs, rel.relations, result);
+                }
+                item[as] = result || null;
             }
 
-            if (relation.relations) {
-                await processRelations(dbs, relation.relations, item);
-            }
-            data[field] = item;
         } else if (type === "1n") {
-            const db = dbs[relation.path[0]];
-            const collection = relation.path[1];
-            const items = await db.find(
-                collection,
-                { [fk]: data[pk] },
-                {},
-                relation.findOpts || {},
-                { select: relation.select || null }
-            );
+            const ids = targets.map(i => i[pk]);
+            const results = await db.find(coll, { [fk]: { $in: ids } }, { ...findOpts, projection: select });
 
-            const field = relation.as || key;
-            if (relation.relations) {
-                await Promise.all(items.map(item => processRelations(dbs, relation.relations, item)));
+            const grouped = results.reduce((acc, row) => {
+                const id = row[fk];
+                (acc[id] ||= []).push(row);
+                return acc;
+            }, {} as Record<string, any[]>);
+
+            for (const item of targets) {
+                item[as] = grouped[item[pk]] || [];
             }
-            data[field] = items;
+
+            if (rel.relations) {
+                await Promise.all(results.map(row => processRelations(dbs, rel.relations!, row)));
+            }
+
         } else if (type === "nm") {
-            const db = dbs[relation.path[0]];
-            const collection = relation.path[1];
-            const items = await db.find(collection, {}, {}, {}, { select: relation.select || null });
-
-            const field = relation.as || key;
-            if (relation.relations) {
-                await Promise.all(items.map(item => processRelations(dbs, relation.relations, item)));
+            if (!through || !through.table || !through.pk || !through.fk) {
+                throw new Error(`Relation type "nm" requires a defined 'through' in '${key}'`);
             }
-            data[field] = items;
+
+            for (const item of targets) {
+                const pivotDb = dbs[through.db || dbKey];
+                const pivots = await pivotDb.find(through.table, { [through.pk]: item[pk] });
+                const ids = pivots.map(p => p[through.fk]);
+                const related = await db.find(coll, { [fk]: { $in: ids } }, { projection: select });
+                item[as] = related;
+
+                if (rel.relations) {
+                    await Promise.all(related.map(row => processRelations(dbs, rel.relations!, row)));
+                }
+            }
+
         } else {
-            throw new Error(`Unknown relation type: ${relation.type}`);
+            throw new Error(`Unknown relation type: ${type}`);
         }
     }
 }
 
-function selectDataSelf(data: any, select: RelationTypes.FieldPath) {
-    if (!data) return null;
-    if (!select || select.length === 0) return data;
-
-    if (Array.isArray(data))
-        return data.map(item => selectDataSelf(item, select));
-
-    return selectDataSelf(data[select[0]], select.slice(1));
-}
-
-function selectData(data: any, select?: RelationTypes.FieldPath[]) {
-    if (!select) return data;
-    if (!data && select.length === 0) return null;
-    const newData = {};
-    for (const field of select) {
-        const key = field.map(f => f.replaceAll(".", "\\.")).join(".");
-        newData[key] = selectDataSelf(data, field);
-    }
-    return newData;
-}
-
 class Relation {
-    constructor(
-        public dbs: RelationTypes.DBS
-    ) { }
+    constructor(public dbs: RelationTypes.DBS) { }
 
     async findOne(
         path: RelationTypes.Path,
         search: Search,
         relations: RelationTypes.Relation,
-        select?: RelationTypes.FieldPath[],
+        select?: string[][] | Record<string, any>
     ) {
-        const db = this.dbs[path[0]];
-        const data = await db.findOne(path[1], search);
+        const [dbKey, coll] = path;
+        const db = this.dbs[dbKey];
+        const data = await db.findOne(coll, search);
+        if (!data) return null;
+
+        if (typeof select === "object") {
+            select = convertSearchObjToSearchArray(select);
+        }
+
         await processRelations(this.dbs, relations, data);
-        
-        const result = selectData(data, select);
-        return Object.keys(result).length === 0 ? null : result;
+        return select ? pickByPath(data, select as string[][]) : data;
     }
 
     async find(
         path: RelationTypes.Path,
         search: Search,
         relations: RelationTypes.Relation,
-        select?: RelationTypes.FieldPath[],
-        findOpts: DbFindOpts = {},
+        select?: string[][] | Record<string, any>,
+        findOpts: DbFindOpts = {}
     ) {
-        const db = this.dbs[path[0]];
-        const data = await db.find(path[1], search, {}, findOpts);
-        await Promise.all(data.map(item => processRelations(this.dbs, relations, item)));
+        const [dbKey, coll] = path;
+        const db = this.dbs[dbKey];
+        const data = await db.find(coll, search, findOpts);
+        if (relations) await processRelations(this.dbs, relations, null, data);
 
-        return data.map(item => selectData(item, select));
+        if (typeof select === "object") {
+            select = convertSearchObjToSearchArray(select);
+        }
+        
+        return select ? data.map(d => pickByPath(d, select as string[][])) : data;
     }
 }
 

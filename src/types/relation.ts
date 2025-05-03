@@ -23,5 +23,12 @@ export namespace RelationTypes {
         findOpts?: DbFindOpts;
         type?: "1" | "1n" | "nm"
         relations?: Relation;
+
+        through?: {
+            table: string;
+            db?: string;
+            pk: string; // local -> pivot
+            fk: string; // remote -> pivot
+        };
     }
 }
