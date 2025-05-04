@@ -49,7 +49,9 @@ async function processRelations(
     const batchMode = Array.isArray(parentList);
     const targets = batchMode ? parentList : [data];
 
-    for (const [key, rel] of Object.entries(cfg)) {
+    for (const key in cfg) {
+        if (!cfg.hasOwnProperty(key)) continue;
+        const rel = cfg[key];        
         const {
             pk = "_id",
             fk = "_id",
