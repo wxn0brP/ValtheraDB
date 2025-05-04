@@ -75,7 +75,7 @@ async function processRelations(
 
         } else if (type === "1n") {
             const ids = targets.map(i => i[pk]);
-            const results = await db.find(coll, { [fk]: { $in: ids } }, { ...findOpts, projection: select });
+            const results = await db.find(coll, { $in: { [fk]: ids } }, { ...findOpts, projection: select });
 
             const grouped = results.reduce((acc, row) => {
                 const id = row[fk];
