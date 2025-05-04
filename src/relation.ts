@@ -130,7 +130,7 @@ class Relation {
         const data = await db.findOne(coll, search);
         if (!data) return null;
 
-        if (typeof select === "object") {
+        if (typeof select === "object" && !Array.isArray(select)) {
             select = convertSearchObjToSearchArray(select);
         }
 
@@ -150,7 +150,7 @@ class Relation {
         const data = await db.find(coll, search, findOpts);
         if (relations) await processRelations(this.dbs, relations, null, data);
 
-        if (typeof select === "object") {
+        if (typeof select === "object" && !Array.isArray(select)) {
             select = convertSearchObjToSearchArray(select);
         }
         
