@@ -147,7 +147,7 @@ class Relation {
     ) {
         const [dbKey, coll] = path;
         const db = this.dbs[dbKey];
-        const data = await db.find(coll, search, findOpts);
+        const data = await db.find(coll, search, {}, findOpts);
         if (relations) await processRelations(this.dbs, relations, null, data);
 
         if (typeof select === "object" && !Array.isArray(select)) {
