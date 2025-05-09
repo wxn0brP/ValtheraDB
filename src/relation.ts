@@ -68,7 +68,7 @@ async function processRelations(
 
         if (type === "1") {
             const keys = [...new Set(targets.map(i => i[pk]))];
-            const results = await db.find(coll, { [fk]: { $in: keys } }, {}, {}, { select });
+            const results = await db.find(coll, { $in: { [pk]: keys } }, {}, {}, { select });
 
             const map = new Map(results.map(row => [row[fk], row]));
 
@@ -107,7 +107,7 @@ async function processRelations(
                 const pivotDb = dbs[through.db || dbKey];
                 const pivots = await pivotDb.find(through.table, { [through.pk]: item[pk] });
                 const ids = pivots.map(p => p[through.fk]);
-                const related = await db.find(coll, { [fk]: { $in: ids } }, {}, {}, { select });
+                const related = await db.find(coll, { $in: { [fk]: ids } }, {}, {}, { select });
                 item[as] = related;
 
                 if (rel.relations) {
