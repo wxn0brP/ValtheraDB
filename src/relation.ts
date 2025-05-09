@@ -51,15 +51,15 @@ async function processRelations(
 
     for (const key in cfg) {
         if (!cfg.hasOwnProperty(key)) continue;
-        const rel = cfg[key];        
+        const rel = cfg[key];
         const {
             pk = "_id",
             fk = "_id",
             type = "1",
             path,
             as = key,
-            select,
-            findOpts,
+            select = [],
+            findOpts = {},
             through
         } = rel;
 
@@ -67,17 +67,22 @@ async function processRelations(
         const db = dbs[dbKey];
 
         if (type === "1") {
+            const keys = [...new Set(targets.map(i => i[pk]))];
+            const results = await db.find(coll, { [fk]: { $in: keys } }, {}, {}, { select });
+
+            const map = new Map(results.map(row => [row[fk], row]));
+
             for (const item of targets) {
-                const result = await db.findOne(coll, { [fk]: item[pk] }, { projection: select });
+                const result = map.get(item[pk]) || null;
                 if (result && rel.relations) {
                     await processRelations(dbs, rel.relations, result);
                 }
-                item[as] = result || null;
+                item[as] = result;
             }
 
         } else if (type === "1n") {
             const ids = targets.map(i => i[pk]);
-            const results = await db.find(coll, { $in: { [fk]: ids } }, { ...findOpts, projection: select });
+            const results = await db.find(coll, { $in: { [fk]: ids } }, {}, findOpts || {}, { select });
 
             const grouped = results.reduce((acc, row) => {
                 const id = row[fk];
@@ -102,7 +107,7 @@ async function processRelations(
                 const pivotDb = dbs[through.db || dbKey];
                 const pivots = await pivotDb.find(through.table, { [through.pk]: item[pk] });
                 const ids = pivots.map(p => p[through.fk]);
-                const related = await db.find(coll, { [fk]: { $in: ids } }, { projection: select });
+                const related = await db.find(coll, { [fk]: { $in: ids } }, {}, {}, { select });
                 item[as] = related;
 
                 if (rel.relations) {
@@ -153,7 +158,7 @@ class Relation {
         if (typeof select === "object" && !Array.isArray(select)) {
             select = convertSearchObjToSearchArray(select);
         }
-        
+
         return select ? data.map(d => pickByPath(d, select as string[][])) : data;
     }
 }
