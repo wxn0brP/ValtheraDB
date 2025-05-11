@@ -1,4 +1,4 @@
-import CollectionManager from "../CollectionManager";
+import CollectionManager from "../helpers/CollectionManager";
 import { Arg, Search, Updater } from "./arg";
 import Data from "./data";
 import { DbFindOpts, FindOpts } from "./options";

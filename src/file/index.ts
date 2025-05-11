@@ -4,7 +4,7 @@ import { find, findOne, findStream } from "./find";
 import FileCpu from "../types/fileCpu";
 import { appendFileSync } from "fs";
 import { Arg } from "../types/arg";
-import { stringify } from "../format";
+import { stringify } from "../helpers/format";
 import transactions from "./transactions";
 
 const vFileCpu: FileCpu = {

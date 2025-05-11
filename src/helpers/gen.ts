@@ -1,4 +1,4 @@
-import Id from "./types/Id";
+import Id from "../types/Id";
 
 const usedIdsMap = new Map();
 let lastId: Id;

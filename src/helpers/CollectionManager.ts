@@ -1,8 +1,8 @@
-import { Arg, Search, Updater } from "./types/arg";
-import { DbFindOpts, FindOpts } from "./types/options";
-import { Context } from "./types/types";
-import Data from "./types/data";
-import { ValtheraCompatible } from "./types/valthera";
+import { Arg, Search, Updater } from "../types/arg";
+import { DbFindOpts, FindOpts } from "../types/options";
+import { Context } from "../types/types";
+import Data from "../types/data";
+import { ValtheraCompatible } from "../types/valthera";
 
 class CollectionManager {
     constructor(private db: ValtheraCompatible, private collection: string) {}

@@ -1,7 +1,7 @@
-import ValtheraRemote from "./client/valthera";
-import { Remote } from "./client/remote";
-import Valthera from "./valthera";
-import { ValtheraCompatible } from "./types/valthera";
+import ValtheraRemote from "../client/valthera";
+import { Remote } from "../client/remote";
+import Valthera from "../db/valthera";
+import { ValtheraCompatible } from "../types/valthera";
 
 /**
  * Creates a database instance based on the provided configuration.

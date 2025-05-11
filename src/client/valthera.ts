@@ -1,5 +1,5 @@
 import ky from "ky";
-import CollectionManager from "../CollectionManager";
+import CollectionManager from "../helpers/CollectionManager";
 import serializeFunctions from "./function";
 import { Remote, RequestData } from "./remote";
 import { Arg, Search, Updater } from "../types/arg";

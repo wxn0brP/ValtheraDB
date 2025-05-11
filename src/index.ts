@@ -1,12 +1,12 @@
-import Valthera from "./valthera";
-import Graph from "./graph";
+import Valthera from "./db/valthera";
+import Graph from "./db/graph";
 import ValtheraRemote from "./client/valthera";
 import GraphRemote from "./client/graph";
-import genId from "./gen";
-import Relation from "./relation";
+import genId from "./helpers/gen";
+import Relation from "./helpers/relation";
 import CustomFileCpu from "./file/customFileCpu";
-import ValtheraMemory, { createMemoryValthera } from "./memory";
-import { ValtheraAutoCreate } from "./autoCreate";
+import ValtheraMemory, { createMemoryValthera } from "./actions/memory";
+import { ValtheraAutoCreate } from "./helpers/autoCreate";
 import { RelationTypes } from "./types/relation";
 import { ValtheraCompatible } from "./types/valthera";
 

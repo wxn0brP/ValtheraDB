@@ -1,6 +1,6 @@
-import { Search } from "./types/arg";
-import { DbFindOpts } from "./types/options";
-import { RelationTypes } from "./types/relation";
+import { Search } from "../types/arg";
+import { DbFindOpts } from "../types/options";
+import { RelationTypes } from "../types/relation";
 
 function pickByPath(obj: any, paths: string[][]): any {
     const result = {};

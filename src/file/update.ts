@@ -1,6 +1,6 @@
 import { existsSync, promises } from "fs";
 import { pathRepair, createRL } from "./utils";
-import { parse, stringify } from "../format";
+import { parse, stringify } from "../helpers/format";
 import hasFieldsAdvanced from "../utils/hasFieldsAdvanced";
 import updateObjectAdvanced from "../utils/updateObject";
 import { Context } from "../types/types";

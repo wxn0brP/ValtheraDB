@@ -1,5 +1,5 @@
 import Valthera from "./valthera";
-import Data from "./types/data";
+import Data from "../types/data";
 
 /**
  * A class representing a graph database.

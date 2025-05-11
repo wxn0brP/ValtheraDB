@@ -1,6 +1,6 @@
 import { existsSync, promises } from "fs";
 import { pathRepair, createRL } from "./utils";
-import { parse } from "../format";
+import { parse } from "../helpers/format";
 import hasFieldsAdvanced from "../utils/hasFieldsAdvanced";
 import updateFindObject from "../utils/updateFindObject";
 import { Search } from "../types/arg";

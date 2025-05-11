@@ -1,15 +1,15 @@
-import dbActionC from "./action";
-import executorC from "./executor";
-import CollectionManager from "./CollectionManager";
-import { DbFindOpts, DbOpts, FindOpts } from "./types/options";
-import { Arg, Search, Updater } from "./types/arg";
-import Data from "./types/data";
-import { Context } from "./types/types";
-import FileCpu from "./types/fileCpu";
-import vFileCpu from "./file";
-import { Transaction } from "./types/transactions";
+import dbActionC from "../actions/action";
+import executorC from "../helpers/executor";
+import CollectionManager from "../helpers/CollectionManager";
+import { DbFindOpts, DbOpts, FindOpts } from "../types/options";
+import { Arg, Search, Updater } from "../types/arg";
+import Data from "../types/data";
+import { Context } from "../types/types";
+import FileCpu from "../types/fileCpu";
+import vFileCpu from "../file";
+import { Transaction } from "../types/transactions";
 import { EventEmitter } from "events";
-import { ValtheraCompatible } from "./types/valthera";
+import { ValtheraCompatible } from "../types/valthera";
 
 type DbActionsFns = keyof {
     [K in keyof dbActionC as dbActionC[K] extends (...args: any[]) => any ? K : never]: any;

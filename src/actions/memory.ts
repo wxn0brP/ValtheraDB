@@ -1,14 +1,14 @@
+import Valthera from "../db/valthera";
+import CustomFileCpu from "../file/customFileCpu";
+import genId from "../helpers/gen";
+import { Arg, Search, Updater } from "../types/arg";
+import Data from "../types/data";
+import FileCpu from "../types/fileCpu";
+import { DbFindOpts, DbOpts, FindOpts } from "../types/options";
+import { SearchOptions } from "../types/searchOpts";
+import { Transaction } from "../types/transactions";
+import { Context } from "../types/types";
 import dbActionC from "./action";
-import Valthera from "./valthera";
-import CustomFileCpu from "./file/customFileCpu";
-import genId from "./gen";
-import { Arg, Search, Updater } from "./types/arg";
-import Data from "./types/data";
-import FileCpu from "./types/fileCpu";
-import { DbFindOpts, DbOpts, FindOpts } from "./types/options";
-import { SearchOptions } from "./types/searchOpts";
-import { Transaction } from "./types/transactions";
-import { Context } from "./types/types";
 
 export class MemoryAction implements dbActionC {
     folder: string;

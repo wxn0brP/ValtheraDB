@@ -1,17 +1,13 @@
-import gen from "./gen";
-import { Arg, Search, Updater } from "./types/arg";
-import { DbFindOpts, DbOpts, FindOpts } from "./types/options";
-import { Context } from "./types/types";
-import { SearchOptions } from "./types/searchOpts";
-import Data from "./types/data";
-import {
-    existsSync,
-    mkdirSync,
-    statSync,
-    promises
-} from "fs";
-import FileCpu from "./types/fileCpu";
-import { Transaction } from "./types/transactions";
+import { promises } from "fs";
+import { existsSync, mkdirSync, statSync } from "fs";
+import { Context } from "vm";
+import gen from "../helpers/gen";
+import { Arg, Search, Updater } from "../types/arg";
+import Data from "../types/data";
+import FileCpu from "../types/fileCpu";
+import { DbOpts, DbFindOpts, FindOpts } from "../types/options";
+import { SearchOptions } from "../types/searchOpts";
+import { Transaction } from "../types/transactions";
 
 /**
  * A class representing database actions on files.
