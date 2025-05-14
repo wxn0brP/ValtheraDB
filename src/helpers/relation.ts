@@ -58,7 +58,7 @@ async function processRelations(
             type = "1",
             path,
             as = key,
-            select = [],
+            select,
             findOpts = {},
             through
         } = rel;
@@ -68,7 +68,7 @@ async function processRelations(
 
         if (type === "1") {
             const keys = [...new Set(targets.map(i => i[pk]))];
-            const results = await db.find(coll, { $in: { [pk]: keys } }, {}, {}, { select });
+            const results = await db.find(coll, { $in: { [fk]: keys } }, {}, {}, { select });
 
             const map = new Map(results.map(row => [row[fk], row]));
 
