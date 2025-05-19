@@ -1,0 +1,82 @@
+name: Build and Deploy Type Definitions Only
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**/*.ts'
+      - 'package.json'
+      - 'tsconfig.json'
+    tags:
+      - '*'
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'src/**/*.ts'
+      - 'package.json'
+      - 'tsconfig.json'
+  workflow_dispatch:
+
+concurrency:
+  group: build-types
+  cancel-in-progress: true
+
+jobs:
+  deploy-types:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: |
+          npm i
+          npm i -g tsc-alias
+
+      - name: Build Declarations Only
+        run: |
+          npx tsc --emitDeclarationOnly --declaration --outDir dist --project tsconfig.json
+          tsc-alias
+
+      - name: Prepare Clean package.json
+        run: |
+          jq 'del(
+            .scripts,
+            .dependencies,
+            .devDependencies,
+            .peerDependencies,
+            .optionalDependencies,
+            .bundledDependencies
+          ) | .types = "types/index.d.ts" ' package.json > dist/package.json
+
+      - name: Copy Types to Subfolder
+        run: |
+          mkdir -p dist/types
+          cp -r dist/src/types/* dist/types/
+
+      - name: Push to `types` Branch
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          git checkout --orphan types
+
+          git reset -q HEAD --
+
+          mv dist/types ./types
+          mv dist/package.json ./package.json
+
+          git add -f -A types package.json
+          git commit -m "Deploy type definitions only"
+          git push origin types --force
