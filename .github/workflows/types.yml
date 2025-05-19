@@ -41,7 +41,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm ci
+          npm i
           npm install -g tsc-alias
 
       - name: Build Declarations Only
