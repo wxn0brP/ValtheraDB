@@ -49,16 +49,21 @@ jobs:
           npx tsc --emitDeclarationOnly --declaration --outDir dist --project tsconfig.json
           tsc-alias
 
-      - name: Prepare Clean package.json
+      - name: Create Minimal package.json with Types Only
         run: |
-          jq 'del(
-            .scripts,
-            .dependencies,
-            .devDependencies,
-            .peerDependencies,
-            .optionalDependencies,
-            .bundledDependencies
-          ) | .types = "types/index.d.ts" ' package.json > dist/package.json
+          VERSION=$(jq -r .version package.json)
+
+          jq -n \
+            --arg name "@wxn0brp/db-types" \
+            --arg version "$VERSION" \
+            --arg types "types/vql.d.ts" \
+            --arg license "MIT" \
+            '{
+              name: $name,
+              version: $version,
+              types: $types,
+              license: $license
+            }' > package.json
 
       - name: Copy Types to Subfolder
         run: |
