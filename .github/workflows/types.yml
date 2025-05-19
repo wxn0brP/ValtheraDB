@@ -71,7 +71,7 @@ jobs:
           mv dist/types ./temp
           rm -rf dist/*
           mkdir -p dist
-          mv ./temp ./dist
+          mv ./temp ./dist/types
 
       - name: Push to `types` Branch
         run: |
@@ -82,7 +82,7 @@ jobs:
 
           git reset -q HEAD --
 
-          mv dist/types ./types
+          mv dist/types/* ./types
 
           git add -f -A types package.json
           git commit -m "Deploy type definitions only"
