@@ -7,4 +7,5 @@ export namespace ValtheraTypes {
     export type DbOpts = import("./options").DbOpts;
     export type Data = import("./data").Data;
     export type SearchOptions = import("./searchOpts").SearchOptions;
+    export type Id = import("./Id").Id;
 }
