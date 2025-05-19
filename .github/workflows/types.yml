@@ -71,7 +71,7 @@ jobs:
           mv dist/types ./temp
           rm -rf dist/*
           mkdir -p dist
-          mv ./temp ./dist/types
+          mv ./temp ./dist
 
       - name: Push to `types` Branch
         run: |
