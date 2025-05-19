@@ -71,3 +71,25 @@ jobs:
           git add -f -A dist LICENSE package.json
           git commit -m "Deploy type definitions only"
           git push origin types --force
+
+      - name: Push to `types-only` Branch
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          git checkout --orphan types
+          git reset -q HEAD --
+
+          cat << EOF > dist/types/index.d.ts
+          import { ValtheraTypes } from "./types/export";
+          import { RelationTypes } from "./types/relation";
+          import { ValtheraCompatible } from "./types/valthera";
+          export type { RelationTypes, ValtheraCompatible, ValtheraTypes };
+          export type Id = import("./types/Id").Id;
+          EOF
+
+          jq 'del(.main)' package.json > package.json
+
+          git add -f -A dist/types dist/index.d.ts LICENSE package.json
+          git commit -m "Deploy type definitions only"
+          git push origin types --force
