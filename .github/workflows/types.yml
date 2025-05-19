@@ -49,6 +49,17 @@ jobs:
           npx tsc --emitDeclarationOnly --declaration --removeComments --outDir dist --project tsconfig.json
           tsc-alias
 
+      - name: Prepare Clean package.json
+        run: |
+          jq 'del(
+            .scripts,
+            .dependencies,
+            .devDependencies,
+            .peerDependencies,
+            .optionalDependencies,
+            .bundledDependencies
+          )' package.json > package.json
+
       - name: Push to `types` Branch
         run: |
           git config --global user.name "github-actions[bot]"
