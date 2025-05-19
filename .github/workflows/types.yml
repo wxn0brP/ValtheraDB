@@ -41,37 +41,13 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm i
-          npm i -g tsc-alias
+          npm ci
+          npm install -g tsc-alias
 
       - name: Build Declarations Only
         run: |
           npx tsc --emitDeclarationOnly --declaration --removeComments --outDir dist --project tsconfig.json
           tsc-alias
-
-      - name: Create Minimal package.json with Types Only
-        run: |
-          VERSION=$(jq -r .version package.json)
-
-          jq -n \
-            --arg name "@wxn0brp/db-types" \
-            --arg version "$VERSION" \
-            --arg types "types/vql.d.ts" \
-            --arg license "MIT" \
-            '{
-              name: $name,
-              version: $version,
-              types: $types,
-              license: $license
-            }' > package.json
-
-      - name: Copy Types to Subfolder
-        run: |
-          mkdir -p temp
-          mv dist/types ./temp
-          rm -rf dist/*
-          mkdir -p dist
-          mv ./temp ./dist/types
 
       - name: Push to `types` Branch
         run: |
@@ -79,11 +55,9 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
           git checkout --orphan types
-
           git reset -q HEAD --
+          git clean -fdx
 
-          mv dist/types/* ./types
-
-          git add -f -A types package.json
+          git add -f -A dist LICENSE package.json
           git commit -m "Deploy type definitions only"
           git push origin types --force
