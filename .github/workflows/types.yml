@@ -77,7 +77,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git checkout --orphan types
+          git checkout --orphan types-only
           git reset -q HEAD --
 
           cat << EOF > dist/types/index.d.ts
@@ -92,4 +92,4 @@ jobs:
 
           git add -f -A dist/types dist/index.d.ts LICENSE package.json
           git commit -m "Deploy type definitions only"
-          git push origin types --force
+          git push origin types-only --force
