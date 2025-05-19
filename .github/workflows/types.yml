@@ -78,7 +78,6 @@ jobs:
           git reset -q HEAD --
 
           mv dist/types ./types
-          mv dist/package.json ./package.json
 
           git add -f -A types package.json
           git commit -m "Deploy type definitions only"
