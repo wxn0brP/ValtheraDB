@@ -62,8 +62,10 @@ jobs:
 
       - name: Copy Types to Subfolder
         run: |
-          mkdir -p dist/types
-          cp -r dist/src/types/* dist/types/
+          mkdir -p temp
+          mv dist/types ./temp
+          rm -rf dist/*
+          mv ./temp ./dist
 
       - name: Push to `types` Branch
         run: |
