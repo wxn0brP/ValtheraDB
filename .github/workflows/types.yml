@@ -56,7 +56,6 @@ jobs:
 
           git checkout --orphan types
           git reset -q HEAD --
-          git clean -fdx
 
           git add -f -A dist LICENSE package.json
           git commit -m "Deploy type definitions only"
