@@ -46,7 +46,7 @@ jobs:
 
       - name: Build Declarations Only
         run: |
-          npx tsc --emitDeclarationOnly --declaration --outDir dist --project tsconfig.json
+          npx tsc --emitDeclarationOnly --declaration --removeComments --outDir dist --project tsconfig.json
           tsc-alias
 
       - name: Create Minimal package.json with Types Only
