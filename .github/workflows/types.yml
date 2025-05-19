@@ -92,10 +92,6 @@ jobs:
 
           echo "export {}" > dist/index.js
 
-          jq 'del(.main)' package.json > dist/package.json
-          rm package.json
-          mv dist/package.json package.json
-
           git add -f -A dist/types dist/index.d.ts dist/index.js LICENSE package.json
           git commit -m "Deploy type definitions only"
           git push origin types-only --force
