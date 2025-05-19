@@ -80,7 +80,7 @@ jobs:
           git checkout --orphan types-only
           git reset -q HEAD --
 
-          cat << EOF > dist/types/index.d.ts
+          cat << EOF > dist/index.d.ts
           import { ValtheraTypes } from "./types/export";
           import { RelationTypes } from "./types/relation";
           import { ValtheraCompatible } from "./types/valthera";
@@ -88,8 +88,10 @@ jobs:
           export type Id = import("./types/Id").Id;
           EOF
 
+          cat "" > dist/index.js
+
           jq 'del(.main)' package.json > package.json
 
-          git add -f -A dist/types dist/index.d.ts LICENSE package.json
+          git add -f -A dist/types dist/index.d.ts dist/index.js LICENSE package.json
           git commit -m "Deploy type definitions only"
           git push origin types-only --force
