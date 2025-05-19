@@ -56,70 +56,70 @@ class Valthera implements ValtheraCompatible {
      * Check and create the specified collection if it doesn't exist.
      */
     async checkCollection(collection: string) {
-        return await this.execute<boolean>("checkCollection", collection);
+        return await this.execute<boolean>("checkCollection", { collection });
     }
 
     /**
      * Check if a collection exists.
      */
     async issetCollection(collection: string) {
-        return await this.execute<boolean>("issetCollection", collection);
+        return await this.execute<boolean>("issetCollection", { collection });
     }
 
     /**
      * Add data to a database.
      */
     async add<T = Data>(collection: string, data: Arg, id_gen: boolean = true) {
-        return await this.execute<T>("add", collection, data, id_gen);
+        return await this.execute<T>("add", { collection, data, id_gen });
     }
 
     /**
      * Find data in a database.
      */
-    async find<T = Data>(collection: string, search: Search, context: Context = {}, options: DbFindOpts = {}, findOpts: FindOpts = {}) {
-        return await this.execute<T[]>("find", collection, search, context, options, findOpts);
+    async find<T = Data>(collection: string, search: Search, context: Context = {}, dbFindOpts: DbFindOpts = {}, findOpts: FindOpts = {}) {
+        return await this.execute<T[]>("find", { collection, search, context, dbFindOpts, findOpts });
     }
 
     /**
      * Find one data entry in a database.
      */
     async findOne<T = Data>(collection: string, search: Search, context: Context = {}, findOpts: FindOpts = {}) {
-        return await this.execute<T | null>("findOne", collection, search, context, findOpts);
+        return await this.execute<T | null>("findOne", { collection, search, context, findOpts });
     }
 
     /**
      * Find data in a database as a stream.
      */
     async findStream<T = Data>(collection: string, search: Search, context: Context = {}, findOpts: FindOpts = {}, limit: number = -1) {
-        return await this.execute<AsyncGenerator<T>>("findStream", collection, search, context, findOpts, limit);
+        return await this.execute<AsyncGenerator<T>>("findStream", { collection, search, context, findOpts, limit });
     }
 
     /**
      * Update data in a database.
      */
     async update(collection: string, search: Search, updater: Updater, context = {}) {
-        return await this.execute<boolean>("update", collection, search, updater, context);
+        return await this.execute<boolean>("update", { collection, search, updater, context });
     }
 
     /**
      * Update one data entry in a database.
      */
     async updateOne(collection: string, search: Search, updater: Updater, context: Context = {}) {
-        return await this.execute<boolean>("updateOne", collection, search, updater, context);
+        return await this.execute<boolean>("updateOne", { collection, search, updater, context });
     }
 
     /**
      * Remove data from a database.
      */
     async remove(collection: string, search: Search, context: Context = {}) {
-        return await this.execute<boolean>("remove", collection, search, context);
+        return await this.execute<boolean>("remove", { collection, search, context });
     }
 
     /**
      * Remove one data entry from a database.
      */
     async removeOne(collection: string, search: Search, context: Context = {}) {
-        return await this.execute<boolean>("removeOne", collection, search, context);
+        return await this.execute<boolean>("removeOne", { collection, search, context });
     }
 
     /**
@@ -155,14 +155,14 @@ class Valthera implements ValtheraCompatible {
      * Removes a database collection from the file system.
      */
     async removeCollection(collection: string) {
-        return await this.execute<boolean>("removeCollection", collection);
+        return await this.execute<boolean>("removeCollection", { collection });
     }
 
     /**
      * Execute a transaction.
      */
     async transaction(collection: string, transaction: Transaction[]) {
-        return await this.execute<boolean>("transaction", collection, transaction);
+        return await this.execute<boolean>("transaction", { collection, transaction });
     }
 }
 

@@ -1,19 +1,16 @@
-import { promises } from "fs";
-import { existsSync, mkdirSync, statSync } from "fs";
-import { Context } from "../types/types";
+import { existsSync, mkdirSync, promises, statSync } from "fs";
+import dbActionBase from "../base/actions";
 import gen from "../helpers/gen";
-import { Arg, Search, Updater } from "../types/arg";
 import Data from "../types/data";
 import FileCpu from "../types/fileCpu";
-import { DbOpts, DbFindOpts, FindOpts } from "../types/options";
-import { SearchOptions } from "../types/searchOpts";
-import { Transaction } from "../types/transactions";
+import { DbOpts } from "../types/options";
+import { VQuery } from "../types/query";
 
 /**
  * A class representing database actions on files.
  * @class
  */
-class dbActionC {
+class dbActionC extends dbActionBase {
     folder: string;
     options: DbOpts;
     fileCpu: FileCpu;
@@ -25,6 +22,7 @@ class dbActionC {
      * @param options - The options object.
      */
     constructor(folder: string, options: DbOpts, fileCpu: FileCpu) {
+        super();
         this.folder = folder;
         this.options = {
             maxFileSize: 2 * 1024 * 1024, //2 MB
@@ -57,16 +55,17 @@ class dbActionC {
     /**
      * Check and create the specified collection if it doesn't exist.
      */
-    async checkCollection(collection: string) {
+    async checkCollection({ collection }: VQuery) {
         if (await this.issetCollection(collection)) return;
         const cpath = this._getCollectionPath(collection);
         await promises.mkdir(cpath, { recursive: true });
+        return true;
     }
 
     /**
      * Check if a collection exists.
      */
-    async issetCollection(collection: string) {
+    async issetCollection({ collection }: VQuery) {
         const path = this._getCollectionPath(collection);
         try {
             await promises.access(path);
@@ -79,40 +78,40 @@ class dbActionC {
     /**
      * Add a new entry to the specified database.
      */
-    async add(collection: string, arg: Arg, id_gen: boolean = true) {
-        await this.checkCollection(collection);
+    async add({ collection, data, id_gen = true }: VQuery) {
+        await this.checkCollection(arguments[0]);
         const cpath = this._getCollectionPath(collection);
         const file = cpath + await getLastFile(cpath, this.options.maxFileSize);
 
-        if (id_gen) arg._id = arg._id || gen();
-        await this.fileCpu.add(file, arg);
-        return arg;
+        if (id_gen) data._id = data._id || gen();
+        await this.fileCpu.add(file, data);
+        return data;
     }
 
     /**
      * Find entries in the specified database based on search criteria.
      */
-    async find(collection: string, arg: Search, context: Context = {}, options: DbFindOpts = {}, findOpts: FindOpts = {}) {
-        options.reverse = options.reverse || false;
-        options.max = options.max || -1;
+    async find({ collection, search, context = {}, dbFindOpts = {}, findOpts = {}}: VQuery) {
+        dbFindOpts.reverse = dbFindOpts.reverse || false;
+        dbFindOpts.max = dbFindOpts.max || -1;
 
-        await this.checkCollection(collection);
+        await this.checkCollection(arguments[0]);
         const cpath = this._getCollectionPath(collection);
         const files = await getSortedFiles(cpath);
-        if (options.reverse) files.reverse();
+        if (dbFindOpts.reverse) files.reverse();
         let datas = [];
 
         let totalEntries = 0;
 
         for (let f of files) {
-            let data = await this.fileCpu.find(cpath + f, arg, context, findOpts) as Data[];
-            if (options.reverse) data.reverse();
+            let data = await this.fileCpu.find(cpath + f, search, context, findOpts) as Data[];
+            if (dbFindOpts.reverse) data.reverse();
 
-            if (options.max !== -1) {
-                if (totalEntries + data.length > options.max) {
-                    let remainingEntries = options.max - totalEntries;
+            if (dbFindOpts.max !== -1) {
+                if (totalEntries + data.length > dbFindOpts.max) {
+                    let remainingEntries = dbFindOpts.max - totalEntries;
                     data = data.slice(0, remainingEntries);
-                    totalEntries = options.max;
+                    totalEntries = dbFindOpts.max;
                 } else {
                     totalEntries += data.length;
                 }
@@ -120,7 +119,7 @@ class dbActionC {
 
             datas = datas.concat(data);
 
-            if (options.max !== -1 && totalEntries >= options.max) break;
+            if (dbFindOpts.max !== -1 && totalEntries >= dbFindOpts.max) break;
         }
         return datas;
     }
@@ -128,26 +127,26 @@ class dbActionC {
     /**
      * Find the first matching entry in the specified database based on search criteria.
      */
-    async findOne(collection: string, arg: SearchOptions, context: Context = {}, findOpts: FindOpts = {}) {
-        await this.checkCollection(collection);
+    async findOne({ collection, search, context = {}, findOpts = {}}: VQuery) {
+        await this.checkCollection(arguments[0]);
         const cpath = this._getCollectionPath(collection);
         const files = await getSortedFiles(cpath);
 
         for (let f of files) {
-            let data = await this.fileCpu.findOne(cpath + f, arg, context, findOpts) as Data;
+            let data = await this.fileCpu.findOne(cpath + f, search, context, findOpts) as Data;
             if (data) return data;
         }
         return null;
     }
 
-    async *findStream(collection: string, arg: Search, context: Context = {}, findOpts: FindOpts = {}, limit: number = -1): AsyncGenerator<any> {
-        await this.checkCollection(collection);
+    async *findStream({ collection, search, context = {}, findOpts = {}, limit = -1 }: VQuery): AsyncGenerator<any> {
+        await this.checkCollection(arguments[0]);
         const cpath = this._getCollectionPath(collection);
         const files = await getSortedFiles(cpath);
 
         let count = 0;
         for (let f of files) {
-            for await (const data of this.fileCpu.findStream(cpath + f, arg, context, findOpts, limit)) {
+            for await (const data of this.fileCpu.findStream(cpath + f, search, context, findOpts, limit)) {
                 yield data;
                 count++;
                 if (limit !== -1 && count >= limit) {
@@ -160,13 +159,13 @@ class dbActionC {
     /**
      * Update entries in the specified database based on search criteria and an updater function or object.
      */
-    async update(collection: string, arg: Search, updater: Updater, context = {}) {
-        await this.checkCollection(collection);
+    async update({ collection, search, updater, context = {} }: VQuery) {
+        await this.checkCollection(arguments[0]);
         return await operationUpdater(
             this._getCollectionPath(collection),
             this.fileCpu.update.bind(this.fileCpu),
             false,
-            arg,
+            search,
             updater,
             context
         )
@@ -175,13 +174,13 @@ class dbActionC {
     /**
      * Update the first matching entry in the specified database based on search criteria and an updater function or object.
      */
-    async updateOne(collection: string, arg: Search, updater: Updater, context: Context = {}) {
-        await this.checkCollection(collection);
+    async updateOne({ collection, search, updater, context = {} }: VQuery) {
+        await this.checkCollection(arguments[0]);
         return await operationUpdater(
             this._getCollectionPath(collection),
             this.fileCpu.update.bind(this.fileCpu),
             true,
-            arg,
+            search,
             updater,
             context
         )
@@ -190,13 +189,13 @@ class dbActionC {
     /**
      * Remove entries from the specified database based on search criteria.
      */
-    async remove(collection: string, arg: Search, context: Context = {}) {
-        await this.checkCollection(collection);
+    async remove({ collection, search, context = {} }: VQuery) {
+        await this.checkCollection(arguments[0]);
         return await operationUpdater(
             this._getCollectionPath(collection),
             this.fileCpu.remove.bind(this.fileCpu),
             false,
-            arg,
+            search,
             context
         )
     }
@@ -204,13 +203,13 @@ class dbActionC {
     /**
      * Remove the first matching entry from the specified database based on search criteria.
      */
-    async removeOne(collection: string, arg: Search, context: Context = {}) {
-        await this.checkCollection(collection);
+    async removeOne({ collection, search, context = {} }: VQuery) {
+        await this.checkCollection(arguments[0]);
         return await operationUpdater(
             this._getCollectionPath(collection),
             this.fileCpu.remove.bind(this.fileCpu),
             true,
-            arg,
+            search,
             context
         );
     }
@@ -218,15 +217,16 @@ class dbActionC {
     /**
      * Removes a database collection from the file system.
      */
-    async removeCollection(collection: string) {
+    async removeCollection({ collection }) {
         await promises.rm(this.folder + "/" + collection, { recursive: true, force: true });
+        return true;
     }
 
     /**
      * Apply a series of transactions to a database collection.
      */
-    async transaction(collection: string, transactions: Transaction[]) {
-        await this.checkCollection(collection);
+    async transaction({ collection, transaction }: VQuery) {
+        await this.checkCollection(arguments[0]);
         const files = await getSortedFiles(this._getCollectionPath(collection));
 
         if (files.length == 0) {
@@ -235,12 +235,13 @@ class dbActionC {
         }
 
         for (const file of files) {
-            await this.fileCpu.transactions(this._getCollectionPath(collection) + file, transactions);
+            await this.fileCpu.transactions(this._getCollectionPath(collection) + file, transaction);
         }
 
         console.log("Transactions applied successfully.");
         console.log("Files:", files);
-        console.log("Transactions:", transactions);
+        console.log("Transactions:", transaction);
+        return true;
     }
 }
 

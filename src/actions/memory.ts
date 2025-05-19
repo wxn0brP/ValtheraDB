@@ -1,16 +1,13 @@
+import dbActionBase from "../base/actions";
 import Valthera from "../db/valthera";
 import CustomFileCpu from "../file/customFileCpu";
 import genId from "../helpers/gen";
-import { Arg, Search, Updater } from "../types/arg";
 import Data from "../types/data";
 import FileCpu from "../types/fileCpu";
-import { DbFindOpts, DbOpts, FindOpts } from "../types/options";
-import { SearchOptions } from "../types/searchOpts";
-import { Transaction } from "../types/transactions";
-import { Context } from "../types/types";
-import dbActionC from "./action";
+import { DbOpts } from "../types/options";
+import { VQuery } from "../types/query";
 
-export class MemoryAction implements dbActionC {
+export class MemoryAction extends dbActionBase {
     folder: string;
     options: DbOpts;
     fileCpu: FileCpu;
@@ -23,6 +20,7 @@ export class MemoryAction implements dbActionC {
      * @param options - The options object.
      */
     constructor() {
+        super();
         this.memory = new Map();
         this.fileCpu = new CustomFileCpu(this._readMemory.bind(this), this._writeMemory.bind(this));
     }
@@ -51,43 +49,43 @@ export class MemoryAction implements dbActionC {
     /**
      * Check and create the specified collection if it doesn't exist.
      */
-    async checkCollection(collection: string) {
+    async checkCollection({ collection }: VQuery) {
         if (this.issetCollection(collection)) return;
         this.memory.set(collection, []);
+        return true;
     }
-
     /**
      * Check if a collection exists.
      */
-    async issetCollection(collection: string) {
+    async issetCollection({ collection }: VQuery) {
         return this.memory.has(collection);
     }
 
     /**
      * Add a new entry to the specified database.
      */
-    async add(collection: string, arg: Arg, id_gen: boolean = true) {
-        await this.checkCollection(collection);
+    async add({ collection, data, id_gen = true }: VQuery) {
+        await this.checkCollection(arguments[0]);
 
-        if (id_gen) arg._id = arg._id || genId();
-        await this.fileCpu.add(collection, arg);
-        return arg;
+        if (id_gen) data._id = data._id || genId();
+        await this.fileCpu.add(collection, data);
+        return data;
     }
 
     /**
      * Find entries in the specified database based on search criteria.
      */
-    async find(collection: string, arg: Search, context: Context = {}, options: DbFindOpts = {}, findOpts: FindOpts = {}) {
-        options.reverse = options.reverse || false;
-        options.max = options.max || -1;
+    async find({ collection, search, context = {}, dbFindOpts = {}, findOpts = {} }: VQuery) {
+        dbFindOpts.reverse = dbFindOpts.reverse || false;
+        dbFindOpts.max = dbFindOpts.max || -1;
 
-        await this.checkCollection(collection);
+        await this.checkCollection(arguments[0]);
 
-        let data = await this.fileCpu.find(collection, arg, context, findOpts) as Data[];
-        if (options.reverse) data.reverse();
+        let data = await this.fileCpu.find(collection, search, context, findOpts) as Data[];
+        if (dbFindOpts.reverse) data.reverse();
 
-        if (options.max !== -1 && data.length > options.max)
-            data = data.slice(0, options.max);
+        if (dbFindOpts.max !== -1 && data.length > dbFindOpts.max)
+            data = data.slice(0, dbFindOpts.max);
 
         return data;
     }
@@ -95,64 +93,66 @@ export class MemoryAction implements dbActionC {
     /**
      * Find the first matching entry in the specified database based on search criteria.
      */
-    async findOne(collection: string, arg: SearchOptions, context: Context = {}, findOpts: FindOpts = {}) {
-        await this.checkCollection(collection);
-        let data = await this.fileCpu.findOne(collection, arg, context, findOpts) as Data;
+    async findOne({ collection, search, context = {}, findOpts = {} }: VQuery) {
+        await this.checkCollection(arguments[0]);
+        let data = await this.fileCpu.findOne(collection, search, context, findOpts) as Data;
         return data || null;
     }
 
     /**
      * Find entries in the specified database based on search criteria and return a stream of results.
      */
-    async *findStream(collection: string, arg: Search, context?: Context, findOpts?: FindOpts, limit?: number): AsyncGenerator<any> {
+    async *findStream({ collection, search, context = {}, findOpts = {}, limit }: VQuery): AsyncGenerator<any> {
         throw new Error("Method not implemented.");
     }
 
     /**
      * Update entries in the specified database based on search criteria and an updater function or object.
      */
-    async update(collection: string, arg: Search, updater: Updater, context = {}) {
-        await this.checkCollection(collection);
-        return await this.fileCpu.update(collection, false, arg, updater, context);
+    async update({ collection, search, updater, context = {} }: VQuery) {
+        await this.checkCollection(arguments[0]);
+        return await this.fileCpu.update(collection, false, search, updater, context);
     }
 
     /**
      * Update the first matching entry in the specified database based on search criteria and an updater function or object.
      */
-    async updateOne(collection: string, arg: Search, updater: Updater, context: Context = {}) {
-        await this.checkCollection(collection);
-        return await this.fileCpu.update(collection, true, arg, updater, context);
+    async updateOne({ collection, search, updater, context = {} }: VQuery) {
+        await this.checkCollection(arguments[0]);
+        return await this.fileCpu.update(collection, true, search, updater, context);
     }
 
     /**
      * Remove entries from the specified database based on search criteria.
      */
-    async remove(collection: string, arg: Search, context: Context = {}) {
-        await this.checkCollection(collection);
-        return await this.fileCpu.remove(collection, false, arg, context);
+    async remove({ collection, search, context = {} }: VQuery) {
+        await this.checkCollection(arguments[0]);
+        return await this.fileCpu.remove(collection, false, search, context);
     }
 
     /**
      * Remove the first matching entry from the specified database based on search criteria.
      */
-    async removeOne(collection: string, arg: Search, context: Context = {}) {
-        await this.checkCollection(collection);
-        return await this.fileCpu.remove(collection, true, arg, context);
+    async removeOne({ collection, search, context = {} }: VQuery) {
+        await this.checkCollection(arguments[0]);
+        return await this.fileCpu.remove(collection, true, search, context);
     }
 
     /**
      * Removes a database collection from the file system.
      */
-    async removeCollection(collection: string) {
+    async removeCollection({ collection }: VQuery) {
         this.memory.delete(collection);
+        return true;
     }
 
     /**
      * Executes a list of transactions on the specified database collection.
      * @throws Error - Method not supported in memory.
      */
-    transaction(collection: string, transactions: Transaction[]): Promise<void> {
+    async transaction({ collection, transaction }: VQuery) {
         throw new Error("Method not supported in memory.");
+        return true;
     }
 }
 
