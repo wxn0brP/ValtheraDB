@@ -1,6 +1,6 @@
 import { promises } from "fs";
 import { existsSync, mkdirSync, statSync } from "fs";
-import { Context } from "vm";
+import { Context } from "../types/types";
 import gen from "../helpers/gen";
 import { Arg, Search, Updater } from "../types/arg";
 import Data from "../types/data";
