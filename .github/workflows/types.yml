@@ -58,7 +58,9 @@ jobs:
             .peerDependencies,
             .optionalDependencies,
             .bundledDependencies
-          )' package.json > package.json
+          )' package.json > dist/package.json
+          rm package.json
+          mv dist/package.json package.json
 
       - name: Push to `types` Branch
         run: |
@@ -90,7 +92,9 @@ jobs:
 
           echo "export {}" > dist/index.js
 
-          jq 'del(.main)' package.json > package.json
+          jq 'del(.main)' package.json > dist/package.json
+          rm package.json
+          mv dist/package.json package.json
 
           git add -f -A dist/types dist/index.d.ts dist/index.js LICENSE package.json
           git commit -m "Deploy type definitions only"
