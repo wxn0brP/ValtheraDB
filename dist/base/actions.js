@@ -1,0 +1,55 @@
+class dbActionBase {
+    async getCollections() {
+        throw new Error("Not implemented");
+        return [];
+    }
+    async checkCollection(config) {
+        throw new Error("Not implemented");
+        return false;
+    }
+    async issetCollection(config) {
+        throw new Error("Not implemented");
+        return false;
+    }
+    async add(config) {
+        throw new Error("Not implemented");
+        return {};
+    }
+    async find(config) {
+        throw new Error("Not implemented");
+        return [];
+    }
+    async findOne(config) {
+        throw new Error("Not implemented");
+        return {};
+    }
+    async *findStream(config) {
+        throw new Error("Not implemented");
+        return {};
+    }
+    async update(config) {
+        throw new Error("Not implemented");
+        return false;
+    }
+    async updateOne(config) {
+        throw new Error("Not implemented");
+        return false;
+    }
+    async remove(config) {
+        throw new Error("Not implemented");
+        return false;
+    }
+    async removeOne(config) {
+        throw new Error("Not implemented");
+        return false;
+    }
+    async removeCollection(config) {
+        throw new Error("Not implemented");
+        return false;
+    }
+    async transaction(config) {
+        throw new Error("Not implemented");
+        return false;
+    }
+}
+export default dbActionBase;
