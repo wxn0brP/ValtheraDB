@@ -2,8 +2,11 @@ import CollectionManager from "../helpers/CollectionManager";
 import Data from "../types/data";
 import { VQuery } from "../types/query";
 import { ValtheraCompatibleInternal } from "../types/valthera";
+import { version } from "../version";
 
 class ValtheraBase implements ValtheraCompatibleInternal {
+    version = version;
+    
     c(config: VQuery): CollectionManager {
         throw new Error("Not implemented");
     }

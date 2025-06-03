@@ -10,6 +10,7 @@ import vFileCpu from "../file";
 import { Transaction } from "../types/transactions";
 import { EventEmitter } from "events";
 import { ValtheraCompatible } from "../types/valthera";
+import { version } from "../version";
 
 type DbActionsFns = keyof {
     [K in keyof dbActionC as dbActionC[K] extends (...args: any[]) => any ? K : never]: any;
@@ -23,6 +24,7 @@ class Valthera implements ValtheraCompatible {
     dbAction: dbActionC;
     executor: executorC;
     emiter: EventEmitter;
+    version = version;
 
     constructor(folder: string, options: DbOpts = {}, fileCpu?: FileCpu) {
         if(!fileCpu) fileCpu = vFileCpu;

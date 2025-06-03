@@ -32,8 +32,8 @@ jobs:
       publishToNpm: true
       scriptsHandling: "remove-all"
       customCommands: |
-        # remove scripts from package.json
-        jq 'del(.scripts)' package.json > temp.json && mv temp.json package.json
+        v=$(jq -r .version package.json)
+        echo "export const version = \"$v\";" > dist/version.js
         
     secrets:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

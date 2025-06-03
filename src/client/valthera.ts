@@ -8,6 +8,7 @@ import { Context } from "../types/types";
 import Data from "../types/data";
 import { Transaction } from "../types/transactions";
 import { ValtheraCompatible } from "../types/valthera";
+import { version } from "../version";
 
 /**
  * Represents a database management class for performing CRUD operations.
@@ -15,7 +16,8 @@ import { ValtheraCompatible } from "../types/valthera";
  * @class
  */
 class ValtheraRemote implements ValtheraCompatible {
-    remote: Remote
+    remote: Remote;
+    version = version;
 
     constructor(remote: Remote | string) {
         if (typeof remote === "string") {
