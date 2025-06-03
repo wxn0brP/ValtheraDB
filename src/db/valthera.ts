@@ -128,29 +128,7 @@ class Valthera implements ValtheraCompatible {
      * Asynchronously updates one entry in a database or adds a new one if it doesn't exist.
      */
     async updateOneOrAdd(collection: string, search: Search, updater: Updater, add_arg: Arg = {}, context: Context = {}, id_gen: boolean = true) {
-        const res = await this.updateOne(collection, search, updater, context);
-        if (!res) {
-            const assignData = [];
-            function assignDataPush(data: any) {
-                if (typeof data !== "object" || Array.isArray(data)) return;
-                const obj = {};
-                for (const key of Object.keys(data)) {
-                    if (key.startsWith("$")) {
-                        Object.keys(data[key]).forEach((k) => {
-                            obj[k] = data[key][k];
-                        })
-                    } else
-                    obj[key] = data[key];
-                }
-                assignData.push(obj);
-            }
-            
-            assignDataPush(search);
-            assignDataPush(updater);
-            assignDataPush(add_arg);
-            await this.add(collection, Object.assign({}, ...assignData), id_gen);
-        }
-        return res as boolean;
+        return await this.execute<boolean>("updateOneOrAdd", { collection, search, updater, add_arg, context, id_gen });
     }
 
     /**

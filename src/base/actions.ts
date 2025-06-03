@@ -1,3 +1,4 @@
+import { setDataUsingUpdateOneOrAdd } from "../helpers/updateOneOrAdd";
 import Data from "../types/data";
 import { VQuery } from "../types/query";
 
@@ -65,6 +66,15 @@ class dbActionBase {
     async transaction(config: VQuery) {
         throw new Error("Not implemented");
         return false;
+    }
+
+    async updateOneOrAdd(config: VQuery) {
+        const res = await this.updateOne(config);
+        if (!res) {
+            setDataUsingUpdateOneOrAdd(config);
+            await this.add(config);
+        }
+        return res as boolean;
     }
 }
 
