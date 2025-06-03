@@ -100,13 +100,6 @@ export class MemoryAction extends dbActionBase {
     }
 
     /**
-     * Find entries in the specified database based on search criteria and return a stream of results.
-     */
-    async *findStream({ collection, search, context = {}, findOpts = {}, limit }: VQuery): AsyncGenerator<any> {
-        throw new Error("Method not implemented.");
-    }
-
-    /**
      * Update entries in the specified database based on search criteria and an updater function or object.
      */
     async update({ collection, search, updater, context = {} }: VQuery) {
@@ -143,15 +136,6 @@ export class MemoryAction extends dbActionBase {
      */
     async removeCollection({ collection }: VQuery) {
         this.memory.delete(collection);
-        return true;
-    }
-
-    /**
-     * Executes a list of transactions on the specified database collection.
-     * @throws Error - Method not supported in memory.
-     */
-    async transaction({ collection, transaction }: VQuery) {
-        throw new Error("Method not supported in memory.");
         return true;
     }
 }
