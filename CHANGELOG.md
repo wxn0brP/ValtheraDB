@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.7.6...v0.8.0) (2025-06-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** Refactored updateOneOrAdd – previously part of Valthera, now delegated to Actions layer to resolve runtime exceptions.
+This change modifies the interface and related class structure.
+
+### Features
+
+* add id type export ([5f9e2f4](https://github.com/wxn0brP/ValtheraDB/commit/5f9e2f4b946b87e5dcf639e1f9d5789f4a9f8d6b))
+* add version field ([5455b28](https://github.com/wxn0brP/ValtheraDB/commit/5455b28939587c87ae156e406492e8e4df4c069b))
+* types only workflow ([834130a](https://github.com/wxn0brP/ValtheraDB/commit/834130af04264123f8b1f01a53dabbeeb8de01ef))
+
+
+### Bug Fixes
+
+* **api:** move updateOneOrAdd to Actions to fix runtime error ([4589fad](https://github.com/wxn0brP/ValtheraDB/commit/4589fad20f8a89a023fbc0bd92ffb35103c7de1d))
+* workflow ([fea89c9](https://github.com/wxn0brP/ValtheraDB/commit/fea89c9786950cef92d55aba8c6932eb6f33abe3))
+* workflow ([3bd9f5b](https://github.com/wxn0brP/ValtheraDB/commit/3bd9f5b78b2b7ae421ab9e9db94c70a9ef86d327))
+* workflow ([c4dc0bb](https://github.com/wxn0brP/ValtheraDB/commit/c4dc0bb683916303d442eff96f9bb72c21996bdd))
+* workflow ([6a2e521](https://github.com/wxn0brP/ValtheraDB/commit/6a2e52159de70c36b6465d9d44768afbba5c9026))
+* workflow ([563b4ec](https://github.com/wxn0brP/ValtheraDB/commit/563b4ece48f80f217b3f65e79d0851372f76468c))
+* workflow ([aef9970](https://github.com/wxn0brP/ValtheraDB/commit/aef9970e226a9f33cf055f47908946539e8d873e))
+* workflow ([dfb6675](https://github.com/wxn0brP/ValtheraDB/commit/dfb6675474407c380ab2caf8b64a79af262ba7c5))
+* workflow ([8c2528b](https://github.com/wxn0brP/ValtheraDB/commit/8c2528bb6fc791cd02ddf23c6f50c73c3eaa89f8))
+* workflow ([3f5493f](https://github.com/wxn0brP/ValtheraDB/commit/3f5493fbacca0de1cb3034dfd0d51d284b197e94))
+* workflow ([c9c3a3f](https://github.com/wxn0brP/ValtheraDB/commit/c9c3a3f17650d34762b3b1f1109cd7e553d27a31))
+* workflow ([9f40b8a](https://github.com/wxn0brP/ValtheraDB/commit/9f40b8ad69605ac6761624d8a7f2b2e497461106))
+* workflow ([ad0ce73](https://github.com/wxn0brP/ValtheraDB/commit/ad0ce73c843e8e806f4ff30e041a80d045fd1eef))
+* workflow ([b11d454](https://github.com/wxn0brP/ValtheraDB/commit/b11d454b4a2166e4ddc76fdb456611aa9d00b1e3))
+* workflow ([6b7e4f2](https://github.com/wxn0brP/ValtheraDB/commit/6b7e4f23dcdf3e4916848995b120e67ad06acb7f))
+* workflow ([b628046](https://github.com/wxn0brP/ValtheraDB/commit/b62804603e18912731ebccf8c24d246b705c071c))
+* workflow ([6196795](https://github.com/wxn0brP/ValtheraDB/commit/619679568999d5a2b4a68fd6d62d6859eaa6fba0))
+* workflow ([fbd21df](https://github.com/wxn0brP/ValtheraDB/commit/fbd21dff45777b634a688292d917db330f9742dc))
+
 ### [0.7.6](https://github.com/wxn0brP/ValtheraDB/compare/v0.7.5...v0.7.6) (2025-05-19)
 
 
