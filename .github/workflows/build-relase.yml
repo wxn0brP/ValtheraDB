@@ -2,33 +2,24 @@ name: Build Nightly and Release
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - 'src/**/*.ts'
-      - 'package.json'
-      - 'tsconfig.json'
     tags:
       - '*'
-
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'src/**/*.ts'
-      - 'package.json'
-      - 'tsconfig.json'
   workflow_dispatch:
 
 concurrency:
-  group: build-main
+  group: build-release
   cancel-in-progress: true
 
 jobs:
   build:
     uses: wxn0brP/workflow-dist/.github/workflows/build-ts.yml@main
     with:
+      files: "dist package.json README.md LICENSE"
+      publishToNpm: true
       scriptsHandling: "remove-all"
       customCommands: |
         v=$(jq -r .version package.json)
         echo "export const version = \"$v\";" > dist/version.js
+        
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
