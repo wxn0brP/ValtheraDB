@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.1](https://github.com/wxn0brP/ValtheraDB/compare/v0.8.0...v0.8.1) (2025-06-06)
+
+
+### Features
+
+* replace readline library with custom async line reader implementation ([fa33ed1](https://github.com/wxn0brP/ValtheraDB/commit/fa33ed18e5ad303d25c175b0fe2cb91ec6bc99a4))
+
 ## [0.8.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.7.6...v0.8.0) (2025-06-03)
 
 
