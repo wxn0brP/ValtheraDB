@@ -80,6 +80,21 @@ async function processRelations(
                 item[as] = result;
             }
 
+        } else if (type === "11") {
+            const cache = new Map<string, any>();
+
+            for (const item of targets) {
+                const id = item[pk];
+                if (!cache.has(id)) {
+                    cache.set(id, await db.findOne(coll, { [fk]: id }, {}, { select }));
+                }
+                const result = cache.get(id) || null;
+                if (result && rel.relations) {
+                    await processRelations(dbs, rel.relations, result);
+                }
+                item[as] = result;
+            }
+
         } else if (type === "1n") {
             const ids = targets.map(i => i[pk]);
             const results = await db.find(coll, { $in: { [fk]: ids } }, {}, findOpts || {}, { select });
