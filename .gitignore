@@ -3,6 +3,5 @@ yarn.lock
 package-lock.json
 dist
 .vscode
-test
-test.js
+test*
 .suglite_history

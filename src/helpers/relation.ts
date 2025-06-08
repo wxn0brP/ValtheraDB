@@ -22,7 +22,12 @@ function pickByPath(obj: any, paths: string[][]): any {
     return result;
 }
 
-
+function autoSelect(rel: RelationTypes.RelationConfig, key: string): [string[] | undefined, boolean] {
+    const select = Array.isArray(rel.select) ? [...rel.select] : undefined;
+    const shouldDelete = select && !select.includes(key);
+    if (shouldDelete) select.push(key);
+    return [select, shouldDelete];
+}
 
 function convertSearchObjToSearchArray(obj: Record<string, any>, parentKeys: string[] = []): string[][] {
     return Object.entries(obj).reduce((acc, [key, value]) => {
@@ -68,7 +73,8 @@ async function processRelations(
 
         if (type === "1") {
             const keys = [...new Set(targets.map(i => i[pk]))];
-            const results = await db.find(coll, { $in: { [fk]: keys } }, {}, {}, { select });
+            const [selectSafe, deleteSelect] = autoSelect(rel, fk);
+            const results = await db.find(coll, { $in: { [fk]: keys } }, {}, {}, { select: selectSafe });
 
             const map = new Map(results.map(row => [row[fk], row]));
 
@@ -77,27 +83,31 @@ async function processRelations(
                 if (result && rel.relations) {
                     await processRelations(dbs, rel.relations, result);
                 }
+                if (deleteSelect && result) delete result[fk];
                 item[as] = result;
             }
 
         } else if (type === "11") {
             const cache = new Map<string, any>();
+            const [selectSafe, deleteSelect] = autoSelect(rel, fk);
 
             for (const item of targets) {
                 const id = item[pk];
                 if (!cache.has(id)) {
-                    cache.set(id, await db.findOne(coll, { [fk]: id }, {}, { select }));
+                    cache.set(id, await db.findOne(coll, { [fk]: id }, {}, { select: selectSafe }));
                 }
                 const result = cache.get(id) || null;
                 if (result && rel.relations) {
                     await processRelations(dbs, rel.relations, result);
                 }
+                if (deleteSelect && result) delete result[fk]; 
                 item[as] = result;
             }
 
         } else if (type === "1n") {
             const ids = targets.map(i => i[pk]);
-            const results = await db.find(coll, { $in: { [fk]: ids } }, {}, findOpts || {}, { select });
+            const [selectSafe, deleteSelect] = autoSelect(rel, fk);
+            const results = await db.find(coll, { $in: { [fk]: ids } }, {}, findOpts || {}, { select: selectSafe });
 
             const grouped = results.reduce((acc, row) => {
                 const id = row[fk];
@@ -112,6 +122,7 @@ async function processRelations(
             if (rel.relations) {
                 await Promise.all(results.map(row => processRelations(dbs, rel.relations!, row)));
             }
+            if (deleteSelect) for (const r of results) delete r[fk];
 
         } else if (type === "nm") {
             if (!through || !through.table || !through.pk || !through.fk) {
