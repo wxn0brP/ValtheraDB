@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.9.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.8.2...v0.9.0) (2025-06-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* relations
+
+### Bug Fixes
+
+* relations ([27cf125](https://github.com/wxn0brP/ValtheraDB/commit/27cf125c064ec7205c9f0af72c3dd23c30c972c3))
+
 ### [0.8.2](https://github.com/wxn0brP/ValtheraDB/compare/v0.8.1...v0.8.2) (2025-06-08)
 
 
