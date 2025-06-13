@@ -1,0 +1,35 @@
+{
+  "name": "@wxn0brp/db",
+  "version": "0.9.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "description": "A simple file-based database management system with support for CRUD operations, custom queries, and graph structures.",
+  "homepage": "https://github.com/wxn0brP/ValtheraDB",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wxn0brP/ValtheraDB.git"
+  },
+  "keywords": [
+    "database",
+    "file-based",
+    "CRUD",
+    "graph",
+    "query"
+  ],
+  "author": "wxn0brP",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/*",
+      "import": "./dist/*"
+    }
+  }
+}
