@@ -5,6 +5,7 @@ import Data from "../types/data";
 import FileCpu from "../types/fileCpu";
 import { DbOpts } from "../types/options";
 import { VQuery } from "../types/query";
+import { resolve, sep } from "path";
 
 /**
  * A class representing database actions on files.
@@ -45,8 +46,11 @@ class dbActionC extends dbActionBase {
         const collections = allCollections
             .filter(dirent => dirent.isDirectory())
             .map(dirent => {
-                if (dirent.parentPath === this.folder) return dirent.name;
-                return dirent.parentPath.replace(this.folder + "/", "") + "/" + dirent.name
+                const parentPath = resolve(dirent.parentPath);
+                const baseFolder = resolve(this.folder);
+
+                if (parentPath === baseFolder) return dirent.name;
+                return parentPath.replace(baseFolder + sep, "") + "/" + dirent.name;
             });
 
         return collections;
