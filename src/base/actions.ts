@@ -33,11 +33,6 @@ class dbActionBase {
         return {} as Data;
     }
 
-    async *findStream(config: VQuery): AsyncGenerator<any> {
-        throw new Error("Not implemented");
-        return {} as AsyncGenerator<Data>;
-    }
-
     async update(config: VQuery) {
         throw new Error("Not implemented");
         return false;
@@ -59,11 +54,6 @@ class dbActionBase {
     }
 
     async removeCollection(config: VQuery) {
-        throw new Error("Not implemented");
-        return false;
-    }
-
-    async transaction(config: VQuery) {
         throw new Error("Not implemented");
         return false;
     }

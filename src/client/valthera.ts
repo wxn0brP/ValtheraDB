@@ -6,7 +6,6 @@ import { Arg, Search, Updater } from "../types/arg";
 import { DbFindOpts, FindOpts } from "../types/options";
 import { Context } from "../types/types";
 import Data from "../types/data";
-import { Transaction } from "../types/transactions";
 import { ValtheraCompatible } from "../types/valthera";
 import { version } from "../version";
 
@@ -112,14 +111,6 @@ class ValtheraRemote implements ValtheraCompatible {
     }
 
     /**
-     * Find data in a database as a stream.
-     */
-    async findStream<T = Data>(collection: string, search: Search, context: Context = {}, findOpts: FindOpts = {}, limit: number = -1) {
-        throw new Error("Method not implemented.");
-        return await this._request("findStream", [collection, search, context, findOpts, limit]) as AsyncGenerator<T>;
-    }
-
-    /**
      * Update data in a database.
      */
     async update(collection: string, search: Search, updater: Updater, context: Context = {}) {
@@ -159,13 +150,6 @@ class ValtheraRemote implements ValtheraCompatible {
      */
     async removeCollection(name: string) {
         return await this._request<boolean>("removeCollection", [name]) as boolean;
-    }
-
-    /**
-     * Execute a transaction.
-     */
-    async transaction(collection: string, transaction: Transaction[]) {
-        return await this._request<boolean>("transaction", [collection, transaction]) as boolean;
     }
 }
 

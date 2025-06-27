@@ -1,12 +1,11 @@
-import { Context } from "../types/types";
 import { Search, Updater } from "../types/arg";
 import Data from "../types/data";
 import FileCpu from "../types/fileCpu";
 import { FindOpts } from "../types/options";
+import { Context } from "../types/types";
 import hasFieldsAdvanced from "../utils/hasFieldsAdvanced";
 import updateFindObject from "../utils/updateFindObject";
 import { pathRepair } from "./utils";
-import { Transaction } from "../types/transactions";
 
 export type WriteFile = (file: string, data: any[]) => Promise<void>
 export type ReadFile = (file: string) => Promise<any[]>
@@ -43,10 +42,6 @@ class CustomFileCpu implements FileCpu {
             typeof arg === "function" ? arg(entry, context) : hasFieldsAdvanced(entry, arg)
         );
         return result ? updateFindObject(result, findOpts) : false;
-    }
-
-    async* findStream(file: string, arg: Search, context?: Context, findOpts?: FindOpts, limit?: number): AsyncGenerator<any> {
-        throw new Error("Method not implemented.");
     }
 
     async remove(file: string, one: boolean, arg: Search, context: Context = {}): Promise<boolean> {
@@ -95,10 +90,6 @@ class CustomFileCpu implements FileCpu {
 
         await this._writeFile(file, entries);
         return true;
-    }
-
-    transactions(file: string, transactions: Transaction[]): Promise<void> {
-        throw new Error("Method not implemented.");
     }
 }
 

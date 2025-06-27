@@ -1,14 +1,13 @@
+import { EventEmitter } from "events";
 import dbActionC from "../actions/action";
-import executorC from "../helpers/executor";
+import vFileCpu from "../file";
 import CollectionManager from "../helpers/CollectionManager";
-import { DbFindOpts, DbOpts, FindOpts } from "../types/options";
+import executorC from "../helpers/executor";
 import { Arg, Search, Updater } from "../types/arg";
 import Data from "../types/data";
-import { Context } from "../types/types";
 import FileCpu from "../types/fileCpu";
-import vFileCpu from "../file";
-import { Transaction } from "../types/transactions";
-import { EventEmitter } from "events";
+import { DbFindOpts, DbOpts, FindOpts } from "../types/options";
+import { Context } from "../types/types";
 import { ValtheraCompatible } from "../types/valthera";
 import { version } from "../version";
 
@@ -90,13 +89,6 @@ class Valthera implements ValtheraCompatible {
     }
 
     /**
-     * Find data in a database as a stream.
-     */
-    async findStream<T = Data>(collection: string, search: Search, context: Context = {}, findOpts: FindOpts = {}, limit: number = -1) {
-        return await this.execute<AsyncGenerator<T>>("findStream", { collection, search, context, findOpts, limit });
-    }
-
-    /**
      * Update data in a database.
      */
     async update(collection: string, search: Search, updater: Updater, context = {}) {
@@ -136,13 +128,6 @@ class Valthera implements ValtheraCompatible {
      */
     async removeCollection(collection: string) {
         return await this.execute<boolean>("removeCollection", { collection });
-    }
-
-    /**
-     * Execute a transaction.
-     */
-    async transaction(collection: string, transaction: Transaction[]) {
-        return await this.execute<boolean>("transaction", { collection, transaction });
     }
 }
 

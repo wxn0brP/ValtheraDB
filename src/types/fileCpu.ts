@@ -1,7 +1,6 @@
 import { Search, Updater } from "./arg";
 import Data from "./data";
-import { DbFindOpts, FindOpts } from "./options";
-import { Transaction } from "./transactions";
+import { FindOpts } from "./options";
 import { Context } from "./types";
 
 interface FileCpu {
@@ -44,23 +43,6 @@ interface FileCpu {
     ): Promise<any | false>;
 
     /**
-     * Asynchronously finds entries in a file based on search criteria and returns a stream of results.
-     * @param file The path to the file.
-     * @param arg The search criteria.
-     * @param context Additional context for the search.
-     * @param findOpts Additional options for searching.
-     * @param limit The maximum number of entries to return.
-     * @returns An async generator yielding found entries.
-     */
-    findStream(
-        file: string,
-        arg: Search,
-        context?: Context,
-        findOpts?: FindOpts,
-        limit?: number
-    ): AsyncGenerator<any>;
-
-    /**
    * Asynchronously removes entries from a file based on search criteria.
    * @param file The path to the file.
    * @param arg The search criteria.
@@ -91,17 +73,6 @@ interface FileCpu {
         updater: Updater,
         context?: Context,
     ): Promise<boolean>;
-
-    /**
-     * Executes a list of transactions on the specified database collection.
-     * @param file The path to the file.
-     * @param transactions An array of transactions to execute.
-     * @returns A promise resolved when all transactions have been executed.
-     */
-    transactions(
-        file: string,
-        transactions: Transaction[]
-    ): Promise<void>;
 }
 
 export default FileCpu;

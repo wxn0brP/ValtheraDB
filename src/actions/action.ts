@@ -143,23 +143,6 @@ class dbActionC extends dbActionBase {
         return null;
     }
 
-    async *findStream({ collection, search, context = {}, findOpts = {}, limit = -1 }: VQuery): AsyncGenerator<any> {
-        await this.checkCollection(arguments[0]);
-        const cpath = this._getCollectionPath(collection);
-        const files = await getSortedFiles(cpath);
-
-        let count = 0;
-        for (let f of files) {
-            for await (const data of this.fileCpu.findStream(cpath + f, search, context, findOpts, limit)) {
-                yield data;
-                count++;
-                if (limit !== -1 && count >= limit) {
-                    return;
-                }
-            }
-        }
-    }
-
     /**
      * Update entries in the specified database based on search criteria and an updater function or object.
      */
@@ -223,28 +206,6 @@ class dbActionC extends dbActionBase {
      */
     async removeCollection({ collection }) {
         await promises.rm(this.folder + "/" + collection, { recursive: true, force: true });
-        return true;
-    }
-
-    /**
-     * Apply a series of transactions to a database collection.
-     */
-    async transaction({ collection, transaction }: VQuery) {
-        await this.checkCollection(arguments[0]);
-        const files = await getSortedFiles(this._getCollectionPath(collection));
-
-        if (files.length == 0) {
-            await promises.writeFile(this._getCollectionPath(collection) + "1.db", "");
-            files.push("1.db");
-        }
-
-        for (const file of files) {
-            await this.fileCpu.transactions(this._getCollectionPath(collection) + file, transaction);
-        }
-
-        console.log("Transactions applied successfully.");
-        console.log("Files:", files);
-        console.log("Transactions:", transaction);
         return true;
     }
 }

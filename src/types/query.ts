@@ -1,7 +1,6 @@
 import { Context } from "./types";
 import { Arg, Search, Updater } from "./arg";
 import { DbFindOpts, FindOpts } from "./options";
-import { Transaction } from "./transactions";
 
 export interface VQuery {
     collection?: string;
@@ -14,5 +13,4 @@ export interface VQuery {
     limit?: number;
     add_arg?: Arg;
     updater?: Updater;
-    transaction?: Transaction[];
 }

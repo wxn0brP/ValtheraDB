@@ -29,13 +29,6 @@ class CollectionManager {
     }
 
     /**
-     * Find data in a database as a stream.
-     */
-    async *findStream<T = Data>(search: Search, context: Context = {}, findOpts: FindOpts = {}, limit: number = -1): AsyncGenerator<T> {
-        return await this.db.findStream(this.collection, search, context, findOpts, limit) as AsyncGenerator<T>;
-    }
-
-    /**
      * Update data in a database.
      */
     async update(search: Search, updater: Updater, context: Context = {}) {

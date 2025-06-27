@@ -1,11 +1,11 @@
 import { existsSync, promises } from "fs";
-import { pathRepair, createRL } from "./utils";
 import { parse } from "../helpers/format";
+import { Search } from "../types/arg";
+import { FindOpts } from "../types/options";
+import { Context } from "../types/types";
 import hasFieldsAdvanced from "../utils/hasFieldsAdvanced";
 import updateFindObject from "../utils/updateFindObject";
-import { Search } from "../types/arg";
-import { Context } from "../types/types";
-import { DbFindOpts, FindOpts } from "../types/options";
+import { createRL, pathRepair } from "./utils";
 
 /**
  * Processes a line of text from a file and checks if it matches the search criteria.
@@ -71,34 +71,4 @@ export async function findOne(file: string, arg: Search, context: Context = {}, 
         };
         resolve(false);
     });
-}
-
-export async function* findStream(file: string, arg: Search, context: Context = {}, findOpts: FindOpts = {}, limit: number = -1): AsyncGenerator<any> {
-    file = pathRepair(file);
-
-    if (!existsSync(file)) {
-        await promises.writeFile(file, "");
-        return;
-    }
-
-    const rl = createRL(file);
-
-    try {
-        let count = 0;
-        for await (const line of rl) {
-            if (!line?.trim()) continue;
-
-            const res = await findProcesLine(arg, line, context, findOpts);
-            if (res) {
-                yield res;
-                count++;
-                if (limit > 0 && count >= limit) {
-                    rl.close();
-                    return;
-                }
-            }
-        }
-    } finally {
-        rl.close();
-    }
 }

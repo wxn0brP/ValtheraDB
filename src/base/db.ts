@@ -41,11 +41,6 @@ class ValtheraBase implements ValtheraCompatibleInternal {
         return {} as T;
     }
 
-    async findStream<T = Data>(config: VQuery) {
-        throw new Error("Not implemented");
-        return {} as AsyncGenerator<T>;
-    }
-
     async remove(config: VQuery) {
         throw new Error("Not implemented");
         return false;
@@ -72,11 +67,6 @@ class ValtheraBase implements ValtheraCompatibleInternal {
     }
 
     async updateOneOrAdd(config: VQuery) {
-        throw new Error("Not implemented");
-        return false;
-    }
-
-    async transaction(config: VQuery) {
         throw new Error("Not implemented");
         return false;
     }
