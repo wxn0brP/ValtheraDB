@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.10.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.9.1...v0.10.0) (2025-06-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **db:** removes *findStream and transactions from DB API
+
+### Features
+
+* find - sort data ([b59f0fb](https://github.com/wxn0brP/ValtheraDB/commit/b59f0fb737c70b11073bd8b09844a5399df3c0d2))
+* offset find data ([09f7ae6](https://github.com/wxn0brP/ValtheraDB/commit/09f7ae6cfddf75b58879ae7359d3910faaf8ba25))
+
+
+* **db:** remove unused *findStream (generator) and transactions ([ed750ad](https://github.com/wxn0brP/ValtheraDB/commit/ed750ad7af526bd1ce699cee35fc93023a3736f8))
+
 ### [0.9.1](https://github.com/wxn0brP/ValtheraDB/compare/v0.9.0...v0.9.1) (2025-06-13)
 
 
