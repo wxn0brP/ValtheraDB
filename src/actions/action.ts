@@ -6,6 +6,7 @@ import FileCpu from "../types/fileCpu";
 import { DbOpts } from "../types/options";
 import { VQuery } from "../types/query";
 import { resolve, sep } from "path";
+import { compareSafe } from "../utils/sort";
 
 /**
  * A class representing database actions on files.
@@ -95,55 +96,73 @@ class dbActionC extends dbActionBase {
     /**
      * Find entries in the specified database based on search criteria.
      */
-    async find({ collection, search, context = {}, dbFindOpts = {}, findOpts = {}}: VQuery) {
-        dbFindOpts.reverse = dbFindOpts.reverse || false;
-        dbFindOpts.max = dbFindOpts.max || -1;
-        dbFindOpts.offset = dbFindOpts.offset || 0;
+    async find({ collection, search, context = {}, dbFindOpts = {}, findOpts = {} }: VQuery) {
+        const {
+            reverse = false,
+            max = -1,
+            offset = 0,
+            sortBy,
+            sortAsc = true
+        } = dbFindOpts;
 
         await this.checkCollection(arguments[0]);
         const cpath = this._getCollectionPath(collection);
-        const files = await getSortedFiles(cpath);
-        if (dbFindOpts.reverse) files.reverse();
-        let datas = [];
+        let files = await getSortedFiles(cpath);
+        if (reverse && !sortBy) files.reverse();
 
+        let datas: Data[] = [];
         let totalEntries = 0;
         let skippedEntries = 0;
 
-        for (let f of files) {
-            let data = await this.fileCpu.find(cpath + f, search, context, findOpts) as Data[];
-            if (dbFindOpts.reverse) data.reverse();
+        for (const f of files) {
+            let entries = await this.fileCpu.find(cpath + f, search, context, findOpts) as Data[];
+            if (reverse && !sortBy) entries.reverse();
 
-            if (dbFindOpts.offset > skippedEntries) {
-                const remainingSkip = dbFindOpts.offset - skippedEntries;
-                if (data.length <= remainingSkip) {
-                    skippedEntries += data.length;
-                    continue;
+            if (!sortBy) {
+                if (offset > skippedEntries) {
+                    const remainingSkip = offset - skippedEntries;
+                    if (entries.length <= remainingSkip) {
+                        skippedEntries += entries.length;
+                        continue;
+                    }
+                    entries = entries.slice(remainingSkip);
+                    skippedEntries = offset;
                 }
-                data = data.slice(remainingSkip);
-                skippedEntries = dbFindOpts.offset;
-            }
 
-            if (dbFindOpts.max !== -1) {
-                if (totalEntries + data.length > dbFindOpts.max) {
-                    let remainingEntries = dbFindOpts.max - totalEntries;
-                    data = data.slice(0, remainingEntries);
-                    totalEntries = dbFindOpts.max;
-                } else {
-                    totalEntries += data.length;
+                if (max !== -1) {
+                    if (totalEntries + entries.length > max) {
+                        const remaining = max - totalEntries;
+                        entries = entries.slice(0, remaining);
+                        totalEntries = max;
+                    } else {
+                        totalEntries += entries.length;
+                    }
                 }
+
+                datas.push(...entries);
+
+                if (max !== -1 && totalEntries >= max) break;
+            } else {
+                datas.push(...entries);
             }
-
-            datas = datas.concat(data);
-
-            if (dbFindOpts.max !== -1 && totalEntries >= dbFindOpts.max) break;
         }
+
+        if (sortBy) {
+            const dir = sortAsc ? 1 : -1;
+            datas.sort((a, b) => compareSafe(a[sortBy], b[sortBy]) * dir);
+
+            const start = offset;
+            const end = max !== -1 ? offset + max : undefined;
+            datas = datas.slice(start, end);
+        }
+
         return datas;
     }
 
     /**
      * Find the first matching entry in the specified database based on search criteria.
      */
-    async findOne({ collection, search, context = {}, findOpts = {}}: VQuery) {
+    async findOne({ collection, search, context = {}, findOpts = {} }: VQuery) {
         await this.checkCollection(arguments[0]);
         const cpath = this._getCollectionPath(collection);
         const files = await getSortedFiles(cpath);

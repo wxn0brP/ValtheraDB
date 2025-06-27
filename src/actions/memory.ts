@@ -6,6 +6,7 @@ import Data from "../types/data";
 import FileCpu from "../types/fileCpu";
 import { DbOpts } from "../types/options";
 import { VQuery } from "../types/query";
+import { compareSafe } from "../utils/sort";
 
 export class MemoryAction extends dbActionBase {
     folder: string;
@@ -76,22 +77,33 @@ export class MemoryAction extends dbActionBase {
      * Find entries in the specified database based on search criteria.
      */
     async find({ collection, search, context = {}, dbFindOpts = {}, findOpts = {} }: VQuery) {
-        dbFindOpts.reverse = dbFindOpts.reverse || false;
-        dbFindOpts.max = dbFindOpts.max || -1;
-        dbFindOpts.offset = dbFindOpts.offset || 0;
+        const {
+            reverse = false,
+            max = -1,
+            offset = 0,
+            sortBy,
+            sortAsc = true
+        } = dbFindOpts;
 
-        await this.checkCollection(arguments[0]);
+        await this.checkCollection(collection);
 
         let data = await this.fileCpu.find(collection, search, context, findOpts) as Data[];
-        if (dbFindOpts.reverse) data.reverse();
 
-        if (dbFindOpts.offset > 0) {
-            if (data.length <= dbFindOpts.offset) return [];
-            data = data.slice(dbFindOpts.offset);
+        if (reverse) data.reverse();
+
+        if (sortBy) {
+            const dir = sortAsc ? 1 : -1;
+            data.sort((a, b) => compareSafe(a[sortBy], b[sortBy]) * dir);
         }
 
-        if (dbFindOpts.max !== -1 && data.length > dbFindOpts.max)
-            data = data.slice(0, dbFindOpts.max);
+        if (offset > 0) {
+            if (data.length <= offset) return [];
+            data = data.slice(offset);
+        }
+
+        if (max !== -1 && data.length > max) {
+            data = data.slice(0, max);
+        }
 
         return data;
     }

@@ -11,6 +11,8 @@ export interface DbFindOpts {
     reverse?: boolean;
     max?: number;
     offset?: number;
+    sortBy?: string;
+    sortAsc?: boolean;
 }
 
 export interface FindOpts {
