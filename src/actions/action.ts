@@ -98,6 +98,7 @@ class dbActionC extends dbActionBase {
     async find({ collection, search, context = {}, dbFindOpts = {}, findOpts = {}}: VQuery) {
         dbFindOpts.reverse = dbFindOpts.reverse || false;
         dbFindOpts.max = dbFindOpts.max || -1;
+        dbFindOpts.offset = dbFindOpts.offset || 0;
 
         await this.checkCollection(arguments[0]);
         const cpath = this._getCollectionPath(collection);
@@ -106,10 +107,21 @@ class dbActionC extends dbActionBase {
         let datas = [];
 
         let totalEntries = 0;
+        let skippedEntries = 0;
 
         for (let f of files) {
             let data = await this.fileCpu.find(cpath + f, search, context, findOpts) as Data[];
             if (dbFindOpts.reverse) data.reverse();
+
+            if (dbFindOpts.offset > skippedEntries) {
+                const remainingSkip = dbFindOpts.offset - skippedEntries;
+                if (data.length <= remainingSkip) {
+                    skippedEntries += data.length;
+                    continue;
+                }
+                data = data.slice(remainingSkip);
+                skippedEntries = dbFindOpts.offset;
+            }
 
             if (dbFindOpts.max !== -1) {
                 if (totalEntries + data.length > dbFindOpts.max) {

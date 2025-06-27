@@ -78,11 +78,17 @@ export class MemoryAction extends dbActionBase {
     async find({ collection, search, context = {}, dbFindOpts = {}, findOpts = {} }: VQuery) {
         dbFindOpts.reverse = dbFindOpts.reverse || false;
         dbFindOpts.max = dbFindOpts.max || -1;
+        dbFindOpts.offset = dbFindOpts.offset || 0;
 
         await this.checkCollection(arguments[0]);
 
         let data = await this.fileCpu.find(collection, search, context, findOpts) as Data[];
         if (dbFindOpts.reverse) data.reverse();
+
+        if (dbFindOpts.offset > 0) {
+            if (data.length <= dbFindOpts.offset) return [];
+            data = data.slice(dbFindOpts.offset);
+        }
 
         if (dbFindOpts.max !== -1 && data.length > dbFindOpts.max)
             data = data.slice(0, dbFindOpts.max);

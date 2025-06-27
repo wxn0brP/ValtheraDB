@@ -10,6 +10,7 @@ export interface DbOpts {
 export interface DbFindOpts {
     reverse?: boolean;
     max?: number;
+    offset?: number;
 }
 
 export interface FindOpts {
