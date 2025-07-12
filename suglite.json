@@ -1,5 +1,0 @@
-{
-    "watch": ["src"],
-    "cmd": "yarn build",
-    "restart_cmd": "clear"
-}

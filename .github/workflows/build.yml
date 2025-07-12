@@ -5,19 +5,10 @@ on:
     branches:
       - main
     paths:
-      - 'src/**/*.ts'
-      - 'package.json'
-      - 'tsconfig.json'
-    tags:
-      - '*'
-
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'src/**/*.ts'
-      - 'package.json'
-      - 'tsconfig.json'
+      - "client/**"
+      - "core/**"
+      - "db/**"
+      - "plugin-dir/**"
   workflow_dispatch:
 
 concurrency:
@@ -25,10 +16,62 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-client:
+    if: |
+      github.event_name == "workflow_dispatch" ||
+      contains(github.event.commits.*.modified, "client/")
     uses: wxn0brP/workflow-dist/.github/workflows/build-ts.yml@main
     with:
       scriptsHandling: "remove-all"
+      path: "client"
+      out: ".."
+      branch: "client-dist"
       customCommands: |
         v=$(jq -r .version package.json)
         echo "export const version = \"$v\";" > dist/version.js
+        cp ../LICENSE .
+
+  build-core:
+    if: |
+      github.event_name == "workflow_dispatch" ||
+      contains(github.event.commits.*.modified, "core/")
+    uses: wxn0brP/workflow-dist/.github/workflows/build-ts.yml@main
+    with:
+      scriptsHandling: "remove-all"
+      path: "core"
+      out: ".."
+      branch: "core-dist"
+      customCommands: |
+        v=$(jq -r .version package.json)
+        echo "export const version = \"$v\";" > dist/version.js
+        cp ../LICENSE .
+
+  build-db:
+    if: |
+      github.event_name == "workflow_dispatch" ||
+      contains(github.event.commits.*.modified, "db/")
+    uses: wxn0brP/workflow-dist/.github/workflows/build-ts.yml@main
+    with:
+      scriptsHandling: "remove-all"
+      path: "db"
+      out: ".."
+      branch: "db-dist"
+      customCommands: |
+        v=$(jq -r .version package.json)
+        echo "export const version = \"$v\";" > dist/version.js
+        cp ../LICENSE .
+
+  build-plugin-dir:
+    if: |
+      github.event_name == "workflow_dispatch" ||
+      contains(github.event.commits.*.modified, "plugin-dir/")
+    uses: wxn0brP/workflow-dist/.github/workflows/build-ts.yml@main
+    with:
+      scriptsHandling: "remove-all"
+      path: "plugin-dir"
+      out: ".."
+      branch: "plugin-dist"
+      customCommands: |
+        v=$(jq -r .version package.json)
+        echo "export const version = \"$v\";" > dist/version.js
+        cp ../LICENSE .

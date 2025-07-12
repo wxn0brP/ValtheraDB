@@ -2,8 +2,8 @@ import esbuild from "esbuild";
 
 esbuild.build({
     entryPoints: [
-        "../dist/client/valthera.js",
-        "../dist/client/graph.js"
+        "node_modules/@wxn0brp/db-client/dist/valthera.js",
+        "node_modules/@wxn0brp/db-client/dist/graph.js"
     ],
     outdir: "dist",
     format: "esm",

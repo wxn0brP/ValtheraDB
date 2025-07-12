@@ -1,20 +1,20 @@
 name: Build CDN Package
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'src/**/*.ts'
-      - 'package.json'
-      - 'tsconfig.json'
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'src/**/*.ts'
-      - 'package.json'
-      - 'tsconfig.json'
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'src/**/*.ts'
+  #     - 'package.json'
+  #     - 'tsconfig.json'
+  # pull_request:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'src/**/*.ts'
+  #     - 'package.json'
+  #     - 'tsconfig.json'
   workflow_dispatch:
 
 concurrency:
@@ -27,11 +27,7 @@ jobs:
     with:
       files: "cdn-dist package.json"
       branch: "cdn-dist"
+      path: "cdn"
+      out: ".."
       customCommands: |
-        cd cdn
-        npm i
-        node index.js
-        cd ..
-        mkdir cdn-dist
-        mv cdn/dist/* cdn-dist
-        mv -f cdn/package.cdn.json package.json
+        mv -f package.cdn.json package.json
