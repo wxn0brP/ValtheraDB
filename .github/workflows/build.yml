@@ -1,4 +1,4 @@
-name: Build Nightly and Release
+name: Nightly
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
       branch: 'client-dist'
       customCommands: |
         v=$(jq -r .version package.json)
-        echo 'export const version = \'$v\';' > dist/version.js
+        echo "export const version = \"$v\";" > dist/version.js
         cp ../LICENSE .
 
   build-core:
@@ -43,7 +43,7 @@ jobs:
       branch: 'core-dist'
       customCommands: |
         v=$(jq -r .version package.json)
-        echo 'export const version = \'$v\';' > dist/version.js
+        echo "export const version = \"$v\";" > dist/version.js
         cp ../LICENSE .
 
   build-db:
@@ -58,7 +58,7 @@ jobs:
       branch: 'db-dist'
       customCommands: |
         v=$(jq -r .version package.json)
-        echo 'export const version = \'$v\';' > dist/version.js
+        echo "export const version = \"$v\";" > dist/version.js
         cp ../LICENSE .
 
   build-plugin-dir:
@@ -73,5 +73,5 @@ jobs:
       branch: 'plugin-dist'
       customCommands: |
         v=$(jq -r .version package.json)
-        echo 'export const version = \'$v\';' > dist/version.js
+        echo "export const version = \"$v\";" > dist/version.js
         cp ../LICENSE .

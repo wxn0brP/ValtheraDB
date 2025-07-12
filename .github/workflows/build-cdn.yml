@@ -1,4 +1,4 @@
-name: Build CDN Package
+name: CDN
 
 on:
   # push:
