@@ -20,7 +20,7 @@ jobs:
     if: |
       github.event_name == 'workflow_dispatch' ||
       contains(github.event.changes.files, 'client/')
-    uses: wxn0brP/workflow-dist/.github/workflows/build-ts.yml@main
+    uses: wxn0brP/workflow-dist/.github/workflows/build-ts-new.yml@main
     with:
       scriptsHandling: 'remove-all'
       path: 'client'
@@ -35,7 +35,7 @@ jobs:
     if: |
       github.event_name == 'workflow_dispatch' ||
       contains(github.event.changes.files, 'core/')
-    uses: wxn0brP/workflow-dist/.github/workflows/build-ts.yml@main
+    uses: wxn0brP/workflow-dist/.github/workflows/build-ts-new.yml@main
     with:
       scriptsHandling: 'remove-all'
       path: 'core'
@@ -50,7 +50,7 @@ jobs:
     if: |
       github.event_name == 'workflow_dispatch' ||
       contains(github.event.changes.files, 'db/')
-    uses: wxn0brP/workflow-dist/.github/workflows/build-ts.yml@main
+    uses: wxn0brP/workflow-dist/.github/workflows/build-ts-new.yml@main
     with:
       scriptsHandling: 'remove-all'
       path: 'db'
@@ -65,7 +65,7 @@ jobs:
     if: |
       github.event_name == 'workflow_dispatch' ||
       contains(github.event.changes.files, 'plugin-dir/')
-    uses: wxn0brP/workflow-dist/.github/workflows/build-ts.yml@main
+    uses: wxn0brP/workflow-dist/.github/workflows/build-ts-new.yml@main
     with:
       scriptsHandling: 'remove-all'
       path: 'plugin-dir'
