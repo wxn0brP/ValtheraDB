@@ -11,9 +11,9 @@
         "start": "node dist/index.js"
     },
     "dependencies": {
-        "@wxn0brp/db-core": ">=0.0.1 <0.1.0",
         "@wxn0brp/db-client": ">=0.0.1 <0.1.0",
-        "@wxn0brp/db-plugin-dir": ">=0.0.1 <0.1.0"
+        "@wxn0brp/db-core": ">=0.0.1 <0.1.0",
+        "@wxn0brp/db-storage-dir": ">=0.0.1 <0.1.0"
     },
     "devDependencies": {
         "@types/node": "^22.12.0",
