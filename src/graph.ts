@@ -49,7 +49,7 @@ class Graph {
     /**
      * Finds one edge with either node equal to `nodeA` and the other equal to `nodeB`.
      */
-    async findOne(collection, nodeA, nodeB) {
+    async findOne(collection: string, nodeA: string, nodeB: string) {
         const edgeAB = await this.db.findOne(collection, { a: nodeA, b: nodeB });
         if (edgeAB) return edgeAB as Data;
 
@@ -62,7 +62,7 @@ class Graph {
     /**
      * Gets all edges in the database.
      */
-    async getAll(collection) {
+    async getAll(collection: string) {
         return await this.db.find(collection, {}) as Data[];
     }
 
@@ -76,21 +76,21 @@ class Graph {
     /**
      * Check and create the specified collection if it doesn't exist.
      */
-    async checkCollection(collection) {
-        await this.db.checkCollection(collection);
+    async ensureCollection(collection: string) {
+        await this.db.ensureCollection(collection);
     }
 
     /**
      * Check if a collection exists.
      */
-    async issetCollection(collection) {
+    async issetCollection(collection: string) {
         return await this.db.issetCollection(collection);
     }
 
     /**
      * Removes a database collection from the file system.
      */
-    removeCollection(collection) {
+    removeCollection(collection: string) {
         this.db.removeCollection(collection);
     }
 }
