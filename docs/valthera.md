@@ -28,7 +28,7 @@ Gets the names of all available collections in the database.
 - **Returns:**
   - `Promise<string[]>`: A promise that resolves with an array of collection names.
 
-### Method: `async checkCollection(collection)`
+### Method: `async ensureCollection(collection)`
 Checks and creates the specified collection if it doesn't exist.
 
 - **Parameters:**
@@ -45,7 +45,7 @@ Checks if a collection exists.
 - **Returns:**
   - `Promise<boolean>`: A promise that resolves to `true` if the collection exists, otherwise `false`.
 
-### Method: `async add(collection, data, id_gen=true)`
+### Method: `async add<T = Data>(collection, data, id_gen=true)`
 Adds data to a specified collection.
 
 - **Parameters:**
@@ -83,20 +83,7 @@ Finds one matching entry in a collection.
 - **Returns:**
   - `Promise<T|null>`: A promise that resolves with the found entry, or `null` if no match is found.
 
-### Method: `async findStream<T = Data>(collection, search, context={}, findOpts={}, limit=-1)`
-Finds data in a collection as a stream.
-
-- **Parameters:**
-  - `collection` (`string`): The name of the collection.
-  - `search` (`function|Object`): The search query.
-  - `context` (`Object`): The context object (for functions).
-  - `findOpts` (`Object`): Options for updating the search result.
-  - `limit` (`number`, default: -1): Maximum number of entries to return.
-
-- **Returns:**
-  - `Promise<AsyncGenerator<T>>`: A promise that resolves with an asynchronous generator for streaming results.
-
-### Method: `async update(collection, search, updater, context={})`
+### Method: `async update<T = Data>(collection, search, updater, context={})`
 Updates data in a collection.
 
 - **Parameters:**
@@ -108,7 +95,7 @@ Updates data in a collection.
 - **Returns:**
   - `Promise<boolean>`: A promise that resolves when the data is updated.
 
-### Method: `async updateOne(collection, search, updater, context={})`
+### Method: `async updateOne<T = Data>(collection, search, updater, context={})`
 Updates one entry in a collection.
 
 - **Parameters:**
@@ -120,7 +107,7 @@ Updates one entry in a collection.
 - **Returns:**
   - `Promise<boolean>`: A promise that resolves when the data is updated.
 
-### Method: `async updateOneOrAdd(collection, search, updater, add_arg={}, context={}, id_gen=true)`
+### Method: `async updateOneOrAdd<T = Data>(collection, search, updater, add_arg={}, context={}, id_gen=true)`
 Updates one entry or adds a new one if it doesn't exist.
 
 - **Parameters:**
@@ -134,7 +121,7 @@ Updates one entry or adds a new one if it doesn't exist.
 - **Returns:**
   - `Promise<boolean>`: A promise that resolves to `true` if the entry was updated, otherwise `false`.
 
-### Method: `async remove(collection, search, context={})`
+### Method: `async remove<T = Data>(collection, search, context={})`
 Removes data from a collection.
 
 - **Parameters:**
@@ -145,7 +132,7 @@ Removes data from a collection.
 - **Returns:**
   - `Promise<boolean>`: A promise that resolves when the data is removed.
 
-### Method: `async removeOne(collection, search, context={})`
+### Method: `async removeOne<T = Data>(collection, search, context={})`
 Removes one entry from a collection.
 
 - **Parameters:**
@@ -164,13 +151,3 @@ Removes the specified collection from the Valthera file system.
 
 - **Returns:**
   - `Promise<boolean>`: A promise that resolves when the collection is removed.
-
-### Method: `async transaction(collection, transaction)`
-Executes a transaction on the specified collection.
-
-- **Parameters:**
-  - `collection` (`string`): The name of the collection.
-  - `transaction` (`Transaction[]`): An array of transaction operations.
-
-- **Returns:**
-  - `Promise<boolean>`: A promise that resolves when the transaction is executed.

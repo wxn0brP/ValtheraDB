@@ -63,7 +63,7 @@ Returns the names of all available collections in the database.
 - **Returns:**
   - `Promise<string[]>`: A promise that resolves with an array of collection names.
 
-### Method: `async checkCollection(collection)`
+### Method: `async ensureCollection(collection)`
 Checks and creates the specified collection if it doesn't exist.
 
 - **Parameters:**
