@@ -1,6 +1,6 @@
 {
     "name": "@wxn0brp/db",
-    "version": "0.20.2",
+    "version": "0.30.0",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "author": "wxn0brP",
