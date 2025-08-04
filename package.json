@@ -6,6 +6,11 @@
     "author": "wxn0brP",
     "license": "MIT",
     "type": "module",
+    "homepage": "https://github.com/wxn0brP/ValtheraDB",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wxn0brP/ValtheraDB.git"
+    },
     "scripts": {
         "build": "tsc && tsc-alias"
     },
