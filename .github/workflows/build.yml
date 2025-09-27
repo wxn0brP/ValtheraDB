@@ -3,18 +3,18 @@ name: Nightly
 on:
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 concurrency:
-  group: build-main
+  group: build-master
   cancel-in-progress: true
 
 jobs:
   build:
     uses: wxn0brP/workflow-dist/.github/workflows/build-ts.yml@main
     with:
-      scriptsHandling: 'remove-all'
+      scriptsHandling: "remove-all"
       customCommands: |
         v=$(jq -r .version package.json)
         echo "export const version = \"$v\";" > dist/version.js
