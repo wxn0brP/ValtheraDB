@@ -11,6 +11,9 @@
         "type": "git",
         "url": "https://github.com/wxn0brP/ValtheraDB.git"
     },
+    "bin": {
+        "valthera-db-cli": "./dist/bin.js"
+    },
     "scripts": {
         "build": "tsc && tsc-alias"
     },
