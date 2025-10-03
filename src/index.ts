@@ -3,6 +3,7 @@ import { ValtheraAutoCreate } from "./autoCreate";
 import Graph from "./graph";
 import { Valthera } from "./valthera";
 
+/** @deprecated */
 type GraphCompatible = Graph | GraphRemote;
 export * from "@wxn0brp/db-core";
 export * from "@wxn0brp/db-client";

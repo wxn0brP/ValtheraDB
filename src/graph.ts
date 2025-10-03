@@ -4,6 +4,7 @@ import Valthera from "./valthera";
 /**
  * A class representing a graph database.
  * @class
+ * @deprecated
  */
 class Graph {
     db: Valthera;
