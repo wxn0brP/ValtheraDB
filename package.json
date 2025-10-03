@@ -14,6 +14,15 @@
     "bin": {
         "valthera-db-cli": "./dist/bin.js"
     },
+    "keywords": [
+        "valthera",
+        "db",
+        "database",
+        "file",
+        "storage",
+        "data",
+        "lightweight"
+    ],
     "scripts": {
         "build": "tsc && tsc-alias"
     },
