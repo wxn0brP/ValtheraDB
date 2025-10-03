@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/wxn0brP/ValtheraDB/main/logo.svg" alt="ValtheraDB Logo" width="36" height="36"> ValtheraDB (@wxn0brp/db)
+# <img src="https://raw.githubusercontent.com/wxn0brP/ValtheraDB/master/logo.svg" alt="ValtheraDB Logo" width="36" height="36"> ValtheraDB (@wxn0brp/db)
 
 A lightweight file-based database management system that supports CRUD operations, custom queries and relations.
 
