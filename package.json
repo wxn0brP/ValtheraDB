@@ -28,7 +28,7 @@
     },
     "dependencies": {
         "@wxn0brp/db-client": ">=0.2.1",
-        "@wxn0brp/db-core": ">=0.2.5",
+        "@wxn0brp/db-core": ">=0.2.7",
         "@wxn0brp/db-storage-dir": ">=0.1.4"
     },
     "devDependencies": {
