@@ -60,6 +60,30 @@ Less than or equal comparison.
 { $lte: { quantity: 50 } }
 ```
 
+#### $idGt
+Greater than comparison for IDs (accepts `string` or `number`).
+```javascript
+{ $idGt: { _id: "miblu25k-d-g" } }
+```
+
+#### $idLt
+Less than comparison for IDs (accepts `string` or `number`).
+```javascript
+{ $idLt: { _id: "miblu25k-d-g" } }
+```
+
+#### $idGte
+Greater than or equal comparison for IDs (accepts `string` or `number`).
+```javascript
+{ $idGte: { _id: "miblu25k-d-g" } }
+```
+
+#### $idLte
+Less than or equal comparison for IDs (accepts `string` or `number`).
+```javascript
+{ $idLte: { _id: "miblu25k-d-g" } }
+```
+
 #### $in
 Checks if value is in an array.
 ```javascript
