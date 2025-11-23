@@ -161,7 +161,7 @@ Checks if a string ends with a specified value.
 #### $subset
 Allows for skipping advanced validation for specific fields, applying only basic validation. This is useful when validation data may conflict with predefined functions (starting with $), while user data might also contain similar keys. Use this operator as a compromise.
 ```javascript
-{ $subset: { $lt: "John Doe" } } // chcek if "$lt" is "John Doe"
+{ $subset: { $lt: "John Doe" } } // check if "$lt" is "John Doe"
 ```
 
 ## Examples
