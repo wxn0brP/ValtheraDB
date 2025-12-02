@@ -1,4 +1,4 @@
-name: mdBook
+name: Deploy MkDocs to GitHub Pages
 
 on:
   push:
@@ -7,47 +7,38 @@ on:
     paths:
       - "**/*.md"
 
-  pull_request:
-    branches:
-      - master
-    paths:
-      - "**/*.md"
-
   workflow_dispatch:
 
 concurrency:
-  group: build-mdbook-${{ github.ref }}
+  group: build-docs
   cancel-in-progress: true
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: write
       pages: write
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
+      - name: Check out repository
+        uses: actions/checkout@v4
 
-      - name: Install mdBook
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install MkDocs and plugins
         run: |
-          LATEST=$(curl -s https://api.github.com/repos/rust-lang/mdBook/releases/latest | jq -r '.tag_name')
-          curl -sSL https://github.com/rust-lang/mdBook/releases/download/$LATEST/mdbook-$LATEST-x86_64-unknown-linux-gnu.tar.gz | tar -xz -C /usr/local/bin
+          pip install mkdocs
 
-      - name: Build the book
-        run: mdbook build docs
-
-      - name: Create gh-pages branch and push generated site
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build site
         run: |
-          git checkout --orphan gh-pages
-          git rm -rf .
-          cp -r docs/book/* .
-          rm -rf docs
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
-          git add .
-          git commit -m "Add generated mdBook HTML"
-          git push origin gh-pages --force
+          mkdocs build --clean
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
