@@ -1,4 +1,4 @@
-# Graph Database Documentation
+# Graph Database Documentation (Deprecated)
 
 This documentation provides an overview of the `Graph` class, which represents a graph database built on top of a custom `DataBase` module. The `Graph` class allows for managing graph structures by adding, removing, and querying edges between nodes in the database.
 
