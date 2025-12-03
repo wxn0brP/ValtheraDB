@@ -100,25 +100,41 @@ First, let's add a user and a few posts to our database:
 
 ```javascript
 import { Valthera, Relation } from "@wxn0brp/db";
+
+// Create a database instance
 const db = new Valthera("./database");
 
 async function relationsExample() {
-  // 1. Add a user
+  // 1. Add a user and a few posts
   const author = await db.add("users", { name: "Jane Doe" });
-
-  // 2. Add posts linked to the user's _id
   await db.add("posts", { title: "First Post", content: "...", authorId: author._id });
   await db.add("posts", { title: "Second Post", content: "...", authorId: author._id });
 
-  // 3. Define the relation
-  const userPostsRelation = new Relation(db, "users", {
-    collection: "posts",
-    foreignKey: "authorId", // The field in the "posts" collection that links to a user's _id
-    type: "one-to-many"
-  });
+  // 2. Define the databases for the relation
+  const dbs = {
+    main: db,
+  };
 
-  // 4. Now, find the user and their posts
-  const userWithPosts = await userPostsRelation.findOne({ _id: author._id });
+  // 3. Define the relation structure
+  const relations = {
+    posts: {
+      path: ["main", "posts"],
+      pk: "_id",
+      fk: "authorId",
+      type: "1n", // one-to-many
+    },
+  };
+
+  // 4. Create a Relation instance
+  const relation = new Relation(dbs);
+
+  // 5. Find a user and their related posts
+  const userWithPosts = await relation.findOne(
+    ["main", "users"],
+    { _id: author._id },
+    relations
+  );
+
   console.log(JSON.stringify(userWithPosts, null, 2));
 }
 
