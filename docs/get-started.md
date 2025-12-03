@@ -38,11 +38,11 @@ async function main() {
   console.log("All users:", allUsers);
 
   // Find a single document where the age is greater than 25
-  const user = await db.findOne("users", { $gt: { age: 25 } });
+  const user = await db.findOne("users", { age: { $gt: 25 } });
   console.log("A user older than 25:", user);
 
   // Update a document
-  await db.updateOne("users", { name: "John Doe" }, { age: 31 });
+  await db.updateOne("users", { name: "John Doe" }, { $set: { age: 31 } });
   console.log("User updated.");
 
   // Remove a document
@@ -111,8 +111,9 @@ async function relationsExample() {
   await db.add("posts", { title: "Second Post", content: "...", authorId: author._id });
 
   // 3. Define the relation
-  const userPostsRelation = new Relation(db, "users", "posts", {
-    field: "authorId", // The field in the "posts" collection that links to a user's _id
+  const userPostsRelation = new Relation(db, "users", {
+    collection: "posts",
+    foreignKey: "authorId", // The field in the "posts" collection that links to a user's _id
     type: "one-to-many"
   });
 
