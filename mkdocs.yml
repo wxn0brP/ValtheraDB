@@ -1,0 +1,30 @@
+site_name: ValtheraDB Docs
+site_url: https://wxn0brp.github.io/ValtheraDB
+repo_url: https://github.com/wxn0brP/ValtheraDB
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  logo: logo.svg
+  favicon: logo.svg
+
+nav:
+  - Home: index.md
+  - Relation: relation.md
+  - Remote: remote.md
+  - Updater: updater.md
+  - Valthera: valthera.md
+  - Find Options: find_opts.md
+  - Search Options: search_opts.md
