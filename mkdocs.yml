@@ -5,18 +5,9 @@ repo_url: https://github.com/wxn0brP/ValtheraDB
 theme:
   name: material
   palette:
-    - scheme: default
+    - scheme: slate
       primary: indigo
       accent: indigo
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    - scheme: slate
-      primary: black
-      accent: indigo
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
   logo: logo.svg
   favicon: logo.svg
 

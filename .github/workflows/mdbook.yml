@@ -6,6 +6,8 @@ on:
       - master
     paths:
       - "**/*.md"
+      - "mkdocs.yml"
+      - ".github/workflows/mdbook.yml"
 
   workflow_dispatch:
 
