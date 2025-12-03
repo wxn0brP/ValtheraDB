@@ -22,6 +22,7 @@ theme:
 
 nav:
   - Home: index.md
+  - Get Started: get-started.md
   - Relation: relation.md
   - Remote: remote.md
   - Updater: updater.md

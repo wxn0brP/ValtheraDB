@@ -25,6 +25,7 @@ It is designed for small to medium-sized applications where simplicity and a cus
 
 Ready to build your custom database solution? Dive into the documentation to learn more:
 
+*   **[Get Started](get-started.md):** Learn how to install and use ValtheraDB.
 *   **[Find Options](find_opts.md):** Learn about the available options for find queries.
 *   **[Relation](relation.md):** Understand how to create relationships within and between databases.
 *   **[Remote](remote.md):** Discover how to set up a client-server architecture.
