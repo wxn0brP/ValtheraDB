@@ -73,20 +73,57 @@ async function queries() {
 }
 ```
 
-## Introduction to Relations
+## Using In-Memory Storage
 
-ValtheraDB also supports relations, allowing you to link documents together. Here's a quick look at how you might define a relationship between `users` and `posts`:
+For temporary data, testing, or caching, you can use the in-memory storage adapter, `ValtheraMemory`. This adapter doesn't write any data to disk, so all data is lost when the process exits.
+
+```javascript
+import { ValtheraMemory } from "@wxn0brp/db";
+
+// Create an in-memory database instance
+const memoryDb = new ValtheraMemory();
+
+async function memoryExample() {
+  await memoryDb.add("sessions", { sessionId: "abc-123", user: "John Doe" });
+  const session = await memoryDb.findOne("sessions", { sessionId: "abc-123" });
+  console.log("Session from memory:", session);
+}
+
+memoryExample();
+```
+
+## A Practical Example of Relations
+
+ValtheraDB's relations allow you to link documents across collections. Let's walk through a common use case: linking users to their posts.
+
+First, let's add a user and a few posts to our database:
 
 ```javascript
 import { Valthera, Relation } from "@wxn0brp/db";
 const db = new Valthera("./database");
 
-const userPostsRelation = new Relation(db, "users", "posts", {
-  field: "authorId", // Field in "posts" that links to a user's _id
-  type: "one-to-many"
-});
+async function relationsExample() {
+  // 1. Add a user
+  const author = await db.add("users", { name: "Jane Doe" });
 
-// You can then use this relation to find a user's posts, or the author of a post.
+  // 2. Add posts linked to the user's _id
+  await db.add("posts", { title: "First Post", content: "...", authorId: author._id });
+  await db.add("posts", { title: "Second Post", content: "...", authorId: author._id });
+
+  // 3. Define the relation
+  const userPostsRelation = new Relation(db, "users", "posts", {
+    field: "authorId", // The field in the "posts" collection that links to a user's _id
+    type: "one-to-many"
+  });
+
+  // 4. Now, find the user and their posts
+  const userWithPosts = await userPostsRelation.findOne({ _id: author._id });
+  console.log(JSON.stringify(userWithPosts, null, 2));
+}
+
+relationsExample();
 ```
 
-This is just a brief introduction. For more in-depth information, please refer to the full documentation on [Relations](relation.md).
+When you run this, `userWithPosts` will be a user object with a new `posts` field containing an array of their post documents. This is a powerful way to query related data without having to perform manual lookups.
+
+For more in-depth information, please refer to the full documentation on [Relations](relation.md).
