@@ -240,7 +240,7 @@ async function findUserWithPosts() {
   // 4. Find the user and apply the relations.
   const authorWithPosts = await relation.findOne(
     ["main", "users"], // The collection we are querying
-    { email: "jane.doe@example.com" }, // The user we are looking for
+    { name: "Jane Doe" }, // The user we are looking for
     relations // The relations to apply
   );
 
@@ -255,7 +255,7 @@ The `console.dir` output will show you the user object with a new `posts` array 
 ```json
 {
   "name": "Jane Doe",
-  "email": "jane.doe@example.com",
+  "email": "jane.d.new@example.com",
   "_id": "...",
   "posts": [
     {
