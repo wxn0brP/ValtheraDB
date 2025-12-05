@@ -1002,7 +1002,7 @@ bun<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
 <span class="w">  </span><span class="c1">// 4. Find the user and apply the relations.</span>
 <span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">authorWithPosts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">relation</span><span class="p">.</span><span class="nx">findOne</span><span class="p">(</span>
 <span class="w">    </span><span class="p">[</span><span class="s2">&quot;main&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;users&quot;</span><span class="p">],</span><span class="w"> </span><span class="c1">// The collection we are querying</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;jane.doe@example.com&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="c1">// The user we are looking for</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Jane Doe&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="c1">// The user we are looking for</span>
 <span class="w">    </span><span class="nx">relations</span><span class="w"> </span><span class="c1">// The relations to apply</span>
 <span class="w">  </span><span class="p">);</span>
 
@@ -1014,7 +1014,7 @@ bun<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
 <p>The <code>console.dir</code> output will show you the user object with a new <code>posts</code> array field containing the full documents of both posts we created.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jane Doe&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jane.doe@example.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jane.d.new@example.com&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;posts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
