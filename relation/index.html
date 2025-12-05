@@ -11,10 +11,10 @@
         <link rel="canonical" href="https://wxn0brp.github.io/ValtheraDB/relation/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../valthera/">
       
       
-        <link rel="next" href="../remote/">
+        <link rel="next" href="../search_opts/">
       
       
         
@@ -266,6 +266,137 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting_started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core_concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../valthera/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Valthera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -407,22 +538,23 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="../remote/" class="md-nav__link">
+      <a href="../search_opts/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Remote
+    Search Options
   
 
     
@@ -434,63 +566,10 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../updater/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Updater
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../valthera/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Valthera
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -515,22 +594,23 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="../search_opts/" class="md-nav__link">
+      <a href="../updater/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Search Options
+    Updater
   
 
     
@@ -539,6 +619,42 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../remote/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -710,6 +826,7 @@
 <li><strong>One-to-One (<code>"1"</code>)</strong>: Resolves a single related entry.</li>
 <li><strong>One-to-Many (<code>"1n"</code>)</strong>: Resolves multiple related entries.</li>
 <li><strong>Many-to-Many (<code>"nm"</code>)</strong>: Resolves all entries in the related collection.</li>
+<li><strong>Legacy One-to-One (<code>"11"</code>)</strong>: Similar to <code>"1"</code>, but internally performs a <code>findOne</code> operation for each document during a <code>find</code> query. This mode is less performant but might be useful in specific scenarios, such as with custom adapters or legacy systems. This is considered a <strong>legacy mode</strong> but is still fully supported.</li>
 </ol>
 <hr />
 <h3 id="example-usage">Example Usage</h3>
