@@ -835,124 +835,124 @@ This process is designed to:<br />
 <h2 id="operators"><strong>Operators</strong></h2>
 <h3 id="select"><strong><code>select</code></strong></h3>
 <p>Selects only specific fields to include in the final object.</p>
-<pre><code class="language-javascript">// Original Object
-{
-    name: &quot;John Doe&quot;,
-    email: &quot;john@example.com&quot;,
-    age: 30,
-    status: &quot;active&quot;
-}
+<div class="highlight"><pre><span></span><code><span class="c1">// Original Object</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John Doe&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;john@example.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span>
+<span class="p">}</span>
 
-// Find Options
-{
-    select: [&quot;name&quot;, &quot;email&quot;]
-}
+<span class="c1">// Find Options</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">select</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="p">]</span>
+<span class="p">}</span>
 
-// Result
-{
-    name: &quot;John Doe&quot;,
-    email: &quot;john@example.com&quot;
-}
-</code></pre>
+<span class="c1">// Result</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John Doe&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;john@example.com&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <hr />
 <h3 id="exclude"><strong><code>exclude</code></strong></h3>
 <p>Excludes specific fields from the object, removing unwanted data.</p>
-<pre><code class="language-javascript">// Original Object
-{
-    name: &quot;John Doe&quot;,
-    email: &quot;john@example.com&quot;,
-    age: 30,
-    status: &quot;active&quot;
-}
+<div class="highlight"><pre><span></span><code><span class="c1">// Original Object</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John Doe&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;john@example.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span>
+<span class="p">}</span>
 
-// Find Options
-{
-    exclude: [&quot;name&quot;]
-}
+<span class="c1">// Find Options</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">exclude</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+<span class="p">}</span>
 
-// Result
-{
-    email: &quot;john@example.com&quot;,
-    age: 30,
-    status: &quot;active&quot;
-}
-</code></pre>
+<span class="c1">// Result</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;john@example.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <hr />
 <h3 id="transform"><strong><code>transform</code></strong></h3>
 <p>Applies a custom updater function to modify the object.</p>
-<pre><code class="language-javascript">// Original Object
-{
-    name: &quot;John Doe&quot;,
-    email: &quot;john@example.com&quot;,
-    age: 30,
-    status: &quot;active&quot;
-}
+<div class="highlight"><pre><span></span><code><span class="c1">// Original Object</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John Doe&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;john@example.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span>
+<span class="p">}</span>
 
-// Find Options
-{
-    transform: (doc) =&gt; {
-        doc.name = doc.name.toUpperCase();
-        return doc;
-    }
-}
+<span class="c1">// Find Options</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">transform</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">doc</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">doc</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">doc</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">doc</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 
-// Result
-{
-    name: &quot;JOHN DOE&quot;,
-    email: &quot;john@example.com&quot;,
-    age: 30,
-    status: &quot;active&quot;
-}
-</code></pre>
+<span class="c1">// Result</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;JOHN DOE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;john@example.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <hr />
 <h3 id="combined-example"><strong>Combined Example</strong></h3>
 <p>Using all operators together to demonstrate the execution stack.</p>
-<pre><code class="language-javascript">// Original Object
-{
-    name: &quot;John Doe&quot;,
-    email: &quot;john@example.com&quot;,
-    age: 30,
-    status: &quot;active&quot;
-}
+<div class="highlight"><pre><span></span><code><span class="c1">// Original Object</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John Doe&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;john@example.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span>
+<span class="p">}</span>
 
-// Find Options
-{
-    transform: (doc) =&gt; {
-        doc.newField = &quot;added&quot;;
-        doc.status = &quot;inactive&quot;;
-        return doc;
-    },
-    exclude: [&quot;email&quot;, &quot;newField&quot;],
-    select: [&quot;name&quot;, &quot;status&quot;]
-}
+<span class="c1">// Find Options</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">transform</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">doc</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">doc</span><span class="p">.</span><span class="nx">newField</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;added&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">doc</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;inactive&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">doc</span><span class="p">;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">exclude</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;email&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;newField&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">select</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;status&quot;</span><span class="p">]</span>
+<span class="p">}</span>
 
-// Execution Steps:
-1. transform:
-   {
-       name: &quot;John Doe&quot;,
-       email: &quot;john@example.com&quot;,
-       age: 30,
-       status: &quot;inactive&quot;,
-       newField: &quot;added&quot;
-   }
-2. exclude:
-   {
-       name: &quot;John Doe&quot;,
-       age: 30,
-       status: &quot;inactive&quot;
-   }
-3. select:
-   {
-       name: &quot;John Doe&quot;,
-       status: &quot;inactive&quot;
-   }
+<span class="c1">// Execution Steps:</span>
+<span class="mf">1.</span><span class="w"> </span><span class="nx">transform</span><span class="o">:</span>
+<span class="w">   </span><span class="p">{</span>
+<span class="w">       </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John Doe&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;john@example.com&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
+<span class="w">       </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;inactive&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="nx">newField</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;added&quot;</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="mf">2.</span><span class="w"> </span><span class="nx">exclude</span><span class="o">:</span>
+<span class="w">   </span><span class="p">{</span>
+<span class="w">       </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John Doe&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
+<span class="w">       </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;inactive&quot;</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="mf">3.</span><span class="w"> </span><span class="nx">select</span><span class="o">:</span>
+<span class="w">   </span><span class="p">{</span>
+<span class="w">       </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John Doe&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;inactive&quot;</span>
+<span class="w">   </span><span class="p">}</span>
 
-// Final Result:
-{
-    name: &quot;John Doe&quot;,
-    status: &quot;inactive&quot;
-}
-</code></pre>
+<span class="c1">// Final Result:</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John Doe&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;inactive&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <hr />
 <p>This structured flow ensures flexible and predictable results, making it a powerful tool for refining and manipulating data.</p>
 

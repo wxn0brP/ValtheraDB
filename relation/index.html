@@ -830,61 +830,61 @@
 </ol>
 <hr />
 <h3 id="example-usage">Example Usage</h3>
-<pre><code class="language-javascript">import Relation from &quot;@wxn0brp/db&quot;;
-import { autoCreate } from &quot;@wxn0brp/db&quot;;
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">Relation</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">autoCreate</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
 
-// Create database instances
-const db1 = autoCreate(&quot;path/to/db1&quot;);
-const db2 = autoCreate(&quot;path/to/db2&quot;);
+<span class="c1">// Create database instances</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">db1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">autoCreate</span><span class="p">(</span><span class="s2">&quot;path/to/db1&quot;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">db2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">autoCreate</span><span class="p">(</span><span class="s2">&quot;path/to/db2&quot;</span><span class="p">);</span>
 
-// Define databases
-const dbs = {
-    db1,
-    db2
-};
+<span class="c1">// Define databases</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">dbs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">db1</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">db2</span>
+<span class="p">};</span>
 
-// Define relations
-const relations = {
-    author: {
-        path: [&quot;db1&quot;, &quot;users&quot;],
-        pk: &quot;authorId&quot;,
-        fk: &quot;_id&quot;,
-        type: &quot;1&quot;,
-        select: [&quot;name&quot;, &quot;email&quot;]
-    },
-    comments: {
-        path: [&quot;db2&quot;, &quot;comments&quot;],
-        pk: &quot;_id&quot;,
-        fk: &quot;postId&quot;,
-        type: &quot;1n&quot;,
-        select: [&quot;content&quot;, &quot;createdAt&quot;]
-    }
-};
+<span class="c1">// Define relations</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">relations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">author</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;db1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;users&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;authorId&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;_id&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">select</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">comments</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;db2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;comments&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;_id&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;postId&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1n&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">select</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;createdAt&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
 
-// Create a Relation instance
-const relation = new Relation(dbs);
+<span class="c1">// Create a Relation instance</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">relation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Relation</span><span class="p">(</span><span class="nx">dbs</span><span class="p">);</span>
 
-// Find a single post with relations
-const post = await relation.findOne(
-    [&quot;db1&quot;, &quot;posts&quot;],
-    { _id: &quot;post123&quot; },
-    relations,
-    [[&quot;title&quot;], [&quot;author.name&quot;], [&quot;comments.content&quot;]]
-);
+<span class="c1">// Find a single post with relations</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">post</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">relation</span><span class="p">.</span><span class="nx">findOne</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[</span><span class="s2">&quot;db1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;posts&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;post123&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">relations</span><span class="p">,</span>
+<span class="w">    </span><span class="p">[[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;author.name&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;comments.content&quot;</span><span class="p">]]</span>
+<span class="p">);</span>
 
-console.log(post);
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">post</span><span class="p">);</span>
 
-// Find multiple posts with relations
-const posts = await relation.find(
-    [&quot;db1&quot;, &quot;posts&quot;],
-    { category: &quot;tech&quot; },
-    relations,
-    [[&quot;title&quot;], [&quot;author.name&quot;], [&quot;comments.content&quot;]],
-    { max: 10 }
-);
+<span class="c1">// Find multiple posts with relations</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">posts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">relation</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[</span><span class="s2">&quot;db1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;posts&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">category</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;tech&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">relations</span><span class="p">,</span>
+<span class="w">    </span><span class="p">[[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;author.name&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;comments.content&quot;</span><span class="p">]],</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="p">}</span>
+<span class="p">);</span>
 
-console.log(posts);
-</code></pre>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">posts</span><span class="p">);</span>
+</code></pre></div>
 <p>This example demonstrates how to use the <code>Relation</code> class to resolve relationships between collections in different databases.</p>
 
 

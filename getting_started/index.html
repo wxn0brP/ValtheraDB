@@ -817,221 +817,221 @@
 <hr />
 <h2 id="step-1-installation">Step 1: Installation</h2>
 <p>First things first, let's add ValtheraDB to your project. Open your terminal and run the following command:</p>
-<pre><code class="language-bash"># Using npm
-npm install @wxn0brp/db
+<div class="highlight"><pre><span></span><code><span class="c1"># Using npm</span>
+npm<span class="w"> </span>install<span class="w"> </span>@wxn0brp/db
 
-# Or using yarn
-yarn add @wxn0brp/db
+<span class="c1"># Or using yarn</span>
+yarn<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
 
-# Or using bun
-bun add @wxn0brp/db
-</code></pre>
+<span class="c1"># Or using bun</span>
+bun<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
+</code></pre></div>
 <p>Now you're ready to start using it in your code.</p>
 <hr />
 <h2 id="step-2-setting-up-the-database">Step 2: Setting Up the Database</h2>
 <p>ValtheraDB is an embedded database, which means it runs directly within your application. To get started, you just need to point it to a directory where it can store its data.</p>
 <p>Let's create our database instance.</p>
-<pre><code class="language-typescript">import { Valthera } from &quot;@wxn0brp/db&quot;;
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Valthera</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
 
-// Create a new database instance inside the &quot;./my-blog-db&quot; directory
-const db = new Valthera(&quot;./my-blog-db&quot;);
+<span class="c1">// Create a new database instance inside the &quot;./my-blog-db&quot; directory</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Valthera</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
 
-console.log(&quot;Database created!&quot;);
-</code></pre>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Database created!&quot;</span><span class="p">);</span>
+</code></pre></div>
 <p>If you run this code, a new folder named <code>my-blog-db</code> will be created in your project. This is where all your collections and documents will live. It's that simple!</p>
 <hr />
 <h2 id="step-3-adding-your-first-user">Step 3: Adding Your First User</h2>
 <p>Our blog will have authors, so let's create a <code>users</code> collection and add our first author to it. A "collection" is just a group of similar documents, like a table in a SQL database.</p>
 <p>The <code>db.add()</code> method adds a new document to a specified collection and automatically generates a unique <code>_id</code> for it.</p>
-<pre><code class="language-typescript">import { Valthera } from &quot;@wxn0brp/db&quot;;
-const db = new Valthera(&quot;./my-blog-db&quot;);
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Valthera</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Valthera</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
 
-async function setup() {
-  // Add a new document to the &quot;users&quot; collection
-  const author = await db.add(&quot;users&quot;, {
-    name: &quot;Jane Doe&quot;,
-    email: &quot;jane.doe@example.com&quot;
-  });
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Add a new document to the &quot;users&quot; collection</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">author</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;users&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Jane Doe&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;jane.doe@example.com&quot;</span>
+<span class="w">  </span><span class="p">});</span>
 
-  console.log(&quot;Successfully added author:&quot;, author);
-  // Expected output:
-  // Successfully added author: { name: 'Jane Doe', email: 'jane.doe@example.com', _id: '...' }
-}
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Successfully added author:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">author</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Expected output:</span>
+<span class="w">  </span><span class="c1">// Successfully added author: { name: &#39;Jane Doe&#39;, email: &#39;jane.doe@example.com&#39;, _id: &#39;...&#39; }</span>
+<span class="p">}</span>
 
-setup();
-</code></pre>
+<span class="nx">setup</span><span class="p">();</span>
+</code></pre></div>
 <hr />
 <h2 id="step-4-adding-posts-for-our-user">Step 4: Adding Posts for Our User</h2>
 <p>Now that we have an author, let's give them something to write. We'll create a <code>posts</code> collection. To link a post to its author, we'll add an <code>authorId</code> field to our post documents, storing the <code>_id</code> of the user we just created.</p>
-<pre><code class="language-typescript">import { Valthera } from &quot;@wxn0brp/db&quot;;
-const db = new Valthera(&quot;./my-blog-db&quot;);
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Valthera</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Valthera</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
 
-async function setup() {
-  // First, find our author to get their ID
-  const author = await db.findOne(&quot;users&quot;, { email: &quot;jane.doe@example.com&quot; });
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// First, find our author to get their ID</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">author</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">findOne</span><span class="p">(</span><span class="s2">&quot;users&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;jane.doe@example.com&quot;</span><span class="w"> </span><span class="p">});</span>
 
-  if (!author) {
-    console.log(&quot;Author not found!&quot;);
-    return;
-  }
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">author</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Author not found!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
-  // Now, add a couple of posts linked to the author
-  const post1 = await db.add(&quot;posts&quot;, {
-    title: &quot;My First Post&quot;,
-    content: &quot;This is the content of my first post.&quot;,
-    authorId: author._id // Link to the author
-  });
+<span class="w">  </span><span class="c1">// Now, add a couple of posts linked to the author</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">post1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;posts&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;My First Post&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;This is the content of my first post.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">authorId</span><span class="o">:</span><span class="w"> </span><span class="kt">author._id</span><span class="w"> </span><span class="c1">// Link to the author</span>
+<span class="w">  </span><span class="p">});</span>
 
-  const post2 = await db.add(&quot;posts&quot;, {
-    title: &quot;Advanced Concepts&quot;,
-    content: &quot;Exploring the depths of ValtheraDB.&quot;,
-    authorId: author._id // Link to the same author
-  });
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">post2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;posts&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Advanced Concepts&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Exploring the depths of ValtheraDB.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">authorId</span><span class="o">:</span><span class="w"> </span><span class="kt">author._id</span><span class="w"> </span><span class="c1">// Link to the same author</span>
+<span class="w">  </span><span class="p">});</span>
 
-  console.log(&quot;Added posts:&quot;, post1, post2);
-}
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Added posts:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">post1</span><span class="p">,</span><span class="w"> </span><span class="nx">post2</span><span class="p">);</span>
+<span class="p">}</span>
 
-setup();
-</code></pre>
+<span class="nx">setup</span><span class="p">();</span>
+</code></pre></div>
 <p>Here we used <code>db.findOne()</code> to retrieve a single document that matches our query. It's a quick way to find a specific entry.</p>
 <hr />
 <h2 id="step-5-updating-data">Step 5: Updating Data</h2>
 <p>Sometimes, data changes! ValtheraDB provides easy ways to update existing documents. Let's say Jane Doe decided to update her email address. We can use <code>db.updateOne()</code> to modify her user record.</p>
-<pre><code class="language-typescript">import { Valthera } from &quot;@wxn0brp/db&quot;;
-const db = new Valthera(&quot;./my-blog-db&quot;);
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Valthera</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Valthera</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
 
-async function updateAuthor() {
-  const updated = await db.updateOne(
-    &quot;users&quot;,
-    { name: &quot;Jane Doe&quot; }, // Find Jane Doe
-    { email: &quot;jane.d.new@example.com&quot; } // Update her email
-  );
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">updateAuthor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">updated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">(</span>
+<span class="w">    </span><span class="s2">&quot;users&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Jane Doe&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="c1">// Find Jane Doe</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;jane.d.new@example.com&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// Update her email</span>
+<span class="w">  </span><span class="p">);</span>
 
-  if (updated) {
-    console.log(&quot;Author's email updated successfully!&quot;);
-  } else {
-    console.log(&quot;Author not found or no changes made.&quot;);
-  }
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">updated</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Author&#39;s email updated successfully!&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Author not found or no changes made.&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-  // Verify the update
-  const jane = await db.findOne(&quot;users&quot;, { name: &quot;Jane Doe&quot; });
-  console.log(&quot;Updated Jane Doe:&quot;, jane);
-}
+<span class="w">  </span><span class="c1">// Verify the update</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">jane</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">findOne</span><span class="p">(</span><span class="s2">&quot;users&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Jane Doe&quot;</span><span class="w"> </span><span class="p">});</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Updated Jane Doe:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">jane</span><span class="p">);</span>
+<span class="p">}</span>
 
-updateAuthor();
-</code></pre>
+<span class="nx">updateAuthor</span><span class="p">();</span>
+</code></pre></div>
 <p>The <code>db.updateOne()</code> method takes a search query and an updater object. It finds the <em>first</em> document matching the query and applies the updates. For more complex updates (like incrementing numbers or manipulating arrays), you can use <a href="../updater/">Updater Operators</a>.</p>
 <hr />
 <h2 id="step-6-updating-or-adding-upsert">Step 6: Updating or Adding (Upsert)</h2>
 <p>Sometimes you need to ensure that a piece of data exists: updating it if it's already there or creating it if it's new. This is a common pattern known as "upsert", and ValtheraDB supports it with <code>db.updateOneOrAdd()</code>.</p>
 <p>Let's try to update a post. If the post with a specific title exists, we'll update its content. If not, we'll add it as a new post.</p>
-<pre><code class="language-typescript">import { Valthera } from &quot;@wxn0brp/db&quot;;
-const db = new Valthera(&quot;./my-blog-db&quot;);
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Valthera</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Valthera</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
 
-async function upsertPost() {
-  // First, get the author's ID for linking new posts
-  const author = await db.findOne(&quot;users&quot;, { email: &quot;jane.d.new@example.com&quot; });
-  if (!author) {
-    console.error(&quot;Author not found for upsert operation.&quot;);
-    return;
-  }
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">upsertPost</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// First, get the author&#39;s ID for linking new posts</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">author</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">findOne</span><span class="p">(</span><span class="s2">&quot;users&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;jane.d.new@example.com&quot;</span><span class="w"> </span><span class="p">});</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">author</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Author not found for upsert operation.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
-  // Scenario 1: Update an existing post
-  const updatedExisting = await db.updateOneOrAdd(
-    &quot;posts&quot;,
-    { title: &quot;My First Post&quot; }, // Search for this post
-    { content: &quot;This is the *updated* content of my first post.&quot; } // Update its content
-  );
-  console.log(&quot;Updated existing post?&quot;, updatedExisting);
+<span class="w">  </span><span class="c1">// Scenario 1: Update an existing post</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">updatedExisting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">updateOneOrAdd</span><span class="p">(</span>
+<span class="w">    </span><span class="s2">&quot;posts&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;My First Post&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="c1">// Search for this post</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;This is the *updated* content of my first post.&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// Update its content</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Updated existing post?&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">updatedExisting</span><span class="p">);</span>
 
-  // Scenario 2: Add a new post if it doesn't exist
-  const addedNew = await db.updateOneOrAdd(
-    &quot;posts&quot;,
-    { title: &quot;A Brand New Post&quot; }, // Search for this post (it won't exist yet)
-    {
-      content: &quot;This post was created using updateOneOrAdd.&quot;,
-    }, // Data to update/add
-    { 
-      add_arg: {
-        authorId: author._id
-      } // Data to add if new
-    }
-  );
-  console.log(&quot;Added new post?&quot;, addedNew);
+<span class="w">  </span><span class="c1">// Scenario 2: Add a new post if it doesn&#39;t exist</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">addedNew</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">updateOneOrAdd</span><span class="p">(</span>
+<span class="w">    </span><span class="s2">&quot;posts&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;A Brand New Post&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="c1">// Search for this post (it won&#39;t exist yet)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;This post was created using updateOneOrAdd.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="c1">// Data to update/add</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span>
+<span class="w">      </span><span class="nx">add_arg</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">authorId</span><span class="o">:</span><span class="w"> </span><span class="kt">author._id</span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="c1">// Data to add if new</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Added new post?&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">addedNew</span><span class="p">);</span>
 
-  // Verify the changes
-  const posts = await db.find(&quot;posts&quot;, { authorId: author._id });
-  console.log(&quot;All posts after upsert:&quot;, posts);
-}
+<span class="w">  </span><span class="c1">// Verify the changes</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">posts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;posts&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">authorId</span><span class="o">:</span><span class="w"> </span><span class="kt">author._id</span><span class="w"> </span><span class="p">});</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;All posts after upsert:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">posts</span><span class="p">);</span>
+<span class="p">}</span>
 
-upsertPost();
-</code></pre>
+<span class="nx">upsertPost</span><span class="p">();</span>
+</code></pre></div>
 <p><code>db.updateOneOrAdd()</code> is incredibly flexible. The <code>add_arg</code> option allows you to specify additional data to be merged when a new document is created.</p>
 <hr />
 <h2 id="step-7-bringing-it-all-together-with-relations">Step 7: Bringing It All Together with Relations</h2>
 <p>We now have users and posts, but they are in separate collections. How do we retrieve a user <em>and</em> all their posts in a single query? This is where ValtheraDB's <code>Relation</code> engine shines.</p>
 <p>Relations allow you to define relationships between your collections and fetch linked data effortlessly.</p>
 <p>Let's find our author and embed all of their posts directly into the result.</p>
-<pre><code class="language-typescript">import { Valthera, Relation } from &quot;@wxn0brp/db&quot;;
-const db = new Valthera(&quot;./my-blog-db&quot;);
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Valthera</span><span class="p">,</span><span class="w"> </span><span class="nx">Relation</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Valthera</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
 
-async function findUserWithPosts() {
-  // 1. The Relation class needs an object mapping names to database instances.
-  const dbs = {
-    main: db,
-  };
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">findUserWithPosts</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// 1. The Relation class needs an object mapping names to database instances.</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">dbs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">main</span><span class="o">:</span><span class="w"> </span><span class="kt">db</span><span class="p">,</span>
+<span class="w">  </span><span class="p">};</span>
 
-  // 2. Define the relationship.
-  // We're creating a relation named &quot;posts&quot;.
-  const relations = {
-    posts: {
-      // It finds data in the &quot;posts&quot; collection of the &quot;main&quot; db.
-      path: [&quot;main&quot;, &quot;posts&quot;],
-      // It's a &quot;one-to-many&quot; relationship.
-      type: &quot;1n&quot;,
-      // It matches documents where the &quot;authorId&quot; in the &quot;posts&quot; collection...
-      fk: &quot;authorId&quot;,
-      // ...is equal to the &quot;_id&quot; in the &quot;users&quot; collection.
-      pk: &quot;_id&quot;
-    },
-  };
+<span class="w">  </span><span class="c1">// 2. Define the relationship.</span>
+<span class="w">  </span><span class="c1">// We&#39;re creating a relation named &quot;posts&quot;.</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">relations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">posts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// It finds data in the &quot;posts&quot; collection of the &quot;main&quot; db.</span>
+<span class="w">      </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;main&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;posts&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="c1">// It&#39;s a &quot;one-to-many&quot; relationship.</span>
+<span class="w">      </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1n&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="c1">// It matches documents where the &quot;authorId&quot; in the &quot;posts&quot; collection...</span>
+<span class="w">      </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;authorId&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="c1">// ...is equal to the &quot;_id&quot; in the &quot;users&quot; collection.</span>
+<span class="w">      </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;_id&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">  </span><span class="p">};</span>
 
-  // 3. Create a new Relation instance.
-  const relation = new Relation(dbs);
+<span class="w">  </span><span class="c1">// 3. Create a new Relation instance.</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">relation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Relation</span><span class="p">(</span><span class="nx">dbs</span><span class="p">);</span>
 
-  // 4. Find the user and apply the relations.
-  const authorWithPosts = await relation.findOne(
-    [&quot;main&quot;, &quot;users&quot;], // The collection we are querying
-    { email: &quot;jane.doe@example.com&quot; }, // The user we are looking for
-    relations // The relations to apply
-  );
+<span class="w">  </span><span class="c1">// 4. Find the user and apply the relations.</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">authorWithPosts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">relation</span><span class="p">.</span><span class="nx">findOne</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[</span><span class="s2">&quot;main&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;users&quot;</span><span class="p">],</span><span class="w"> </span><span class="c1">// The collection we are querying</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;jane.doe@example.com&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="c1">// The user we are looking for</span>
+<span class="w">    </span><span class="nx">relations</span><span class="w"> </span><span class="c1">// The relations to apply</span>
+<span class="w">  </span><span class="p">);</span>
 
-  console.dir(authorWithPosts, { depth: null });
-}
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">authorWithPosts</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">depth</span><span class="o">:</span><span class="w"> </span><span class="kt">null</span><span class="w"> </span><span class="p">});</span>
+<span class="p">}</span>
 
-findUserWithPosts();
-</code></pre>
+<span class="nx">findUserWithPosts</span><span class="p">();</span>
+</code></pre></div>
 <p>The <code>console.dir</code> output will show you the user object with a new <code>posts</code> array field containing the full documents of both posts we created.</p>
-<pre><code class="language-json">{
-  &quot;name&quot;: &quot;Jane Doe&quot;,
-  &quot;email&quot;: &quot;jane.doe@example.com&quot;,
-  &quot;_id&quot;: &quot;...&quot;,
-  &quot;posts&quot;: [
-    {
-      &quot;title&quot;: &quot;My First Post&quot;,
-      &quot;content&quot;: &quot;This is the content of my first post.&quot;,
-      &quot;authorId&quot;: &quot;...&quot;,
-      &quot;_id&quot;: &quot;...&quot;
-    },
-    {
-      &quot;title&quot;: &quot;Advanced Concepts&quot;,
-      &quot;content&quot;: &quot;Exploring the depths of ValtheraDB.&quot;,
-      &quot;authorId&quot;: &quot;...&quot;,
-      &quot;_id&quot;: &quot;...&quot;
-    }
-  ]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jane Doe&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jane.doe@example.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;posts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My First Post&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is the content of my first post.&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;authorId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Advanced Concepts&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Exploring the depths of ValtheraDB.&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;authorId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="whats-next">What's Next?</h2>
 <p>Congratulations! You've just scratched the surface of what ValtheraDB can do.</p>
 <ul>

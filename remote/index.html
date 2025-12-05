@@ -741,15 +741,15 @@
 <h2 id="class-valtheraremoteremote">Class: <code>ValtheraRemote(remote)</code></h2>
 <p><code>ValtheraRemote</code> is an extended version of the <code>Valthera</code> class, designed to handle API requests. It provides the same functionalities as <code>Valthera</code>, but enables remote communication, allowing you to interact with Valthera through HTTP requests.</p>
 <h3 id="example-usage">Example Usage</h3>
-<pre><code class="language-javascript">const remoteDB = new ValtheraRemote({
-    name: 'myRemoteDB',
-    url: 'https://example.com/db',
-    auth: 'your-auth-token'
-});
-</code></pre>
-<p>or</p>
-<pre><code class="language-javascript">const remoteDB = new ValtheraRemote('https://dbName:token@example.com/db');
-</code></pre>
+<p><div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">remoteDB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraRemote</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;myRemoteDB&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;https://example.com/db&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">auth</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;your-auth-token&#39;</span>
+<span class="p">});</span>
+</code></pre></div>
+or
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">remoteDB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraRemote</span><span class="p">(</span><span class="s1">&#39;https://dbName:token@example.com/db&#39;</span><span class="p">);</span>
+</code></pre></div></p>
 <h2 id="class-graphremoteremote">Class: <code>GraphRemote(remote)</code></h2>
 <p><code>GraphRemote</code> is an extension of the <code>Graph</code> class, specifically designed for working with graph Valthera's over HTTP. It supports querying and modifying graph data, providing methods tailored for graph operations such as adding nodes, edges, and executing graph queries.</p>
 <p>These constructors provide flexibility in initializing remote connections for both standard and graph-based Valthera databases.</p>

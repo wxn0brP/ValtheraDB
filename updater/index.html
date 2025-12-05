@@ -971,154 +971,154 @@
 <h2 id="arrays">Arrays</h2>
 <h3 id="push"><code>$push</code></h3>
 <p>Adds an element to the end of an array.</p>
-<pre><code class="language-javascript">{
-    $push: { tags: &quot;designer&quot; }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">$push</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;designer&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Input:</strong></p>
-<pre><code class="language-javascript">{
-    tags: [&quot;developer&quot;]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;developer&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Output:</strong></p>
-<pre><code class="language-javascript">{
-    tags: [&quot;developer&quot;, &quot;designer&quot;]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;developer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;designer&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="pushset"><code>$pushset</code></h3>
 <p>Adds an element to the end of an array and removes duplicates.</p>
-<pre><code class="language-javascript">{
-    $pushset: { tags: &quot;designer&quot; }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">$pushset</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;designer&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Input:</strong></p>
-<pre><code class="language-javascript">{
-    tags: [&quot;developer&quot;, &quot;designer&quot;, &quot;developer&quot;]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;developer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;designer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;developer&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Output:</strong></p>
-<pre><code class="language-javascript">{
-    tags: [&quot;developer&quot;, &quot;designer&quot;]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;developer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;designer&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="pull"><code>$pull</code></h3>
 <p>Removes a specific element from an array.</p>
-<pre><code class="language-javascript">{
-    $pull: { tags: &quot;developer&quot; }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">$pull</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;developer&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Input:</strong></p>
-<pre><code class="language-javascript">{
-    tags: [&quot;developer&quot;, &quot;designer&quot;]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;developer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;designer&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Output:</strong></p>
-<pre><code class="language-javascript">{
-    tags: [&quot;designer&quot;]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;designer&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="pullall"><code>$pullall</code></h3>
 <p>Removes all occurrences of specified elements from an array.</p>
-<pre><code class="language-javascript">{
-    $pullall: { tags: [&quot;developer&quot;, &quot;designer&quot;] }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">$pullall</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;developer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;designer&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Input:</strong></p>
-<pre><code class="language-javascript">{
-    tags: [&quot;developer&quot;, &quot;designer&quot;, &quot;manager&quot;]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;developer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;designer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;manager&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Output:</strong></p>
-<pre><code class="language-javascript">{
-    tags: [&quot;manager&quot;]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;manager&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="numbers">Numbers</h2>
 <h3 id="inc"><code>$inc</code></h3>
 <p>Increments a numeric value by a given amount.</p>
-<pre><code class="language-javascript">{
-    $inc: { counter: 1 }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">$inc</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">counter</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Input:</strong></p>
-<pre><code class="language-javascript">{
-    counter: 5
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">counter</span><span class="o">:</span><span class="w"> </span><span class="mf">5</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Output:</strong></p>
-<pre><code class="language-javascript">{
-    counter: 6
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">counter</span><span class="o">:</span><span class="w"> </span><span class="mf">6</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="dec"><code>$dec</code></h3>
 <p>Decrements a numeric value by a given amount.</p>
-<pre><code class="language-javascript">{
-    $dec: { counter: 1 }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">$dec</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">counter</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Input:</strong></p>
-<pre><code class="language-javascript">{
-    counter: 5
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">counter</span><span class="o">:</span><span class="w"> </span><span class="mf">5</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Output:</strong></p>
-<pre><code class="language-javascript">{
-    counter: 4
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">counter</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="objects">Objects</h2>
 <h3 id="merge"><code>$merge</code></h3>
 <p>Merges a nested object, adding or updating properties.</p>
-<pre><code class="language-javascript">{
-    $merge: { settings: { theme: &quot;dark&quot; } }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">$merge</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">settings</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">theme</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;dark&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Input:</strong></p>
-<pre><code class="language-javascript">{
-    settings: { theme: &quot;light&quot;, language: &quot;en&quot; }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">settings</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">theme</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;light&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">language</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Output:</strong></p>
-<pre><code class="language-javascript">{
-    settings: { theme: &quot;dark&quot;, language: &quot;en&quot; }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">settings</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">theme</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;dark&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">language</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="others">Others</h2>
 <h3 id="unset"><code>$unset</code></h3>
 <p>Removes a specified key from an object.</p>
-<pre><code class="language-javascript">{
-    $unset: { age: true }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">$unset</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Input:</strong></p>
-<pre><code class="language-javascript">{
-    name: &quot;John&quot;,
-    age: 30
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Output:</strong></p>
-<pre><code class="language-javascript">{
-    name: &quot;John&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="rename"><code>$rename</code></h3>
 <p>Renames a key in an object.</p>
-<pre><code class="language-javascript">{
-    $rename: { firstName: &quot;name&quot; }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">$rename</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Input:</strong></p>
-<pre><code class="language-javascript">{
-    firstName: &quot;John&quot;,
-    lastName: &quot;Doe&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Output:</strong></p>
-<pre><code class="language-javascript">{
-    name: &quot;John&quot;,
-    lastName: &quot;Doe&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 

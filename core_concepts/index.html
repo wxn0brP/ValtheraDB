@@ -789,11 +789,11 @@
 <p>ValtheraDB provides a declarative way to handle this. The <code>Relation</code> class lets you define how your collections are linked and then automatically resolves these relationships for you in a single query.</p>
 <h3 id="more-than-just-joins">More Than Just Joins</h3>
 <p>The Relation Engine is especially powerful because it is <strong>database-agnostic</strong>. As shown in the <code>getting_started.md</code> tutorial, you define your relationships based on named database instances.</p>
-<pre><code class="language-javascript">const dbs = {
-  main: db,
-  logs: log_db // A completely separate database instance!
-};
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">dbs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">main</span><span class="o">:</span><span class="w"> </span><span class="nx">db</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">logs</span><span class="o">:</span><span class="w"> </span><span class="nx">log_db</span><span class="w"> </span><span class="c1">// A completely separate database instance!</span>
+<span class="p">};</span>
+</code></pre></div>
 <p>This means you can create a relationship between a <code>users</code> collection in your primary database and a <code>user_activity</code> collection in a completely separate <code>logs</code> database. This is a level of flexibility not commonly found in embedded databases and allows for creative architectural patterns.</p>
 <h3 id="supported-relation-types">Supported Relation Types</h3>
 <p>The engine supports all the common relationship types:</p>
