@@ -56,11 +56,11 @@ The `Relation` class supports the following relation types:
 
 ```javascript
 import Relation from "@wxn0brp/db";
-import { autoCreate } from "@wxn0brp/db";
+import { ValtheraAutoCreate } from "@wxn0brp/db/autoCreate";
 
 // Create database instances
-const db1 = autoCreate("path/to/db1");
-const db2 = autoCreate("path/to/db2");
+const db1 = ValtheraAutoCreate("path/to/db1");
+const db2 = ValtheraAutoCreate("path/to/db2");
 
 // Define databases
 const dbs = {
