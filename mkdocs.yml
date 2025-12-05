@@ -22,3 +22,7 @@ nav:
     - Find Options: find_opts.md
     - Updater: updater.md
     - Remote: remote.md
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
