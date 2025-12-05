@@ -13,7 +13,6 @@ import { ValtheraCompatible } from "@wxn0brp/db-core/types/valthera";
  * @returns A new instance of DataBaseRemote or DataBase.
  */
 export function ValtheraAutoCreate(cfg: string | Remote): ValtheraCompatible {
-    if (typeof cfg === "object") return new ValtheraRemote(cfg);
-    if (cfg.startsWith("http")) return new ValtheraRemote(cfg);
+    if (typeof cfg === "object" || cfg.startsWith("http")) return new ValtheraRemote(cfg);
     return new Valthera(cfg);
 }
