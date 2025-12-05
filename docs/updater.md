@@ -188,6 +188,50 @@ Merges a nested object, adding or updating properties.
 }
 ```
 
+### `$deepMerge`
+
+Deeply merges nested objects, adding or updating properties recursively.
+
+```javascript
+{
+    $deepMerge: {
+        user: {
+            address: {
+                city: "New York"
+            }
+        }
+    }
+}
+```
+
+**Input:**
+
+```javascript
+{
+    user: {
+        name: "John",
+        address: {
+            street: "123 Main St",
+            city: "San Francisco"
+        }
+    }
+}
+```
+
+**Output:**
+
+```javascript
+{
+    user: {
+        name: "John",
+        address: {
+            street: "123 Main St",
+            city: "New York"
+        }
+    }
+}
+```
+
 ## Others
 
 ### `$unset`
