@@ -48,6 +48,7 @@ The `Relation` class supports the following relation types:
 1. **One-to-One (`"1"`)**: Resolves a single related entry.
 2. **One-to-Many (`"1n"`)**: Resolves multiple related entries.
 3. **Many-to-Many (`"nm"`)**: Resolves all entries in the related collection.
+4. **Legacy One-to-One (`"11"`)**: Similar to `"1"`, but internally performs a `findOne` operation for each document during a `find` query. This mode is less performant but might be useful in specific scenarios, such as with custom adapters or legacy systems. This is considered a **legacy mode** but is still fully supported.
 
 ---
 

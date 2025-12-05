@@ -13,9 +13,12 @@ theme:
 
 nav:
   - Home: index.md
-  - Relation: relation.md
-  - Remote: remote.md
-  - Updater: updater.md
-  - Valthera: valthera.md
-  - Find Options: find_opts.md
-  - Search Options: search_opts.md
+  - Getting Started: getting_started.md
+  - Core Concepts: core_concepts.md
+  - API Reference:
+    - Valthera: valthera.md
+    - Relation: relation.md
+    - Search Options: search_opts.md
+    - Find Options: find_opts.md
+    - Updater: updater.md
+    - Remote: remote.md
