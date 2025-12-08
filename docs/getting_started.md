@@ -1,8 +1,9 @@
 # Getting Started: Building a Mini-Blog
 
-Welcome to ValtheraDB! This guide will walk you through the entire process of building a simple application—a mini-blog—to demonstrate how to get up and running quickly. We'll cover everything from installation to using powerful features like relations.
+Welcome to ValtheraDB! This guide will walk you through the entire process of building a simple application-a mini-blog-to demonstrate how to get up and running quickly. We'll cover everything from installation to using powerful features like relations.
 
 By the end of this tutorial, you will have learned how to:
+
 - Install ValtheraDB
 - Create a database and collections
 - Add and query for data
