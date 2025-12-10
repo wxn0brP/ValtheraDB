@@ -1,59 +1,103 @@
-# Core Concepts
+# ValtheraDB Idea: A Database That Thinks Like a Developer
 
-This page dives deeper into the fundamental concepts and the architecture that make ValtheraDB so flexible. Understanding these ideas will help you get the most out of the database.
+Welcome to the world of ValtheraDB – a project born from a simple conviction: a database should adapt to your programming style, not the other way around.
+
+Instead of yet another implementation of rigid paradigms, we created a flexible environment that understands the real challenges of modern applications. It is not just a tool for storing data – it is a philosophy of software development.
+
+## Pluggable Storage Paradigm: Your Vision, Your Medium
+
+### The ideas behind the concept
+
+In traditional databases, form determines substance – the choice of SQL vs NoSQL, local files vs server, defines the architecture of the entire application. ValtheraDB reverses this logic.
+
+The central idea: separating data logic from physical storage. Your code operates on objects and relationships, while the method of persistence is a replaceable module.
+
+### Why is this important?
+
+1. **Evolution without revolution**
+   Start with JSON files during prototyping. Move to IndexedDB for PWAs. End up with a remote server in production. All with the same business logic.
+2. **A natural language for data**
+   You do not think in "tables", "documents", or "graphs". You think in "users", "orders", "events". ValtheraDB speaks your language.
+3. **Architecture without compromise**
+   Every application has unique requirements. ValtheraDB lets you choose the optimal solution without sacrificing developer convenience.
+
+### Metaphor: File system vs cloud
+
+Just as a file browser works the same for local disks and Dropbox, ValtheraDB provides a unified API regardless of backend. It is abstraction that truly abstracts.
+
+## Relation Engine: Unity in Diversity
+
+### The problem we are solving
+
+Modern applications are ecosystems – microservices, modules, separate databases for different functions. Traditional databases force a choice: either a monolith (everything in one DB) or chaos (manually gluing distributed data).
+
+ValtheraDB proposes a third path: autonomous, yet connected data collections.
+
+### The philosophy of relationships
+
+1. **Declarativity over imperativity**
+   Instead of writing algorithms for data joins, you describe relationships between them. The system executes your intent.
+2. **Context preserved**
+   Data remains in its natural environment (logs in a separate store, users in the main one), but forms a coherent whole during queries.
+3. **Semantics over syntax**
+   It does not matter how the data is stored – what matters is what it means and how it connects.
+
+### Example in action
+
+Imagine an e-commerce application:
+
+- Main database: products, users
+- Separate database: reviews (frequent updates)
+- Another database: analytics logs
+
+In the traditional approach – three different queries, manual mapping.
+In ValtheraDB – one query combines everything as if it lived in one place.
+
+## Principle of Symmetry: The Same Code, Every Platform
+
+### Unified experience
+
+ValtheraDB stems from a simple observation: developers write business logic, not storage implementations. Therefore, we provide:
+
+1. **Environment isomorphism**
+   The same code runs in Node.js, the browser, and Electron. No conditional imports, no polyfills.
+2. **Progressive specialization**
+   Start with the simplest configuration (JSON files). Move to the advanced one (remote server) without changing a line of application code.
+3. **Expressiveness without complexity**
+   Powerful capabilities through a simple API. Complex inside, simple outside.
+
+## ValtheraDB in the Developer Ecosystem
+
+### Who is this database for?
+
+1. **PWA creators**
+   They want consistent online/offline experience without the burden of IndexedDB API.
+2. **Microservices architects**
+   They need flexible data linking across multiple sources.
+3. **Experimenters and prototypes**
+   They value speed of iteration over premature optimization.
+4. **Educators**
+   They seek a system that teaches concepts, not the syntax of a specific technology.
+
+### Philosophy in practice
+
+ValtheraDB does not compete with PostgreSQL or MongoDB in their niches. It offers a third space – where what matters is not petabyte performance, but the joy of development.
+
+It is a database that:
+
+- Remembers that you are building an application, not managing data
+- Understands that projects evolve from MVP to scalable solutions
+- Respects that each environment (backend, frontend, desktop) has its own constraints
+
+## Summary: A Database as a Collaborator
+
+ValtheraDB is more than a tool – it is a partner in the software creation process. It does not impose limitations but offers possibilities. It does not complicate simple tasks but enables advanced scenarios.
+
+In a world dominated by "one size fits all", ValtheraDB is a rebellion: the developer knows best what is right for their application. We simply provide the capabilities – you decide how to use them.
+
+It is a database that does not ask "why do you want to do this?", but "how can I help you do it?"
 
 ---
 
-## The Core Idea: Pluggable Adapters
-
-The single most important feature of ValtheraDB is its **pluggable adapter architecture**.
-
-Most databases are tightly coupled to their storage engine. ValtheraDB is different. The core logic (querying, updating, managing relations) is completely separate from how the data is actually written to or read from a physical (or virtual) medium. This "how" is handled by an **Adapter**.
-
-The default adapter, which is used when you initialize `new Valthera("./my-db")`, is a simple file-system adapter. It creates a directory per collection. This is great for readability and debugging, but it might not be the best for performance or for every use case.
-
-### Why is this so powerful?
-
-Because the storage mechanism is just a plugin, you can completely change how ValtheraDB stores data without changing your application code. You could:
-
--   **Create a single-file adapter:** Store your entire database in one compressed binary file.
--   **Use `localStorage`:** Create a browser-specific adapter that persists data in `localStorage`, perfect for offline-first applications.
--   **Build a YAML adapter:** If you prefer human-readable YAML files over JSON.
--   **Write a remote adapter:** This is exactly how ValtheraDB's client-server model works! `ValtheraRemote` is an adapter that sends API requests to a server instead of writing to the filesystem.
--   **See predefined adapters**: [Click me](https://wxn0brp.github.io/index/?q=ValtheraDB).
-
-This modularity gives you ultimate control over your data layer, allowing you to optimize for your specific environment and needs.
-
----
-
-## The Relation Engine
-
-Another key feature of ValtheraDB is its powerful **Relation Engine**.
-
-In many NoSQL databases, handling relationships can be cumbersome. You either embed documents within other documents (which can lead to data duplication) or you store IDs and have to perform multiple queries in your application logic to "join" the data.
-
-ValtheraDB provides a declarative way to handle this. The `Relation` class lets you define how your collections are linked and then automatically resolves these relationships for you in a single query.
-
-### More Than Just Joins
-
-The Relation Engine is especially powerful because it is **database-agnostic**. As shown in the `getting_started.md` tutorial, you define your relationships based on named database instances.
-
-```javascript
-const dbs = {
-  main: db,
-  logs: log_db // A completely separate database instance!
-};
-```
-
-This means you can create a relationship between a `users` collection in your primary database and a `user_activity` collection in a completely separate `logs` database. This is a level of flexibility not commonly found in embedded databases and allows for creative architectural patterns.
-
-### Supported Relation Types
-
-The engine supports all the common relationship types:
-
--   **One-to-One (`"1"`):** Link a document to one other document. (e.g., a `user` and their `profile`).
--   **One-to-Many (`"1n"`)**: Link a document to many other documents. (e.g., a `user` and their `posts`).
--   **Many-to-Many (`"nm"`)**: A flexible type that resolves all entries in a related collection, which can be used to model many-to-many relationships with an intermediate linking collection.
--   **Legacy One-to-One (`"11"`)**: Similar to `"1"`, but internally performs a `findOne` operation for each document during a `find` query. This mode is less performant but might be useful in specific scenarios, such as with custom adapters or legacy systems. This is considered a **legacy mode** but is still fully supported.
-
-By combining a pluggable storage architecture with a powerful, cross-database relation engine, ValtheraDB provides a unique and flexible toolset for modern application development.
+Ready to build software according to your vision, not the limitations of tools?
+Begin [your journey](./getting_started.md) with a database that thinks the way you do.
