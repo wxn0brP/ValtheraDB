@@ -66,6 +66,12 @@ ValtheraDB stems from a simple observation: developers write business logic, not
 3. **Expressiveness without complexity**
    Powerful capabilities through a simple API. Complex inside, simple outside.
 
+## Security by Design: Protecting Against NoSQL Injection
+
+ValtheraDB prioritizes security, particularly against common vulnerabilities like NoSQL injection. A key design principle that contributes to this security is the strict handling of root-level operators.
+
+It is crucial to understand that the treatment of root-level operators as an internal, controlled feature, rather than a user-promotable one, is a deliberate design choice, not a limitation. This approach inherently protects applications by preventing malicious users from elevating data input into query operators. By disallowing users from introducing or overriding operators within their input, ValtheraDB effectively mitigates the risk of query manipulation, ensuring that data operations remain within the defined scope and intent of the application developer. This means you can build with confidence, knowing that your queries are safeguarded from unauthorized alterations through data input.
+
 ## ValtheraDB in the Developer Ecosystem
 
 ### Who is this database for?
