@@ -484,6 +484,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#security-by-design-protecting-against-nosql-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security by Design: Protecting Against NoSQL Injection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#valtheradb-in-the-developer-ecosystem" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -918,6 +929,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#security-by-design-protecting-against-nosql-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security by Design: Protecting Against NoSQL Injection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#valtheradb-in-the-developer-ecosystem" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1038,6 +1060,9 @@ In ValtheraDB – one query combines everything as if it lived in one place.</p>
 <li><strong>Expressiveness without complexity</strong>
    Powerful capabilities through a simple API. Complex inside, simple outside.</li>
 </ol>
+<h2 id="security-by-design-protecting-against-nosql-injection">Security by Design: Protecting Against NoSQL Injection</h2>
+<p>ValtheraDB prioritizes security, particularly against common vulnerabilities like NoSQL injection. A key design principle that contributes to this security is the strict handling of root-level operators.</p>
+<p>It is crucial to understand that the treatment of root-level operators as an internal, controlled feature, rather than a user-promotable one, is a deliberate design choice, not a limitation. This approach inherently protects applications by preventing malicious users from elevating data input into query operators. By disallowing users from introducing or overriding operators within their input, ValtheraDB effectively mitigates the risk of query manipulation, ensuring that data operations remain within the defined scope and intent of the application developer. This means you can build with confidence, knowing that your queries are safeguarded from unauthorized alterations through data input.</p>
 <h2 id="valtheradb-in-the-developer-ecosystem">ValtheraDB in the Developer Ecosystem</h2>
 <h3 id="who-is-this-database-for">Who is this database for?</h3>
 <ol>
