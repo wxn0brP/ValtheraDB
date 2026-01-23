@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.42.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.41.1...v0.42.0) (2026-01-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove deprecated graph & update deps
+
+### Features
+
+* remove deprecated graph & update deps ([6816351](https://github.com/wxn0brP/ValtheraDB/commit/6816351b0cbf883ac2218cfa076f5d24ecd06c2e))
+
 ### [0.41.1](https://github.com/wxn0brP/ValtheraDB/compare/v0.41.0...v0.41.1) (2026-01-10)
 
 ## [0.41.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.40.3...v0.41.0) (2025-12-05)
