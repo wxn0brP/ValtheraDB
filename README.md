@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/npm/l/@wxn0brp/db)](./LICENSE)
 [![Downloads](https://img.shields.io/npm/dm/@wxn0brp/db)](https://www.npmjs.com/package/@wxn0brp/db)
 
-**Welcome to ValtheraDB – a modular, embedded database for developers who want to build their perfect data layer. With a familiar API and unparalleled flexibility, ValtheraDB empowers you to take control of your data storage.**
+**Welcome to ValtheraDB - a modular, embedded database for developers who want to build their perfect data layer. With a familiar API and unparalleled flexibility, ValtheraDB empowers you to take control of your data storage.** 
 
 ---
 

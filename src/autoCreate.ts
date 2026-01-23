@@ -1,7 +1,7 @@
 import { Remote } from "@wxn0brp/db-client/remote";
 import ValtheraRemote from "@wxn0brp/db-client/valthera";
-import Valthera from "./valthera";
 import { ValtheraCompatible } from "@wxn0brp/db-core/types/valthera";
+import Valthera from "./valthera";
 
 /**
  * Creates a database instance based on the provided configuration.

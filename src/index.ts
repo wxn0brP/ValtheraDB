@@ -1,15 +1,7 @@
-import GraphRemote from "@wxn0brp/db-client/graph";
-import { ValtheraAutoCreate } from "./autoCreate";
-import Graph from "./graph";
-import { Valthera } from "./valthera";
+export type { Id } from "@wxn0brp/db-core/types/Id";
+export { ValtheraAutoCreate } from "./autoCreate";
+export { Valthera } from "./valthera";
 
-/** @deprecated */
-type GraphCompatible = Graph | GraphRemote;
-export * from "@wxn0brp/db-core";
 export * from "@wxn0brp/db-client";
-export {
-    Graph, GraphCompatible, GraphRemote,
-    Valthera, ValtheraAutoCreate
-};
+export * from "@wxn0brp/db-core";
 
-export type Id = import("@wxn0brp/db-core/types/Id").Id;
