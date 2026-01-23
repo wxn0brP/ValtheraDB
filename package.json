@@ -1,0 +1,52 @@
+{
+  "name": "@wxn0brp/db",
+  "version": "0.42.0",
+  "description": "A modular, embedded database for developers who want control over their data storage.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "wxn0brP",
+  "license": "MIT",
+  "type": "module",
+  "homepage": "https://github.com/wxn0brP/ValtheraDB",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wxn0brP/ValtheraDB.git"
+  },
+  "bin": {
+    "valthera-db-cli": "./dist/bin.js"
+  },
+  "keywords": [
+    "valthera",
+    "db",
+    "database",
+    "file",
+    "storage",
+    "data",
+    "lightweight"
+  ],
+  "dependencies": {
+    "@wxn0brp/db-client": ">=0.3.0 <0.4.0",
+    "@wxn0brp/db-core": ">=0.4.0 <0.5.0",
+    "@wxn0brp/db-storage-dir": ">=0.1.6"
+  },
+  "devDependencies": {
+    "@types/node": "*",
+    "tsc-alias": "*",
+    "typescript": "*"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js",
+      "default": "./dist/*.js"
+    }
+  }
+}
