@@ -105,7 +105,7 @@ const posts = await relation.find(
     { category: "tech" },
     relations,
     [["title"], ["author.name"], ["comments.content"]],
-    { max: 10 }
+    { limit: 10 }
 );
 
 console.log(posts);

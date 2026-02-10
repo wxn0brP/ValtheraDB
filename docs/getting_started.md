@@ -61,7 +61,7 @@ const db = new Valthera("./my-blog-db");
 
 async function setup() {
   // Add a new document to the "users" collection
-  const author = await db.add("users", {
+  const author = await db.c("users").add({
     name: "Jane Doe",
     email: "jane.doe@example.com"
   });
@@ -86,21 +86,24 @@ const db = new Valthera("./my-blog-db");
 
 async function setup() {
   // First, find our author to get their ID
-  const author = await db.findOne("users", { email: "jane.doe@example.com" });
+  const author = await db.c("users").findOne({ email: "jane.doe@example.com" });
 
   if (!author) {
     console.log("Author not found!");
     return;
   }
 
-  // Now, add a couple of posts linked to the author
-  const post1 = await db.add("posts", {
+  // Now, create the "posts" collection
+  const posts = db.c("posts");
+  
+  // Next, add a couple of posts linked to the author
+  const post1 = await posts.add({
     title: "My First Post",
     content: "This is the content of my first post.",
     authorId: author._id // Link to the author
   });
 
-  const post2 = await db.add("posts", {
+  const post2 = await posts.add({
     title: "Advanced Concepts",
     content: "Exploring the depths of ValtheraDB.",
     authorId: author._id // Link to the same author
@@ -125,8 +128,8 @@ import { Valthera } from "@wxn0brp/db";
 const db = new Valthera("./my-blog-db");
 
 async function updateAuthor() {
-  const updated = await db.updateOne(
-    "users",
+  const users = db.c("users");
+  const updated = await users.updateOne(
     { name: "Jane Doe" }, // Find Jane Doe
     { email: "jane.d.new@example.com" } // Update her email
   );
@@ -138,7 +141,7 @@ async function updateAuthor() {
   }
 
   // Verify the update
-  const jane = await db.findOne("users", { name: "Jane Doe" });
+  const jane = await users.findOne({ name: "Jane Doe" });
   console.log("Updated Jane Doe:", jane);
 }
 
@@ -161,23 +164,23 @@ const db = new Valthera("./my-blog-db");
 
 async function upsertPost() {
   // First, get the author's ID for linking new posts
-  const author = await db.findOne("users", { email: "jane.d.new@example.com" });
+  const author = await db.c("users").findOne({ email: "jane.d.new@example.com" });
   if (!author) {
     console.error("Author not found for upsert operation.");
     return;
   }
 
+  const posts = db.c("posts");
+
   // Scenario 1: Update an existing post
-  const updatedExisting = await db.updateOneOrAdd(
-    "posts",
+  const updatedExisting = await posts.updateOneOrAdd(
     { title: "My First Post" }, // Search for this post
     { content: "This is the *updated* content of my first post." } // Update its content
   );
   console.log("Updated existing post?", updatedExisting);
 
   // Scenario 2: Add a new post if it doesn't exist
-  const addedNew = await db.updateOneOrAdd(
-    "posts",
+  const addedNew = await posts.updateOneOrAdd(
     { title: "A Brand New Post" }, // Search for this post (it won't exist yet)
     {
       content: "This post was created using updateOneOrAdd.",
@@ -191,7 +194,7 @@ async function upsertPost() {
   console.log("Added new post?", addedNew);
 
   // Verify the changes
-  const posts = await db.find("posts", { authorId: author._id });
+  const posts = await posts.find({ authorId: author._id });
   console.log("All posts after upsert:", posts);
 }
 
