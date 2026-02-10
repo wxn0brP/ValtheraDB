@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import Valthera from "./valthera";
+import { Valthera } from "./valthera";
 
 const args = process.argv.slice(2);
 if (args.length < 2) {
