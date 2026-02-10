@@ -194,8 +194,8 @@ async function upsertPost() {
   console.log("Added new post?", addedNew);
 
   // Verify the changes
-  const posts = await posts.find({ authorId: author._id });
-  console.log("All posts after upsert:", posts);
+  const userPosts = await posts.find({ authorId: author._id });
+  console.log("All posts after upsert:", userPosts);
 }
 
 upsertPost();
