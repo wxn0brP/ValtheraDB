@@ -275,6 +275,7 @@ The `console.dir` output will show you the user object with a new `posts` array 
       "authorId": "...",
       "_id": "..."
     }
+    // ...
   ]
 }
 ```
