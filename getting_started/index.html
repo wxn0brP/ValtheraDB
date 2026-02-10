@@ -977,7 +977,8 @@ bun<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
 <p>We now have users and posts, but they are in separate collections. How do we retrieve a user <em>and</em> all their posts in a single query? This is where ValtheraDB's <code>Relation</code> engine shines.</p>
 <p>Relations allow you to define relationships between your collections and fetch linked data effortlessly.</p>
 <p>Let's find our author and embed all of their posts directly into the result.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Valthera</span><span class="p">,</span><span class="w"> </span><span class="nx">Relation</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Relation</span><span class="p">,</span><span class="w"> </span><span class="nx">RelationTypes</span><span class="p">,</span><span class="w"> </span><span class="nx">Valthera</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
+
 <span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Valthera</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
 
 <span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">findUserWithPosts</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -988,7 +989,7 @@ bun<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
 
 <span class="w">  </span><span class="c1">// 2. Define the relationship.</span>
 <span class="w">  </span><span class="c1">// We&#39;re creating a relation named &quot;posts&quot;.</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">relations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">relations</span><span class="o">:</span><span class="w"> </span><span class="kt">RelationTypes.Relation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">posts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="c1">// It finds data in the &quot;posts&quot; collection of the &quot;main&quot; db.</span>
 <span class="w">      </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;main&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;posts&quot;</span><span class="p">],</span>
