@@ -214,7 +214,8 @@ Relations allow you to define relationships between your collections and fetch l
 Let's find our author and embed all of their posts directly into the result.
 
 ```typescript
-import { Valthera, Relation } from "@wxn0brp/db";
+import { Relation, RelationTypes, Valthera } from "@wxn0brp/db";
+
 const db = new Valthera("./my-blog-db");
 
 async function findUserWithPosts() {
@@ -225,7 +226,7 @@ async function findUserWithPosts() {
 
   // 2. Define the relationship.
   // We're creating a relation named "posts".
-  const relations = {
+  const relations: RelationTypes.Relation = {
     posts: {
       // It finds data in the "posts" collection of the "main" db.
       path: ["main", "posts"],
