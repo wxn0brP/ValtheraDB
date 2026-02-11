@@ -1,6 +1,7 @@
 import { Remote } from "@wxn0brp/db-client/remote";
 import { ValtheraRemote } from "@wxn0brp/db-client/valthera";
-import { forgeValthera, ValtheraClass } from "@wxn0brp/db-core";
+import { forgeTypedValthera } from "@wxn0brp/db-core";
+import { Data } from "@wxn0brp/db-core/types/data";
 import { DbOpts } from "@wxn0brp/db-core/types/options";
 import { ValtheraCompatible } from "@wxn0brp/db-core/types/valthera";
 import { Valthera } from "./valthera";
@@ -26,6 +27,6 @@ export function ValtheraAutoRemoteCreate(cfg: string | Remote): ValtheraCompatib
  * @param options - Optional configuration options.
  * @returns A new instance of Valthera.
  */
-export function ValtheraCreate(folder: string, options: DbOpts = {}): ValtheraClass {
-    return forgeValthera(new Valthera(folder, options));
+export function ValtheraCreate<T extends Record<string, Data> = {}>(folder: string, options: DbOpts = {}) {
+    return forgeTypedValthera<T>(new Valthera(folder, options));
 }
