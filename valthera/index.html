@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://wxn0brp.github.io/ValtheraDB/valthera/">
       
       
-        <link rel="prev" href="../core_concepts/">
+        <link rel="prev" href="../collection/">
       
       
         <link rel="next" href="../relation/">
@@ -369,6 +369,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../collection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -444,10 +472,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#method-async-getcollections" class="md-nav__link">
+  <a href="#async-getcollections" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method: async getCollections()
+        async getCollections()
       
     </span>
   </a>
@@ -455,10 +483,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#method-async-ensurecollectioncollection" class="md-nav__link">
+  <a href="#async-ensurecollectioncollection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method: async ensureCollection(collection)
+        async ensureCollection(collection)
       
     </span>
   </a>
@@ -466,10 +494,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#method-async-issetcollectioncollection" class="md-nav__link">
+  <a href="#async-issetcollectioncollection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method: async issetCollection(collection)
+        async issetCollection(collection)
       
     </span>
   </a>
@@ -477,10 +505,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#method-async-removecollectioncollection" class="md-nav__link">
+  <a href="#async-removecollectioncollection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method: async removeCollection(collection)
+        async removeCollection(collection)
       
     </span>
   </a>
@@ -687,10 +715,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#method-async-getcollections" class="md-nav__link">
+  <a href="#async-getcollections" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method: async getCollections()
+        async getCollections()
       
     </span>
   </a>
@@ -698,10 +726,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#method-async-ensurecollectioncollection" class="md-nav__link">
+  <a href="#async-ensurecollectioncollection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method: async ensureCollection(collection)
+        async ensureCollection(collection)
       
     </span>
   </a>
@@ -709,10 +737,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#method-async-issetcollectioncollection" class="md-nav__link">
+  <a href="#async-issetcollectioncollection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method: async issetCollection(collection)
+        async issetCollection(collection)
       
     </span>
   </a>
@@ -720,10 +748,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#method-async-removecollectioncollection" class="md-nav__link">
+  <a href="#async-removecollectioncollection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method: async removeCollection(collection)
+        async removeCollection(collection)
       
     </span>
   </a>
@@ -757,13 +785,13 @@
 
 <h1 id="valtheradb-documentation">ValtheraDB Documentation</h1>
 <h2 id="class-valthera">Class: <code>Valthera</code></h2>
-<h3 id="method-async-getcollections">Method: <code>async getCollections()</code></h3>
+<h3 id="async-getcollections"><code>async getCollections()</code></h3>
 <p>Gets the names of all available collections in the database.</p>
 <ul>
 <li><strong>Returns:</strong></li>
 <li><code>Promise&lt;string[]&gt;</code>: A promise that resolves with an array of collection names.</li>
 </ul>
-<h3 id="method-async-ensurecollectioncollection">Method: <code>async ensureCollection(collection)</code></h3>
+<h3 id="async-ensurecollectioncollection"><code>async ensureCollection(collection)</code></h3>
 <p>Checks and creates the specified collection if it doesn't exist.</p>
 <ul>
 <li><strong>Parameters:</strong></li>
@@ -775,7 +803,7 @@
 </li>
 <li><code>Promise&lt;boolean&gt;</code>: A promise that resolves to <code>true</code> if the collection was created or already exists.</li>
 </ul>
-<h3 id="method-async-issetcollectioncollection">Method: <code>async issetCollection(collection)</code></h3>
+<h3 id="async-issetcollectioncollection"><code>async issetCollection(collection)</code></h3>
 <p>Checks if a collection exists.</p>
 <ul>
 <li><strong>Parameters:</strong></li>
@@ -783,7 +811,7 @@
 <li><strong>Returns:</strong></li>
 <li><code>Promise&lt;boolean&gt;</code>: A promise that resolves to <code>true</code> if the collection exists, otherwise <code>false</code>.</li>
 </ul>
-<h3 id="method-async-removecollectioncollection">Method: <code>async removeCollection(collection)</code></h3>
+<h3 id="async-removecollectioncollection"><code>async removeCollection(collection)</code></h3>
 <p>Removes the specified collection from the Valthera file system.</p>
 <ul>
 <li><strong>Parameters:</strong></li>
