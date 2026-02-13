@@ -37,12 +37,10 @@ ValtheraDB is an embedded database, which means it runs directly within your app
 Let's create our database instance.
 
 ```typescript
-import { Valthera } from "@wxn0brp/db";
+import { ValtheraCreate } from "@wxn0brp/db";
 
 // Create a new database instance inside the "./my-blog-db" directory
-const db = new Valthera("./my-blog-db");
-
-console.log("Database created!");
+const db = ValtheraCreate("./my-blog-db");
 ```
 
 If you run this code, a new folder named `my-blog-db` will be created in your project. This is where all your collections and documents will live. It's that simple!
@@ -56,8 +54,9 @@ Our blog will have authors, so let's create a `users` collection and add our fir
 The `db.add()` method adds a new document to a specified collection and automatically generates a unique `_id` for it.
 
 ```typescript
-import { Valthera } from "@wxn0brp/db";
-const db = new Valthera("./my-blog-db");
+import { ValtheraCreate } from "@wxn0brp/db";
+
+const db = ValtheraCreate("./my-blog-db");
 
 async function setup() {
   // Add a new document to the "users" collection
@@ -81,8 +80,9 @@ setup();
 Now that we have an author, let's give them something to write. We'll create a `posts` collection. To link a post to its author, we'll add an `authorId` field to our post documents, storing the `_id` of the user we just created.
 
 ```typescript
-import { Valthera } from "@wxn0brp/db";
-const db = new Valthera("./my-blog-db");
+import { ValtheraCreate } from "@wxn0brp/db";
+
+const db = ValtheraCreate("./my-blog-db");
 
 async function setup() {
   // First, find our author to get their ID
@@ -124,8 +124,9 @@ Here we used `db.findOne()` to retrieve a single document that matches our query
 Sometimes, data changes! ValtheraDB provides easy ways to update existing documents. Let's say Jane Doe decided to update her email address. We can use `db.updateOne()` to modify her user record.
 
 ```typescript
-import { Valthera } from "@wxn0brp/db";
-const db = new Valthera("./my-blog-db");
+import { ValtheraCreate } from "@wxn0brp/db";
+
+const db = ValtheraCreate("./my-blog-db");
 
 async function updateAuthor() {
   const users = db.c("users");
@@ -159,8 +160,9 @@ Sometimes you need to ensure that a piece of data exists: updating it if it's al
 Let's try to update a post. If the post with a specific title exists, we'll update its content. If not, we'll add it as a new post.
 
 ```typescript
-import { Valthera } from "@wxn0brp/db";
-const db = new Valthera("./my-blog-db");
+import { ValtheraCreate } from "@wxn0brp/db";
+
+const db = ValtheraCreate("./my-blog-db");
 
 async function upsertPost() {
   // First, get the author's ID for linking new posts
@@ -216,7 +218,7 @@ Let's find our author and embed all of their posts directly into the result.
 ```typescript
 import { Relation, RelationTypes, Valthera } from "@wxn0brp/db";
 
-const db = new Valthera("./my-blog-db");
+const db = ValtheraCreate("./my-blog-db");
 
 async function findUserWithPosts() {
   // 1. The Relation class needs an object mapping names to database instances.

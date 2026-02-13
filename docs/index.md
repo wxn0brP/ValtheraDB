@@ -36,6 +36,7 @@ In short, if you value flexibility and control over rigid conventions, you'll fe
 *   **[Getting Started](getting_started.md):** Jump into our hands-on tutorial and build your first application with ValtheraDB.
 *   **[Core Concepts](core_concepts.md):** Learn about the fundamental ideas that make ValtheraDB unique.
 *   **API Reference:**
+    *   [Collection](collection.md)
     *   [Valthera Class](valthera.md)
     *   [Relations](relation.md)
     *   [Search Operators](search_opts.md)
