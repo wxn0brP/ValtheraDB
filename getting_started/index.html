@@ -833,20 +833,19 @@ bun<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
 <h2 id="step-2-setting-up-the-database">Step 2: Setting Up the Database</h2>
 <p>ValtheraDB is an embedded database, which means it runs directly within your application. To get started, you just need to point it to a directory where it can store its data.</p>
 <p>Let's create our database instance.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Valthera</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
 
 <span class="c1">// Create a new database instance inside the &quot;./my-blog-db&quot; directory</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Valthera</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Database created!&quot;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
 </code></pre></div>
 <p>If you run this code, a new folder named <code>my-blog-db</code> will be created in your project. This is where all your collections and documents will live. It's that simple!</p>
 <hr />
 <h2 id="step-3-adding-your-first-user">Step 3: Adding Your First User</h2>
 <p>Our blog will have authors, so let's create a <code>users</code> collection and add our first author to it. A "collection" is just a group of similar documents, like a table in a SQL database.</p>
 <p>The <code>db.add()</code> method adds a new document to a specified collection and automatically generates a unique <code>_id</code> for it.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Valthera</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Valthera</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
 
 <span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// Add a new document to the &quot;users&quot; collection</span>
@@ -865,8 +864,9 @@ bun<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
 <hr />
 <h2 id="step-4-adding-posts-for-our-user">Step 4: Adding Posts for Our User</h2>
 <p>Now that we have an author, let's give them something to write. We'll create a <code>posts</code> collection. To link a post to its author, we'll add an <code>authorId</code> field to our post documents, storing the <code>_id</code> of the user we just created.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Valthera</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Valthera</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
 
 <span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// First, find our author to get their ID</span>
@@ -902,8 +902,9 @@ bun<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
 <hr />
 <h2 id="step-5-updating-data">Step 5: Updating Data</h2>
 <p>Sometimes, data changes! ValtheraDB provides easy ways to update existing documents. Let's say Jane Doe decided to update her email address. We can use <code>db.updateOne()</code> to modify her user record.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Valthera</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Valthera</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
 
 <span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">updateAuthor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">c</span><span class="p">(</span><span class="s2">&quot;users&quot;</span><span class="p">);</span>
@@ -930,8 +931,9 @@ bun<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
 <h2 id="step-6-updating-or-adding-upsert">Step 6: Updating or Adding (Upsert)</h2>
 <p>Sometimes you need to ensure that a piece of data exists: updating it if it's already there or creating it if it's new. This is a common pattern known as "upsert", and ValtheraDB supports it with <code>db.updateOneOrAdd()</code>.</p>
 <p>Let's try to update a post. If the post with a specific title exists, we'll update its content. If not, we'll add it as a new post.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Valthera</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Valthera</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
 
 <span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">upsertPost</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// First, get the author&#39;s ID for linking new posts</span>
@@ -979,7 +981,7 @@ bun<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
 <p>Let's find our author and embed all of their posts directly into the result.</p>
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Relation</span><span class="p">,</span><span class="w"> </span><span class="nx">RelationTypes</span><span class="p">,</span><span class="w"> </span><span class="nx">Valthera</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
 
-<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Valthera</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
 
 <span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">findUserWithPosts</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// 1. The Relation class needs an object mapping names to database instances.</span>
