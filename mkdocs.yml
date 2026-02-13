@@ -16,12 +16,13 @@ nav:
   - Getting Started: getting_started.md
   - Core Concepts: core_concepts.md
   - API Reference:
-    - Valthera: valthera.md
-    - Relation: relation.md
-    - Search Options: search_opts.md
-    - Find Options: find_opts.md
-    - Updater: updater.md
-    - Remote: remote.md
+      - Collection: collection.md
+      - Valthera: valthera.md
+      - Relation: relation.md
+      - Search Options: search_opts.md
+      - Find Options: find_opts.md
+      - Updater: updater.md
+      - Remote: remote.md
 
 markdown_extensions:
   - pymdownx.highlight

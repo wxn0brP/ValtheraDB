@@ -12,7 +12,7 @@ Creates a new instance of the `Relation` class.
 
 ---
 
-### Method: `async findOne(path, search, relations, select?)`
+### `async findOne(path, search, relations, select?)`
 Finds a single entry in a collection and resolves its relations.
 
 - **Parameters:**
@@ -26,7 +26,7 @@ Finds a single entry in a collection and resolves its relations.
 
 ---
 
-### Method: `async find(path, search, relations, select?, findOpts?)`
+### `async find(path, search, relations, select?, findOpts?)`
 Finds multiple entries in a collection and resolves their relations.
 
 - **Parameters:**

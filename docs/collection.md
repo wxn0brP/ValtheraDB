@@ -11,7 +11,7 @@ const db = ValtheraCreate("db");
 const users = db.c("users");
 ```
 
-### Method: `async add(collection, data, id_gen=true)`
+### `async add(collection, data, id_gen=true)`
 Adds data to a specified collection.
 
 - **Parameters:**
@@ -23,7 +23,7 @@ Adds data to a specified collection.
   - `Promise<T & { _id: string }>`: If `id_gen` is true, a promise that resolves with the added data including a generated `_id`.
   - `Promise<T>`: If `id_gen` is false, a promise that resolves with the added data.
 
-### Method: `async find(collection, search, dbFindOpts, findOpts, context)`
+### `async find(collection, search, dbFindOpts, findOpts, context)`
 Finds data in a collection based on a query.
 
 - **Parameters:**
@@ -36,7 +36,7 @@ Finds data in a collection based on a query.
 - **Returns:**
   - `Promise<T[]>`: Found data. Empty array if no match is found.
 
-### Method: `async findOne(collection, search, findOpts, context)`
+### `async findOne(collection, search, findOpts, context)`
 Finds one matching entry in a collection.
 
 - **Parameters:**
@@ -48,7 +48,7 @@ Finds one matching entry in a collection.
 - **Returns:**
   - `Promise<T|null>`: Found data. Null if no match is found.
 
-### Method: `async update(collection, search, updater, context)`
+### `async update(collection, search, updater, context)`
 Updates data in a collection.
 
 - **Parameters:**
@@ -60,7 +60,7 @@ Updates data in a collection.
 - **Returns:**
   - `Promise<T[] | null>`: Updated data. Null if no match is found.
 
-### Method: `async updateOne(collection, search, updater, context)`
+### `async updateOne(collection, search, updater, context)`
 Updates one entry in a collection.
 
 - **Parameters:**
@@ -72,7 +72,7 @@ Updates one entry in a collection.
 - **Returns:**
   - `Promise<T | null>`: Updated data. Null if no match is found.
 
-### Method: `async updateOneOrAdd(collection, search, updater, options)`
+### `async updateOneOrAdd(collection, search, updater, options)`
 Updates one entry or adds a new one if it doesn't exist.
 
 - **Parameters:**
@@ -87,7 +87,7 @@ Updates one entry or adds a new one if it doesn't exist.
 - **Returns:**
   - `Promise<T>`: A promise that resolves with the updated or added entry.
 
-### Method: `async toggleOne(collection, search, data, context)`
+### `async toggleOne(collection, search, data, context)`
 Asynchronously updates one entry in a database or adds a new one if it doesn't exist. Usage e.g. for toggling a flag.
 
 - **Parameters:**
@@ -100,7 +100,7 @@ Asynchronously updates one entry in a database or adds a new one if it doesn't e
   - `Promise<T | null>`: T when added, null when removed.
 
 
-### Method: `async remove(collection, search, context)`
+### `async remove(collection, search, context)`
 Removes data from a collection.
 
 - **Parameters:**
@@ -111,7 +111,7 @@ Removes data from a collection.
 - **Returns:**
   - `Promise<T[] | null>`: Removed data. Null if no match is found.
 
-### Method: `async removeOne(collection, search, context)`
+### `async removeOne(collection, search, context)`
 Removes one entry from a collection.
 
 - **Parameters:**
