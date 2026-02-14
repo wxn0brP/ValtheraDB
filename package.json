@@ -29,7 +29,7 @@
     },
     "dependencies": {
         "@wxn0brp/db-client": "~0.4.1",
-        "@wxn0brp/db-core": "~0.6.0",
+        "@wxn0brp/db-core": "~0.7.0",
         "@wxn0brp/db-storage-dir": "~0.2.1"
     },
     "devDependencies": {
