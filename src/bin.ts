@@ -19,7 +19,7 @@ const opts = args.map((arg) => {
 
 const db = new Valthera(path);
 try {
-    const res = await db[op](...opts);
+    const res = await db.c(opts.shift())[op](...opts);
     console.log(JSON.stringify(res));
 } catch (e) {
     console.error(e);
