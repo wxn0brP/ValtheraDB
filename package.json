@@ -28,9 +28,9 @@
         "build": "tsc && tsc-alias"
     },
     "dependencies": {
-        "@wxn0brp/db-client": "~0.4.2",
-        "@wxn0brp/db-core": "~0.7.0",
-        "@wxn0brp/db-storage-dir": "~0.2.2"
+        "@wxn0brp/db-client": "~0.4.3",
+        "@wxn0brp/db-core": "~0.8.0",
+        "@wxn0brp/db-storage-dir": "~0.2.3"
     },
     "devDependencies": {
         "@types/node": "*",
