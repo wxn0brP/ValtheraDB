@@ -40,7 +40,20 @@ Let's create our database instance.
 import { ValtheraCreate } from "@wxn0brp/db";
 
 // Create a new database instance inside the "./my-blog-db" directory
-const db = ValtheraCreate("./my-blog-db");
+const db = ValtheraCreate<{
+  // Define your collections here (for type checking)
+  users: {
+    name: string;
+    email: string;
+    _id: string;
+  };
+  posts: {
+    title: string;
+    content: string;
+    authorId: string;
+    _id: string;
+  };
+}>("./my-blog-db");
 ```
 
 If you run this code, a new folder named `my-blog-db` will be created in your project. This is where all your collections and documents will live. It's that simple!
@@ -54,13 +67,9 @@ Our blog will have authors, so let's create a `users` collection and add our fir
 The `db.add()` method adds a new document to a specified collection and automatically generates a unique `_id` for it.
 
 ```typescript
-import { ValtheraCreate } from "@wxn0brp/db";
-
-const db = ValtheraCreate("./my-blog-db");
-
 async function setup() {
   // Add a new document to the "users" collection
-  const author = await db.c("users").add({
+  const author = await db.users.add({
     name: "Jane Doe",
     email: "jane.doe@example.com"
   });
@@ -80,13 +89,9 @@ setup();
 Now that we have an author, let's give them something to write. We'll create a `posts` collection. To link a post to its author, we'll add an `authorId` field to our post documents, storing the `_id` of the user we just created.
 
 ```typescript
-import { ValtheraCreate } from "@wxn0brp/db";
-
-const db = ValtheraCreate("./my-blog-db");
-
 async function setup() {
   // First, find our author to get their ID
-  const author = await db.c("users").findOne({ email: "jane.doe@example.com" });
+  const author = await db.users.findOne({ email: "jane.doe@example.com" });
 
   if (!author) {
     console.log("Author not found!");
@@ -94,7 +99,7 @@ async function setup() {
   }
 
   // Now, create the "posts" collection
-  const posts = db.c("posts");
+  const posts = db.posts;
   
   // Next, add a couple of posts linked to the author
   const post1 = await posts.add({
@@ -124,12 +129,8 @@ Here we used `db.findOne()` to retrieve a single document that matches our query
 Sometimes, data changes! ValtheraDB provides easy ways to update existing documents. Let's say Jane Doe decided to update her email address. We can use `db.updateOne()` to modify her user record.
 
 ```typescript
-import { ValtheraCreate } from "@wxn0brp/db";
-
-const db = ValtheraCreate("./my-blog-db");
-
 async function updateAuthor() {
-  const users = db.c("users");
+  const users = db.users;
   const updated = await users.updateOne(
     { name: "Jane Doe" }, // Find Jane Doe
     { email: "jane.d.new@example.com" } // Update her email
@@ -160,19 +161,15 @@ Sometimes you need to ensure that a piece of data exists: updating it if it's al
 Let's try to update a post. If the post with a specific title exists, we'll update its content. If not, we'll add it as a new post.
 
 ```typescript
-import { ValtheraCreate } from "@wxn0brp/db";
-
-const db = ValtheraCreate("./my-blog-db");
-
 async function upsertPost() {
   // First, get the author's ID for linking new posts
-  const author = await db.c("users").findOne({ email: "jane.d.new@example.com" });
+  const author = await db.users.findOne({ email: "jane.d.new@example.com" });
   if (!author) {
     console.error("Author not found for upsert operation.");
     return;
   }
 
-  const posts = db.c("posts");
+  const posts = db.posts;
 
   // Scenario 1: Update an existing post
   const updatedExisting = await posts.updateOneOrAdd(
@@ -216,10 +213,6 @@ Relations allow you to define relationships between your collections and fetch l
 Let's find our author and embed all of their posts directly into the result.
 
 ```typescript
-import { Relation, RelationTypes, Valthera } from "@wxn0brp/db";
-
-const db = ValtheraCreate("./my-blog-db");
-
 async function findUserWithPosts() {
   // 1. The Relation class needs an object mapping names to database instances.
   const dbs = {
