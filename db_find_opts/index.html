@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://wxn0brp.github.io/ValtheraDB/collection/">
+        <link rel="canonical" href="https://wxn0brp.github.io/ValtheraDB/db_find_opts/">
       
       
-        <link rel="prev" href="../core_concepts/">
+        <link rel="prev" href="../find_opts/">
       
       
-        <link rel="next" href="../valthera/">
+        <link rel="next" href="../updater/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>Collection - ValtheraDB Docs</title>
+        <title>DB Find Options - ValtheraDB Docs</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#collection-class-documentation" class="md-skip">
+        <a href="#dbfindopts-quick-reference" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Collection
+              DB Find Options
             
           </span>
         </div>
@@ -369,37 +369,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Collection
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../collection/" class="md-nav__link">
         
   
   
@@ -415,153 +388,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#class-collectiont-extends-object-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Class: Collection&lt;T extends object = Data&gt;
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Class: Collection&lt;T extends object = Data&gt;">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Usage:
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-addcollection-data-id_gentrue" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async add(collection, data, id_gen=true)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-findcollection-search-dbfindopts-findopts-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async find(collection, search, dbFindOpts, findOpts, context)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-findonecollection-search-findopts-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async findOne(collection, search, findOpts, context)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-updatecollection-search-updater-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async update(collection, search, updater, context)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-updateonecollection-search-updater-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async updateOne(collection, search, updater, context)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-updateoneoraddcollection-search-updater-options" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async updateOneOrAdd(collection, search, updater, options)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-toggleonecollection-search-data-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async toggleOne(collection, search, data, context)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-removecollection-search-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async remove(collection, search, context)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-removeonecollection-search-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async removeOne(collection, search, context)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -683,10 +509,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../db_find_opts/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DB Find Options
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -702,6 +555,220 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reverse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        reverse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        offset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        limit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sortby" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sortBy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sortasc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sortAsc
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execution-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution Flow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Execution Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#without-sortby" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Without sortBy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-sortby" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        With sortBy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-pagination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Pagination
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sort-by-field-descending" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sort by Field Descending
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#random-sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Random Sample
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reverse-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reverse Order
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combined-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combined Options
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -797,22 +864,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#class-collectiont-extends-object-data" class="md-nav__link">
+  <a href="#description" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Class: Collection&lt;T extends object = Data&gt;
+        Description
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Class: Collection&lt;T extends object = Data&gt;">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Options">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
+  <a href="#reverse" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Usage:
+        reverse
       
     </span>
   </a>
@@ -820,10 +898,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-addcollection-data-id_gentrue" class="md-nav__link">
+  <a href="#offset" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async add(collection, data, id_gen=true)
+        offset
       
     </span>
   </a>
@@ -831,10 +909,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-findcollection-search-dbfindopts-findopts-context" class="md-nav__link">
+  <a href="#limit" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async find(collection, search, dbFindOpts, findOpts, context)
+        limit
       
     </span>
   </a>
@@ -842,10 +920,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-findonecollection-search-findopts-context" class="md-nav__link">
+  <a href="#sortby" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async findOne(collection, search, findOpts, context)
+        sortBy
       
     </span>
   </a>
@@ -853,10 +931,38 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-updatecollection-search-updater-context" class="md-nav__link">
+  <a href="#sortasc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async update(collection, search, updater, context)
+        sortAsc
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execution-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution Flow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Execution Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#without-sortby" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Without sortBy
       
     </span>
   </a>
@@ -864,10 +970,38 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-updateonecollection-search-updater-context" class="md-nav__link">
+  <a href="#with-sortby" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async updateOne(collection, search, updater, context)
+        With sortBy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-pagination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Pagination
       
     </span>
   </a>
@@ -875,10 +1009,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-updateoneoraddcollection-search-updater-options" class="md-nav__link">
+  <a href="#sort-by-field-descending" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async updateOneOrAdd(collection, search, updater, options)
+        Sort by Field Descending
       
     </span>
   </a>
@@ -886,10 +1020,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-toggleonecollection-search-data-context" class="md-nav__link">
+  <a href="#random-sample" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async toggleOne(collection, search, data, context)
+        Random Sample
       
     </span>
   </a>
@@ -897,10 +1031,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-removecollection-search-context" class="md-nav__link">
+  <a href="#reverse-order" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async remove(collection, search, context)
+        Reverse Order
       
     </span>
   </a>
@@ -908,10 +1042,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-removeonecollection-search-context" class="md-nav__link">
+  <a href="#combined-options" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async removeOne(collection, search, context)
+        Combined Options
       
     </span>
   </a>
@@ -943,152 +1077,163 @@
   
 
 
-<h1 id="collection-class-documentation">Collection Class Documentation</h1>
-<p>This documentation provides a detailed overview of the <code>Collection</code> class, designed for performing CRUD operations on Valthera collections.</p>
-<h2 id="class-collectiont-extends-object-data">Class: <code>Collection&lt;T extends object = Data&gt;</code></h2>
-<h3 id="usage">Usage:</h3>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="p">(</span><span class="s2">&quot;db&quot;</span><span class="p">);</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">c</span><span class="p">(</span><span class="s2">&quot;users&quot;</span><span class="p">);</span>
+<h1 id="dbfindopts-quick-reference">dbFindOpts Quick Reference</h1>
+<h2 id="description"><strong>Description</strong></h2>
+<p>The <code>dbFindOpts</code> parameter provides options for <strong>post-processing</strong> data after it has been retrieved from the database but before it is returned to the client. These options control:</p>
+<ol>
+<li><strong>Ordering</strong> - Sort results by a field</li>
+<li><strong>Pagination</strong> - Skip and limit the number of returned entries</li>
+<li><strong>Direction</strong> - Reverse the order of results</li>
+</ol>
+<p>This allows for efficient data manipulation without requiring additional processing on the client side.</p>
+<hr />
+<h2 id="options"><strong>Options</strong></h2>
+<h3 id="reverse"><strong><code>reverse</code></strong></h3>
+<p>Reverses the order of the results.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Query</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">reverse</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// If original results are: [1, 2, 3, 4, 5]</span>
+<span class="c1">// Final results will be: [5, 4, 3, 2, 1]</span>
 </code></pre></div>
-<h3 id="async-addcollection-data-id_gentrue"><code>async add(collection, data, id_gen=true)</code></h3>
-<p>Adds data to a specified collection.</p>
-<ul>
-<li><strong>Parameters:</strong></li>
-<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
-<li><code>data</code> (<code>Object</code>): The data to add.</li>
-<li>
-<p><code>id_gen</code> (<code>boolean</code>, default: true): Whether to generate an ID for the entry.</p>
-</li>
-<li>
-<p><strong>Returns:</strong></p>
-</li>
-<li><code>Promise&lt;T &amp; { _id: string }&gt;</code>: If <code>id_gen</code> is true, a promise that resolves with the added data including a generated <code>_id</code>.</li>
-<li><code>Promise&lt;T&gt;</code>: If <code>id_gen</code> is false, a promise that resolves with the added data.</li>
-</ul>
-<h3 id="async-findcollection-search-dbfindopts-findopts-context"><code>async find(collection, search, dbFindOpts, findOpts, context)</code></h3>
-<p>Finds data in a collection based on a query.</p>
-<ul>
-<li><strong>Parameters:</strong></li>
-<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
-<li><code>search</code> (<code>function|Object</code>, optional): The search query.</li>
-<li><code>dbFindOpts</code> (<code>Object</code>, optional): Search options (e.g., <code>max</code>, <code>reverse</code>).</li>
-<li><code>findOpts</code> (<code>Object</code>, optional): Options for updating the search result.</li>
-<li>
-<p><code>context</code> (<code>Object</code>, optional): The context object (for functions).</p>
-</li>
-<li>
-<p><strong>Returns:</strong></p>
-</li>
-<li><code>Promise&lt;T[]&gt;</code>: Found data. Empty array if no match is found.</li>
-</ul>
-<h3 id="async-findonecollection-search-findopts-context"><code>async findOne(collection, search, findOpts, context)</code></h3>
-<p>Finds one matching entry in a collection.</p>
-<ul>
-<li><strong>Parameters:</strong></li>
-<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
-<li><code>search</code> (<code>function|Object</code>, optional): The search query.</li>
-<li><code>findOpts</code> (<code>Object</code>, optional): Options for updating the search result.</li>
-<li>
-<p><code>context</code> (<code>Object</code>, optional): The context object (for functions).</p>
-</li>
-<li>
-<p><strong>Returns:</strong></p>
-</li>
-<li><code>Promise&lt;T|null&gt;</code>: Found data. Null if no match is found.</li>
-</ul>
-<h3 id="async-updatecollection-search-updater-context"><code>async update(collection, search, updater, context)</code></h3>
-<p>Updates data in a collection.</p>
-<ul>
-<li><strong>Parameters:</strong></li>
-<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
-<li><code>search</code> (<code>function|Object</code>): The search query.</li>
-<li><code>updater</code> (<code>function|Object</code>): Update arguments.</li>
-<li>
-<p><code>context</code> (<code>Object</code>, optional): The context object (for functions).</p>
-</li>
-<li>
-<p><strong>Returns:</strong></p>
-</li>
-<li><code>Promise&lt;T[] | null&gt;</code>: Updated data. Null if no match is found.</li>
-</ul>
-<h3 id="async-updateonecollection-search-updater-context"><code>async updateOne(collection, search, updater, context)</code></h3>
-<p>Updates one entry in a collection.</p>
-<ul>
-<li><strong>Parameters:</strong></li>
-<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
-<li><code>search</code> (<code>function|Object</code>): The search query.</li>
-<li><code>updater</code> (<code>function|Object</code>): Update arguments.</li>
-<li>
-<p><code>context</code> (<code>Object</code>, optional): The context object (for functions).</p>
-</li>
-<li>
-<p><strong>Returns:</strong></p>
-</li>
-<li><code>Promise&lt;T | null&gt;</code>: Updated data. Null if no match is found.</li>
-</ul>
-<h3 id="async-updateoneoraddcollection-search-updater-options"><code>async updateOneOrAdd(collection, search, updater, options)</code></h3>
-<p>Updates one entry or adds a new one if it doesn't exist.</p>
-<ul>
-<li><strong>Parameters:</strong></li>
-<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
-<li><code>search</code> (<code>function|Object</code>): The search query.</li>
-<li><code>updater</code> (<code>function|Object</code>): Update arguments.</li>
-<li>
-<p><code>options</code> (<code>Object</code>, optional): An object containing <code>add_arg</code>, <code>context</code>, and <code>id_gen</code>.</p>
-<ul>
-<li><code>add_arg</code> (<code>Object</code>): Data to add if no match is found.</li>
-<li><code>context</code> (<code>Object</code>): The context object (for functions).</li>
-<li><code>id_gen</code> (<code>boolean</code>, default: true): Whether to generate an ID for the new entry.</li>
-</ul>
-</li>
-<li>
-<p><strong>Returns:</strong></p>
-</li>
-<li><code>Promise&lt;T&gt;</code>: A promise that resolves with the updated or added entry.</li>
-</ul>
-<h3 id="async-toggleonecollection-search-data-context"><code>async toggleOne(collection, search, data, context)</code></h3>
-<p>Asynchronously updates one entry in a database or adds a new one if it doesn't exist. Usage e.g. for toggling a flag.</p>
-<ul>
-<li><strong>Parameters:</strong></li>
-<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
-<li><code>search</code> (<code>function|Object</code>): The search query.</li>
-<li><code>data</code> (<code>Object</code>, optional): The data to use.</li>
-<li>
-<p><code>context</code> (<code>Object</code>, optional): The context object (for functions).</p>
-</li>
-<li>
-<p><strong>Returns:</strong></p>
-</li>
-<li><code>Promise&lt;T | null&gt;</code>: T when added, null when removed.</li>
-</ul>
-<h3 id="async-removecollection-search-context"><code>async remove(collection, search, context)</code></h3>
-<p>Removes data from a collection.</p>
-<ul>
-<li><strong>Parameters:</strong></li>
-<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
-<li><code>search</code> (<code>function|Object</code>): The search query.</li>
-<li>
-<p><code>context</code> (<code>Object</code>, optional): The context object (for functions).</p>
-</li>
-<li>
-<p><strong>Returns:</strong></p>
-</li>
-<li><code>Promise&lt;T[] | null&gt;</code>: Removed data. Null if no match is found.</li>
-</ul>
-<h3 id="async-removeonecollection-search-context"><code>async removeOne(collection, search, context)</code></h3>
-<p>Removes one entry from a collection.</p>
-<ul>
-<li><strong>Parameters:</strong></li>
-<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
-<li><code>search</code> (<code>function|Object</code>): The search query.</li>
-<li>
-<p><code>context</code> (<code>Object</code>, optional): The context object (for functions).</p>
-</li>
-<li>
-<p><strong>Returns:</strong></p>
-</li>
-<li><code>Promise&lt;T | null&gt;</code>: Removed data. Null if no match is found.</li>
-</ul>
+<p><strong>Note:</strong> When <code>sortBy</code> is not specified, <code>reverse</code> is applied immediately during file iteration. When <code>sortBy</code> is used, the final sort order is determined by <code>sortAsc</code>.</p>
+<hr />
+<h3 id="offset"><strong><code>offset</code></strong></h3>
+<p>Skips a specified number of entries from the beginning of the results.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Query</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">offset</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Skips the first 10 entries and returns the rest</span>
+</code></pre></div>
+<p><strong>Default:</strong> <code>0</code></p>
+<hr />
+<h3 id="limit"><strong><code>limit</code></strong></h3>
+<p>Limits the number of returned entries.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Query</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Returns only the first 20 entries (after offset is applied)</span>
+</code></pre></div>
+<p><strong>Default:</strong> <code>-1</code> (no limit)</p>
+<hr />
+<h3 id="sortby"><strong><code>sortBy</code></strong></h3>
+<p>Sorts results by a specified field name or randomly.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Sort by a field</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;age&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Random sort</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;random()&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Special value:</strong> <code>"random()"</code> - Shuffles results randomly using <code>Math.random()</code>.</p>
+<p><strong>Default:</strong> <code>undefined</code> (no sorting, uses data order)</p>
+<hr />
+<h3 id="sortasc"><strong><code>sortAsc</code></strong></h3>
+<p>Determines the sort direction when <code>sortBy</code> is specified.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Ascending order (default)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;age&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">sortAsc</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Descending order</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;age&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">sortAsc</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Default:</strong> <code>true</code></p>
+<hr />
+<h2 id="execution-flow"><strong>Execution Flow</strong></h2>
+<h3 id="without-sortby">Without <code>sortBy</code></h3>
+<ol>
+<li>Iterate through files</li>
+<li>Apply <code>reverse</code> during iteration (if specified)</li>
+<li>Apply <code>offset</code> (skip entries)</li>
+<li>Apply <code>limit</code> (truncate results)</li>
+</ol>
+<h3 id="with-sortby">With <code>sortBy</code></h3>
+<ol>
+<li>Collect all entries from all files</li>
+<li>Sort entries:</li>
+<li>If <code>sortBy === "random()"</code>: shuffle randomly</li>
+<li>Otherwise: sort by field value using <code>compareSafe()</code></li>
+<li>Apply <code>offset</code> and <code>limit</code> to sorted results</li>
+</ol>
+<hr />
+<h2 id="examples"><strong>Examples</strong></h2>
+<h3 id="basic-pagination">Basic Pagination</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Get page 2 with 10 items per page</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">offset</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="sort-by-field-descending">Sort by Field Descending</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Get users sorted by age (oldest first)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;age&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">sortAsc</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">50</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="random-sample">Random Sample</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Get 10 random entries</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;random()&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="reverse-order">Reverse Order</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Get results in reverse file order</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">reverse</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">offset</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">100</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="combined-options">Combined Options</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Complex query with sorting and pagination</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;createdAt&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">sortAsc</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">  </span><span class="c1">// Newest first</span>
+<span class="w">        </span><span class="nx">offset</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 
