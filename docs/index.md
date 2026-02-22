@@ -42,4 +42,5 @@ In short, if you value flexibility and control over rigid conventions, you'll fe
     *   [Search Operators](search_opts.md)
     *   [Update Operators](updater.md)
     *   [Find Options](find_opts.md)
+    *   [DB Find Options](db_find_opts.md)
     *   [Remote](remote.md)

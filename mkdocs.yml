@@ -21,6 +21,7 @@ nav:
       - Relation: relation.md
       - Search Options: search_opts.md
       - Find Options: find_opts.md
+      - DB Find Options: db_find_opts.md
       - Updater: updater.md
       - Remote: remote.md
 
