@@ -15,6 +15,7 @@ nav:
   - Home: index.md
   - Getting Started: getting_started.md
   - Core Concepts: core_concepts.md
+  - Versioning: versioning.md
   - API Reference:
       - Collection: collection.md
       - Valthera: valthera.md
