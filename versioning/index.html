@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://wxn0brp.github.io/ValtheraDB/relation/">
+        <link rel="canonical" href="https://wxn0brp.github.io/ValtheraDB/versioning/">
       
       
-        <link rel="prev" href="../valthera/">
+        <link rel="prev" href="../core_concepts/">
       
       
-        <link rel="next" href="../search_opts/">
+        <link rel="next" href="../collection/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>Relation - ValtheraDB Docs</title>
+        <title>Versioning - ValtheraDB Docs</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#relation-class-documentation" class="md-skip">
+        <a href="#ecosystem-versioning-compatibility-policy" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Relation
+              Versioning
             
           </span>
         </div>
@@ -320,10 +320,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../versioning/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -339,6 +366,98 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-package-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Package Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-core-meta-package-versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Core &amp; Meta Package Versioning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-adapter-versioning-scheme-0cab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Adapter Versioning Scheme (0.CA.B)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Adapter Versioning Scheme (0.CA.B)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Formula
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version-change-triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version Change Triggers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -347,20 +466,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -381,7 +498,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -452,37 +569,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Relation
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../relation/" class="md-nav__link">
         
   
   
@@ -498,98 +588,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#class-relation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Class: Relation
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Class: Relation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#constructor-relationdbs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Constructor: Relation(dbs)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-findonepath-search-relations-select" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async findOne(path, search, relations, select?)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-findpath-search-relations-select-findopts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async find(path, search, relations, select?, findOpts?)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#relation-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Relation Types
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example Usage
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -769,22 +767,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#class-relation" class="md-nav__link">
+  <a href="#1-package-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Class: Relation
+        1. Package Structure
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Class: Relation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-core-meta-package-versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Core &amp; Meta Package Versioning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-adapter-versioning-scheme-0cab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Adapter Versioning Scheme (0.CA.B)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Adapter Versioning Scheme (0.CA.B)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#constructor-relationdbs" class="md-nav__link">
+  <a href="#the-formula" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Constructor: Relation(dbs)
+        The Formula
       
     </span>
   </a>
@@ -792,10 +812,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-findonepath-search-relations-select" class="md-nav__link">
+  <a href="#examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async findOne(path, search, relations, select?)
+        Examples
       
     </span>
   </a>
@@ -803,32 +823,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-findpath-search-relations-select-findopts" class="md-nav__link">
+  <a href="#version-change-triggers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async find(path, search, relations, select?, findOpts?)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#relation-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Relation Types
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example Usage
+        Version Change Triggers
       
     </span>
   </a>
@@ -860,115 +858,110 @@
   
 
 
-<h1 id="relation-class-documentation">Relation Class Documentation</h1>
-<p>The <code>Relation</code> class provides a mechanism to handle relationships between collections in a database. It supports one-to-one, one-to-many, and many-to-many relationships.</p>
-<h2 id="class-relation">Class: <code>Relation</code></h2>
-<h3 id="constructor-relationdbs">Constructor: <code>Relation(dbs)</code></h3>
-<p>Creates a new instance of the <code>Relation</code> class.</p>
-<ul>
-<li><strong>Parameters:</strong></li>
-<li><code>dbs</code> (<code>RelationTypes.DBS</code>): An object mapping database names to <code>DataBase</code> or <code>DataBaseRemote</code> instances.</li>
-</ul>
-<hr />
-<h3 id="async-findonepath-search-relations-select"><code>async findOne(path, search, relations, select?)</code></h3>
-<p>Finds a single entry in a collection and resolves its relations.</p>
-<ul>
-<li><strong>Parameters:</strong></li>
-<li><code>path</code> (<code>RelationTypes.Path</code>): A tuple specifying the database and collection.</li>
-<li><code>search</code> (<code>Search</code>): The search criteria.</li>
-<li><code>relations</code> (<code>RelationTypes.Relation</code>): The relations to resolve.</li>
-<li>
-<p><code>select</code> (<code>RelationTypes.FieldPath[]</code>, optional): Fields to select in the result.</p>
-</li>
-<li>
-<p><strong>Returns:</strong></p>
-</li>
-<li><code>Promise&lt;Object | null&gt;</code>: The found entry with resolved relations, or <code>null</code> if no match is found.</li>
-</ul>
-<hr />
-<h3 id="async-findpath-search-relations-select-findopts"><code>async find(path, search, relations, select?, findOpts?)</code></h3>
-<p>Finds multiple entries in a collection and resolves their relations.</p>
-<ul>
-<li><strong>Parameters:</strong></li>
-<li><code>path</code> (<code>RelationTypes.Path</code>): A tuple specifying the database and collection.</li>
-<li><code>search</code> (<code>Search</code>): The search criteria.</li>
-<li><code>relations</code> (<code>RelationTypes.Relation</code>): The relations to resolve.</li>
-<li><code>select</code> (<code>RelationTypes.FieldPath[]</code>, optional): Fields to select in the results.</li>
-<li>
-<p><code>findOpts</code> (<code>DbFindOpts</code>, optional): Options for the find operation.</p>
-</li>
-<li>
-<p><strong>Returns:</strong></p>
-</li>
-<li><code>Promise&lt;Object[]&gt;</code>: An array of found entries with resolved relations.</li>
-</ul>
-<hr />
-<h3 id="relation-types">Relation Types</h3>
-<p>The <code>Relation</code> class supports the following relation types:</p>
+<h1 id="ecosystem-versioning-compatibility-policy">Ecosystem Versioning &amp; Compatibility Policy</h1>
+<p>This document explains how versioning works across our multi-repo structure, specifically focusing on the relationship between the core library, the meta-package, and storage adapters.</p>
+<h2 id="1-package-structure">1. Package Structure</h2>
+<p>Our ecosystem consists of three types of packages:</p>
 <ol>
-<li><strong>One-to-One (<code>"1"</code>)</strong>: Resolves a single related entry.</li>
-<li><strong>One-to-Many (<code>"1n"</code>)</strong>: Resolves multiple related entries.</li>
-<li><strong>Many-to-Many (<code>"nm"</code>)</strong>: Resolves all entries in the related collection.</li>
-<li><strong>Legacy One-to-One (<code>"11"</code>)</strong>: Similar to <code>"1"</code>, but internally performs a <code>findOne</code> operation for each document during a <code>find</code> query. This mode is less performant but might be useful in specific scenarios, such as with custom adapters or legacy systems. This is considered a <strong>legacy mode</strong> but is still fully supported.</li>
+<li><strong><code>@wxn0brp/db-core</code></strong> – The foundational logic and interfaces.</li>
+<li><strong><code>@wxn0brp/db</code></strong> – The meta-package (entry point) that re-exports core functionality.</li>
+<li><strong>Adapters</strong> (e.g., <code>@wxn0brp/db-storage-dir</code>) – Implementation-specific packages that depend on <code>db-core</code>.</li>
 </ol>
-<hr />
-<h3 id="example-usage">Example Usage</h3>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">Relation</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraAutoCreate</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db/autoCreate&quot;</span><span class="p">;</span>
-
-<span class="c1">// Create database instances</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">db1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraAutoCreate</span><span class="p">(</span><span class="s2">&quot;path/to/db1&quot;</span><span class="p">);</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">db2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraAutoCreate</span><span class="p">(</span><span class="s2">&quot;path/to/db2&quot;</span><span class="p">);</span>
-
-<span class="c1">// Define databases</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">dbs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">db1</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">db2</span>
-<span class="p">};</span>
-
-<span class="c1">// Define relations</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">relations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">author</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;db1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;users&quot;</span><span class="p">],</span>
-<span class="w">        </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;authorId&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;_id&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">select</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="p">]</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">comments</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;db2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;comments&quot;</span><span class="p">],</span>
-<span class="w">        </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;_id&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;postId&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1n&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">select</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;createdAt&quot;</span><span class="p">]</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">};</span>
-
-<span class="c1">// Create a Relation instance</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">relation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Relation</span><span class="p">(</span><span class="nx">dbs</span><span class="p">);</span>
-
-<span class="c1">// Find a single post with relations</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">post</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">relation</span><span class="p">.</span><span class="nx">findOne</span><span class="p">(</span>
-<span class="w">    </span><span class="p">[</span><span class="s2">&quot;db1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;posts&quot;</span><span class="p">],</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;post123&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">relations</span><span class="p">,</span>
-<span class="w">    </span><span class="p">[[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;author.name&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;comments.content&quot;</span><span class="p">]]</span>
-<span class="p">);</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">post</span><span class="p">);</span>
-
-<span class="c1">// Find multiple posts with relations</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">posts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">relation</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
-<span class="w">    </span><span class="p">[</span><span class="s2">&quot;db1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;posts&quot;</span><span class="p">],</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">category</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;tech&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">relations</span><span class="p">,</span>
-<span class="w">    </span><span class="p">[[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;author.name&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;comments.content&quot;</span><span class="p">]],</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="p">}</span>
-<span class="p">);</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">posts</span><span class="p">);</span>
+<h2 id="2-core-meta-package-versioning">2. Core &amp; Meta Package Versioning</h2>
+<p>The relationship between the meta-package and the core is <strong>synchronized</strong>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Version</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>@wxn0brp/db-core</code></td>
+<td style="text-align: left;"><code>0.9.0</code></td>
+<td style="text-align: left;">Core logic version</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>@wxn0brp/db</code></td>
+<td style="text-align: left;"><code>0.90.0</code></td>
+<td style="text-align: left;"><strong>Matches Core version</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Rule:</strong> <code>@wxn0brp/db</code> always mirrors the <code>Minor</code> and <code>Patch</code> version of <code>@wxn0brp/db-core</code>.</li>
+<li><strong>Exception:</strong> If the meta-package itself requires a fix independent of core, the <code>Patch</code> version may increment slightly higher, but the <code>Minor</code> version will always match the Core.</li>
+</ul>
+<h2 id="3-adapter-versioning-scheme-0cab">3. Adapter Versioning Scheme (<code>0.CA.B</code>)</h2>
+<p>Adapters have independent lifecycles but strict compatibility requirements with <code>db-core</code>. To make compatibility visible directly in the version number, we use a custom encoding scheme.</p>
+<h3 id="the-formula">The Formula</h3>
+<div class="highlight"><pre><span></span><code>0.CA.B
+│ || |-- B: Adapter Patch (Bugfixes or Core Patch requirement)
+│ ||---- A: Adapter Series (Adapter Breaking Changes)
+│ |----- C: Core Minor Version
+|------- Major (Always 0)
 </code></pre></div>
-<p>This example demonstrates how to use the <code>Relation</code> class to resolve relationships between collections in different databases.</p>
+<h3 id="examples">Examples</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Adapter Version</th>
+<th style="text-align: left;">Decoded Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>0.90.5</code></td>
+<td style="text-align: left;">Works with <strong>Core 0.9.x</strong>, Adapter Series <strong>0</strong>, Patch <strong>5</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0.91.0</code></td>
+<td style="text-align: left;">Works with <strong>Core 0.9.x</strong>, Adapter Series <strong>1</strong> (Breaking Change), Patch <strong>0</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0.100.0</code></td>
+<td style="text-align: left;">Works with <strong>Core 0.10.x</strong>, Adapter Series <strong>0</strong>, Patch <strong>0</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0.90.6</code></td>
+<td style="text-align: left;">Works with <strong>Core 0.9.x</strong>, Updated to require <strong>Core 0.9.2</strong> (Patch requirement)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="version-change-triggers">Version Change Triggers</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Event</th>
+<th style="text-align: left;">Adapter Version Change</th>
+<th style="text-align: left;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Adapter Bugfix</strong></td>
+<td style="text-align: left;"><code>B + 1</code></td>
+<td style="text-align: left;"><code>0.90.5</code> -&gt; <code>0.90.6</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Adapter Breaking Change</strong></td>
+<td style="text-align: left;"><code>A + 1</code>, <code>B = 0</code></td>
+<td style="text-align: left;"><code>0.90.5</code> -&gt; <code>0.91.0</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Core Minor Update</strong> (e.g., 0.9 -&gt; 0.10)</td>
+<td style="text-align: left;"><code>C + 1</code>, <code>A = 0</code>, <code>B = 0</code></td>
+<td style="text-align: left;"><code>0.91.5</code> -&gt; <code>0.100.0</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Core Patch Requirement</strong> (e.g., security fix)</td>
+<td style="text-align: left;"><code>B + 1</code></td>
+<td style="text-align: left;"><code>0.90.5</code> -&gt; <code>0.90.6</code></td>
+</tr>
+</tbody>
+</table>
 
 
 
