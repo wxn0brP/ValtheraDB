@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../logo.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
     
     
       
@@ -537,28 +537,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-updateoneoraddcollection-search-updater-options" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async updateOneOrAdd(collection, search, updater, options)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-toggleonecollection-search-data-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async toggleOne(collection, search, data, context)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#async-removecollection-search-context" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -574,6 +552,28 @@
     <span class="md-ellipsis">
       
         async removeOne(collection, search, context)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-updateoneoraddcollection-search-updater-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        async updateOneOrAdd(collection, search, updater, options)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-toggleonecollection-search-data-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        async toggleOne(collection, search, data, context)
       
     </span>
   </a>
@@ -902,28 +902,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-updateoneoraddcollection-search-updater-options" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async updateOneOrAdd(collection, search, updater, options)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-toggleonecollection-search-data-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async toggleOne(collection, search, data, context)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#async-removecollection-search-context" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -939,6 +917,28 @@
     <span class="md-ellipsis">
       
         async removeOne(collection, search, context)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-updateoneoraddcollection-search-updater-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        async updateOneOrAdd(collection, search, updater, options)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-toggleonecollection-search-data-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        async toggleOne(collection, search, data, context)
       
     </span>
   </a>
@@ -1053,41 +1053,6 @@
 </li>
 <li><code>Promise&lt;T | null&gt;</code>: Updated data. Null if no match is found.</li>
 </ul>
-<h3 id="async-updateoneoraddcollection-search-updater-options"><code>async updateOneOrAdd(collection, search, updater, options)</code></h3>
-<p>Updates one entry or adds a new one if it doesn't exist.</p>
-<ul>
-<li><strong>Parameters:</strong></li>
-<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
-<li><code>search</code> (<code>function|Object</code>): The search query.</li>
-<li><code>updater</code> (<code>function|Object</code>): Update arguments.</li>
-<li>
-<p><code>options</code> (<code>Object</code>, optional): An object containing <code>add_arg</code>, <code>context</code>, and <code>id_gen</code>.</p>
-<ul>
-<li><code>add_arg</code> (<code>Object</code>): Data to add if no match is found.</li>
-<li><code>context</code> (<code>Object</code>): The context object (for functions).</li>
-<li><code>id_gen</code> (<code>boolean</code>, default: true): Whether to generate an ID for the new entry.</li>
-</ul>
-</li>
-<li>
-<p><strong>Returns:</strong></p>
-</li>
-<li><code>Promise&lt;T&gt;</code>: A promise that resolves with the updated or added entry.</li>
-</ul>
-<h3 id="async-toggleonecollection-search-data-context"><code>async toggleOne(collection, search, data, context)</code></h3>
-<p>Asynchronously updates one entry in a database or adds a new one if it doesn't exist. Usage e.g. for toggling a flag.</p>
-<ul>
-<li><strong>Parameters:</strong></li>
-<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
-<li><code>search</code> (<code>function|Object</code>): The search query.</li>
-<li><code>data</code> (<code>Object</code>, optional): The data to use.</li>
-<li>
-<p><code>context</code> (<code>Object</code>, optional): The context object (for functions).</p>
-</li>
-<li>
-<p><strong>Returns:</strong></p>
-</li>
-<li><code>Promise&lt;T | null&gt;</code>: T when added, null when removed.</li>
-</ul>
 <h3 id="async-removecollection-search-context"><code>async remove(collection, search, context)</code></h3>
 <p>Removes data from a collection.</p>
 <ul>
@@ -1115,6 +1080,41 @@
 <p><strong>Returns:</strong></p>
 </li>
 <li><code>Promise&lt;T | null&gt;</code>: Removed data. Null if no match is found.</li>
+</ul>
+<h3 id="async-updateoneoraddcollection-search-updater-options"><code>async updateOneOrAdd(collection, search, updater, options)</code></h3>
+<p>Updates one entry or adds a new one if it doesn't exist.</p>
+<ul>
+<li><strong>Parameters:</strong></li>
+<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
+<li><code>search</code> (<code>function|Object</code>): The search query.</li>
+<li><code>updater</code> (<code>function|Object</code>): Update arguments.</li>
+<li>
+<p><code>options</code> (<code>Object</code>, optional): An object containing <code>add_arg</code>, <code>context</code>, and <code>id_gen</code>.</p>
+<ul>
+<li><code>add_arg</code> (<code>Object</code>): Data to add if no match is found.</li>
+<li><code>context</code> (<code>Object</code>): The context object (for functions).</li>
+<li><code>id_gen</code> (<code>boolean</code>, default: true): Whether to generate an ID for the new entry.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+</li>
+<li><code>Promise&lt;{ data: T; type: "added" | "updated" }&gt;</code>: A promise that resolves with the updated or added entry.</li>
+</ul>
+<h3 id="async-toggleonecollection-search-data-context"><code>async toggleOne(collection, search, data, context)</code></h3>
+<p>Asynchronously updates one entry in a database or adds a new one if it doesn't exist. Usage e.g. for toggling a flag.</p>
+<ul>
+<li><strong>Parameters:</strong></li>
+<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
+<li><code>search</code> (<code>function|Object</code>): The search query.</li>
+<li><code>data</code> (<code>Object</code>, optional): The data to use.</li>
+<li>
+<p><code>context</code> (<code>Object</code>, optional): The context object (for functions).</p>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+</li>
+<li><code>Promise&lt;{ data: T; type: "added" | "removed" }&gt;</code>: A promise that resolves with the removed or added entry.</li>
 </ul>
 
 
