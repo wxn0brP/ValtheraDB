@@ -72,34 +72,6 @@ Updates one entry in a collection.
 - **Returns:**
   - `Promise<T | null>`: Updated data. Null if no match is found.
 
-### `async updateOneOrAdd(collection, search, updater, options)`
-Updates one entry or adds a new one if it doesn't exist.
-
-- **Parameters:**
-  - `collection` (`string`): The name of the collection.
-  - `search` (`function|Object`): The search query.
-  - `updater` (`function|Object`): Update arguments.
-  - `options` (`Object`, optional): An object containing `add_arg`, `context`, and `id_gen`.
-    - `add_arg` (`Object`): Data to add if no match is found.
-    - `context` (`Object`): The context object (for functions).
-    - `id_gen` (`boolean`, default: true): Whether to generate an ID for the new entry.
-
-- **Returns:**
-  - `Promise<T>`: A promise that resolves with the updated or added entry.
-
-### `async toggleOne(collection, search, data, context)`
-Asynchronously updates one entry in a database or adds a new one if it doesn't exist. Usage e.g. for toggling a flag.
-
-- **Parameters:**
-  - `collection` (`string`): The name of the collection.
-  - `search` (`function|Object`): The search query.
-  - `data` (`Object`, optional): The data to use.
-  - `context` (`Object`, optional): The context object (for functions).
-
-- **Returns:**
-  - `Promise<T | null>`: T when added, null when removed.
-
-
 ### `async remove(collection, search, context)`
 Removes data from a collection.
 
@@ -121,3 +93,30 @@ Removes one entry from a collection.
 
 - **Returns:**
   - `Promise<T | null>`: Removed data. Null if no match is found.
+
+### `async updateOneOrAdd(collection, search, updater, options)`
+Updates one entry or adds a new one if it doesn't exist.
+
+- **Parameters:**
+  - `collection` (`string`): The name of the collection.
+  - `search` (`function|Object`): The search query.
+  - `updater` (`function|Object`): Update arguments.
+  - `options` (`Object`, optional): An object containing `add_arg`, `context`, and `id_gen`.
+    - `add_arg` (`Object`): Data to add if no match is found.
+    - `context` (`Object`): The context object (for functions).
+    - `id_gen` (`boolean`, default: true): Whether to generate an ID for the new entry.
+
+- **Returns:**
+  - `Promise<{ data: T; type: "added" | "updated" }>`: A promise that resolves with the updated or added entry.
+
+### `async toggleOne(collection, search, data, context)`
+Asynchronously updates one entry in a database or adds a new one if it doesn't exist. Usage e.g. for toggling a flag.
+
+- **Parameters:**
+  - `collection` (`string`): The name of the collection.
+  - `search` (`function|Object`): The search query.
+  - `data` (`Object`, optional): The data to use.
+  - `context` (`Object`, optional): The context object (for functions).
+
+- **Returns:**
+  - `Promise<{ data: T; type: "added" | "removed" }>`: A promise that resolves with the removed or added entry.
