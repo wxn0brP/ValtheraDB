@@ -28,14 +28,14 @@
         "build": "tsc && tsc-alias"
     },
     "dependencies": {
-        "@wxn0brp/db-client": "~0.100.0",
-        "@wxn0brp/db-core": "~0.10.0",
-        "@wxn0brp/db-storage-dir": "~0.100.0"
+        "@wxn0brp/db-client": "^0.100.0",
+        "@wxn0brp/db-core": "^0.10.1",
+        "@wxn0brp/db-storage-dir": "^0.100.0"
     },
     "devDependencies": {
         "@types/node": "*",
-        "tsc-alias": "*",
-        "typescript": "^5"
+        "tsc-alias": "^1",
+        "typescript": "^6"
     },
     "files": [
         "dist"

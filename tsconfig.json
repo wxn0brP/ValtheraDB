@@ -7,10 +7,15 @@
         "esModuleInterop": true,
         "skipLibCheck": true,
         "outDir": "./dist",
-        "declaration": true
+        "declaration": true,
+        "strict": false,
+        "rootDir": "./src",
+        "types": [
+            "@types/node"
+        ]
     },
     "include": [
-       "./src"
+        "./src"
     ],
     "exclude": [
         "node_modules"
