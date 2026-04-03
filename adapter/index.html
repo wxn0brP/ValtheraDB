@@ -8,13 +8,11 @@
       
       
       
-        <link rel="canonical" href="https://wxn0brp.github.io/ValtheraDB/db_find_opts/">
+        <link rel="canonical" href="https://wxn0brp.github.io/ValtheraDB/adapter/">
       
       
-        <link rel="prev" href="../find_opts/">
+        <link rel="prev" href="../remote/">
       
-      
-        <link rel="next" href="../updater/">
       
       
         
@@ -25,7 +23,7 @@
     
     
       
-        <title>DB Find Options - ValtheraDB Docs</title>
+        <title>Adapters - ValtheraDB Docs</title>
       
     
     
@@ -76,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dbfindopts-quick-reference" class="md-skip">
+        <a href="#valtheradb-storage-adapter-tutorial" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              DB Find Options
+              Adapters
             
           </span>
         </div>
@@ -347,20 +345,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -381,7 +377,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -536,37 +532,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DB Find Options
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../db_find_opts/" class="md-nav__link">
         
   
   
@@ -582,220 +551,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Description
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#options" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Options
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Options">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#reverse" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        reverse
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#offset" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        offset
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#limit" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        limit
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sortby" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        sortBy
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sortasc" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        sortAsc
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#execution-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Execution Flow
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Execution Flow">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#without-sortby" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Without sortBy
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#with-sortby" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        With sortBy
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Examples
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#basic-pagination" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Basic Pagination
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sort-by-field-descending" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sort by Field Descending
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#random-sample" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Random Sample
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reverse-order" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reverse Order
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#combined-options" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Combined Options
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -868,18 +623,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -900,7 +657,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -915,10 +672,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../adapter/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adapters
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -934,6 +718,237 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-1-customfilecpu-adapter-easiest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 1: CustomFileCpu Adapter (Easiest)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 1: CustomFileCpu Adapter (Easiest)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-csv-adapter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: CSV Adapter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-level-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use Level 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-2-actionsbase-with-filecpu-intermediate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 2: ActionsBase with FileCpu (Intermediate)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 2: ActionsBase with FileCpu (Intermediate)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-line-delimited-json-adapter-dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Line-Delimited JSON Adapter (dir)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-level-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use Level 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-3-full-actionsbase-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 3: Full ActionsBase (Advanced)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 3: Full ActionsBase (Advanced)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interface_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-sqlite-adapter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: SQLite Adapter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-mongodb-adapter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: MongoDB Adapter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-level-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use Level 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level Comparison
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utility-functions-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utility Functions Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Utility Functions Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-wxn0brpdb-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From @wxn0brp/db-core
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -973,10 +988,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
+  <a href="#architecture-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Description
+        Architecture Overview
       
     </span>
   </a>
@@ -984,22 +999,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#options" class="md-nav__link">
+  <a href="#level-1-customfilecpu-adapter-easiest" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Options
+        Level 1: CustomFileCpu Adapter (Easiest)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Options">
+    <nav class="md-nav" aria-label="Level 1: CustomFileCpu Adapter (Easiest)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#reverse" class="md-nav__link">
+  <a href="#example-csv-adapter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        reverse
+        Example: CSV Adapter
       
     </span>
   </a>
@@ -1007,43 +1022,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#offset" class="md-nav__link">
+  <a href="#when-to-use-level-1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        offset
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#limit" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        limit
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sortby" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        sortBy
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sortasc" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        sortAsc
+        When to Use Level 1
       
     </span>
   </a>
@@ -1056,22 +1038,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#execution-flow" class="md-nav__link">
+  <a href="#level-2-actionsbase-with-filecpu-intermediate" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Execution Flow
+        Level 2: ActionsBase with FileCpu (Intermediate)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Execution Flow">
+    <nav class="md-nav" aria-label="Level 2: ActionsBase with FileCpu (Intermediate)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#without-sortby" class="md-nav__link">
+  <a href="#interface" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Without sortBy
+        Interface
       
     </span>
   </a>
@@ -1079,10 +1061,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#with-sortby" class="md-nav__link">
+  <a href="#example-line-delimited-json-adapter-dir" class="md-nav__link">
     <span class="md-ellipsis">
       
-        With sortBy
+        Example: Line-Delimited JSON Adapter (dir)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-level-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use Level 2
       
     </span>
   </a>
@@ -1095,22 +1088,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
+  <a href="#level-3-full-actionsbase-advanced" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Examples
+        Level 3: Full ActionsBase (Advanced)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Examples">
+    <nav class="md-nav" aria-label="Level 3: Full ActionsBase (Advanced)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#basic-pagination" class="md-nav__link">
+  <a href="#interface_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Basic Pagination
+        Interface
       
     </span>
   </a>
@@ -1118,10 +1111,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sort-by-field-descending" class="md-nav__link">
+  <a href="#example-sqlite-adapter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Sort by Field Descending
+        Example: SQLite Adapter
       
     </span>
   </a>
@@ -1129,10 +1122,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#random-sample" class="md-nav__link">
+  <a href="#example-mongodb-adapter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Random Sample
+        Example: MongoDB Adapter
       
     </span>
   </a>
@@ -1140,21 +1133,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#reverse-order" class="md-nav__link">
+  <a href="#when-to-use-level-3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reverse Order
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#combined-options" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Combined Options
+        When to Use Level 3
       
     </span>
   </a>
@@ -1163,6 +1145,56 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level Comparison
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utility-functions-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utility Functions Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Utility Functions Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-wxn0brpdb-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From @wxn0brp/db-core
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1186,163 +1218,183 @@
   
 
 
-<h1 id="dbfindopts-quick-reference">dbFindOpts Quick Reference</h1>
-<h2 id="description"><strong>Description</strong></h2>
-<p>The <code>dbFindOpts</code> parameter provides options for <strong>post-processing</strong> data after it has been retrieved from the database but before it is returned to the client. These options control:</p>
-<ol>
-<li><strong>Ordering</strong> - Sort results by a field</li>
-<li><strong>Pagination</strong> - Skip and limit the number of returned entries</li>
-<li><strong>Direction</strong> - Reverse the order of results</li>
-</ol>
-<p>This allows for efficient data manipulation without requiring additional processing on the client side.</p>
-<hr />
-<h2 id="options"><strong>Options</strong></h2>
-<h3 id="reverse"><strong><code>reverse</code></strong></h3>
-<p>Reverses the order of the results.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// Query</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">reverse</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
+<h1 id="valtheradb-storage-adapter-tutorial">ValtheraDB Storage Adapter Tutorial</h1>
+<p>This guide shows you how to create custom storage adapters for ValtheraDB. Adapters are organized into <strong>levels</strong> based on complexity - start from the level that matches your needs.</p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>ValtheraDB uses a layered adapter architecture:</p>
+<div class="highlight"><pre><span></span><code>|-------------------------------------|
+|        ValtheraClass (API)          |
+|   add, find, update, remove...      |
+|-------------------------------------|
+                  |
+|-------------------------------------|
+|   ActionsBase / CustomActionsBase   |
+|        Collection management        |
+|-------------------------------------|
+                  |
+|-------------------------------------|
+|              FileCpu                |
+|     Low-level file operations       |
+|-------------------------------------|
+                  |
+|-------------------------------------|
+|     Your Storage Implementation     |
+|   (CSV, SQLite, XML, JSON, etc.)    |
+|-------------------------------------|
+</code></pre></div>
+<blockquote>
+<p>Note: When you replace any layer, you implicitly take responsibility for all layers below it</p>
+</blockquote>
+<h2 id="level-1-customfilecpu-adapter-easiest">Level 1: CustomFileCpu Adapter (Easiest)</h2>
+<p><strong>Best for:</strong> Simple file-based storage (JSON, CSV, line-delimited formats)</p>
+<p><strong>What you get:</strong> All CRUD operations support.</p>
+<p><strong>What you implement:</strong> Just <code>read</code> and <code>write</code> functions and collection management.</p>
+<h3 id="example-csv-adapter">Example: CSV Adapter</h3>
+<p>See full implementation:</p>
+<p><a href="https://github.com/wxn0brP/ValtheraDB-storage-csv/blob/HEAD/src/action.ts">ValtheraDB-storage-csv/src/action.ts</a></p>
+<p>Key points:</p>
+<ul>
+<li>Extend <code>CustomActionsBase</code></li>
+<li>Initialize <code>this.fileCpu = new CustomFileCpu(this.read.bind(this), this.write.bind(this))</code></li>
+<li>Implement <code>read()</code> - parse file to array of objects</li>
+<li>Implement <code>write()</code> - write array of objects to file</li>
+<li>Implement collection management methods (<code>ensureCollection</code>, <code>issetCollection</code>, etc.)</li>
+</ul>
+<h3 id="when-to-use-level-1">When to Use Level 1</h3>
+<p>✅ Your data fits in memory (entire file is loaded on each operation)<br />
+✅ Simple file formats (JSON, CSV, YAML)<br />
+✅ You want minimal code<br />
+✅ Prototyping or small-scale applications  </p>
+<p>❌ Large datasets (GB+)<br />
+❌ Need for partial file reads<br />
+❌ Complex query optimization  </p>
+<h2 id="level-2-actionsbase-with-filecpu-intermediate">Level 2: ActionsBase with FileCpu (Intermediate)</h2>
+<p><strong>Best for:</strong> File-based storage with custom file formats, streaming, or large datasets.</p>
+<p><strong>What you get:</strong> Query utilities. <code>updateOneOrAdd</code> and <code>toggleOne</code> support.</p>
+<p><strong>What you implement:</strong> Full <code>FileCpu</code> interface + file management logic and collection management.</p>
+<h3 id="interface">Interface</h3>
+<ul>
+<li><a href="https://github.com/wxn0brP/ValtheraDB-core/blob/HEAD/src/types/fileCpu.ts">ValtheraDB-core/src/types/fileCpu.ts</a></li>
+</ul>
+<h3 id="example-line-delimited-json-adapter-dir">Example: Line-Delimited JSON Adapter (dir)</h3>
+<p>See full implementation:</p>
+<ul>
+<li><a href="https://github.com/wxn0brP/ValtheraDB-storage-dir/blob/HEAD/src/file/index.ts">ValtheraDB-storage-dir/src/file/index.ts</a> - FileCpu implementation</li>
+<li><a href="https://github.com/wxn0brP/ValtheraDB-storage-dir/blob/HEAD/src/action.ts">ValtheraDB-storage-dir/src/action.ts</a> - ActionsBase implementation</li>
+</ul>
+<p>Key points:</p>
+<ul>
+<li>Implement <code>FileCpu</code> interface with streaming support</li>
+<li>Extend <code>ActionsBase</code> for collection management</li>
+<li>Use <code>findUtil()</code> for multi-file queries</li>
+<li>Handle file rotation (max file size)</li>
+</ul>
+<h3 id="when-to-use-level-2">When to Use Level 2</h3>
+<p>✅ Large files that don't fit in memory<br />
+✅ Custom file formats<br />
+✅ Streaming reads required<br />
+✅ Need control over file organization (sharding, rotation)  </p>
+<p>❌ Want minimal implementation code  </p>
+<h2 id="level-3-full-actionsbase-advanced">Level 3: Full ActionsBase (Advanced)</h2>
+<p><strong>Best for:</strong> Database systems, remote APIs, complex storage or full control.</p>
+<p><strong>What you get:</strong> Some utilities.</p>
+<p><strong>What you implement:</strong> Everything - full control over storage logic.</p>
+<h3 id="interface_1">Interface</h3>
+<ul>
+<li><a href="https://github.com/wxn0brP/ValtheraDB-core/blob/HEAD/src/base/actions.ts">ValtheraDB-core/src/base/actions.ts</a></li>
+</ul>
+<h3 id="example-sqlite-adapter">Example: SQLite Adapter</h3>
+<p>See full implementation: <a href="https://github.com/wxn0brP/ValtheraDB-storage-sqlite/blob/HEAD/src/index.ts">ValtheraDB-storage-sqlite/src/index.ts</a></p>
+<p>Key points:</p>
+<ul>
+<li>Extend <code>ActionsBase</code></li>
+<li>Translate Valthera queries to SQL</li>
+<li>Handle prepared statements</li>
+<li>Map SQL results to Valthera format</li>
+</ul>
+<h3 id="example-mongodb-adapter">Example: MongoDB Adapter</h3>
+<p>See full implementation: <a href="https://github.com/wxn0brP/ValtheraDB-storage-mongodb/blob/HEAD/src/actions.ts">ValtheraDB-storage-mongodb/src/actions.ts</a></p>
+<p>Key points:</p>
+<ul>
+<li>Extend <code>ActionsBase</code></li>
+<li>Translate Valthera queries to MongoDB format</li>
+<li>Manage connection lifecycle (<code>init()</code>)</li>
+</ul>
+<h3 id="when-to-use-level-3">When to Use Level 3</h3>
+<p>✅ Maximum performance control<br />
+✅ External database systems (SQL, NoSQL)<br />
+✅ Remote APIs / microservices<br />
+✅ Transaction support needed  </p>
+<p>❌ Simple file-based storage<br />
+❌ Quick prototyping  </p>
+<h2 id="level-comparison">Level Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Level 1</th>
+<th>Level 2</th>
+<th>Level 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Base Class</strong></td>
+<td><code>CustomActionsBase</code></td>
+<td><code>ActionsBase</code> + <code>FileCpu</code></td>
+<td><code>ActionsBase</code></td>
+</tr>
+<tr>
+<td><strong>Implement</strong></td>
+<td><code>read</code>, <code>write</code></td>
+<td><code>FileCpu</code> interface</td>
+<td>All CRUD methods</td>
+</tr>
+<tr>
+<td><strong>Memory Usage</strong></td>
+<td>Full file load</td>
+<td>Streaming</td>
+<td>Depends on impl</td>
+</tr>
+<tr>
+<td><strong>Best For</strong></td>
+<td>JSON, CSV, XML</td>
+<td>Custom formats</td>
+<td>High performance, SQL, NoSQL, APIs</td>
+</tr>
+<tr>
+<td><strong>Code Lines</strong></td>
+<td>~50-80</td>
+<td>~150-250</td>
+<td>300+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="utility-functions-reference">Utility Functions Reference</h2>
+<h3 id="from-wxn0brpdb-core">From <code>@wxn0brp/db-core</code></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// ID generation</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">genId</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">addId</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core/helpers/addId&quot;</span><span class="p">;</span>
 
-<span class="c1">// If original results are: [1, 2, 3, 4, 5]</span>
-<span class="c1">// Final results will be: [5, 4, 3, 2, 1]</span>
-</code></pre></div>
-<p><strong>Note:</strong> When <code>sortBy</code> is not specified, <code>reverse</code> is applied immediately during file iteration. When <code>sortBy</code> is used, the final sort order is determined by <code>sortAsc</code>.</p>
-<hr />
-<h3 id="offset"><strong><code>offset</code></strong></h3>
-<p>Skips a specified number of entries from the beginning of the results.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// Query</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">offset</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
+<span class="c1">// Query helpers</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">hasFieldsAdvanced</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core/utils/hasFieldsAdvanced&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">updateFindObject</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core/utils/updateFindObject&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">updateObjectAdvanced</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core/utils/updateObject&quot;</span><span class="p">;</span>
 
-<span class="c1">// Skips the first 10 entries and returns the rest</span>
-</code></pre></div>
-<p><strong>Default:</strong> <code>0</code></p>
-<hr />
-<h3 id="limit"><strong><code>limit</code></strong></h3>
-<p>Limits the number of returned entries.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// Query</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
+<span class="c1">// Find utility for multi-file searches</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">findUtil</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core/utils/action&quot;</span><span class="p">;</span>
 
-<span class="c1">// Returns only the first 20 entries (after offset is applied)</span>
+<span class="c1">// Types</span>
+<span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">FileCpu</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core/types/fileCpu&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Data</span><span class="p">,</span><span class="w"> </span><span class="nx">DataInternal</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core/types/data&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">VQueryT</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core/types/query&quot;</span><span class="p">;</span>
 </code></pre></div>
-<p><strong>Default:</strong> <code>-1</code> (no limit)</p>
-<hr />
-<h3 id="sortby"><strong><code>sortBy</code></strong></h3>
-<p>Sorts results by a specified field name or randomly.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// Sort by a field</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;age&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// Random sort</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;random()&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p><strong>Special value:</strong> <code>"random()"</code> - Shuffles results randomly using <code>Math.random()</code>.</p>
-<p><strong>Default:</strong> <code>undefined</code> (no sorting, uses data order)</p>
-<hr />
-<h3 id="sortasc"><strong><code>sortAsc</code></strong></h3>
-<p>Determines the sort direction when <code>sortBy</code> is specified.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// Ascending order (default)</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;age&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">sortAsc</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// Descending order</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;age&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">sortAsc</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p><strong>Default:</strong> <code>true</code></p>
-<hr />
-<h2 id="execution-flow"><strong>Execution Flow</strong></h2>
-<h3 id="without-sortby">Without <code>sortBy</code></h3>
-<ol>
-<li>Iterate through files</li>
-<li>Apply <code>reverse</code> during iteration (if specified)</li>
-<li>Apply <code>offset</code> (skip entries)</li>
-<li>Apply <code>limit</code> (truncate results)</li>
-</ol>
-<h3 id="with-sortby">With <code>sortBy</code></h3>
-<ol>
-<li>Collect all entries from all files</li>
-<li>Sort entries:</li>
-<li>If <code>sortBy === "random()"</code>: shuffle randomly</li>
-<li>Otherwise: sort by field value using <code>compareSafe()</code></li>
-<li>Apply <code>offset</code> and <code>limit</code> to sorted results</li>
-</ol>
-<hr />
-<h2 id="examples"><strong>Examples</strong></h2>
-<h3 id="basic-pagination">Basic Pagination</h3>
-<div class="highlight"><pre><span></span><code><span class="c1">// Get page 2 with 10 items per page</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">offset</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="sort-by-field-descending">Sort by Field Descending</h3>
-<div class="highlight"><pre><span></span><code><span class="c1">// Get users sorted by age (oldest first)</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;age&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">sortAsc</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">50</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="random-sample">Random Sample</h3>
-<div class="highlight"><pre><span></span><code><span class="c1">// Get 10 random entries</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;random()&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="reverse-order">Reverse Order</h3>
-<div class="highlight"><pre><span></span><code><span class="c1">// Get results in reverse file order</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">reverse</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">offset</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">100</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="combined-options">Combined Options</h3>
-<div class="highlight"><pre><span></span><code><span class="c1">// Complex query with sorting and pagination</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;createdAt&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">sortAsc</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">  </span><span class="c1">// Newest first</span>
-<span class="w">        </span><span class="nx">offset</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Read <a href="../core_concepts/">Core Concepts</a> for ValtheraDB philosophy</li>
+<li>Explore <a href="../updater/">Updater Operators</a> for advanced updates</li>
+<li>Learn about <a href="../relation/">Relations</a> for cross-collection queries</li>
+</ul>
 
 
 
