@@ -20,8 +20,3 @@ or
 ```javascript
 const remoteDB = new ValtheraRemote('https://dbName:token@example.com/db');
 ```
-
-## Class: `GraphRemote(remote)`
-`GraphRemote` is an extension of the `Graph` class, specifically designed for working with graph Valthera's over HTTP. It supports querying and modifying graph data, providing methods tailored for graph operations such as adding nodes, edges, and executing graph queries.
-
-These constructors provide flexibility in initializing remote connections for both standard and graph-based Valthera databases.

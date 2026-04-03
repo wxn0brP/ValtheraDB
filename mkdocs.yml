@@ -25,6 +25,8 @@ nav:
       - DB Find Options: db_find_opts.md
       - Updater: updater.md
       - Remote: remote.md
+  - Dev's Tutorials:
+      - Adapters: adapter.md
 
 markdown_extensions:
   - pymdownx.highlight
