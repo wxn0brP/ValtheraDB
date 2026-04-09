@@ -5,6 +5,7 @@ import { DbDirOpts } from "@wxn0brp/db-storage-dir/types";
 
 export class Valthera extends ValtheraClass {
     constructor(folder: string, options: DbDirOpts = {}, fileCpu = vFileCpu) {
+        options.format ||= "json5:x";
         super({
             ...options,
             dbAction: new FileActions(folder, options, fileCpu)
