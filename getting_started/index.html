@@ -981,20 +981,26 @@
 <li>Add and query for data</li>
 <li>Link related data together</li>
 </ul>
-<hr />
 <h2 id="step-1-installation">Step 1: Installation</h2>
 <p>First things first, let's add ValtheraDB to your project. Open your terminal and run the following command:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Using npm</span>
-npm<span class="w"> </span>install<span class="w"> </span>@wxn0brp/db
-
-<span class="c1"># Or using yarn</span>
-yarn<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
-
-<span class="c1"># Or using bun</span>
-bun<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
-</code></pre></div>
+<ul>
+<li>
+<p>Using npm
+  <div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w"> </span>@wxn0brp/db
+</code></pre></div></p>
+</li>
+<li>
+<p>Or using bun
+  <div class="highlight"><pre><span></span><code>bun<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
+</code></pre></div></p>
+</li>
+<li>
+<p>Or using yarn
+  <div class="highlight"><pre><span></span><code>yarn<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
+</code></pre></div></p>
+</li>
+</ul>
 <p>Now you're ready to start using it in your code.</p>
-<hr />
 <h2 id="step-2-setting-up-the-database">Step 2: Setting Up the Database</h2>
 <p>ValtheraDB is an embedded database, which means it runs directly within your application. To get started, you just need to point it to a directory where it can store its data.</p>
 <p>Let's create our database instance.</p>
@@ -1017,7 +1023,6 @@ bun<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
 <span class="p">}</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;./my-blog-db&quot;</span><span class="p">);</span>
 </code></pre></div>
 <p>If you run this code, a new folder named <code>my-blog-db</code> will be created in your project. This is where all your collections and documents will live. It's that simple!</p>
-<hr />
 <h2 id="step-3-adding-your-first-user">Step 3: Adding Your First User</h2>
 <p>Our blog will have authors, so let's create a <code>users</code> collection and add our first author to it. A "collection" is just a group of similar documents, like a table in a SQL database.</p>
 <p>The <code>db.add()</code> method adds a new document to a specified collection and automatically generates a unique <code>_id</code> for it.</p>
@@ -1035,7 +1040,6 @@ bun<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
 
 <span class="nx">setup</span><span class="p">();</span>
 </code></pre></div>
-<hr />
 <h2 id="step-4-adding-posts-for-our-user">Step 4: Adding Posts for Our User</h2>
 <p>Now that we have an author, let's give them something to write. We'll create a <code>posts</code> collection. To link a post to its author, we'll add an <code>authorId</code> field to our post documents, storing the <code>_id</code> of the user we just created.</p>
 <div class="highlight"><pre><span></span><code><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -1069,7 +1073,6 @@ bun<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
 <span class="nx">setup</span><span class="p">();</span>
 </code></pre></div>
 <p>Here we used <code>db.findOne()</code> to retrieve a single document that matches our query. It's a quick way to find a specific entry.</p>
-<hr />
 <h2 id="step-5-updating-data">Step 5: Updating Data</h2>
 <p>Sometimes, data changes! ValtheraDB provides easy ways to update existing documents. Let's say Jane Doe decided to update her email address. We can use <code>db.updateOne()</code> to modify her user record.</p>
 <div class="highlight"><pre><span></span><code><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">updateAuthor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -1093,7 +1096,6 @@ bun<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
 <span class="nx">updateAuthor</span><span class="p">();</span>
 </code></pre></div>
 <p>The <code>db.updateOne()</code> method takes a search query and an updater object. It finds the <em>first</em> document matching the query and applies the updates. For more complex updates (like incrementing numbers or manipulating arrays), you can use <a href="../updater/">Updater Operators</a>.</p>
-<hr />
 <h2 id="step-6-updating-or-adding-upsert">Step 6: Updating or Adding (Upsert)</h2>
 <p>Sometimes you need to ensure that a piece of data exists: updating it if it's already there or creating it if it's new. This is a common pattern known as "upsert", and ValtheraDB supports it with <code>db.updateOneOrAdd()</code>.</p>
 <p>Let's try to update a post. If the post with a specific title exists, we'll update its content. If not, we'll add it as a new post.</p>
@@ -1136,7 +1138,6 @@ bun<span class="w"> </span>add<span class="w"> </span>@wxn0brp/db
 <span class="nx">upsertPost</span><span class="p">();</span>
 </code></pre></div>
 <p><code>db.updateOneOrAdd()</code> is incredibly flexible. The <code>add_arg</code> option allows you to specify additional data to be merged when a new document is created.</p>
-<hr />
 <h2 id="step-7-bringing-it-all-together-with-relations">Step 7: Bringing It All Together with Relations</h2>
 <p>We now have users and posts, but they are in separate collections. How do we retrieve a user <em>and</em> all their posts in a single query? This is where ValtheraDB's <code>Relation</code> engine shines.</p>
 <p>Relations allow you to define relationships between your collections and fetch linked data effortlessly.</p>
