@@ -9,8 +9,6 @@ The `dbFindOpts` parameter provides options for **post-processing** data after i
 
 This allows for efficient data manipulation without requiring additional processing on the client side.
 
----
-
 ## **Options**
 
 ### **`reverse`**

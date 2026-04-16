@@ -6,22 +6,24 @@
 
 **Welcome to ValtheraDB - a modular, embedded database for developers who want to build their perfect data layer. With a familiar API and unparalleled flexibility, ValtheraDB empowers you to take control of your data storage.** 
 
----
-
 ## Installation
 
 To install the package, run:
 
-```bash
-# Using npm
-npm install @wxn0brp/db
+- Using npm
+  ```bash
+  npm install @wxn0brp/db
+  ```
 
-# Or using yarn
-yarn add @wxn0brp/db
+- Or using bun
+  ```bash
+  bun add @wxn0brp/db
+  ```
 
-# Or using bun
-bun add @wxn0brp/db
-```
+- Or using yarn
+  ```bash
+  yarn add @wxn0brp/db
+  ```
 
 ## Our Philosophy: Control and Flexibility
 

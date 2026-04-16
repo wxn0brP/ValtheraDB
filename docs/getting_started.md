@@ -9,26 +9,26 @@ By the end of this tutorial, you will have learned how to:
 - Add and query for data
 - Link related data together
 
----
-
 ## Step 1: Installation
 
 First things first, let's add ValtheraDB to your project. Open your terminal and run the following command:
 
-```bash
-# Using npm
-npm install @wxn0brp/db
+- Using npm
+  ```bash
+  npm install @wxn0brp/db
+  ```
 
-# Or using yarn
-yarn add @wxn0brp/db
+- Or using bun
+  ```bash
+  bun add @wxn0brp/db
+  ```
 
-# Or using bun
-bun add @wxn0brp/db
-```
+- Or using yarn
+  ```bash
+  yarn add @wxn0brp/db
+  ```
 
 Now you're ready to start using it in your code.
-
----
 
 ## Step 2: Setting Up the Database
 
@@ -58,8 +58,6 @@ const db = ValtheraCreate<{
 
 If you run this code, a new folder named `my-blog-db` will be created in your project. This is where all your collections and documents will live. It's that simple!
 
----
-
 ## Step 3: Adding Your First User
 
 Our blog will have authors, so let's create a `users` collection and add our first author to it. A "collection" is just a group of similar documents, like a table in a SQL database.
@@ -81,8 +79,6 @@ async function setup() {
 
 setup();
 ```
-
----
 
 ## Step 4: Adding Posts for Our User
 
@@ -122,8 +118,6 @@ setup();
 
 Here we used `db.findOne()` to retrieve a single document that matches our query. It's a quick way to find a specific entry.
 
----
-
 ## Step 5: Updating Data
 
 Sometimes, data changes! ValtheraDB provides easy ways to update existing documents. Let's say Jane Doe decided to update her email address. We can use `db.updateOne()` to modify her user record.
@@ -151,8 +145,6 @@ updateAuthor();
 ```
 
 The `db.updateOne()` method takes a search query and an updater object. It finds the *first* document matching the query and applies the updates. For more complex updates (like incrementing numbers or manipulating arrays), you can use [Updater Operators](updater.md).
-
----
 
 ## Step 6: Updating or Adding (Upsert)
 
@@ -201,8 +193,6 @@ upsertPost();
 ```
 
 `db.updateOneOrAdd()` is incredibly flexible. The `add_arg` option allows you to specify additional data to be merged when a new document is created.
-
----
 
 ## Step 7: Bringing It All Together with Relations
 

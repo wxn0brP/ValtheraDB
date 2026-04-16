@@ -2,8 +2,6 @@
 
 **Welcome to ValtheraDB – a modular, embedded database for developers who want to build their perfect data layer. With a familiar API and unparalleled flexibility, ValtheraDB empowers you to take control of your data storage.**
 
----
-
 ## Our Philosophy: Control and Flexibility
 
 In a world of one-size-fits-all solutions, ValtheraDB is different. We believe that you, the developer, should have the final say on how your data is managed. Our core philosophy is built on two pillars:
