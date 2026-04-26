@@ -925,40 +925,59 @@
 <h3 id="async-getcollections"><code>async getCollections()</code></h3>
 <p>Gets the names of all available collections in the database.</p>
 <ul>
-<li><strong>Returns:</strong></li>
+<li><strong>Returns:</strong><ul>
 <li><code>Promise&lt;string[]&gt;</code>: A promise that resolves with an array of collection names.</li>
 </ul>
+</li>
+</ul>
 <h3 id="async-ensurecollectioncollection"><code>async ensureCollection(collection)</code></h3>
-<p>Checks and creates the specified collection if it doesn't exist.</p>
+<p>Ensures that the specified collection exists. If the collection does not exist, it will be created.</p>
 <ul>
-<li><strong>Parameters:</strong></li>
-<li>
-<p><code>collection</code> (<code>string</code>): The name of the collection to check.</p>
+<li><strong>Parameters:</strong><ul>
+<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
+</ul>
 </li>
-<li>
-<p><strong>Returns:</strong></p>
+<li><strong>Returns:</strong><ul>
+<li><code>Promise&lt;boolean&gt;</code>: The returned value is <strong>adapter-dependent</strong> and must not be relied upon.</li>
+</ul>
 </li>
-<li><code>Promise&lt;boolean&gt;</code>: A promise that resolves to <code>true</code> if the collection was created or already exists.</li>
+<li><strong>Notes:</strong><ul>
+<li>Guarantees that the collection exists after the method resolves.</li>
+<li>The boolean result has no standardized meaning and should be treated as <code>void</code>.</li>
+</ul>
+</li>
 </ul>
 <h3 id="async-issetcollectioncollection"><code>async issetCollection(collection)</code></h3>
 <p>Checks if a collection exists.</p>
 <ul>
-<li><strong>Parameters:</strong></li>
+<li><strong>Parameters:</strong><ul>
 <li><code>collection</code> (<code>string</code>): The name of the collection.</li>
-<li><strong>Returns:</strong></li>
+</ul>
+</li>
+<li><strong>Returns:</strong><ul>
 <li><code>Promise&lt;boolean&gt;</code>: A promise that resolves to <code>true</code> if the collection exists, otherwise <code>false</code>.</li>
 </ul>
+</li>
+</ul>
 <h3 id="async-removecollectioncollection"><code>async removeCollection(collection)</code></h3>
-<p>Removes the specified collection from the Valthera file system.</p>
+<p>Deletes the collection.</p>
 <ul>
-<li><strong>Parameters:</strong></li>
 <li>
-<p><code>collection</code> (<code>string</code>): The name of the collection to remove.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>collection</code> (<code>string</code>): The name of the collection to remove.</li>
+</ul>
 </li>
 <li>
 <p><strong>Returns:</strong></p>
+<ul>
+<li><code>Promise&lt;boolean&gt;</code>: A promise that resolves when the collection is removed.<ul>
+<li><code>true</code>: The collection was successfully removed.</li>
+<li><code>false</code>: The collection was not found (i.e., it did not exist, so there was nothing to remove).</li>
+</ul>
 </li>
-<li><code>Promise&lt;boolean&gt;</code>: A promise that resolves when the collection is removed.</li>
+</ul>
+</li>
 </ul>
 
 
