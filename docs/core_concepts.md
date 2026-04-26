@@ -1,14 +1,14 @@
 # ValtheraDB Idea: A Database That Thinks Like a Developer
 
-Welcome to the world of ValtheraDB – a project born from a simple conviction: a database should adapt to your programming style, not the other way around.
+ValtheraDB is a project born from a simple conviction: a database should adapt to your programming style, not the other way around.
 
-Instead of yet another implementation of rigid paradigms, we created a flexible environment that understands the real challenges of modern applications. It is not just a tool for storing data – it is a philosophy of software development.
+Instead of yet another implementation of rigid paradigms, we created a flexible environment that understands the real challenges of modern applications. It is not just a tool for storing data, it is a philosophy of software development.
 
 ## Pluggable Storage Paradigm: Your Vision, Your Medium
 
 ### The ideas behind the concept
 
-In traditional databases, form determines substance – the choice of SQL vs NoSQL, local files vs server, defines the architecture of the entire application. ValtheraDB reverses this logic.
+In traditional databases, form determines substance, the choice of SQL vs NoSQL, local files vs server, defines the architecture of the entire application. ValtheraDB reverses this logic.
 
 The central idea: separating data logic from physical storage. Your code operates on objects and relationships, while the method of persistence is a replaceable module.
 
@@ -29,7 +29,7 @@ Just as a file browser works the same for local disks and Dropbox, ValtheraDB pr
 
 ### The problem we are solving
 
-Modern applications are ecosystems – microservices, modules, separate databases for different functions. Traditional databases force a choice: either a monolith (everything in one DB) or chaos (manually gluing distributed data).
+Modern applications are ecosystems: microservices, modules, separate databases for different functions. Traditional databases force a choice: either a monolith (everything in one DB) or chaos (manually gluing distributed data).
 
 ValtheraDB proposes a third path: autonomous, yet connected data collections.
 
@@ -40,7 +40,7 @@ ValtheraDB proposes a third path: autonomous, yet connected data collections.
 2. **Context preserved**
    Data remains in its natural environment (logs in a separate store, users in the main one), but forms a coherent whole during queries.
 3. **Semantics over syntax**
-   It does not matter how the data is stored – what matters is what it means and how it connects.
+   It does not matter how the data is stored - what matters is what it means and how it connects.
 
 ### Example in action
 
@@ -50,8 +50,8 @@ Imagine an e-commerce application:
 - Separate database: reviews (frequent updates)
 - Another database: analytics logs
 
-In the traditional approach – three different queries, manual mapping.
-In ValtheraDB – one query combines everything as if it lived in one place.
+In the traditional approach - three different queries, manual mapping.
+In ValtheraDB - one query combines everything as if it lived in one place.
 
 ## Principle of Symmetry: The Same Code, Every Platform
 
@@ -59,51 +59,47 @@ In ValtheraDB – one query combines everything as if it lived in one place.
 
 ValtheraDB stems from a simple observation: developers write business logic, not storage implementations. Therefore, we provide:
 
-1. **Environment isomorphism**
-   The same code runs in Node.js, the browser, and Electron. No conditional imports, no polyfills.
+1. **Core everywhere, adapters per environment**
+   The Valthera core runs identically in Node.js, the browser, and Electron - no environment-specific code. Adapters mediate storage and are naturally tied to their environments, but your business logic remains portable.
 2. **Progressive specialization**
    Start with the simplest configuration (JSON files). Move to the advanced one (remote server) without changing a line of application code.
 3. **Expressiveness without complexity**
    Powerful capabilities through a simple API. Complex inside, simple outside.
 
-## Security by Design: Protecting Against NoSQL Injection
+## Security by Design
 
-ValtheraDB prioritizes security, particularly against common vulnerabilities like NoSQL injection. A key design principle that contributes to this security is the strict handling of root-level operators.
-
-It is crucial to understand that the treatment of root-level operators as an internal, controlled feature, rather than a user-promotable one, is a deliberate design choice, not a limitation. This approach inherently protects applications by preventing malicious users from elevating data input into query operators. By disallowing users from introducing or overriding operators within their input, ValtheraDB effectively mitigates the risk of query manipulation, ensuring that data operations remain within the defined scope and intent of the application developer. This means you can build with confidence, knowing that your queries are safeguarded from unauthorized alterations through data input.
+ValtheraDB treats root-level operators as an internal feature. Users cannot accidentally turn their data input into query operators, which prevents NoSQL injection attacks by design. This is a deliberate choice, not a limitation. You can build with confidence knowing that malicious input cannot manipulate your queries.
 
 ## ValtheraDB in the Developer Ecosystem
 
 ### Who is this database for?
 
-1. **PWA creators**
-   They want consistent online/offline experience without the burden of IndexedDB API.
-2. **Microservices architects**
-   They need flexible data linking across multiple sources.
-3. **Experimenters and prototypes**
-   They value speed of iteration over premature optimization.
-4. **Educators**
-   They seek a system that teaches concepts, not the syntax of a specific technology.
+ValtheraDB works well for several types of developers:
+
+1. **PWA creators** who want consistent online and offline experience without wrestling with the IndexedDB API.
+2. **Microservices architects** who need flexible data linking across multiple sources.
+3. **Experimenters and prototypes** who value speed of iteration over premature optimization.
+4. **Electron app developers** who need local storage that feels natural in JavaScript.
+5. **Developers frustrated with SQL and ORMs** who want a MongoDB-like API without running a database server.
 
 ### Philosophy in practice
 
-ValtheraDB does not compete with PostgreSQL or MongoDB in their niches. It offers a third space – where what matters is not petabyte performance, but the joy of development.
+ValtheraDB is not trying to win any benchmark wars. It exists for developers who need something more powerful than juggling arrays in memory, but do not want to deal with the operational overhead of running a database cluster.
 
-It is a database that:
+Think of it as a flexible layer: you can start with JSON files, plug in SQLite when you need more structure, or even sit ValtheraDB in front of PostgreSQL to get its API while keeping your existing infrastructure. The goal is developer convenience, not enterprise credibility.
 
-- Remembers that you are building an application, not managing data
-- Understands that projects evolve from MVP to scalable solutions
-- Respects that each environment (backend, frontend, desktop) has its own constraints
+### Where it fits
 
-## Summary: A Database as a Collaborator
+ValtheraDB works well when you are building an Electron app, a progressive web app, a simple server, or an MVP that will eventually need more. It is also useful as a unifying layer when you have multiple data sources and want one consistent interface to work with them.
 
-ValtheraDB is more than a tool – it is a partner in the software creation process. It does not impose limitations but offers possibilities. It does not complicate simple tasks but enables advanced scenarios.
+It is not the right choice if you need petabyte-scale storage, complex distributed transactions, or dedicated DBA teams. For everything else, it tries to stay out of your way.
 
-In a world dominated by "one size fits all", ValtheraDB is a rebellion: the developer knows best what is right for their application. We simply provide the capabilities – you decide how to use them.
+## Summary
 
-It is a database that does not ask "why do you want to do this?", but "how can I help you do it?"
+ValtheraDB is a flexible data layer for developers who want to control how their data is stored without being locked into enterprise solutions.
+
+It adapts to your needs: start simple, scale when necessary, and switch backends without rewriting your application logic. No benchmarks to win, no clusters to manage. Just a tool that works the way you expect.
 
 ---
 
-Ready to build software according to your vision, not the limitations of tools?
-Begin [your journey](./getting_started.md) with a database that thinks the way you do.
+Ready to try it? Begin [your journey](./getting_started.md).

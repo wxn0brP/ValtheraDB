@@ -1,6 +1,6 @@
 # ValtheraDB: Your Data, Your Rules
 
-**Welcome to ValtheraDB – a modular, embedded database for developers who want to build their perfect data layer. With a familiar API and unparalleled flexibility, ValtheraDB empowers you to take control of your data storage.**
+**Welcome to ValtheraDB, a modular, embedded database for developers who want to build their perfect data layer. With a familiar API and unparalleled flexibility, ValtheraDB empowers you to take control of your data storage!**
 
 ## Our Philosophy: Control and Flexibility
 
@@ -17,6 +17,8 @@ ValtheraDB is a great fit if you are:
 *   A **frontend developer** creating a Progressive Web App (PWA) that needs offline capabilities or complex client-side storage.
 *   An **Electron developer** who needs a straightforward way to store data locally in a desktop application.
 *   A **creative coder** who wants to experiment with unconventional storage methods for your projects.
+*   A developer **frustrated with ORMs** who wants the data access pattern of an object database without learning SQL syntax.
+*   A team building an **MVP or Electron app** that will eventually outgrow in-memory arrays but doesn't need 10TB sharded infrastructure.
 
 In short, if you value flexibility and control over rigid conventions, you'll feel right at home.
 
