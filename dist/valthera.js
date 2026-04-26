@@ -1,0 +1,12 @@
+import { ValtheraClass } from "@wxn0brp/db-core/db/valthera";
+import { FileActions } from "@wxn0brp/db-storage-dir";
+import { vFileCpu } from "@wxn0brp/db-storage-dir/file/index";
+export class Valthera extends ValtheraClass {
+    constructor(folder, options = {}, fileCpu = vFileCpu) {
+        options.format ||= "json5:x";
+        super({
+            ...options,
+            dbAction: new FileActions(folder, options, fileCpu)
+        });
+    }
+}
