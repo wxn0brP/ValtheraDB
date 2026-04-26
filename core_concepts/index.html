@@ -484,10 +484,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#security-by-design-protecting-against-nosql-injection" class="md-nav__link">
+  <a href="#security-by-design" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security by Design: Protecting Against NoSQL Injection
+        Security by Design
       
     </span>
   </a>
@@ -528,16 +528,27 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#where-it-fits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where it fits
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#summary-a-database-as-a-collaborator" class="md-nav__link">
+  <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Summary: A Database as a Collaborator
+        Summary
       
     </span>
   </a>
@@ -1094,10 +1105,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#security-by-design-protecting-against-nosql-injection" class="md-nav__link">
+  <a href="#security-by-design" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security by Design: Protecting Against NoSQL Injection
+        Security by Design
       
     </span>
   </a>
@@ -1138,16 +1149,27 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#where-it-fits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where it fits
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#summary-a-database-as-a-collaborator" class="md-nav__link">
+  <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Summary: A Database as a Collaborator
+        Summary
       
     </span>
   </a>
@@ -1175,11 +1197,11 @@
 
 
 <h1 id="valtheradb-idea-a-database-that-thinks-like-a-developer">ValtheraDB Idea: A Database That Thinks Like a Developer</h1>
-<p>Welcome to the world of ValtheraDB – a project born from a simple conviction: a database should adapt to your programming style, not the other way around.</p>
-<p>Instead of yet another implementation of rigid paradigms, we created a flexible environment that understands the real challenges of modern applications. It is not just a tool for storing data – it is a philosophy of software development.</p>
+<p>ValtheraDB is a project born from a simple conviction: a database should adapt to your programming style, not the other way around.</p>
+<p>Instead of yet another implementation of rigid paradigms, we created a flexible environment that understands the real challenges of modern applications. It is not just a tool for storing data, it is a philosophy of software development.</p>
 <h2 id="pluggable-storage-paradigm-your-vision-your-medium">Pluggable Storage Paradigm: Your Vision, Your Medium</h2>
 <h3 id="the-ideas-behind-the-concept">The ideas behind the concept</h3>
-<p>In traditional databases, form determines substance – the choice of SQL vs NoSQL, local files vs server, defines the architecture of the entire application. ValtheraDB reverses this logic.</p>
+<p>In traditional databases, form determines substance, the choice of SQL vs NoSQL, local files vs server, defines the architecture of the entire application. ValtheraDB reverses this logic.</p>
 <p>The central idea: separating data logic from physical storage. Your code operates on objects and relationships, while the method of persistence is a replaceable module.</p>
 <h3 id="why-is-this-important">Why is this important?</h3>
 <ol>
@@ -1194,7 +1216,7 @@
 <p>Just as a file browser works the same for local disks and Dropbox, ValtheraDB provides a unified API regardless of backend. It is abstraction that truly abstracts.</p>
 <h2 id="relation-engine-unity-in-diversity">Relation Engine: Unity in Diversity</h2>
 <h3 id="the-problem-we-are-solving">The problem we are solving</h3>
-<p>Modern applications are ecosystems – microservices, modules, separate databases for different functions. Traditional databases force a choice: either a monolith (everything in one DB) or chaos (manually gluing distributed data).</p>
+<p>Modern applications are ecosystems: microservices, modules, separate databases for different functions. Traditional databases force a choice: either a monolith (everything in one DB) or chaos (manually gluing distributed data).</p>
 <p>ValtheraDB proposes a third path: autonomous, yet connected data collections.</p>
 <h3 id="the-philosophy-of-relationships">The philosophy of relationships</h3>
 <ol>
@@ -1203,7 +1225,7 @@
 <li><strong>Context preserved</strong>
    Data remains in its natural environment (logs in a separate store, users in the main one), but forms a coherent whole during queries.</li>
 <li><strong>Semantics over syntax</strong>
-   It does not matter how the data is stored – what matters is what it means and how it connects.</li>
+   It does not matter how the data is stored - what matters is what it means and how it connects.</li>
 </ol>
 <h3 id="example-in-action">Example in action</h3>
 <p>Imagine an e-commerce application:</p>
@@ -1212,49 +1234,42 @@
 <li>Separate database: reviews (frequent updates)</li>
 <li>Another database: analytics logs</li>
 </ul>
-<p>In the traditional approach – three different queries, manual mapping.
-In ValtheraDB – one query combines everything as if it lived in one place.</p>
+<p>In the traditional approach - three different queries, manual mapping.
+In ValtheraDB - one query combines everything as if it lived in one place.</p>
 <h2 id="principle-of-symmetry-the-same-code-every-platform">Principle of Symmetry: The Same Code, Every Platform</h2>
 <h3 id="unified-experience">Unified experience</h3>
 <p>ValtheraDB stems from a simple observation: developers write business logic, not storage implementations. Therefore, we provide:</p>
 <ol>
-<li><strong>Environment isomorphism</strong>
-   The same code runs in Node.js, the browser, and Electron. No conditional imports, no polyfills.</li>
+<li><strong>Core everywhere, adapters per environment</strong>
+   The Valthera core runs identically in Node.js, the browser, and Electron - no environment-specific code. Adapters mediate storage and are naturally tied to their environments, but your business logic remains portable.</li>
 <li><strong>Progressive specialization</strong>
    Start with the simplest configuration (JSON files). Move to the advanced one (remote server) without changing a line of application code.</li>
 <li><strong>Expressiveness without complexity</strong>
    Powerful capabilities through a simple API. Complex inside, simple outside.</li>
 </ol>
-<h2 id="security-by-design-protecting-against-nosql-injection">Security by Design: Protecting Against NoSQL Injection</h2>
-<p>ValtheraDB prioritizes security, particularly against common vulnerabilities like NoSQL injection. A key design principle that contributes to this security is the strict handling of root-level operators.</p>
-<p>It is crucial to understand that the treatment of root-level operators as an internal, controlled feature, rather than a user-promotable one, is a deliberate design choice, not a limitation. This approach inherently protects applications by preventing malicious users from elevating data input into query operators. By disallowing users from introducing or overriding operators within their input, ValtheraDB effectively mitigates the risk of query manipulation, ensuring that data operations remain within the defined scope and intent of the application developer. This means you can build with confidence, knowing that your queries are safeguarded from unauthorized alterations through data input.</p>
+<h2 id="security-by-design">Security by Design</h2>
+<p>ValtheraDB treats root-level operators as an internal feature. Users cannot accidentally turn their data input into query operators, which prevents NoSQL injection attacks by design. This is a deliberate choice, not a limitation. You can build with confidence knowing that malicious input cannot manipulate your queries.</p>
 <h2 id="valtheradb-in-the-developer-ecosystem">ValtheraDB in the Developer Ecosystem</h2>
 <h3 id="who-is-this-database-for">Who is this database for?</h3>
+<p>ValtheraDB works well for several types of developers:</p>
 <ol>
-<li><strong>PWA creators</strong>
-   They want consistent online/offline experience without the burden of IndexedDB API.</li>
-<li><strong>Microservices architects</strong>
-   They need flexible data linking across multiple sources.</li>
-<li><strong>Experimenters and prototypes</strong>
-   They value speed of iteration over premature optimization.</li>
-<li><strong>Educators</strong>
-   They seek a system that teaches concepts, not the syntax of a specific technology.</li>
+<li><strong>PWA creators</strong> who want consistent online and offline experience without wrestling with the IndexedDB API.</li>
+<li><strong>Microservices architects</strong> who need flexible data linking across multiple sources.</li>
+<li><strong>Experimenters and prototypes</strong> who value speed of iteration over premature optimization.</li>
+<li><strong>Electron app developers</strong> who need local storage that feels natural in JavaScript.</li>
+<li><strong>Developers frustrated with SQL and ORMs</strong> who want a MongoDB-like API without running a database server.</li>
 </ol>
 <h3 id="philosophy-in-practice">Philosophy in practice</h3>
-<p>ValtheraDB does not compete with PostgreSQL or MongoDB in their niches. It offers a third space – where what matters is not petabyte performance, but the joy of development.</p>
-<p>It is a database that:</p>
-<ul>
-<li>Remembers that you are building an application, not managing data</li>
-<li>Understands that projects evolve from MVP to scalable solutions</li>
-<li>Respects that each environment (backend, frontend, desktop) has its own constraints</li>
-</ul>
-<h2 id="summary-a-database-as-a-collaborator">Summary: A Database as a Collaborator</h2>
-<p>ValtheraDB is more than a tool – it is a partner in the software creation process. It does not impose limitations but offers possibilities. It does not complicate simple tasks but enables advanced scenarios.</p>
-<p>In a world dominated by "one size fits all", ValtheraDB is a rebellion: the developer knows best what is right for their application. We simply provide the capabilities – you decide how to use them.</p>
-<p>It is a database that does not ask "why do you want to do this?", but "how can I help you do it?"</p>
+<p>ValtheraDB is not trying to win any benchmark wars. It exists for developers who need something more powerful than juggling arrays in memory, but do not want to deal with the operational overhead of running a database cluster.</p>
+<p>Think of it as a flexible layer: you can start with JSON files, plug in SQLite when you need more structure, or even sit ValtheraDB in front of PostgreSQL to get its API while keeping your existing infrastructure. The goal is developer convenience, not enterprise credibility.</p>
+<h3 id="where-it-fits">Where it fits</h3>
+<p>ValtheraDB works well when you are building an Electron app, a progressive web app, a simple server, or an MVP that will eventually need more. It is also useful as a unifying layer when you have multiple data sources and want one consistent interface to work with them.</p>
+<p>It is not the right choice if you need petabyte-scale storage, complex distributed transactions, or dedicated DBA teams. For everything else, it tries to stay out of your way.</p>
+<h2 id="summary">Summary</h2>
+<p>ValtheraDB is a flexible data layer for developers who want to control how their data is stored without being locked into enterprise solutions.</p>
+<p>It adapts to your needs: start simple, scale when necessary, and switch backends without rewriting your application logic. No benchmarks to win, no clusters to manage. Just a tool that works the way you expect.</p>
 <hr />
-<p>Ready to build software according to your vision, not the limitations of tools?
-Begin <a href="../getting_started/">your journey</a> with a database that thinks the way you do.</p>
+<p>Ready to try it? Begin <a href="../getting_started/">your journey</a>.</p>
 
 
 
