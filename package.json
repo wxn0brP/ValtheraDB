@@ -30,7 +30,7 @@
     "dependencies": {
         "@wxn0brp/db-client": "^0.100.0",
         "@wxn0brp/db-core": "^0.10.4",
-        "@wxn0brp/db-storage-dir": "^0.101.0",
+        "@wxn0brp/db-storage-dir": "^0.102.0",
         "json5": "^2.2.3"
     },
     "devDependencies": {
