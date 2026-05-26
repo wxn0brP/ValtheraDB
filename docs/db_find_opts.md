@@ -1,17 +1,20 @@
 # dbFindOpts Quick Reference
 
 ## **Description**
+
 The `dbFindOpts` parameter provides options for **post-processing** data after it has been retrieved from the database but before it is returned to the client. These options control:
 
 1. **Ordering** - Sort results by a field
 2. **Pagination** - Skip and limit the number of returned entries
 3. **Direction** - Reverse the order of results
+4. **Aggregation** - Group, count, min, max, and average over fields
 
 This allows for efficient data manipulation without requiring additional processing on the client side.
 
 ## **Options**
 
 ### **`reverse`**
+
 Reverses the order of the results.
 
 ```javascript
@@ -31,6 +34,7 @@ Reverses the order of the results.
 ---
 
 ### **`offset`**
+
 Skips a specified number of entries from the beginning of the results.
 
 ```javascript
@@ -49,6 +53,7 @@ Skips a specified number of entries from the beginning of the results.
 ---
 
 ### **`limit`**
+
 Limits the number of returned entries.
 
 ```javascript
@@ -67,6 +72,8 @@ Limits the number of returned entries.
 ---
 
 ### **`sortBy`**
+
+
 Sorts results by a specified field name or randomly.
 
 ```javascript
@@ -92,6 +99,7 @@ Sorts results by a specified field name or randomly.
 ---
 
 ### **`sortAsc`**
+
 Determines the sort direction when `sortBy` is specified.
 
 ```javascript
@@ -116,15 +124,163 @@ Determines the sort direction when `sortBy` is specified.
 
 ---
 
+### **`groupBy`**
+
+Groups results by one or more fields. When specified alongside aggregation operators (`min`, `max`, `avg`, `count`), computations are performed per group.
+
+```javascript
+// Group by a single field
+{
+    dbFindOpts: {
+        groupBy: "category",
+        count: { total: "id" }
+    }
+}
+
+// Group by multiple fields
+{
+    dbFindOpts: {
+        groupBy: ["category", "status"],
+        count: { total: "id" }
+    }
+}
+```
+
+**Type:** `string | string[]`
+
+**Default:** `undefined` (no grouping, single aggregate over all data)
+
+---
+
+### **`count`**
+
+Counts non-null, non-undefined values per field. Maps output keys to source fields.
+
+```javascript
+// Count total entries
+{
+    dbFindOpts: {
+        count: { total: "id" }
+    }
+}
+
+// Count with grouping
+{
+    dbFindOpts: {
+        groupBy: "category",
+        count: { total: "id", activeUsers: "status" }
+    }
+}
+```
+
+**Type:** `Record<string, string>` - `{ outputKey: sourceField }`
+
+**Default:** `undefined`
+
+---
+
+### **`min`**
+
+Computes the minimum numeric value of a field. Maps output keys to source fields.
+
+```javascript
+// Youngest age across all entries
+{
+    dbFindOpts: {
+        min: { youngest: "age" }
+    }
+}
+
+// Min with grouping
+{
+    dbFindOpts: {
+        groupBy: "category",
+        min: { cheapest: "price" }
+    }
+}
+```
+
+**Type:** `Record<string, string>` - `{ outputKey: sourceField }`
+
+**Default:** `undefined`
+
+---
+
+### **`max`**
+
+Computes the maximum numeric value of a field. Maps output keys to source fields.
+
+```javascript
+// Oldest age across all entries
+{
+    dbFindOpts: {
+        max: { oldest: "age" }
+    }
+}
+
+// Max with grouping
+{
+    dbFindOpts: {
+        groupBy: "category",
+        max: { mostExpensive: "price" }
+    }
+}
+```
+
+**Type:** `Record<string, string>` - `{ outputKey: sourceField }`
+
+**Default:** `undefined`
+
+---
+
+### **`avg`**
+
+Computes the average (mean) numeric value of a field. Maps output keys to source fields.
+
+```javascript
+// Average age across all entries
+{
+    dbFindOpts: {
+        avg: { averageAge: "age" }
+    }
+}
+
+// Average with grouping
+{
+    dbFindOpts: {
+        groupBy: "category",
+        avg: { averagePrice: "price" }
+    }
+}
+```
+
+**Type:** `Record<string, string>` - `{ outputKey: sourceField }`
+
+**Default:** `undefined`
+
+---
+
 ## **Execution Flow**
 
-### Without `sortBy`
+### Without Aggregation (`min`/`max`/`avg`/`groupBy`/`count`)
+
 1. Iterate through files
 2. Apply `reverse` during iteration (if specified)
 3. Apply `offset` (skip entries)
 4. Apply `limit` (truncate results)
 
-### With `sortBy`
+### With Aggregation (`min`/`max`/`avg`/`groupBy`/`count`)
+
+1. Collect all entries from all files
+2. If `sortBy` is specified, sort entries:
+   - If `sortBy === "random()"`: shuffle randomly
+   - Otherwise: sort by field value using `compareSafe()`
+3. Group entries by `groupBy` fields (if specified)
+4. Per group, compute `min`, `max`, `avg`, `count` (if specified)
+5. Apply `offset` and `limit` to aggregated results
+
+### With `sortBy` (no aggregation)
+
 1. Collect all entries from all files
 2. Sort entries:
    - If `sortBy === "random()"`: shuffle randomly
@@ -136,6 +292,7 @@ Determines the sort direction when `sortBy` is specified.
 ## **Examples**
 
 ### Basic Pagination
+
 ```javascript
 // Get page 2 with 10 items per page
 {
@@ -147,6 +304,7 @@ Determines the sort direction when `sortBy` is specified.
 ```
 
 ### Sort by Field Descending
+
 ```javascript
 // Get users sorted by age (oldest first)
 {
@@ -170,6 +328,7 @@ Determines the sort direction when `sortBy` is specified.
 ```
 
 ### Reverse Order
+
 ```javascript
 // Get results in reverse file order
 {
@@ -182,6 +341,7 @@ Determines the sort direction when `sortBy` is specified.
 ```
 
 ### Combined Options
+
 ```javascript
 // Complex query with sorting and pagination
 {
@@ -190,6 +350,35 @@ Determines the sort direction when `sortBy` is specified.
         sortAsc: false,  // Newest first
         offset: 0,
         limit: 20
+    }
+}
+```
+
+### Aggregate per Group
+
+```javascript
+// Get count, min, max, avg price per category
+{
+    dbFindOpts: {
+        groupBy: "category",
+        count: { itemCount: "id" },
+        min: { minPrice: "price" },
+        max: { maxPrice: "price" },
+        avg: { avgPrice: "price" }
+    }
+}
+```
+
+### Global Aggregation (no grouping)
+
+```javascript
+// Stats across all entries
+{
+    dbFindOpts: {
+        count: { total: "id" },
+        min: { youngest: "age" },
+        max: { oldest: "age" },
+        avg: { averageAge: "age" }
     }
 }
 ```
