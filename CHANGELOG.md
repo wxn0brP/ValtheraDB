@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.111.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.110.0...v0.111.0) (2026-05-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* bump deps
+
+* bump deps ([b3cac23](https://github.com/wxn0brP/ValtheraDB/commit/b3cac236fe3d80e407bee0cc821a94e0689b0038))
+
 ## [0.110.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.100.2...v0.110.0) (2026-05-17)
 
 ### [0.100.2](https://github.com/wxn0brP/ValtheraDB/compare/v0.100.2-alpha.1...v0.100.2) (2026-04-26)
