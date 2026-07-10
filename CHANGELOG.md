@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.112.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.111.0...v0.112.0) (2026-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* valthera remote
+* bump deps & integrate resolver
+
+### Features
+
+* bump deps & integrate resolver ([3558b99](https://github.com/wxn0brP/ValtheraDB/commit/3558b993fe811117fa1e83e88111a750de2cdfa7))
+
+
+### Bug Fixes
+
+* valthera remote ([04bde2e](https://github.com/wxn0brP/ValtheraDB/commit/04bde2e9d5db07dc46dc142b2e8155c33e29e31a))
+
 ## [0.111.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.110.0...v0.111.0) (2026-05-27)
 
 
