@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-import { Valthera } from "./valthera";
+
+import { ValtheraClass } from "@wxn0brp/db-core";
+import { createFileActions } from "@wxn0brp/db-storage-dir";
 
 const args = process.argv.slice(2);
 if (args.length < 2) {
@@ -17,7 +19,9 @@ const opts = args.map((arg) => {
     }
 });
 
-const db = new Valthera(path);
+const db = new ValtheraClass({
+    adapter: createFileActions(path)
+});
 try {
     const res = await db.c(opts.shift())[op](...opts);
     console.log(JSON.stringify(res));
