@@ -14,6 +14,7 @@ import { Valthera } from "./valthera";
  * 
  * @param cfg - The configuration object or string for the database.
  * @returns A new instance of DataBaseRemote or DataBase.
+ * @deprecated
  */
 export function ValtheraAutoRemoteCreate(cfg: string | RemoteConfig): ValtheraCompatible {
     if (typeof cfg === "object" || cfg.startsWith("http")) return new ValtheraRemote(cfg);
