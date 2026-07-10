@@ -1,4 +1,4 @@
-import { Remote } from "@wxn0brp/db-client/remote";
+import { RemoteConfig } from "@wxn0brp/db-client/remote";
 import { ValtheraRemote } from "@wxn0brp/db-client/valthera";
 import { forgeTypedValthera } from "@wxn0brp/db-core";
 import { Data } from "@wxn0brp/db-core/types/data";
@@ -15,7 +15,7 @@ import { Valthera } from "./valthera";
  * @param cfg - The configuration object or string for the database.
  * @returns A new instance of DataBaseRemote or DataBase.
  */
-export function ValtheraAutoRemoteCreate(cfg: string | Remote): ValtheraCompatible {
+export function ValtheraAutoRemoteCreate(cfg: string | RemoteConfig): ValtheraCompatible {
     if (typeof cfg === "object" || cfg.startsWith("http")) return new ValtheraRemote(cfg);
     return new Valthera(cfg);
 }
