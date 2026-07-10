@@ -1,4 +1,4 @@
-# Predefined Search Options Quick Reference
+# Search Operators
 
 ## Operators
 

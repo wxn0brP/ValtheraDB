@@ -177,5 +177,6 @@ import type { VQueryT } from "@wxn0brp/db-core/types/query";
 ## Next Steps
 
 - Read [Core Concepts](core_concepts.md) for ValtheraDB philosophy
-- Explore [Updater Operators](updater.md) for advanced updates
-- Learn about [Relations](relation.md) for cross-collection queries
+- Explore [Updater Operators](api/updater.md) for advanced updates
+- Learn about [Relations](api/relation.md) for cross-collection queries
+- Browse the [Ecosystem](ecosystem/adapters.md) for ready-made storage adapters

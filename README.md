@@ -47,25 +47,16 @@ In short, if you value flexibility and control over rigid conventions, you'll fe
 
 ## Key Features at a Glance
 
-*   🧱 **Pluggable Storage Engine:** Bring your own storage adapter.
-*   🤝 **Powerful Cross-Database Relations:** Create relationships between data across entirely separate database instances.
-*   🧠 **Familiar MongoDB-like API:** Start working quickly with an intuitive and expressive query language.
-*   🌐 **Runs Everywhere:** Optimized for **Bun**, great with **Node.js**, and fully capable in the **browser**.
-*   🚀 **Client-Server Ready:** Scale from an embedded solution to a client-server architecture when you need to.
-*   🚫 **Zero Configuration:** Point it to a directory, and you're good to go.
+*   **Pluggable Storage Engine:** Bring your own storage adapter.
+*   **Powerful Cross-Database Relations:** Create relationships between data across entirely separate database instances.
+*   **Familiar MongoDB-like API:** Start working quickly with an intuitive and expressive query language.
+*   **Runs Everywhere:** Optimized for **Bun**, great with **Node.js**, and fully capable in the **browser**.
+*   **Client-Server Ready:** Scale from an embedded solution to a client-server architecture when you need to.
+*   **Zero Configuration:** Point it to a directory, and you're good to go.
 
 ## Where to Go Next?
 
-- **Documentation Website**: [https://wxn0brp.github.io/ValtheraDB/](https://wxn0brp.github.io/ValtheraDB/)
-- **[Getting Started](docs/getting_started.md):** Jump into our hands-on tutorial and build your first application with ValtheraDB.
-- **[Core Concepts](docs/core_concepts.md):** Learn about the fundamental ideas that make ValtheraDB unique.
-- **API Reference:**
-    - [Valthera Class](docs/valthera.md)
-    - [Relations](docs/relation.md)
-    - [Search Operators](docs/search_opts.md)
-    - [Update Operators](docs/updater.md)
-    - [Find Options](docs/find_opts.md)
-    - [Remote](docs/remote.md)
+-> **Documentation**: [https://wxn0brp.github.io/ValtheraDB/](https://wxn0brp.github.io/ValtheraDB/)
 
 ## License
 

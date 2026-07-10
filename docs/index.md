@@ -24,12 +24,13 @@ In short, if you value flexibility and control over rigid conventions, you'll fe
 
 ## Key Features at a Glance
 
-*   🧱 **Pluggable Storage Engine:** Bring your own storage adapter.
-*   🤝 **Powerful Cross-Database Relations:** Create relationships between data across entirely separate database instances.
-*   🧠 **Familiar MongoDB-like API:** Start working quickly with an intuitive and expressive query language.
-*   🌐 **Runs Everywhere:** Optimized for **Bun**, great with **Node.js**, and fully capable in the **browser**.
-*   🚀 **Client-Server Ready:** Scale from an embedded solution to a client-server architecture when you need to.
-*   🚫 **Zero Configuration:** Point it to a directory, and you're good to go.
+*   **Pluggable Storage Engine:** Bring your own storage adapter.
+*   **Powerful Cross-Database Relations:** Create relationships between data across entirely separate database instances.
+*   **Familiar MongoDB-like API:** Start working quickly with an intuitive and expressive query language.
+*   **Runs Everywhere:** Optimized for **Bun**, great with **Node.js**, and fully capable in the **browser**.
+*   **Client-Server Ready:** Scale from an embedded solution to a client-server architecture when you need to.
+*   **Zero Configuration:** Point it to a directory, and you're good to go.
+*   **Flexible API:** `ValtheraCreate()` for simplicity, `VDB()` for adapter switching via environment variables.
 
 ## Where to Go Next?
 
@@ -37,11 +38,20 @@ In short, if you value flexibility and control over rigid conventions, you'll fe
 *   **[Core Concepts](core_concepts.md):** Learn about the fundamental ideas that make ValtheraDB unique.
 *   **[Versioning](versioning.md):** Understand how ValtheraDB handles versioning and compatibility.
 *   **API Reference:**
-    *   [Collection](collection.md)
-    *   [Valthera Class](valthera.md)
-    *   [Relations](relation.md)
-    *   [Search Operators](search_opts.md)
-    *   [Update Operators](updater.md)
-    *   [Find Options](find_opts.md)
-    *   [DB Find Options](db_find_opts.md)
-    *   [Remote](remote.md)
+    *   [Collection](api/collection.md)
+    *   [Valthera Class](api/valthera.md)
+    *   [Relations](api/relation.md)
+    *   [Search Operators](api/search_opts.md)
+    *   [Update Operators](api/updater.md)
+    *   [Find Options](api/find_opts.md)
+    *   [DB Find Options](api/db_find_opts.md)
+    *   [Remote](api/remote.md)
+*   **Ecosystem:**
+    *   [Storage Adapters](ecosystem/adapters.md): All supported storage backends with quick-start guides.
+    *   [Server](ecosystem/server.md): Deploy your own ValtheraDB HTTP server.
+    *   [CLI](ecosystem/cli.md): Command-line tool for database management.
+    *   [Conduit](ecosystem/conduit.md): Embed ValtheraDB from any language via stdio protocol.
+    *   [Extensions](ecosystem/extensions.md): CRDT replication, indexing, and file locking.
+    *   [Other Tools](ecosystem/tools.md): Benchmark, E2E tests, snapshot, resolver, and more.
+*   **Dev's Tutorials:**
+    *   [Adapters](dev/adapter.md): Step-by-step guide to creating your own storage adapter.

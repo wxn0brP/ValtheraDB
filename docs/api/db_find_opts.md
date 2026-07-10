@@ -1,4 +1,4 @@
-# dbFindOpts Quick Reference
+# DbFindOpts (Post-Retrieval Processing)
 
 ## **Description**
 

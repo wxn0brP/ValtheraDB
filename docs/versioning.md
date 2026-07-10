@@ -16,8 +16,8 @@ The relationship between the meta-package and the core is **synchronized**.
 
 | Package | Version | Meaning |
 | :--- | :--- | :--- |
-| `@wxn0brp/db-core` | `0.9.0` | Core logic version |
-| `@wxn0brp/db` | `0.90.0` | **Matches Core version** |
+| `@wxn0brp/db-core` | `0.11.0` | Core logic version |
+| `@wxn0brp/db` | `0.110.0` | **Matches Core version** |
 
 *   **Rule:** `@wxn0brp/db` always mirrors the `Minor` and `Patch` version of `@wxn0brp/db-core`.
 *   **Exception:** If the meta-package itself requires a fix independent of core, the `Patch` version may increment slightly higher, but the `Minor` version will always match the Core.
@@ -40,16 +40,16 @@ Adapters have independent lifecycles but strict compatibility requirements with 
 
 | Adapter Version | Decoded Meaning |
 | :--- | :--- |
-| `0.90.5` | Works with **Core 0.9.x**, Adapter Series **0**, Patch **5** |
-| `0.91.0` | Works with **Core 0.9.x**, Adapter Series **1** (Breaking Change), Patch **0** |
-| `0.100.0` | Works with **Core 0.10.x**, Adapter Series **0**, Patch **0** |
-| `0.90.6` | Works with **Core 0.9.x**, Updated to require **Core 0.9.2** (Patch requirement) |
+| `0.110.5` | Works with **Core 0.11.x**, Adapter Series **0**, Patch **5** |
+| `0.111.0` | Works with **Core 0.11.x**, Adapter Series **1** (Breaking Change), Patch **0** |
+| `0.120.0` | Works with **Core 0.12.x**, Adapter Series **0**, Patch **0** |
+| `0.110.6` | Works with **Core 0.11.x**, Updated to require **Core 0.11.2** (Patch requirement) |
 
 ### Version Change Triggers
 
 | Event | Adapter Version Change | Example |
 | :--- | :--- | :--- |
-| **Adapter Bugfix** | `B + 1` | `0.90.5` -> `0.90.6` |
-| **Adapter Breaking Change** | `A + 1`, `B = 0` | `0.90.5` -> `0.91.0` |
-| **Core Minor Update** (e.g., 0.9 -> 0.10) | `C + 1`, `A = 0`, `B = 0` | `0.91.5` -> `0.100.0` |
-| **Core Patch Requirement** (e.g., security fix) | `B + 1` | `0.90.5` -> `0.90.6` |
+| **Adapter Bugfix** | `B + 1` | `0.110.5` -> `0.110.6` |
+| **Adapter Breaking Change** | `A + 1`, `B = 0` | `0.110.5` -> `0.111.0` |
+| **Core Minor Update** (e.g., 0.11 -> 0.12) | `C + 1`, `A = 0`, `B = 0` | `0.111.5` -> `0.120.0` |
+| **Core Patch Requirement** (e.g., security fix) | `B + 1` | `0.110.5` -> `0.110.6` |

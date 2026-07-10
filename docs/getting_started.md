@@ -34,7 +34,9 @@ Now you're ready to start using it in your code.
 
 ValtheraDB is an embedded database, which means it runs directly within your application. To get started, you just need to point it to a directory where it can store its data.
 
-Let's create our database instance.
+### Simple Setup (dir adapter)
+
+Let's create our database instance using `ValtheraCreate()`:
 
 ```typescript
 import { ValtheraCreate } from "@wxn0brp/db";
@@ -55,6 +57,37 @@ const db = ValtheraCreate<{
   };
 }>("./my-blog-db");
 ```
+
+### Flexible Setup (switch adapters via env)
+
+If you may need to switch storage adapters later, use `VDB()`:
+
+```typescript
+import { VDB } from "@wxn0brp/db";
+
+// Create a new database instance - same API, but adapter can be changed via env
+const db = VDB<{
+  users: {
+    name: string;
+    email: string;
+    _id: string;
+  };
+  posts: {
+    title: string;
+    content: string;
+    authorId: string;
+    _id: string;
+  };
+}>().dir("./my-blog-db");
+
+// Later, switch to SQLite without code changes:
+// VALTHERA_MASTER=sqlite VALTHERA_MASTER_OPTS=["./db.sqlite"] bun run app.ts
+```
+
+**When to use which?**
+
+- `ValtheraCreate()` - simple apps, prototypes, dir adapter only
+- `VDB()` - need to switch adapters, env-driven deployment, production apps
 
 If you run this code, a new folder named `my-blog-db` will be created in your project. This is where all your collections and documents will live. It's that simple!
 
@@ -144,7 +177,7 @@ async function updateAuthor() {
 updateAuthor();
 ```
 
-The `db.updateOne()` method takes a search query and an updater object. It finds the *first* document matching the query and applies the updates. For more complex updates (like incrementing numbers or manipulating arrays), you can use [Updater Operators](updater.md).
+The `db.updateOne()` method takes a search query and an updater object. It finds the *first* document matching the query and applies the updates. For more complex updates (like incrementing numbers or manipulating arrays), you can use [Updater Operators](api/updater.md).
 
 ## Step 6: Updating or Adding (Upsert)
 
@@ -270,5 +303,5 @@ The `console.dir` output will show you the user object with a new `posts` array 
 Congratulations! You've just scratched the surface of what ValtheraDB can do.
 
 - Ready to learn about the fundamental ideas behind ValtheraDB? Dive into our **[Core Concepts](core_concepts.md)** page.
-- Want to see all the powerful ways you can query your data? Check out the **[Search Options](search_opts.md)**.
-- Curious about how to perform complex data updates? Read the **[Updater](updater.md)** documentation.
+- Want to see all the powerful ways you can query your data? Check out the **[Search Options](api/search_opts.md)**.
+- Curious about how to perform complex data updates? Read the **[Updater](api/updater.md)** documentation.

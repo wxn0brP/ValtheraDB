@@ -17,16 +17,23 @@ nav:
   - Core Concepts: core_concepts.md
   - Versioning: versioning.md
   - API Reference:
-      - Collection: collection.md
-      - Valthera: valthera.md
-      - Relation: relation.md
-      - Search Options: search_opts.md
-      - Find Options: find_opts.md
-      - DB Find Options: db_find_opts.md
-      - Updater: updater.md
-      - Remote: remote.md
+      - Collection: api/collection.md
+      - Valthera: api/valthera.md
+      - Relation: api/relation.md
+      - Search Options: api/search_opts.md
+      - Find Options: api/find_opts.md
+      - DB Find Options: api/db_find_opts.md
+      - Updater: api/updater.md
+      - Remote: api/remote.md
+  - Ecosystem:
+      - Storage Adapters: ecosystem/adapters.md
+      - Extensions: ecosystem/extensions.md
+      - Server: ecosystem/server.md
+      - CLI: ecosystem/cli.md
+      - Conduit: ecosystem/conduit.md
+      - Other Tools: ecosystem/tools.md
   - Dev's Tutorials:
-      - Adapters: adapter.md
+      - Adapters: dev/adapter.md
 
 markdown_extensions:
   - pymdownx.highlight
