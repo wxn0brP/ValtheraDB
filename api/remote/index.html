@@ -8,31 +8,31 @@
       
       
       
-        <link rel="canonical" href="https://wxn0brp.github.io/ValtheraDB/valthera/">
+        <link rel="canonical" href="https://wxn0brp.github.io/ValtheraDB/api/remote/">
       
       
-        <link rel="prev" href="../collection/">
+        <link rel="prev" href="../updater/">
       
       
-        <link rel="next" href="../relation/">
+        <link rel="next" href="../../ecosystem/adapters/">
       
       
         
       
       
-      <link rel="icon" href="../logo.svg">
+      <link rel="icon" href="../../logo.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Valthera - ValtheraDB Docs</title>
+        <title>Remote - ValtheraDB Docs</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,7 +51,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#valtheradb-documentation" class="md-skip">
+        <a href="#remote-valthera-and-graph-valthera-client-documentation" class="md-skip">
           Skip to content
         </a>
       
@@ -92,9 +92,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="ValtheraDB Docs" class="md-header__button md-logo" aria-label="ValtheraDB Docs" data-md-component="logo">
+    <a href="../.." title="ValtheraDB Docs" class="md-header__button md-logo" aria-label="ValtheraDB Docs" data-md-component="logo">
       
-  <img src="../logo.svg" alt="logo">
+  <img src="../../logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Valthera
+              Remote
             
           </span>
         </div>
@@ -213,9 +213,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="ValtheraDB Docs" class="md-nav__button md-logo" aria-label="ValtheraDB Docs" data-md-component="logo">
+    <a href="../.." title="ValtheraDB Docs" class="md-nav__button md-logo" aria-label="ValtheraDB Docs" data-md-component="logo">
       
-  <img src="../logo.svg" alt="logo">
+  <img src="../../logo.svg" alt="logo">
 
     </a>
     ValtheraDB Docs
@@ -242,7 +242,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -269,7 +269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting_started/" class="md-nav__link">
+      <a href="../../getting_started/" class="md-nav__link">
         
   
   
@@ -296,7 +296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core_concepts/" class="md-nav__link">
+      <a href="../../core_concepts/" class="md-nav__link">
         
   
   
@@ -323,7 +323,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../versioning/" class="md-nav__link">
+      <a href="../../versioning/" class="md-nav__link">
         
   
   
@@ -424,37 +424,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Valthera
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../valthera/" class="md-nav__link">
         
   
   
@@ -470,87 +443,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#class-valthera" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Class: Valthera
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Class: Valthera">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#async-getcollections" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async getCollections()
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-ensurecollectioncollection" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async ensureCollection(collection)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-issetcollectioncollection" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async issetCollection(collection)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-removecollectioncollection" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async removeCollection(collection)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -700,10 +592,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../remote/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -719,6 +638,65 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#remote-object-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        remote Object Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-valtheraremoteremote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Class: ValtheraRemote(remote)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Class: ValtheraRemote(remote)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -756,7 +734,7 @@
   <span class="md-ellipsis">
     
   
-    Dev's Tutorials
+    Ecosystem
   
 
     
@@ -769,6 +747,228 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ecosystem
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ecosystem/adapters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Adapters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ecosystem/extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extensions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ecosystem/server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ecosystem/cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ecosystem/conduit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conduit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ecosystem/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Other Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dev's Tutorials
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -785,7 +985,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../adapter/" class="md-nav__link">
+      <a href="../../dev/adapter/" class="md-nav__link">
         
   
   
@@ -840,55 +1040,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#class-valthera" class="md-nav__link">
+  <a href="#remote-object-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Class: Valthera
+        remote Object Structure
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Class: Valthera">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-valtheraremoteremote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Class: ValtheraRemote(remote)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Class: ValtheraRemote(remote)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#async-getcollections" class="md-nav__link">
+  <a href="#example-usage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async getCollections()
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-ensurecollectioncollection" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async ensureCollection(collection)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-issetcollectioncollection" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async issetCollection(collection)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-removecollectioncollection" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async removeCollection(collection)
+        Example Usage
       
     </span>
   </a>
@@ -920,65 +1098,25 @@
   
 
 
-<h1 id="valtheradb-documentation">ValtheraDB Documentation</h1>
-<h2 id="class-valthera">Class: <code>Valthera</code></h2>
-<h3 id="async-getcollections"><code>async getCollections()</code></h3>
-<p>Gets the names of all available collections in the database.</p>
+<h1 id="remote-valthera-and-graph-valthera-client-documentation">Remote Valthera and Graph Valthera Client Documentation</h1>
+<h2 id="remote-object-structure"><code>remote</code> Object Structure</h2>
 <ul>
-<li><strong>Returns:</strong><ul>
-<li><code>Promise&lt;string[]&gt;</code>: A promise that resolves with an array of collection names.</li>
+<li><code>name</code> (<code>string</code>): The name of the Valthera.</li>
+<li><code>url</code> (<code>string</code>): The URL of the remote Valthera.</li>
+<li><code>auth</code> (<code>string</code>): The authentication token for accessing the Valthera.</li>
 </ul>
-</li>
-</ul>
-<h3 id="async-ensurecollectioncollection"><code>async ensureCollection(collection)</code></h3>
-<p>Ensures that the specified collection exists. If the collection does not exist, it will be created.</p>
-<ul>
-<li><strong>Parameters:</strong><ul>
-<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
-</ul>
-</li>
-<li><strong>Returns:</strong><ul>
-<li><code>Promise&lt;boolean&gt;</code>: The returned value is <strong>adapter-dependent</strong> and must not be relied upon.</li>
-</ul>
-</li>
-<li><strong>Notes:</strong><ul>
-<li>Guarantees that the collection exists after the method resolves.</li>
-<li>The boolean result has no standardized meaning and should be treated as <code>void</code>.</li>
-</ul>
-</li>
-</ul>
-<h3 id="async-issetcollectioncollection"><code>async issetCollection(collection)</code></h3>
-<p>Checks if a collection exists.</p>
-<ul>
-<li><strong>Parameters:</strong><ul>
-<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
-</ul>
-</li>
-<li><strong>Returns:</strong><ul>
-<li><code>Promise&lt;boolean&gt;</code>: A promise that resolves to <code>true</code> if the collection exists, otherwise <code>false</code>.</li>
-</ul>
-</li>
-</ul>
-<h3 id="async-removecollectioncollection"><code>async removeCollection(collection)</code></h3>
-<p>Deletes the collection.</p>
-<ul>
-<li>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>collection</code> (<code>string</code>): The name of the collection to remove.</li>
-</ul>
-</li>
-<li>
-<p><strong>Returns:</strong></p>
-<ul>
-<li><code>Promise&lt;boolean&gt;</code>: A promise that resolves when the collection is removed.<ul>
-<li><code>true</code>: The collection was successfully removed.</li>
-<li><code>false</code>: The collection was not found (i.e., it did not exist, so there was nothing to remove).</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<h2 id="class-valtheraremoteremote">Class: <code>ValtheraRemote(remote)</code></h2>
+<p><code>ValtheraRemote</code> is an extended version of the <code>Valthera</code> class, designed to handle API requests. It provides the same functionalities as <code>Valthera</code>, but enables remote communication, allowing you to interact with Valthera through HTTP requests.</p>
+<h3 id="example-usage">Example Usage</h3>
+<p><div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">remoteDB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraRemote</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;myRemoteDB&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;https://example.com/db&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">auth</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;your-auth-token&#39;</span>
+<span class="p">});</span>
+</code></pre></div>
+or
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">remoteDB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraRemote</span><span class="p">(</span><span class="s1">&#39;https://dbName:token@example.com/db&#39;</span><span class="p">);</span>
+</code></pre></div></p>
 
 
 
@@ -1028,10 +1166,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

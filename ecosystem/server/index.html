@@ -8,31 +8,31 @@
       
       
       
-        <link rel="canonical" href="https://wxn0brp.github.io/ValtheraDB/versioning/">
+        <link rel="canonical" href="https://wxn0brp.github.io/ValtheraDB/ecosystem/server/">
       
       
-        <link rel="prev" href="../core_concepts/">
+        <link rel="prev" href="../extensions/">
       
       
-        <link rel="next" href="../api/collection/">
+        <link rel="next" href="../cli/">
       
       
         
       
       
-      <link rel="icon" href="../logo.svg">
+      <link rel="icon" href="../../logo.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Versioning - ValtheraDB Docs</title>
+        <title>Server - ValtheraDB Docs</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,7 +51,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ecosystem-versioning-compatibility-policy" class="md-skip">
+        <a href="#server" class="md-skip">
           Skip to content
         </a>
       
@@ -92,9 +92,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="ValtheraDB Docs" class="md-header__button md-logo" aria-label="ValtheraDB Docs" data-md-component="logo">
+    <a href="../.." title="ValtheraDB Docs" class="md-header__button md-logo" aria-label="ValtheraDB Docs" data-md-component="logo">
       
-  <img src="../logo.svg" alt="logo">
+  <img src="../../logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Versioning
+              Server
             
           </span>
         </div>
@@ -213,9 +213,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="ValtheraDB Docs" class="md-nav__button md-logo" aria-label="ValtheraDB Docs" data-md-component="logo">
+    <a href="../.." title="ValtheraDB Docs" class="md-nav__button md-logo" aria-label="ValtheraDB Docs" data-md-component="logo">
       
-  <img src="../logo.svg" alt="logo">
+  <img src="../../logo.svg" alt="logo">
 
     </a>
     ValtheraDB Docs
@@ -242,7 +242,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -269,7 +269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting_started/" class="md-nav__link">
+      <a href="../../getting_started/" class="md-nav__link">
         
   
   
@@ -296,7 +296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core_concepts/" class="md-nav__link">
+      <a href="../../core_concepts/" class="md-nav__link">
         
   
   
@@ -320,37 +320,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Versioning
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../versioning/" class="md-nav__link">
         
   
   
@@ -366,98 +339,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-package-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Package Structure
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-core-meta-package-versioning" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Core &amp; Meta Package Versioning
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-adapter-versioning-scheme-0cab" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Adapter Versioning Scheme (0.CA.B)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. Adapter Versioning Scheme (0.CA.B)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#the-formula" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Formula
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Examples
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#version-change-triggers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Version Change Triggers
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -516,7 +397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/collection/" class="md-nav__link">
+      <a href="../../api/collection/" class="md-nav__link">
         
   
   
@@ -544,7 +425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/valthera/" class="md-nav__link">
+      <a href="../../api/valthera/" class="md-nav__link">
         
   
   
@@ -572,7 +453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/relation/" class="md-nav__link">
+      <a href="../../api/relation/" class="md-nav__link">
         
   
   
@@ -600,7 +481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/search_opts/" class="md-nav__link">
+      <a href="../../api/search_opts/" class="md-nav__link">
         
   
   
@@ -628,7 +509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/find_opts/" class="md-nav__link">
+      <a href="../../api/find_opts/" class="md-nav__link">
         
   
   
@@ -656,7 +537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/db_find_opts/" class="md-nav__link">
+      <a href="../../api/db_find_opts/" class="md-nav__link">
         
   
   
@@ -684,7 +565,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/updater/" class="md-nav__link">
+      <a href="../../api/updater/" class="md-nav__link">
         
   
   
@@ -712,7 +593,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/remote/" class="md-nav__link">
+      <a href="../../api/remote/" class="md-nav__link">
         
   
   
@@ -744,18 +625,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -776,7 +659,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -794,7 +677,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ecosystem/adapters/" class="md-nav__link">
+      <a href="../adapters/" class="md-nav__link">
         
   
   
@@ -822,7 +705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ecosystem/extensions/" class="md-nav__link">
+      <a href="../extensions/" class="md-nav__link">
         
   
   
@@ -847,10 +730,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../ecosystem/server/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -866,6 +776,48 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#php-server-mariadbmysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PHP Server (MariaDB/MySQL)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -878,7 +830,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ecosystem/cli/" class="md-nav__link">
+      <a href="../cli/" class="md-nav__link">
         
   
   
@@ -906,7 +858,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ecosystem/conduit/" class="md-nav__link">
+      <a href="../conduit/" class="md-nav__link">
         
   
   
@@ -934,7 +886,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ecosystem/tools/" class="md-nav__link">
+      <a href="../tools/" class="md-nav__link">
         
   
   
@@ -1016,7 +968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dev/adapter/" class="md-nav__link">
+      <a href="../../dev/adapter/" class="md-nav__link">
         
   
   
@@ -1071,10 +1023,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-package-structure" class="md-nav__link">
+  <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Package Structure
+        Quick Start
       
     </span>
   </a>
@@ -1082,63 +1034,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-core-meta-package-versioning" class="md-nav__link">
+  <a href="#php-server-mariadbmysql" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Core &amp; Meta Package Versioning
+        PHP Server (MariaDB/MySQL)
       
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-adapter-versioning-scheme-0cab" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Adapter Versioning Scheme (0.CA.B)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. Adapter Versioning Scheme (0.CA.B)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#the-formula" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Formula
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Examples
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#version-change-triggers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Version Change Triggers
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1162,110 +1064,17 @@
   
 
 
-<h1 id="ecosystem-versioning-compatibility-policy">Ecosystem Versioning &amp; Compatibility Policy</h1>
-<p>This document explains how versioning works across our multi-repo structure, specifically focusing on the relationship between the core library, the meta-package, and storage adapters.</p>
-<h2 id="1-package-structure">1. Package Structure</h2>
-<p>Our ecosystem consists of three types of packages:</p>
-<ol>
-<li><strong><code>@wxn0brp/db-core</code></strong> – The foundational logic and interfaces.</li>
-<li><strong><code>@wxn0brp/db</code></strong> – The meta-package (entry point) that re-exports core functionality.</li>
-<li><strong>Adapters</strong> (e.g., <code>@wxn0brp/db-storage-dir</code>) – Implementation-specific packages that depend on <code>db-core</code>.</li>
-</ol>
-<h2 id="2-core-meta-package-versioning">2. Core &amp; Meta Package Versioning</h2>
-<p>The relationship between the meta-package and the core is <strong>synchronized</strong>.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Package</th>
-<th style="text-align: left;">Version</th>
-<th style="text-align: left;">Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><code>@wxn0brp/db-core</code></td>
-<td style="text-align: left;"><code>0.11.0</code></td>
-<td style="text-align: left;">Core logic version</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>@wxn0brp/db</code></td>
-<td style="text-align: left;"><code>0.110.0</code></td>
-<td style="text-align: left;"><strong>Matches Core version</strong></td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><strong>Rule:</strong> <code>@wxn0brp/db</code> always mirrors the <code>Minor</code> and <code>Patch</code> version of <code>@wxn0brp/db-core</code>.</li>
-<li><strong>Exception:</strong> If the meta-package itself requires a fix independent of core, the <code>Patch</code> version may increment slightly higher, but the <code>Minor</code> version will always match the Core.</li>
-</ul>
-<h2 id="3-adapter-versioning-scheme-0cab">3. Adapter Versioning Scheme (<code>0.CA.B</code>)</h2>
-<p>Adapters have independent lifecycles but strict compatibility requirements with <code>db-core</code>. To make compatibility visible directly in the version number, we use a custom encoding scheme.</p>
-<h3 id="the-formula">The Formula</h3>
-<div class="highlight"><pre><span></span><code>0.CA.B
-│ || |-- B: Adapter Patch (Bugfixes or Core Patch requirement)
-│ ||---- A: Adapter Series (Adapter Breaking Changes)
-│ |----- C: Core Minor Version
-|------- Major (Always 0)
+<h1 id="server">Server</h1>
+<p>HTTP server for ValtheraDB on port 14785. Built on FalconFrame with JWT auth, GateWarden permissions (RBAC/ACL/ABAC), Web GUI, and SQL/CSV import/export.</p>
+<h2 id="quick-start">Quick Start</h2>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">14785</span>:14785<span class="w"> </span>ghcr.io/wxn0brp/valthera-server
 </code></pre></div>
-<h3 id="examples">Examples</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Adapter Version</th>
-<th style="text-align: left;">Decoded Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><code>0.110.5</code></td>
-<td style="text-align: left;">Works with <strong>Core 0.11.x</strong>, Adapter Series <strong>0</strong>, Patch <strong>5</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>0.111.0</code></td>
-<td style="text-align: left;">Works with <strong>Core 0.11.x</strong>, Adapter Series <strong>1</strong> (Breaking Change), Patch <strong>0</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>0.120.0</code></td>
-<td style="text-align: left;">Works with <strong>Core 0.12.x</strong>, Adapter Series <strong>0</strong>, Patch <strong>0</strong></td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>0.110.6</code></td>
-<td style="text-align: left;">Works with <strong>Core 0.11.x</strong>, Updated to require <strong>Core 0.11.2</strong> (Patch requirement)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="version-change-triggers">Version Change Triggers</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Event</th>
-<th style="text-align: left;">Adapter Version Change</th>
-<th style="text-align: left;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>Adapter Bugfix</strong></td>
-<td style="text-align: left;"><code>B + 1</code></td>
-<td style="text-align: left;"><code>0.110.5</code> -&gt; <code>0.110.6</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Adapter Breaking Change</strong></td>
-<td style="text-align: left;"><code>A + 1</code>, <code>B = 0</code></td>
-<td style="text-align: left;"><code>0.110.5</code> -&gt; <code>0.111.0</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Core Minor Update</strong> (e.g., 0.11 -&gt; 0.12)</td>
-<td style="text-align: left;"><code>C + 1</code>, <code>A = 0</code>, <code>B = 0</code></td>
-<td style="text-align: left;"><code>0.111.5</code> -&gt; <code>0.120.0</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Core Patch Requirement</strong> (e.g., security fix)</td>
-<td style="text-align: left;"><code>B + 1</code></td>
-<td style="text-align: left;"><code>0.110.5</code> -&gt; <code>0.110.6</code></td>
-</tr>
-</tbody>
-</table>
+<h2 id="php-server-mariadbmysql">PHP Server (MariaDB/MySQL)</h2>
+<p>Alternative PHP implementation for SQL databases.</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/wxn0brP/ValtheraDB-server-php.git
+</code></pre></div>
+<p>Configure via <code>config.php</code>, API compatible with main server.</p>
+<p>-&gt; <a href="https://github.com/wxn0brP/ValtheraDB-server/tree/master/docs">Full Server Docs</a> | <a href="https://github.com/wxn0brP/ValtheraDB-server-php">PHP Server</a></p>
 
 
 
@@ -1315,10 +1124,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
