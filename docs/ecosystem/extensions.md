@@ -1,6 +1,7 @@
 # Extensions
 
-Extensions add functionality on top of ValtheraDB - replication, indexing, and concurrency control.
+Extensions add functionality on top of ValtheraDB -
+replication, indexing, and concurrency control.
 
 | Package | What it does | Install | Repo |
 |---------|-------------|---------|------|

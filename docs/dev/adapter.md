@@ -1,6 +1,8 @@
 # ValtheraDB Storage Adapter Tutorial
 
-This guide shows you how to create custom storage adapters for ValtheraDB. Adapters are organized into **levels** based on complexity - start from the level that matches your needs.
+This guide shows you how to create custom storage adapters for ValtheraDB.
+Adapters are organized into **levels** based on complexity -
+start from the level that matches your needs.
 
 ## Architecture Overview
 
@@ -112,7 +114,8 @@ Key points:
 
 ### Example: SQLite Adapter
 
-See full implementation: [ValtheraDB-storage-sqlite/src/index.ts](https://github.com/wxn0brP/ValtheraDB-storage-sqlite/blob/HEAD/src/index.ts)
+See full implementation:
+[ValtheraDB-storage-sqlite/src/index.ts](https://github.com/wxn0brP/ValtheraDB-storage-sqlite/blob/HEAD/src/index.ts)
 
 Key points:
 
@@ -123,7 +126,8 @@ Key points:
 
 ### Example: MongoDB Adapter
 
-See full implementation: [ValtheraDB-storage-mongodb/src/actions.ts](https://github.com/wxn0brP/ValtheraDB-storage-mongodb/blob/HEAD/src/actions.ts)
+See full implementation:
+[ValtheraDB-storage-mongodb/src/actions.ts](https://github.com/wxn0brP/ValtheraDB-storage-mongodb/blob/HEAD/src/actions.ts)
 
 Key points:
 
@@ -176,7 +180,7 @@ import type { VQueryT } from "@wxn0brp/db-core/types/query";
 
 ## Next Steps
 
-- Read [Core Concepts](core_concepts.md) for ValtheraDB philosophy
-- Explore [Updater Operators](api/updater.md) for advanced updates
-- Learn about [Relations](api/relation.md) for cross-collection queries
-- Browse the [Ecosystem](ecosystem/adapters.md) for ready-made storage adapters
+- Read [Core Concepts](../core_concepts.md) for ValtheraDB philosophy
+- Explore [Updater Operators](../api/updater.md) for advanced updates
+- Learn about [Relations](../api/relation.md) for cross-collection queries
+- Browse the [Ecosystem](../ecosystem/adapters.md) for ready-made storage adapters

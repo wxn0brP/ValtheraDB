@@ -1,6 +1,7 @@
 # Server
 
-HTTP server for ValtheraDB on port 14785. Built on FalconFrame with JWT auth, GateWarden permissions (RBAC/ACL/ABAC), Web GUI, and SQL/CSV import/export.
+HTTP server for ValtheraDB on port 14785. Built on FalconFrame with JWT auth,
+GateWarden permissions (RBAC/ACL/ABAC), Web GUI, and SQL/CSV import/export.
 
 ## Quick Start
 
@@ -18,4 +19,5 @@ git clone https://github.com/wxn0brP/ValtheraDB-server-php.git
 
 Configure via `config.php`, API compatible with main server.
 
--> [Full Server Docs](https://github.com/wxn0brP/ValtheraDB-server/tree/master/docs) | [PHP Server](https://github.com/wxn0brP/ValtheraDB-server-php)
+-> [Full Server Docs](https://github.com/wxn0brP/ValtheraDB-server/tree/master/docs) |
+[PHP Server](https://github.com/wxn0brP/ValtheraDB-server-php)

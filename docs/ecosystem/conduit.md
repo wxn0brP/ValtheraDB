@@ -1,6 +1,7 @@
 # Conduit
 
-Embeds ValtheraDB as a compiled Bun binary, communicates over stdin/stdout with a framed binary protocol (12-byte header + JSON payload).
+Embeds ValtheraDB as a compiled Bun binary, communicates over stdin/stdout
+with a framed binary protocol (12-byte header + JSON payload).
 
 Lets you drive ValtheraDB from any language - Go, Python, Rust, etc.
 
@@ -26,4 +27,5 @@ with conduit.ValtheraConduit("./vendor/vdb", auto_download=True) as c:
 - Frame types: INIT_DB, EXECUTE_JSON, CLOSE_DB, LIST_DBS, PING, SHUTDOWN
 - Max payload: 64MB, Max DB name: 4096 bytes
 
--> [Full Protocol Docs](https://github.com/wxn0brP/ValtheraDB-conduit#protocol) | [Python Bridge](https://github.com/wxn0brP/ValtheraDB-conduit/tree/master/python)
+-> [Full Protocol Docs](https://github.com/wxn0brP/ValtheraDB-conduit#protocol) | 
+[Python Bridge](https://github.com/wxn0brP/ValtheraDB-conduit/tree/master/python)

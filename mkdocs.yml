@@ -17,12 +17,16 @@ nav:
   - Core Concepts: core_concepts.md
   - Versioning: versioning.md
   - API Reference:
-      - Collection: api/collection.md
-      - Valthera: api/valthera.md
-      - Relation: api/relation.md
       - Search Options: api/search_opts.md
       - Find Options: api/find_opts.md
       - DB Find Options: api/db_find_opts.md
+      - Collection: api/collection.md
+      - Valthera: api/valthera.md
+      - Memory DB: api/memory.md
+      - Multi Storage: api/multi_storage.md
+      - Forge: api/forge.md
+      - ID Generation: api/id.md
+      - Relation: api/relation.md
       - Updater: api/updater.md
       - Remote: api/remote.md
   - Ecosystem:
@@ -34,6 +38,8 @@ nav:
       - Other Tools: ecosystem/tools.md
   - Dev's Tutorials:
       - Adapters: dev/adapter.md
+      - Plugins: dev/plugin.md
+      - Executor: dev/executor.md
 
 markdown_extensions:
   - pymdownx.highlight

@@ -1,6 +1,7 @@
 # CLI
 
-The `vdb` command-line tool for managing ValtheraDB databases. Supports add, find, update, remove, dev server, format, and upgrade.
+The `vdb` command-line tool for managing ValtheraDB databases.
+Supports add, find, update, remove, dev server, format, and upgrade.
 
 ```bash
 bun add -g @wxn0brp/db-cli

@@ -38,13 +38,17 @@ In short, if you value flexibility and control over rigid conventions, you'll fe
 *   **[Core Concepts](core_concepts.md):** Learn about the fundamental ideas that make ValtheraDB unique.
 *   **[Versioning](versioning.md):** Understand how ValtheraDB handles versioning and compatibility.
 *   **API Reference:**
-    *   [Collection](api/collection.md)
-    *   [Valthera Class](api/valthera.md)
-    *   [Relations](api/relation.md)
     *   [Search Operators](api/search_opts.md)
-    *   [Update Operators](api/updater.md)
     *   [Find Options](api/find_opts.md)
     *   [DB Find Options](api/db_find_opts.md)
+    *   [Collection](api/collection.md)
+    *   [Valthera Class](api/valthera.md)
+    *   [Memory DB](api/memory.md)
+    *   [Multi Storage](api/multi_storage.md)
+    *   [Forge](api/forge.md)
+    *   [ID Generation](api/id.md)
+    *   [Relations](api/relation.md)
+    *   [Update Operators](api/updater.md)
     *   [Remote](api/remote.md)
 *   **Ecosystem:**
     *   [Storage Adapters](ecosystem/adapters.md): All supported storage backends with quick-start guides.
@@ -55,3 +59,5 @@ In short, if you value flexibility and control over rigid conventions, you'll fe
     *   [Other Tools](ecosystem/tools.md): Benchmark, E2E tests, snapshot, resolver, and more.
 *   **Dev's Tutorials:**
     *   [Adapters](dev/adapter.md): Step-by-step guide to creating your own storage adapter.
+    *   [Plugins](dev/plugin.md): Learn how to write plugins.
+    *   [Executor](dev/executor.md): Understand how operations are queued and executed.

@@ -1,10 +1,12 @@
 # Storage Adapters
 
-ValtheraDB uses pluggable storage engines - every adapter implements the same `ActionsBase` interface with identical CRUD API.
+ValtheraDB uses pluggable storage engines -
+every adapter implements the same `ActionsBase` interface with identical CRUD API.
 
 ## Quick Start: VDB() API
 
-The easiest way to use adapters - auto-resolves based on config or env vars.
+The easiest way to use adapters -
+auto-resolves based on config or env vars.
 
 ```bash
 bun add @wxn0brp/db-resolver @wxn0brp/db-core
@@ -27,7 +29,8 @@ const db = VDB<{ users: { id: number; name: string } }>().dir("./data");
 await db.users.add({ id: 1, name: "Ala" });
 ```
 
-**Resolution order:** `force` option → `VALTHERA_<NAME>` env var → `def` fallback → `./vdb-data/<name>`
+**Resolution order:** `force` option -> `VALTHERA_<NAME>`
+env var -> `def` fallback -> `./vdb-data/<name>`
 
 In development, missing adapters are auto-installed.
 
