@@ -74,7 +74,7 @@ Limits the number of returned entries.
 ### **`sortBy`**
 
 
-Sorts results by a specified field name or randomly.
+Sorts results by a specified field name, randomly, or by multiple fields.
 
 ```javascript
 // Sort by a field
@@ -90,9 +90,21 @@ Sorts results by a specified field name or randomly.
         sortBy: "random()"
     }
 }
+
+// Multi-field sort
+{
+    dbFindOpts: {
+        sortBy: [
+            { field: "lastName", asc: true },
+            { field: "age", asc: false }
+        ]
+    }
+}
 ```
 
 **Special value:** `"random()"` - Shuffles results randomly using `Math.random()`.
+
+**Multi-field sort:** Pass an array of `{ field, asc? }` objects. Each field is sorted in order; subsequent fields break ties from previous comparisons. `asc` defaults to `true`.
 
 **Default:** `undefined` (no sorting, uses data order)
 
@@ -260,32 +272,90 @@ Computes the average (mean) numeric value of a field. Maps output keys to source
 
 ---
 
+### **`sum`**
+
+Computes the sum of numeric values of a field. Maps output keys to source fields.
+
+```javascript
+// Total revenue across all entries
+{
+    dbFindOpts: {
+        sum: { totalRevenue: "amount" }
+    }
+}
+
+// Sum with grouping
+{
+    dbFindOpts: {
+        groupBy: "category",
+        sum: { totalSales: "price" }
+    }
+}
+```
+
+**Type:** `Record<string, string>` - `{ outputKey: sourceField }`
+
+**Default:** `undefined`
+
+---
+
+### **`distinct`**
+
+Removes duplicate entries based on the value of a specified field. Only the first occurrence of each unique value is kept.
+
+```javascript
+// Get unique categories
+{
+    dbFindOpts: {
+        distinct: "category"
+    }
+}
+
+// Distinct with other options
+{
+    dbFindOpts: {
+        distinct: "email",
+        limit: 100
+    }
+}
+```
+
+**Type:** `string` - The field name to deduplicate by.
+
+**Default:** `undefined` (no deduplication)
+
+---
+
 ## **Execution Flow**
 
-### Without Aggregation (`min`/`max`/`avg`/`groupBy`/`count`)
+### Without Aggregation (`min`/`max`/`avg`/`sum`/`groupBy`/`count`)
 
 1. Iterate through files
 2. Apply `reverse` during iteration (if specified)
 3. Apply `offset` (skip entries)
 4. Apply `limit` (truncate results)
 
-### With Aggregation (`min`/`max`/`avg`/`groupBy`/`count`)
+### With Aggregation (`min`/`max`/`avg`/`sum`/`groupBy`/`count`)
 
 1. Collect all entries from all files
 2. If `sortBy` is specified, sort entries:
    - If `sortBy === "random()"`: shuffle randomly
+   - If `sortBy` is an array: sort by multiple fields in order
    - Otherwise: sort by field value using `compareSafe()`
 3. Group entries by `groupBy` fields (if specified)
-4. Per group, compute `min`, `max`, `avg`, `count` (if specified)
-5. Apply `offset` and `limit` to aggregated results
+4. Per group, compute `min`, `max`, `avg`, `sum`, `count` (if specified)
+5. Apply `distinct` (if specified)
+6. Apply `offset` and `limit` to aggregated results
 
 ### With `sortBy` (no aggregation)
 
 1. Collect all entries from all files
 2. Sort entries:
    - If `sortBy === "random()"`: shuffle randomly
+   - If `sortBy` is an array: sort by multiple fields in order
    - Otherwise: sort by field value using `compareSafe()`
-3. Apply `offset` and `limit` to sorted results
+3. Apply `distinct` (if specified)
+4. Apply `offset` and `limit` to sorted results
 
 ---
 
@@ -378,7 +448,34 @@ Computes the average (mean) numeric value of a field. Maps output keys to source
         count: { total: "id" },
         min: { youngest: "age" },
         max: { oldest: "age" },
-        avg: { averageAge: "age" }
+        avg: { averageAge: "age" },
+        sum: { totalAge: "age" }
+    }
+}
+```
+
+### Multi-Field Sort
+
+```javascript
+// Sort by last name ascending, then by age descending
+{
+    dbFindOpts: {
+        sortBy: [
+            { field: "lastName", asc: true },
+            { field: "age", asc: false }
+        ]
+    }
+}
+```
+
+### Distinct Values
+
+```javascript
+// Get unique categories with count
+{
+    dbFindOpts: {
+        distinct: "category",
+        count: { total: "id" }
     }
 }
 ```

@@ -2,6 +2,44 @@
 
 ## Class: `Valthera`
 
+### Constructor Options
+
+```typescript
+new ValtheraClass({
+  adapter: ActionsBase,
+  executor?: Executor,
+  adapterOpts?: AdapterOpts,
+  // Legacy (deprecated):
+  numberId?: boolean,   // use adapterOpts.numberId
+  idKey?: string,       // use adapterOpts.idKey
+})
+```
+
+### `AdapterOpts`
+
+Configuration options for the storage adapter.
+
+```typescript
+interface AdapterOpts {
+  numberId?: boolean;  // Use numeric auto-incrementing IDs (default: false)
+  idKey?: string;      // Custom ID field name (default: "_id")
+}
+```
+
+**Example:**
+
+```typescript
+const db = new ValtheraClass({
+  adapter: myAdapter,
+  adapterOpts: {
+    numberId: true,   // Use numeric IDs (1, 2, 3...)
+    idKey: "id",      // Use "id" instead of "_id"
+  }
+});
+```
+
+**Note:** The legacy `numberId` and `idKey` options at the top level are deprecated. Use `adapterOpts` instead.
+
 ### `plugin(plugin)`
 
 Registers a plugin to intercept database operations. Plugins form a middleware chain that can inspect, modify, or short-circuit queries before they reach the adapter.

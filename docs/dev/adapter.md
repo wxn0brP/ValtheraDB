@@ -176,6 +176,7 @@ import { findUtil } from "@wxn0brp/db-core/utils/action";
 import type { FileCpu } from "@wxn0brp/db-core/types/fileCpu";
 import type { Data, DataInternal } from "@wxn0brp/db-core/types/data";
 import type { VQueryT } from "@wxn0brp/db-core/types/query";
+import type { AdapterOpts } from "@wxn0brp/db-core/types/options";
 ```
 
 ## Next Steps

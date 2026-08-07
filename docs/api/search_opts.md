@@ -36,6 +36,12 @@ Negates a condition.
 
 ### Comparison Operators
 
+#### $ne
+Not equal comparison.
+```javascript
+{ $ne: { status: "banned" } }
+```
+
 #### $gt
 Greater than comparison.
 ```javascript
@@ -154,6 +160,18 @@ Checks if a string starts with a specified value.
 Checks if a string ends with a specified value.
 ```javascript
 { $endsWith: { email: "@example.com" } }
+```
+
+#### $iStartsWith
+Checks if a string starts with a specified value (case-insensitive).
+```javascript
+{ $iStartsWith: { name: "dr" } } // matches "Dr.", "DR.", "dr."
+```
+
+#### $iEndsWith
+Checks if a string ends with a specified value (case-insensitive).
+```javascript
+{ $iEndsWith: { email: "@EXAMPLE.COM" } } // matches "@example.com", "@Example.Com"
 ```
 
 ### Other Operators

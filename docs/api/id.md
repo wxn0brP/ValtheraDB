@@ -86,3 +86,23 @@ await db.users.updateOneOrAdd(
   { add_arg: { _id: "custom-id" } }
 );
 ```
+
+## Custom ID Key
+
+By default, ValtheraDB uses `_id` as the ID field. You can configure a custom ID key via `adapterOpts`:
+
+```typescript
+import { ValtheraCreate } from "@wxn0brp/db";
+
+const db = ValtheraCreate("./my-db", {
+  adapterOpts: {
+    idKey: "id", // Use "id" instead of "_id"
+  }
+});
+
+// Now all documents will use "id" as the ID field
+const user = await db.users.add({ name: "Alice" });
+// { name: "Alice", id: "m1abc23-x-y" }
+```
+
+**Note:** The custom `idKey` applies to all collections in the database. When using `numberId: true`, the numeric auto-incrementing ID will also use the custom key.
