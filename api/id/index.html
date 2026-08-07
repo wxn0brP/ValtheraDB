@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://wxn0brp.github.io/ValtheraDB/api/relation/">
+        <link rel="canonical" href="https://wxn0brp.github.io/ValtheraDB/api/id/">
       
       
-        <link rel="prev" href="../id/">
+        <link rel="prev" href="../forge/">
       
       
-        <link rel="next" href="../updater/">
+        <link rel="next" href="../relation/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>Relation - ValtheraDB Docs</title>
+        <title>ID Generation - ValtheraDB Docs</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#relation-class-documentation" class="md-skip">
+        <a href="#id-generation" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Relation
+              ID Generation
             
           </span>
         </div>
@@ -620,34 +620,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../id/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    ID Generation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -667,7 +639,7 @@
   <span class="md-ellipsis">
     
   
-    Relation
+    ID Generation
   
 
     
@@ -685,7 +657,7 @@
   <span class="md-ellipsis">
     
   
-    Relation
+    ID Generation
   
 
     
@@ -711,22 +683,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#class-relation" class="md-nav__link">
+  <a href="#id-format" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Class: Relation
+        ID Format
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Class: Relation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utility-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utility Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Utility Functions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#constructor-relationdbs" class="md-nav__link">
+  <a href="#genidparts-iddata" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Constructor: Relation(dbs)
+        genId(parts?, idData?)
       
     </span>
   </a>
@@ -734,10 +717,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-findonepath-search-relations-select" class="md-nav__link">
+  <a href="#convertidtounixid" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async findOne(path, search, relations, select?)
+        convertIdToUnix(id)
       
     </span>
   </a>
@@ -745,10 +728,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-findpath-search-relations-select-findopts" class="md-nav__link">
+  <a href="#sortbyidsitems" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async find(path, search, relations, select?, findOpts?)
+        sortByIds(items)
       
     </span>
   </a>
@@ -756,21 +739,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#relation-types" class="md-nav__link">
+  <a href="#compareidsa-b" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Relation Types
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example Usage
+        compareIds(a, b)
       
     </span>
   </a>
@@ -782,10 +754,60 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#custom-id-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom ID Generation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-id-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom ID Key
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../relation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Relation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1241,22 +1263,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#class-relation" class="md-nav__link">
+  <a href="#id-format" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Class: Relation
+        ID Format
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Class: Relation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utility-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utility Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Utility Functions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#constructor-relationdbs" class="md-nav__link">
+  <a href="#genidparts-iddata" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Constructor: Relation(dbs)
+        genId(parts?, idData?)
       
     </span>
   </a>
@@ -1264,10 +1297,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-findonepath-search-relations-select" class="md-nav__link">
+  <a href="#convertidtounixid" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async findOne(path, search, relations, select?)
+        convertIdToUnix(id)
       
     </span>
   </a>
@@ -1275,10 +1308,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-findpath-search-relations-select-findopts" class="md-nav__link">
+  <a href="#sortbyidsitems" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async find(path, search, relations, select?, findOpts?)
+        sortByIds(items)
       
     </span>
   </a>
@@ -1286,21 +1319,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#relation-types" class="md-nav__link">
+  <a href="#compareidsa-b" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Relation Types
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example Usage
+        compareIds(a, b)
       
     </span>
   </a>
@@ -1309,6 +1331,28 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-id-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom ID Generation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-id-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom ID Key
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1332,115 +1376,85 @@
   
 
 
-<h1 id="relation-class-documentation">Relation Class Documentation</h1>
-<p>The <code>Relation</code> class provides a mechanism to handle relationships between collections in a database. It supports one-to-one, one-to-many, and many-to-many relationships.</p>
-<h2 id="class-relation">Class: <code>Relation</code></h2>
-<h3 id="constructor-relationdbs">Constructor: <code>Relation(dbs)</code></h3>
-<p>Creates a new instance of the <code>Relation</code> class.</p>
+<h1 id="id-generation">ID Generation</h1>
+<p>ValtheraDB generates unique IDs using a time-based algorithm with random components.</p>
+<h2 id="id-format">ID Format</h2>
+<p>Default format: <code>{timestamp36}-{random1}-{random1}</code></p>
 <ul>
-<li><strong>Parameters:</strong></li>
-<li><code>dbs</code> (<code>RelationTypes.DBS</code>): An object mapping database names to <code>DataBase</code> or <code>DataBaseRemote</code> instances.</li>
+<li><strong>timestamp36</strong>: Current time in base36 (milliseconds since epoch)</li>
+<li><strong>random parts</strong>: Base36 random values with collision avoidance</li>
 </ul>
-<hr />
-<h3 id="async-findonepath-search-relations-select"><code>async findOne(path, search, relations, select?)</code></h3>
-<p>Finds a single entry in a collection and resolves its relations.</p>
+<p>Example: <code>m1abc23-x-y</code></p>
+<h2 id="utility-functions">Utility Functions</h2>
+<h3 id="genidparts-iddata"><code>genId(parts?, idData?)</code></h3>
+<p>Generates a unique ID.</p>
+<p><strong>Parameters:</strong></p>
 <ul>
-<li><strong>Parameters:</strong></li>
-<li><code>path</code> (<code>RelationTypes.Path</code>): A tuple specifying the database and collection.</li>
-<li><code>search</code> (<code>Search</code>): The search criteria.</li>
-<li><code>relations</code> (<code>RelationTypes.Relation</code>): The relations to resolve.</li>
-<li>
-<p><code>select</code> (<code>RelationTypes.FieldPath[]</code>, optional): Fields to select in the result.</p>
-</li>
-<li>
-<p><strong>Returns:</strong></p>
-</li>
-<li><code>Promise&lt;Object | null&gt;</code>: The found entry with resolved relations, or <code>null</code> if no match is found.</li>
+<li><code>parts</code> (optional): Array of part lengths (default: <code>[1, 1]</code>)</li>
+<li><code>idData</code> (optional): State object for collision tracking</li>
 </ul>
-<hr />
-<h3 id="async-findpath-search-relations-select-findopts"><code>async find(path, search, relations, select?, findOpts?)</code></h3>
-<p>Finds multiple entries in a collection and resolves their relations.</p>
-<ul>
-<li><strong>Parameters:</strong></li>
-<li><code>path</code> (<code>RelationTypes.Path</code>): A tuple specifying the database and collection.</li>
-<li><code>search</code> (<code>Search</code>): The search criteria.</li>
-<li><code>relations</code> (<code>RelationTypes.Relation</code>): The relations to resolve.</li>
-<li><code>select</code> (<code>RelationTypes.FieldPath[]</code>, optional): Fields to select in the results.</li>
-<li>
-<p><code>findOpts</code> (<code>DbFindOpts</code>, optional): Options for the find operation.</p>
-</li>
-<li>
-<p><strong>Returns:</strong></p>
-</li>
-<li><code>Promise&lt;Object[]&gt;</code>: An array of found entries with resolved relations.</li>
-</ul>
-<hr />
-<h3 id="relation-types">Relation Types</h3>
-<p>The <code>Relation</code> class supports the following relation types:</p>
-<ol>
-<li><strong>One-to-One (<code>"1"</code>)</strong>: Resolves a single related entry.</li>
-<li><strong>One-to-Many (<code>"1n"</code>)</strong>: Resolves multiple related entries.</li>
-<li><strong>Many-to-Many (<code>"nm"</code>)</strong>: Resolves all entries in the related collection.</li>
-<li><strong>Legacy One-to-One (<code>"11"</code>)</strong>: Similar to <code>"1"</code>, but internally performs a <code>findOne</code> operation for each document during a <code>find</code> query. This mode is less performant but might be useful in specific scenarios, such as with custom adapters or legacy systems. This is considered a <strong>legacy mode</strong> but is still fully supported.</li>
-</ol>
-<hr />
-<h3 id="example-usage">Example Usage</h3>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">Relation</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraAutoCreate</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db/autoCreate&quot;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">genId</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core&quot;</span><span class="p">;</span>
 
-<span class="c1">// Create database instances</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">db1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraAutoCreate</span><span class="p">(</span><span class="s2">&quot;path/to/db1&quot;</span><span class="p">);</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">db2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraAutoCreate</span><span class="p">(</span><span class="s2">&quot;path/to/db2&quot;</span><span class="p">);</span>
-
-<span class="c1">// Define databases</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">dbs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">db1</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">db2</span>
-<span class="p">};</span>
-
-<span class="c1">// Define relations</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">relations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">author</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;db1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;users&quot;</span><span class="p">],</span>
-<span class="w">        </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;authorId&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;_id&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">select</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="p">]</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">comments</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;db2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;comments&quot;</span><span class="p">],</span>
-<span class="w">        </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;_id&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;postId&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1n&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">select</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;createdAt&quot;</span><span class="p">]</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">};</span>
-
-<span class="c1">// Create a Relation instance</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">relation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Relation</span><span class="p">(</span><span class="nx">dbs</span><span class="p">);</span>
-
-<span class="c1">// Find a single post with relations</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">post</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">relation</span><span class="p">.</span><span class="nx">findOne</span><span class="p">(</span>
-<span class="w">    </span><span class="p">[</span><span class="s2">&quot;db1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;posts&quot;</span><span class="p">],</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;post123&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">relations</span><span class="p">,</span>
-<span class="w">    </span><span class="p">[[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;author.name&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;comments.content&quot;</span><span class="p">]]</span>
-<span class="p">);</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">post</span><span class="p">);</span>
-
-<span class="c1">// Find multiple posts with relations</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">posts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">relation</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
-<span class="w">    </span><span class="p">[</span><span class="s2">&quot;db1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;posts&quot;</span><span class="p">],</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">category</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;tech&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">relations</span><span class="p">,</span>
-<span class="w">    </span><span class="p">[[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;author.name&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;comments.content&quot;</span><span class="p">]],</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="p">}</span>
-<span class="p">);</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">posts</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">genId</span><span class="p">();</span><span class="w"> </span><span class="c1">// &quot;m1abc23-x-y&quot;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">customId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">genId</span><span class="p">([</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]);</span><span class="w"> </span><span class="c1">// &quot;m1abc23-xy-zab&quot;</span>
 </code></pre></div>
-<p>This example demonstrates how to use the <code>Relation</code> class to resolve relationships between collections in different databases.</p>
+<h3 id="convertidtounixid"><code>convertIdToUnix(id)</code></h3>
+<p>Extracts Unix timestamp (milliseconds) from an ID.</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">convertIdToUnix</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core&quot;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;m1abc23-x-y&quot;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">timestamp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">convertIdToUnix</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span><span class="w"> </span><span class="c1">// 1700000000000</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(</span><span class="nx">timestamp</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="sortbyidsitems"><code>sortByIds(items)</code></h3>
+<p>Sorts an array of objects by their <code>_id</code> field chronologically.</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">sortByIds</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core&quot;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;m2def45-a-b&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Second&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;m1abc23-x-y&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;First&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">];</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">sorted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">sortByIds</span><span class="p">(</span><span class="nx">items</span><span class="p">);</span>
+<span class="c1">// [{ _id: &quot;m1abc23-x-y&quot;, name: &quot;First&quot; }, { _id: &quot;m2def45-a-b&quot;, name: &quot;Second&quot; }]</span>
+</code></pre></div>
+<h3 id="compareidsa-b"><code>compareIds(a, b)</code></h3>
+<p>Compares two IDs (string or number).</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">compareIds</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core&quot;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">compareIds</span><span class="p">(</span><span class="s2">&quot;m1abc23-x-y&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;m2def45-a-b&quot;</span><span class="p">);</span>
+<span class="c1">// Negative if first is older, positive if newer, 0 if equal</span>
+</code></pre></div>
+<h2 id="custom-id-generation">Custom ID Generation</h2>
+<p>Disable auto-generation and provide your own IDs:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Disable ID generation</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="kc">false</span><span class="w"> </span><span class="c1">// id_gen = false</span>
+<span class="p">);</span>
+
+<span class="c1">// Or use custom ID in updateOneOrAdd</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">updateOneOrAdd</span><span class="p">(</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;alice@example.com&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">add_arg</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;custom-id&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="p">);</span>
+</code></pre></div>
+<h2 id="custom-id-key">Custom ID Key</h2>
+<p>By default, ValtheraDB uses <code>_id</code> as the ID field. You can configure a custom ID key via <code>adapterOpts</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="p">(</span><span class="s2">&quot;./my-db&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">adapterOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">idKey</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Use &quot;id&quot; instead of &quot;_id&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// Now all documents will use &quot;id&quot; as the ID field</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="w"> </span><span class="p">});</span>
+<span class="c1">// { name: &quot;Alice&quot;, id: &quot;m1abc23-x-y&quot; }</span>
+</code></pre></div>
+<p><strong>Note:</strong> The custom <code>idKey</code> applies to all collections in the database. When using <code>numberId: true</code>, the numeric auto-incrementing ID will also use the custom key.</p>
 
 
 

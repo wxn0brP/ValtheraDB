@@ -8,13 +8,11 @@
       
       
       
-        <link rel="canonical" href="https://wxn0brp.github.io/ValtheraDB/dev/adapter/">
+        <link rel="canonical" href="https://wxn0brp.github.io/ValtheraDB/dev/executor/">
       
       
-        <link rel="prev" href="../../ecosystem/tools/">
+        <link rel="prev" href="../plugin/">
       
-      
-        <link rel="next" href="../plugin/">
       
       
         
@@ -25,7 +23,7 @@
     
     
       
-        <title>Adapters - ValtheraDB Docs</title>
+        <title>Executor - ValtheraDB Docs</title>
       
     
     
@@ -76,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#valtheradb-storage-adapter-tutorial" class="md-skip">
+        <a href="#understanding-the-executor" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Adapters
+              Executor
             
           </span>
         </div>
@@ -1008,37 +1006,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Adapters
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../adapter/" class="md-nav__link">
         
   
   
@@ -1054,237 +1025,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#architecture-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Architecture Overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#level-1-customfilecpu-adapter-easiest" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Level 1: CustomFileCpu Adapter (Easiest)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Level 1: CustomFileCpu Adapter (Easiest)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example-csv-adapter" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example: CSV Adapter
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#when-to-use-level-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        When to Use Level 1
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#level-2-actionsbase-with-filecpu-intermediate" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Level 2: ActionsBase with FileCpu (Intermediate)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Level 2: ActionsBase with FileCpu (Intermediate)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#interface" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interface
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-line-delimited-json-adapter-dir" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example: Line-Delimited JSON Adapter (dir)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#when-to-use-level-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        When to Use Level 2
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#level-3-full-actionsbase-advanced" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Level 3: Full ActionsBase (Advanced)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Level 3: Full ActionsBase (Advanced)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#interface_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interface
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-sqlite-adapter" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example: SQLite Adapter
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-mongodb-adapter" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example: MongoDB Adapter
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#when-to-use-level-3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        When to Use Level 3
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#level-comparison" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Level Comparison
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#utility-functions-reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Utility Functions Reference
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Utility Functions Reference">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#from-wxn0brpdb-core" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        From @wxn0brp/db-core
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Steps
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1322,10 +1062,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../executor/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executor
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1341,6 +1108,176 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-you-need-an-executor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why You Need an Executor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executor-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executor Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Executor Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#executor-simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executor (Simple)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smartexecutor-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SmartExecutor (Advanced)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-smartexecutor-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How SmartExecutor Works
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How SmartExecutor Works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#queue-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Queue Isolation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatic-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic Cleanup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aware-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aware Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adapter-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adapter Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-executor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Executor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#executor-vs-smartexecutor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executor vs SmartExecutor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1380,10 +1317,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#architecture-overview" class="md-nav__link">
+  <a href="#why-you-need-an-executor" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Architecture Overview
+        Why You Need an Executor
       
     </span>
   </a>
@@ -1391,22 +1328,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#level-1-customfilecpu-adapter-easiest" class="md-nav__link">
+  <a href="#executor-types" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Level 1: CustomFileCpu Adapter (Easiest)
+        Executor Types
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Level 1: CustomFileCpu Adapter (Easiest)">
+    <nav class="md-nav" aria-label="Executor Types">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example-csv-adapter" class="md-nav__link">
+  <a href="#executor-simple" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example: CSV Adapter
+        Executor (Simple)
       
     </span>
   </a>
@@ -1414,10 +1351,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#when-to-use-level-1" class="md-nav__link">
+  <a href="#smartexecutor-advanced" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When to Use Level 1
+        SmartExecutor (Advanced)
       
     </span>
   </a>
@@ -1430,22 +1367,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#level-2-actionsbase-with-filecpu-intermediate" class="md-nav__link">
+  <a href="#how-smartexecutor-works" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Level 2: ActionsBase with FileCpu (Intermediate)
+        How SmartExecutor Works
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Level 2: ActionsBase with FileCpu (Intermediate)">
+    <nav class="md-nav" aria-label="How SmartExecutor Works">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#interface" class="md-nav__link">
+  <a href="#queue-isolation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Interface
+        Queue Isolation
       
     </span>
   </a>
@@ -1453,10 +1390,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#example-line-delimited-json-adapter-dir" class="md-nav__link">
+  <a href="#automatic-cleanup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example: Line-Delimited JSON Adapter (dir)
+        Automatic Cleanup
       
     </span>
   </a>
@@ -1464,10 +1401,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#when-to-use-level-2" class="md-nav__link">
+  <a href="#aware-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When to Use Level 2
+        aware Mode
       
     </span>
   </a>
@@ -1480,55 +1417,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#level-3-full-actionsbase-advanced" class="md-nav__link">
+  <a href="#adapter-integration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Level 3: Full ActionsBase (Advanced)
+        Adapter Integration
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Level 3: Full ActionsBase (Advanced)">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-executor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Executor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Considerations">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#interface_1" class="md-nav__link">
+  <a href="#executor-vs-smartexecutor" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Interface
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-sqlite-adapter" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example: SQLite Adapter
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-mongodb-adapter" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example: MongoDB Adapter
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#when-to-use-level-3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        When to Use Level 3
+        Executor vs SmartExecutor
       
     </span>
   </a>
@@ -1537,56 +1463,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#level-comparison" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Level Comparison
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#utility-functions-reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Utility Functions Reference
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Utility Functions Reference">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#from-wxn0brpdb-core" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        From @wxn0brp/db-core
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Steps
-      
-    </span>
-  </a>
   
 </li>
       
@@ -1610,189 +1486,186 @@
   
 
 
-<h1 id="valtheradb-storage-adapter-tutorial">ValtheraDB Storage Adapter Tutorial</h1>
-<p>This guide shows you how to create custom storage adapters for ValtheraDB.
-Adapters are organized into <strong>levels</strong> based on complexity -
-start from the level that matches your needs.</p>
-<h2 id="architecture-overview">Architecture Overview</h2>
-<p>ValtheraDB uses a layered adapter architecture:</p>
-<div class="highlight"><pre><span></span><code>|-------------------------------------|
-|        ValtheraClass (API)          |
-|   add, find, update, remove...      |
-|-------------------------------------|
-                  |
-|-------------------------------------|
-|   ActionsBase / CustomActionsBase   |
-|        Collection management        |
-|-------------------------------------|
-                  |
-|-------------------------------------|
-|              FileCpu                |
-|     Low-level file operations       |
-|-------------------------------------|
-                  |
-|-------------------------------------|
-|     Your Storage Implementation     |
-|   (CSV, SQLite, XML, JSON, etc.)    |
-|-------------------------------------|
+<h1 id="understanding-the-executor">Understanding the Executor</h1>
+<p>The Executor is a core component that ensures database operations are executed safely and in the correct order. It prevents race conditions by serializing operations on the same collection.</p>
+<h2 id="why-you-need-an-executor">Why You Need an Executor</h2>
+<p>Database adapters often cannot handle concurrent operations safely. Without an executor:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Race condition without executor</span>
+<span class="k">await</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="w"> </span><span class="p">}),</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Bob&quot;</span><span class="w"> </span><span class="p">})</span>
+<span class="p">]);</span>
+<span class="c1">// Both operations might interfere with each other</span>
 </code></pre></div>
-<blockquote>
-<p>Note: When you replace any layer, you implicitly take responsibility for all layers below it</p>
-</blockquote>
-<h2 id="level-1-customfilecpu-adapter-easiest">Level 1: CustomFileCpu Adapter (Easiest)</h2>
-<p><strong>Best for:</strong> Simple file-based storage (JSON, CSV, line-delimited formats)</p>
-<p><strong>What you get:</strong> All CRUD operations support.</p>
-<p><strong>What you implement:</strong> Just <code>read</code> and <code>write</code> functions and collection management.</p>
-<h3 id="example-csv-adapter">Example: CSV Adapter</h3>
-<p>See full implementation:</p>
-<p><a href="https://github.com/wxn0brP/ValtheraDB-storage-csv/blob/HEAD/src/action.ts">ValtheraDB-storage-csv/src/action.ts</a></p>
-<p>Key points:</p>
+<p>With an executor, operations are queued and executed sequentially:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Safe with executor</span>
+<span class="k">await</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="w"> </span><span class="p">}),</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Bob&quot;</span><span class="w"> </span><span class="p">})</span>
+<span class="p">]);</span>
+<span class="c1">// Operations are queued: Alice first, then Bob</span>
+</code></pre></div>
+<h2 id="executor-types">Executor Types</h2>
+<h3 id="executor-simple">Executor (Simple)</h3>
+<p>A basic FIFO queue. All operations are executed one after another, regardless of collection.</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Executor</span><span class="p">,</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core&quot;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">myAdapter</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">executor</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nx">Executor</span><span class="p">()</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><strong>Characteristics:</strong></p>
 <ul>
-<li>Extend <code>CustomActionsBase</code></li>
-<li>Initialize <code>this.fileCpu = new CustomFileCpu(this.read.bind(this), this.write.bind(this))</code></li>
-<li>Implement <code>read()</code> - parse file to array of objects</li>
-<li>Implement <code>write()</code> - write array of objects to file</li>
-<li>Implement collection management methods (<code>ensureCollection</code>, <code>issetCollection</code>, etc.)</li>
+<li>Single queue for all operations</li>
+<li>Strict sequential execution</li>
+<li>Simple and predictable</li>
+<li>Lower concurrency (bottleneck on single queue)</li>
 </ul>
-<h3 id="when-to-use-level-1">When to Use Level 1</h3>
-<p>✅ Your data fits in memory (entire file is loaded on each operation)<br />
-✅ Simple file formats (JSON, CSV, YAML)<br />
-✅ You want minimal code<br />
-✅ Prototyping or small-scale applications  </p>
-<p>❌ Large datasets (GB+)<br />
-❌ Need for partial file reads<br />
-❌ Complex query optimization  </p>
-<h2 id="level-2-actionsbase-with-filecpu-intermediate">Level 2: ActionsBase with FileCpu (Intermediate)</h2>
-<p><strong>Best for:</strong> File-based storage with custom file formats, streaming, or large datasets.</p>
-<p><strong>What you get:</strong> Query utilities. <code>updateOneOrAdd</code> and <code>toggleOne</code> support.</p>
-<p><strong>What you implement:</strong> Full <code>FileCpu</code> interface + file management logic and collection management.</p>
-<h3 id="interface">Interface</h3>
+<p><strong>When to use:</strong></p>
 <ul>
-<li><a href="https://github.com/wxn0brP/ValtheraDB-core/blob/HEAD/src/types/fileCpu.ts">ValtheraDB-core/src/types/fileCpu.ts</a></li>
+<li>Simple adapters that cannot handle any concurrency</li>
+<li>When you want predictable, linear execution</li>
+<li>Testing and debugging</li>
 </ul>
-<h3 id="example-line-delimited-json-adapter-dir">Example: Line-Delimited JSON Adapter (dir)</h3>
-<p>See full implementation:</p>
+<h3 id="smartexecutor-advanced">SmartExecutor (Advanced)</h3>
+<p>Per-collection queues with automatic cleanup. Operations on different collections can run in parallel.</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="p">,</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core&quot;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">myAdapter</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">executor</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">ttl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">60</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1000</span><span class="p">,</span><span class="w">  </span><span class="c1">// 5 minutes</span>
+<span class="w">    </span><span class="nx">aware</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w">          </span><span class="c1">// per-collection isolation, default false</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><strong>Characteristics:</strong></p>
 <ul>
-<li><a href="https://github.com/wxn0brP/ValtheraDB-storage-dir/blob/HEAD/src/file/index.ts">ValtheraDB-storage-dir/src/file/index.ts</a> - FileCpu implementation</li>
-<li><a href="https://github.com/wxn0brP/ValtheraDB-storage-dir/blob/HEAD/src/action.ts">ValtheraDB-storage-dir/src/action.ts</a> - ActionsBase implementation</li>
+<li>Separate queue for each collection</li>
+<li>Parallel execution across collections</li>
+<li>Automatic cleanup of idle queues</li>
+<li>Higher concurrency</li>
 </ul>
-<p>Key points:</p>
+<p><strong>Parameters:</strong></p>
 <ul>
-<li>Implement <code>FileCpu</code> interface with streaming support</li>
-<li>Extend <code>ActionsBase</code> for collection management</li>
-<li>Use <code>findUtil()</code> for multi-file queries</li>
-<li>Handle file rotation (max file size)</li>
+<li><code>ttl</code> (default: <code>300000</code>): Time-to-live for inactive queues (milliseconds)</li>
+<li><code>aware</code> (default: <code>false</code>): Whether to isolate queues per collection</li>
 </ul>
-<h3 id="when-to-use-level-2">When to Use Level 2</h3>
-<p>✅ Large files that don't fit in memory<br />
-✅ Custom file formats<br />
-✅ Streaming reads required<br />
-✅ Need control over file organization (sharding, rotation)  </p>
-<p>❌ Want minimal implementation code  </p>
-<h2 id="level-3-full-actionsbase-advanced">Level 3: Full ActionsBase (Advanced)</h2>
-<p><strong>Best for:</strong> Database systems, remote APIs, complex storage or full control.</p>
-<p><strong>What you get:</strong> Some utilities.</p>
-<p><strong>What you implement:</strong> Everything - full control over storage logic.</p>
-<h3 id="interface_1">Interface</h3>
+<p><strong>When to use:</strong></p>
 <ul>
-<li><a href="https://github.com/wxn0brP/ValtheraDB-core/blob/HEAD/src/base/actions.ts">ValtheraDB-core/src/base/actions.ts</a></li>
+<li>Most production scenarios</li>
+<li>Applications with multiple collections</li>
+<li>When you need better concurrency</li>
 </ul>
-<h3 id="example-sqlite-adapter">Example: SQLite Adapter</h3>
-<p>See full implementation:
-<a href="https://github.com/wxn0brP/ValtheraDB-storage-sqlite/blob/HEAD/src/index.ts">ValtheraDB-storage-sqlite/src/index.ts</a></p>
-<p>Key points:</p>
-<ul>
-<li>Extend <code>ActionsBase</code></li>
-<li>Translate Valthera queries to SQL</li>
-<li>Handle prepared statements</li>
-<li>Map SQL results to Valthera format</li>
-</ul>
-<h3 id="example-mongodb-adapter">Example: MongoDB Adapter</h3>
-<p>See full implementation:
-<a href="https://github.com/wxn0brP/ValtheraDB-storage-mongodb/blob/HEAD/src/actions.ts">ValtheraDB-storage-mongodb/src/actions.ts</a></p>
-<p>Key points:</p>
-<ul>
-<li>Extend <code>ActionsBase</code></li>
-<li>Translate Valthera queries to MongoDB format</li>
-<li>Manage connection lifecycle (<code>init()</code>)</li>
-</ul>
-<h3 id="when-to-use-level-3">When to Use Level 3</h3>
-<p>✅ Maximum performance control<br />
-✅ External database systems (SQL, NoSQL)<br />
-✅ Remote APIs / microservices<br />
-✅ Transaction support needed  </p>
-<p>❌ Simple file-based storage<br />
-❌ Quick prototyping  </p>
-<h2 id="level-comparison">Level Comparison</h2>
+<h2 id="how-smartexecutor-works">How SmartExecutor Works</h2>
+<h3 id="queue-isolation">Queue Isolation</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// These operations run in parallel (different collections)</span>
+<span class="k">await</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="w"> </span><span class="p">}),</span><span class="w">    </span><span class="c1">// Queue: &quot;users&quot;</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Hello&quot;</span><span class="w"> </span><span class="p">}),</span><span class="w">   </span><span class="c1">// Queue: &quot;posts&quot;</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">comments</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Nice!&quot;</span><span class="w"> </span><span class="p">})</span><span class="w">  </span><span class="c1">// Queue: &quot;comments&quot;</span>
+<span class="p">]);</span>
+
+<span class="c1">// These operations run sequentially (same collection)</span>
+<span class="k">await</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="w"> </span><span class="p">}),</span><span class="w">    </span><span class="c1">// Queue: &quot;users&quot; - first</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Bob&quot;</span><span class="w"> </span><span class="p">}),</span><span class="w">      </span><span class="c1">// Queue: &quot;users&quot; - second</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">find</span><span class="p">({})</span><span class="w">                    </span><span class="c1">// Queue: &quot;users&quot; - third</span>
+<span class="p">]);</span>
+</code></pre></div>
+<h3 id="automatic-cleanup">Automatic Cleanup</h3>
+<p>SmartExecutor automatically removes idle queues after the TTL period:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">executor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="p">(</span><span class="mf">60000</span><span class="p">);</span><span class="w"> </span><span class="c1">// 1 minute TTL</span>
+
+<span class="c1">// Operation creates a queue for &quot;users&quot;</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="w"> </span><span class="p">});</span>
+
+<span class="c1">// Queue remains active for 1 minute</span>
+<span class="c1">// If no operations on &quot;users&quot; for 1 minute, queue is removed</span>
+<span class="c1">// Next operation on &quot;users&quot; creates a new queue</span>
+</code></pre></div>
+<h3 id="aware-mode">aware Mode</h3>
+<p>When <code>aware = true</code> (default), queues are isolated per collection:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">executor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="p">(</span><span class="mf">300000</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="c1">// &quot;users&quot; -&gt; separate queue</span>
+<span class="c1">// &quot;posts&quot; -&gt; separate queue</span>
+<span class="c1">// &quot;comments&quot; -&gt; separate queue</span>
+</code></pre></div>
+<p>When <code>aware = false</code>, all operations share a single queue:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">executor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="p">(</span><span class="mf">300000</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<span class="c1">// All operations -&gt; single shared queue</span>
+<span class="c1">// Behaves like simple Executor but with TTL cleanup</span>
+</code></pre></div>
+<h2 id="adapter-integration">Adapter Integration</h2>
+<p>Adapters can signal support for SmartExecutor:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nx">MyAdapter</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">ActionsBase</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">smartExecutor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// Signals support for per-collection queuing</span>
+
+<span class="w">  </span><span class="c1">// ... adapter methods</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>When an adapter has <code>smartExecutor = true</code>, ValtheraClass automatically enables <code>aware</code> mode on the SmartExecutor.</p>
+<h2 id="custom-executor">Custom Executor</h2>
+<p>You can implement your own executor:</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ExecutorInterface</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core&quot;</span><span class="p">;</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nx">MyCustomExecutor</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">ExecutorInterface</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">addOp</span><span class="p">(</span><span class="nx">func</span><span class="o">:</span><span class="w"> </span><span class="kt">Function</span><span class="p">,</span><span class="w"> </span><span class="nx">query?</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">,</span><span class="w"> </span><span class="nx">collection?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Your custom logic here</span>
+<span class="w">    </span><span class="c1">// Must return a promise that resolves with the operation result</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Queue the operation</span>
+<span class="w">      </span><span class="c1">// Call func(query) when ready</span>
+<span class="w">      </span><span class="nx">func</span><span class="p">(</span><span class="nx">query</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">resolve</span><span class="p">).</span><span class="k">catch</span><span class="p">(</span><span class="nx">reject</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">myAdapter</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">executor</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nx">MyCustomExecutor</span><span class="p">()</span>
+<span class="p">});</span>
+</code></pre></div>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<h3 id="executor-vs-smartexecutor">Executor vs SmartExecutor</h3>
 <table>
 <thead>
 <tr>
-<th>Feature</th>
-<th>Level 1</th>
-<th>Level 2</th>
-<th>Level 3</th>
+<th>Scenario</th>
+<th>Executor</th>
+<th>SmartExecutor</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Base Class</strong></td>
-<td><code>CustomActionsBase</code></td>
-<td><code>ActionsBase</code> + <code>FileCpu</code></td>
-<td><code>ActionsBase</code></td>
+<td>Single collection</td>
+<td>Same</td>
+<td>Same</td>
 </tr>
 <tr>
-<td><strong>Implement</strong></td>
-<td><code>read</code>, <code>write</code></td>
-<td><code>FileCpu</code> interface</td>
-<td>All CRUD methods</td>
+<td>Multiple collections</td>
+<td>Sequential</td>
+<td>Parallel</td>
 </tr>
 <tr>
-<td><strong>Memory Usage</strong></td>
-<td>Full file load</td>
-<td>Streaming</td>
-<td>Depends on impl</td>
+<td>Memory usage</td>
+<td>Low</td>
+<td>Higher (multiple queues)</td>
 </tr>
 <tr>
-<td><strong>Best For</strong></td>
-<td>JSON, CSV, XML</td>
-<td>Custom formats</td>
-<td>High performance, SQL, NoSQL, APIs</td>
+<td>Concurrency</td>
+<td>Low</td>
+<td>High</td>
 </tr>
 <tr>
-<td><strong>Code Lines</strong></td>
-<td>~50-80</td>
-<td>~150-250</td>
-<td>300+</td>
+<td>Complexity</td>
+<td>Simple</td>
+<td>Moderate</td>
 </tr>
 </tbody>
 </table>
-<h2 id="utility-functions-reference">Utility Functions Reference</h2>
-<h3 id="from-wxn0brpdb-core">From <code>@wxn0brp/db-core</code></h3>
-<div class="highlight"><pre><span></span><code><span class="c1">// ID generation</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">genId</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core&quot;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">addId</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core/helpers/addId&quot;</span><span class="p">;</span>
-
-<span class="c1">// Query helpers</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">hasFieldsAdvanced</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core/utils/hasFieldsAdvanced&quot;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">updateFindObject</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core/utils/updateFindObject&quot;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">updateObjectAdvanced</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core/utils/updateObject&quot;</span><span class="p">;</span>
-
-<span class="c1">// Find utility for multi-file searches</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">findUtil</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core/utils/action&quot;</span><span class="p">;</span>
-
-<span class="c1">// Types</span>
-<span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">FileCpu</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core/types/fileCpu&quot;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Data</span><span class="p">,</span><span class="w"> </span><span class="nx">DataInternal</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core/types/data&quot;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">VQueryT</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core/types/query&quot;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">AdapterOpts</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core/types/options&quot;</span><span class="p">;</span>
-</code></pre></div>
-<h2 id="next-steps">Next Steps</h2>
-<ul>
-<li>Read <a href="../../core_concepts/">Core Concepts</a> for ValtheraDB philosophy</li>
-<li>Explore <a href="../../api/updater/">Updater Operators</a> for advanced updates</li>
-<li>Learn about <a href="../../api/relation/">Relations</a> for cross-collection queries</li>
-<li>Browse the <a href="../../ecosystem/adapters/">Ecosystem</a> for ready-made storage adapters</li>
-</ul>
 
 
 

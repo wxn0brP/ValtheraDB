@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://wxn0brp.github.io/ValtheraDB/api/relation/">
+        <link rel="canonical" href="https://wxn0brp.github.io/ValtheraDB/api/memory/">
       
       
-        <link rel="prev" href="../id/">
+        <link rel="prev" href="../valthera/">
       
       
-        <link rel="next" href="../updater/">
+        <link rel="next" href="../multi_storage/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>Relation - ValtheraDB Docs</title>
+        <title>Memory DB - ValtheraDB Docs</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#relation-class-documentation" class="md-skip">
+        <a href="#in-memory-database" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Relation
+              Memory DB
             
           </span>
         </div>
@@ -536,10 +536,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../memory/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory DB
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -555,6 +582,76 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creatememoryvaltheratdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        createMemoryValthera&lt;T&gt;(data?)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Cases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use Cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unit-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unit Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#browserpwa-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Browser/PWA Applications
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -648,37 +745,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Relation
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../relation/" class="md-nav__link">
         
   
   
@@ -694,98 +764,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#class-relation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Class: Relation
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Class: Relation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#constructor-relationdbs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Constructor: Relation(dbs)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-findonepath-search-relations-select" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async findOne(path, search, relations, select?)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-findpath-search-relations-select-findopts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async find(path, search, relations, select?, findOpts?)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#relation-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Relation Types
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example Usage
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1241,22 +1219,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#class-relation" class="md-nav__link">
+  <a href="#creatememoryvaltheratdata" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Class: Relation
+        createMemoryValthera&lt;T&gt;(data?)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Class: Relation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Cases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use Cases">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#constructor-relationdbs" class="md-nav__link">
+  <a href="#unit-testing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Constructor: Relation(dbs)
+        Unit Testing
       
     </span>
   </a>
@@ -1264,43 +1253,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-findonepath-search-relations-select" class="md-nav__link">
+  <a href="#browserpwa-applications" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async findOne(path, search, relations, select?)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async-findpath-search-relations-select-findopts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        async find(path, search, relations, select?, findOpts?)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#relation-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Relation Types
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example Usage
+        Browser/PWA Applications
       
     </span>
   </a>
@@ -1332,115 +1288,74 @@
   
 
 
-<h1 id="relation-class-documentation">Relation Class Documentation</h1>
-<p>The <code>Relation</code> class provides a mechanism to handle relationships between collections in a database. It supports one-to-one, one-to-many, and many-to-many relationships.</p>
-<h2 id="class-relation">Class: <code>Relation</code></h2>
-<h3 id="constructor-relationdbs">Constructor: <code>Relation(dbs)</code></h3>
-<p>Creates a new instance of the <code>Relation</code> class.</p>
+<h1 id="in-memory-database">In-Memory Database</h1>
+<p>ValtheraDB provides a built-in in-memory storage adapter for testing, prototyping, and browser environments.</p>
+<h2 id="creatememoryvaltheratdata"><code>createMemoryValthera&lt;T&gt;(data?)</code></h2>
+<p>Factory function that creates a typed in-memory database, optionally pre-populated with data.</p>
+<p><strong>Parameters:</strong></p>
 <ul>
-<li><strong>Parameters:</strong></li>
-<li><code>dbs</code> (<code>RelationTypes.DBS</code>): An object mapping database names to <code>DataBase</code> or <code>DataBaseRemote</code> instances.</li>
+<li><code>data</code> (optional): Object mapping collection names to arrays of documents</li>
 </ul>
-<hr />
-<h3 id="async-findonepath-search-relations-select"><code>async findOne(path, search, relations, select?)</code></h3>
-<p>Finds a single entry in a collection and resolves its relations.</p>
-<ul>
-<li><strong>Parameters:</strong></li>
-<li><code>path</code> (<code>RelationTypes.Path</code>): A tuple specifying the database and collection.</li>
-<li><code>search</code> (<code>Search</code>): The search criteria.</li>
-<li><code>relations</code> (<code>RelationTypes.Relation</code>): The relations to resolve.</li>
-<li>
-<p><code>select</code> (<code>RelationTypes.FieldPath[]</code>, optional): Fields to select in the result.</p>
-</li>
-<li>
-<p><strong>Returns:</strong></p>
-</li>
-<li><code>Promise&lt;Object | null&gt;</code>: The found entry with resolved relations, or <code>null</code> if no match is found.</li>
-</ul>
-<hr />
-<h3 id="async-findpath-search-relations-select-findopts"><code>async find(path, search, relations, select?, findOpts?)</code></h3>
-<p>Finds multiple entries in a collection and resolves their relations.</p>
-<ul>
-<li><strong>Parameters:</strong></li>
-<li><code>path</code> (<code>RelationTypes.Path</code>): A tuple specifying the database and collection.</li>
-<li><code>search</code> (<code>Search</code>): The search criteria.</li>
-<li><code>relations</code> (<code>RelationTypes.Relation</code>): The relations to resolve.</li>
-<li><code>select</code> (<code>RelationTypes.FieldPath[]</code>, optional): Fields to select in the results.</li>
-<li>
-<p><code>findOpts</code> (<code>DbFindOpts</code>, optional): Options for the find operation.</p>
-</li>
-<li>
-<p><strong>Returns:</strong></p>
-</li>
-<li><code>Promise&lt;Object[]&gt;</code>: An array of found entries with resolved relations.</li>
-</ul>
-<hr />
-<h3 id="relation-types">Relation Types</h3>
-<p>The <code>Relation</code> class supports the following relation types:</p>
-<ol>
-<li><strong>One-to-One (<code>"1"</code>)</strong>: Resolves a single related entry.</li>
-<li><strong>One-to-Many (<code>"1n"</code>)</strong>: Resolves multiple related entries.</li>
-<li><strong>Many-to-Many (<code>"nm"</code>)</strong>: Resolves all entries in the related collection.</li>
-<li><strong>Legacy One-to-One (<code>"11"</code>)</strong>: Similar to <code>"1"</code>, but internally performs a <code>findOne</code> operation for each document during a <code>find</code> query. This mode is less performant but might be useful in specific scenarios, such as with custom adapters or legacy systems. This is considered a <strong>legacy mode</strong> but is still fully supported.</li>
-</ol>
-<hr />
-<h3 id="example-usage">Example Usage</h3>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">Relation</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraAutoCreate</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db/autoCreate&quot;</span><span class="p">;</span>
+<p><strong>Returns:</strong> <code>ValtheraMemory</code> with typed collection access</p>
+<p><strong>Example with pre-populated data:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createMemoryValthera</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
 
-<span class="c1">// Create database instances</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">db1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraAutoCreate</span><span class="p">(</span><span class="s2">&quot;path/to/db1&quot;</span><span class="p">);</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">db2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraAutoCreate</span><span class="p">(</span><span class="s2">&quot;path/to/db2&quot;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createMemoryValthera</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">users</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;user1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;alice@example.com&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;user2&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;bob@example.com&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">posts</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;post1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">authorId</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;user1&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">});</span>
 
-<span class="c1">// Define databases</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">dbs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">db1</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">db2</span>
-<span class="p">};</span>
-
-<span class="c1">// Define relations</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">relations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">author</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;db1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;users&quot;</span><span class="p">],</span>
-<span class="w">        </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;authorId&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;_id&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">select</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="p">]</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">comments</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;db2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;comments&quot;</span><span class="p">],</span>
-<span class="w">        </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;_id&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;postId&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1n&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">select</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;createdAt&quot;</span><span class="p">]</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">};</span>
-
-<span class="c1">// Create a Relation instance</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">relation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Relation</span><span class="p">(</span><span class="nx">dbs</span><span class="p">);</span>
-
-<span class="c1">// Find a single post with relations</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">post</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">relation</span><span class="p">.</span><span class="nx">findOne</span><span class="p">(</span>
-<span class="w">    </span><span class="p">[</span><span class="s2">&quot;db1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;posts&quot;</span><span class="p">],</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;post123&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">relations</span><span class="p">,</span>
-<span class="w">    </span><span class="p">[[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;author.name&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;comments.content&quot;</span><span class="p">]]</span>
-<span class="p">);</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">post</span><span class="p">);</span>
-
-<span class="c1">// Find multiple posts with relations</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">posts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">relation</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
-<span class="w">    </span><span class="p">[</span><span class="s2">&quot;db1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;posts&quot;</span><span class="p">],</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">category</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;tech&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">relations</span><span class="p">,</span>
-<span class="w">    </span><span class="p">[[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;author.name&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;comments.content&quot;</span><span class="p">]],</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="p">}</span>
-<span class="p">);</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">posts</span><span class="p">);</span>
+<span class="c1">// Data is immediately available</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">find</span><span class="p">({});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">users</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="w"> </span><span class="c1">// 2</span>
 </code></pre></div>
-<p>This example demonstrates how to use the <code>Relation</code> class to resolve relationships between collections in different databases.</p>
+<h2 id="use-cases">Use Cases</h2>
+<h3 id="unit-testing">Unit Testing</h3>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createMemoryValthera</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">describe</span><span class="p">,</span><span class="w"> </span><span class="nx">it</span><span class="p">,</span><span class="w"> </span><span class="nx">expect</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;vitest&quot;</span><span class="p">;</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;UserService&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">it</span><span class="p">(</span><span class="s2">&quot;should create a user&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createMemoryValthera</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">_id</span><span class="p">).</span><span class="nx">toBeDefined</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="nx">it</span><span class="p">(</span><span class="s2">&quot;should find users by email&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createMemoryValthera</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">users</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;alice@test.com&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;bob@test.com&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">found</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;alice@test.com&quot;</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">found</span><span class="o">?</span><span class="p">.</span><span class="nx">name</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="browserpwa-applications">Browser/PWA Applications</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// In a browser environment</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createMemoryValthera</span><span class="p">();</span>
+
+<span class="c1">// Store temporary session data</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">userId</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;123&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;abc&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">expiresAt</span><span class="o">:</span><span class="w"> </span><span class="kt">Date.now</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3600000</span>
+<span class="p">});</span>
+
+<span class="c1">// Data persists during the session</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span><span class="w"> </span><span class="nx">userId</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;123&quot;</span><span class="w"> </span><span class="p">});</span>
+</code></pre></div>
+<p>For persistent storage, use a file-based adapter like <code>dir</code>.</p>
 
 
 
