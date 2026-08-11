@@ -13,27 +13,33 @@ import { Valthera } from "./valthera";
  * If the configuration is an object, it creates a DataBaseRemote instance.
  * If the configuration is a string starting with "http", it also creates a DataBaseRemote instance.
  * Otherwise, it creates a DataBase instance.
- * 
+ *
  * @param cfg - The configuration object or string for the database.
  * @returns A new instance of DataBaseRemote or DataBase.
  * @deprecated
  */
-export function ValtheraAutoRemoteCreate(cfg: string | RemoteConfig): ValtheraCompatible {
-    if (typeof cfg === "object" || cfg.startsWith("http")) return new ValtheraRemote(cfg);
-    return new Valthera(cfg);
+export function ValtheraAutoRemoteCreate(
+	cfg: string | RemoteConfig,
+): ValtheraCompatible {
+	if (typeof cfg === "object" || cfg.startsWith("http"))
+		return new ValtheraRemote(cfg);
+	return new Valthera(cfg);
 }
 
 /**
  * Creates a new instance of forged Valthera.
- * 
+ *
  * @param folder - The folder path where the database files are stored.
  * @param options - Optional configuration options.
  * @returns A new instance of Valthera.
  */
-export function ValtheraCreate<T extends Record<string, Data> = {}>(folder: string, options: DbDirOpts = {}) {
-    return forgeTypedValthera<T>(
-        new ValtheraClass({
-            adapter: createFileActions(folder, options)
-        })
-    );
+export function ValtheraCreate<T extends Record<string, Data> = {}>(
+	folder: string,
+	options: DbDirOpts = {},
+) {
+	return forgeTypedValthera<T>(
+		new ValtheraClass({
+			adapter: createFileActions(folder, options),
+		}),
+	);
 }
