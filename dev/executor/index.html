@@ -1492,23 +1492,23 @@
 <p>Database adapters often cannot handle concurrent operations safely. Without an executor:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// Race condition without executor</span>
 <span class="k">await</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span>
-<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="w"> </span><span class="p">}),</span>
-<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Bob&quot;</span><span class="w"> </span><span class="p">})</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">}),</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="w"> </span><span class="p">})</span>
 <span class="p">]);</span>
 <span class="c1">// Both operations might interfere with each other</span>
 </code></pre></div>
 <p>With an executor, operations are queued and executed sequentially:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// Safe with executor</span>
 <span class="k">await</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span>
-<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="w"> </span><span class="p">}),</span>
-<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Bob&quot;</span><span class="w"> </span><span class="p">})</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">}),</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="w"> </span><span class="p">})</span>
 <span class="p">]);</span>
 <span class="c1">// Operations are queued: Alice first, then Bob</span>
 </code></pre></div>
 <h2 id="executor-types">Executor Types</h2>
 <h3 id="executor-simple">Executor (Simple)</h3>
 <p>A basic FIFO queue. All operations are executed one after another, regardless of collection.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Executor</span><span class="p">,</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core&quot;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Executor</span><span class="p">,</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span>
 <span class="w">  </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">myAdapter</span><span class="p">,</span>
@@ -1530,7 +1530,7 @@
 </ul>
 <h3 id="smartexecutor-advanced">SmartExecutor (Advanced)</h3>
 <p>Per-collection queues with automatic cleanup. Operations on different collections can run in parallel.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="p">,</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core&quot;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="p">,</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span>
 <span class="w">  </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">myAdapter</span><span class="p">,</span>
@@ -1562,35 +1562,35 @@
 <h3 id="queue-isolation">Queue Isolation</h3>
 <div class="highlight"><pre><span></span><code><span class="c1">// These operations run in parallel (different collections)</span>
 <span class="k">await</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span>
-<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="w"> </span><span class="p">}),</span><span class="w">    </span><span class="c1">// Queue: &quot;users&quot;</span>
-<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Hello&quot;</span><span class="w"> </span><span class="p">}),</span><span class="w">   </span><span class="c1">// Queue: &quot;posts&quot;</span>
-<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">comments</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Nice!&quot;</span><span class="w"> </span><span class="p">})</span><span class="w">  </span><span class="c1">// Queue: &quot;comments&quot;</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">}),</span><span class="w">    </span><span class="c1">// Queue: "users"</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">"Hello"</span><span class="w"> </span><span class="p">}),</span><span class="w">   </span><span class="c1">// Queue: "posts"</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">comments</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">"Nice!"</span><span class="w"> </span><span class="p">})</span><span class="w">  </span><span class="c1">// Queue: "comments"</span>
 <span class="p">]);</span>
 
 <span class="c1">// These operations run sequentially (same collection)</span>
 <span class="k">await</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span>
-<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="w"> </span><span class="p">}),</span><span class="w">    </span><span class="c1">// Queue: &quot;users&quot; - first</span>
-<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Bob&quot;</span><span class="w"> </span><span class="p">}),</span><span class="w">      </span><span class="c1">// Queue: &quot;users&quot; - second</span>
-<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">find</span><span class="p">({})</span><span class="w">                    </span><span class="c1">// Queue: &quot;users&quot; - third</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">}),</span><span class="w">    </span><span class="c1">// Queue: "users" - first</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="w"> </span><span class="p">}),</span><span class="w">      </span><span class="c1">// Queue: "users" - second</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">find</span><span class="p">({})</span><span class="w">                    </span><span class="c1">// Queue: "users" - third</span>
 <span class="p">]);</span>
 </code></pre></div>
 <h3 id="automatic-cleanup">Automatic Cleanup</h3>
 <p>SmartExecutor automatically removes idle queues after the TTL period:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">executor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="p">(</span><span class="mf">60000</span><span class="p">);</span><span class="w"> </span><span class="c1">// 1 minute TTL</span>
 
-<span class="c1">// Operation creates a queue for &quot;users&quot;</span>
-<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="w"> </span><span class="p">});</span>
+<span class="c1">// Operation creates a queue for "users"</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">});</span>
 
 <span class="c1">// Queue remains active for 1 minute</span>
-<span class="c1">// If no operations on &quot;users&quot; for 1 minute, queue is removed</span>
-<span class="c1">// Next operation on &quot;users&quot; creates a new queue</span>
+<span class="c1">// If no operations on "users" for 1 minute, queue is removed</span>
+<span class="c1">// Next operation on "users" creates a new queue</span>
 </code></pre></div>
 <h3 id="aware-mode">aware Mode</h3>
 <p>When <code>aware = true</code> (default), queues are isolated per collection:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">executor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="p">(</span><span class="mf">300000</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
-<span class="c1">// &quot;users&quot; -&gt; separate queue</span>
-<span class="c1">// &quot;posts&quot; -&gt; separate queue</span>
-<span class="c1">// &quot;comments&quot; -&gt; separate queue</span>
+<span class="c1">// "users" -&gt; separate queue</span>
+<span class="c1">// "posts" -&gt; separate queue</span>
+<span class="c1">// "comments" -&gt; separate queue</span>
 </code></pre></div>
 <p>When <code>aware = false</code>, all operations share a single queue:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">executor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="p">(</span><span class="mf">300000</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
@@ -1608,7 +1608,7 @@
 <p>When an adapter has <code>smartExecutor = true</code>, ValtheraClass automatically enables <code>aware</code> mode on the SmartExecutor.</p>
 <h2 id="custom-executor">Custom Executor</h2>
 <p>You can implement your own executor:</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ExecutorInterface</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db-core&quot;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ExecutorInterface</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nx">MyCustomExecutor</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">ExecutorInterface</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">addOp</span><span class="p">(</span><span class="nx">func</span><span class="o">:</span><span class="w"> </span><span class="kt">Function</span><span class="p">,</span><span class="w"> </span><span class="nx">query?</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">,</span><span class="w"> </span><span class="nx">collection?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>

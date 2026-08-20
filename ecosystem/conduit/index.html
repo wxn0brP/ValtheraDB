@@ -1241,11 +1241,11 @@ with a framed binary protocol (12-byte header + JSON payload).</p>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">wxn0brp.db</span><span class="w"> </span><span class="kn">import</span> <span class="n">conduit</span>
 
-<span class="k">with</span> <span class="n">conduit</span><span class="o">.</span><span class="n">ValtheraConduit</span><span class="p">(</span><span class="s2">&quot;./vendor/vdb&quot;</span><span class="p">,</span> <span class="n">auto_download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">c</span><span class="p">:</span>
-    <span class="n">db</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="s2">&quot;./data&quot;</span><span class="p">)</span>
-    <span class="n">users</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;users&quot;</span><span class="p">)</span>
-    <span class="n">users</span><span class="o">.</span><span class="n">add</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Ada&quot;</span><span class="p">})</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Ada&quot;</span><span class="p">}))</span>
+<span class="k">with</span> <span class="n">conduit</span><span class="o">.</span><span class="n">ValtheraConduit</span><span class="p">(</span><span class="s2">"./vendor/vdb"</span><span class="p">,</span> <span class="n">auto_download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">c</span><span class="p">:</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="s2">"./data"</span><span class="p">)</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">c</span><span class="p">(</span><span class="s2">"users"</span><span class="p">)</span>
+    <span class="n">users</span><span class="o">.</span><span class="n">add</span><span class="p">({</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Ada"</span><span class="p">})</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Ada"</span><span class="p">}))</span>
 </code></pre></div>
 <h2 id="protocol-summary">Protocol Summary</h2>
 <ul>

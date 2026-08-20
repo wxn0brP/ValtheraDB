@@ -1549,65 +1549,65 @@
 <h3 id="push"><code>$push</code></h3>
 <p>Adds an element to the end of an array.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">$push</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;designer&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">$push</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="s2">"designer"</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Input:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;developer&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"developer"</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Output:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;developer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;designer&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"developer"</span><span class="p">,</span><span class="w"> </span><span class="s2">"designer"</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="pushset"><code>$pushset</code></h3>
 <p>Adds an element to the end of an array and removes duplicates.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">$pushset</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;designer&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">$pushset</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="s2">"designer"</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Input:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;developer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;designer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;developer&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"developer"</span><span class="p">,</span><span class="w"> </span><span class="s2">"designer"</span><span class="p">,</span><span class="w"> </span><span class="s2">"developer"</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Output:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;developer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;designer&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"developer"</span><span class="p">,</span><span class="w"> </span><span class="s2">"designer"</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="pull"><code>$pull</code></h3>
 <p>Removes a specific element from an array.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">$pull</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;developer&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">$pull</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="s2">"developer"</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Input:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;developer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;designer&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"developer"</span><span class="p">,</span><span class="w"> </span><span class="s2">"designer"</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Output:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;designer&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"designer"</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="pullall"><code>$pullall</code></h3>
 <p>Removes all occurrences of specified elements from an array.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">$pullall</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;developer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;designer&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">$pullall</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"developer"</span><span class="p">,</span><span class="w"> </span><span class="s2">"designer"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Input:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;developer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;designer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;manager&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"developer"</span><span class="p">,</span><span class="w"> </span><span class="s2">"designer"</span><span class="p">,</span><span class="w"> </span><span class="s2">"manager"</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Output:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;manager&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"manager"</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="numbers">Numbers</h2>
@@ -1645,19 +1645,32 @@
 </code></pre></div>
 <h2 id="objects">Objects</h2>
 <h3 id="merge"><code>$merge</code></h3>
-<p>Merges a nested object, adding or updating properties.</p>
+<p>Merges a nested object, adding or updating properties. For arrays, concatenates them.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">$merge</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">settings</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">theme</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;dark&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">$merge</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="nx">settings</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">theme</span><span class="o">:</span><span class="w"> </span><span class="s2">"dark"</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">roles</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"admin"</span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Input:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">settings</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">theme</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;light&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">language</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">settings</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">theme</span><span class="o">:</span><span class="w"> </span><span class="s2">"light"</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">language</span><span class="o">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">roles</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"user"</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Output:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">settings</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">theme</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;dark&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">language</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">settings</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">theme</span><span class="o">:</span><span class="w"> </span><span class="s2">"dark"</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">language</span><span class="o">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">roles</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"user"</span><span class="p">,</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="deepmerge"><code>$deepMerge</code></h3>
@@ -1666,7 +1679,7 @@
 <span class="w">    </span><span class="nx">$deepMerge</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nx">user</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">city</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;New York&quot;</span>
+<span class="w">                </span><span class="nx">city</span><span class="o">:</span><span class="w"> </span><span class="s2">"New York"</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -1675,10 +1688,10 @@
 <p><strong>Input:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">    </span><span class="nx">user</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span>
 <span class="w">        </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">street</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;123 Main St&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">city</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;San Francisco&quot;</span>
+<span class="w">            </span><span class="nx">street</span><span class="o">:</span><span class="w"> </span><span class="s2">"123 Main St"</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">city</span><span class="o">:</span><span class="w"> </span><span class="s2">"San Francisco"</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
@@ -1686,10 +1699,10 @@
 <p><strong>Output:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">    </span><span class="nx">user</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span>
 <span class="w">        </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">street</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;123 Main St&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">city</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;New York&quot;</span>
+<span class="w">            </span><span class="nx">street</span><span class="o">:</span><span class="w"> </span><span class="s2">"123 Main St"</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">city</span><span class="o">:</span><span class="w"> </span><span class="s2">"New York"</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
@@ -1703,31 +1716,31 @@
 </code></pre></div>
 <p><strong>Input:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Output:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"John"</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="rename"><code>$rename</code></h3>
 <p>Renames a key in an object.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">$rename</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">$rename</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="s2">"name"</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Input:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span>
+<span class="w">    </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="s2">"Doe"</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Output:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="s2">"Doe"</span>
 <span class="p">}</span>
 </code></pre></div>
 

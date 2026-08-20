@@ -1439,7 +1439,7 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 <h2 id="context-object">Context Object</h2>
 <p>The <code>execute</code> method receives a context object:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">PluginContext</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">op</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">        </span><span class="c1">// Operation name: &quot;find&quot;, &quot;add&quot;, &quot;update&quot;, etc.</span>
+<span class="w">  </span><span class="nx">op</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">        </span><span class="c1">// Operation name: "find", "add", "update", etc.</span>
 <span class="w">  </span><span class="nx">query</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">;</span><span class="w">        </span><span class="c1">// The query object (or collection name string for some ops)</span>
 <span class="w">  </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Call the next plugin or adapter</span>
 <span class="p">}</span>
@@ -1452,10 +1452,10 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 </ul>
 <h2 id="basic-plugin-structure">Basic Plugin Structure</h2>
 <p>Here's the minimal plugin structure:</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraPlugin</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@wxn0brp/db&quot;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraPlugin</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db"</span><span class="p">;</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">myPlugin</span><span class="o">:</span><span class="w"> </span><span class="kt">ValtheraPlugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;my-plugin&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"my-plugin"</span><span class="p">,</span>
 
 <span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">execute</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// Before the operation</span>
@@ -1473,7 +1473,7 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 </code></pre></div>
 <h2 id="registering-plugins">Registering Plugins</h2>
 <p>Use the <code>plugin()</code> method to register:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="p">(</span><span class="s2">&quot;./my-db&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="p">(</span><span class="s2">"./my-db"</span><span class="p">);</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">unregister</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">plugin</span><span class="p">(</span><span class="nx">myPlugin</span><span class="p">);</span>
 
@@ -1495,14 +1495,14 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 <span class="nx">db</span><span class="p">.</span><span class="nx">plugin</span><span class="p">(</span><span class="nx">pluginB</span><span class="p">);</span>
 <span class="nx">db</span><span class="p">.</span><span class="nx">plugin</span><span class="p">(</span><span class="nx">pluginC</span><span class="p">);</span>
 
-<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="s2">&quot;users&quot;</span><span class="p">).</span><span class="nx">find</span><span class="p">({});</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="s2">"users"</span><span class="p">).</span><span class="nx">find</span><span class="p">({});</span>
 <span class="c1">// Execution order: A -&gt; B -&gt; C -&gt; adapter -&gt; C -&gt; B -&gt; A</span>
 </code></pre></div>
 <h2 id="practical-examples">Practical Examples</h2>
 <h3 id="logging-plugin">Logging Plugin</h3>
 <p>Log all operations with timing:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">loggingPlugin</span><span class="o">:</span><span class="w"> </span><span class="kt">ValtheraPlugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;logger&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"logger"</span><span class="p">,</span>
 
 <span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">execute</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
@@ -1520,10 +1520,10 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 <h3 id="operation-blocker">Operation Blocker</h3>
 <p>Prevent certain operations:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">readOnlyPlugin</span><span class="o">:</span><span class="w"> </span><span class="kt">ValtheraPlugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;read-only&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"read-only"</span><span class="p">,</span>
 
 <span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">execute</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">writeOps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;add&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;update&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;updateOne&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;remove&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;removeOne&quot;</span><span class="p">];</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">writeOps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"add"</span><span class="p">,</span><span class="w"> </span><span class="s2">"update"</span><span class="p">,</span><span class="w"> </span><span class="s2">"updateOne"</span><span class="p">,</span><span class="w"> </span><span class="s2">"remove"</span><span class="p">,</span><span class="w"> </span><span class="s2">"removeOne"</span><span class="p">];</span>
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">writeOps</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">op</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Operation </span><span class="si">${</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">op</span><span class="si">}</span><span class="sb"> is not allowed in read-only mode`</span><span class="p">);</span>
@@ -1536,11 +1536,11 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 <h2 id="modifying-queries">Modifying Queries</h2>
 <p>Plugins can modify queries before they reach the adapter:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">softDeletePlugin</span><span class="o">:</span><span class="w"> </span><span class="kt">ValtheraPlugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;soft-delete&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"soft-delete"</span><span class="p">,</span>
 
 <span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">execute</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// Add deleted filter to all find operations</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">op</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;find&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">op</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;findOne&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">op</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"find"</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">op</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"findOne"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">search</span><span class="w"> </span><span class="o">||=</span><span class="w"> </span><span class="p">{};</span>
 <span class="w">      </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">deleted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">$ne</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">};</span>
 <span class="w">    </span><span class="p">}</span>
@@ -1552,12 +1552,12 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 <h2 id="modifying-results">Modifying Results</h2>
 <p>Transform results after the adapter returns them:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">transformPlugin</span><span class="o">:</span><span class="w"> </span><span class="kt">ValtheraPlugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;transformer&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"transformer"</span><span class="p">,</span>
 
 <span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">execute</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">op</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;find&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">op</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"find"</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">item</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
 <span class="w">        </span><span class="p">...</span><span class="nx">item</span><span class="p">,</span>
 <span class="w">        </span><span class="nx">fullName</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">item</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">item</span><span class="p">.</span><span class="nx">lastName</span><span class="si">}</span><span class="sb">`</span>
