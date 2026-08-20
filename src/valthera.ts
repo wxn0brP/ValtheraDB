@@ -16,7 +16,7 @@ export class Valthera extends ValtheraClass {
 		options.format ||= "json5:x";
 		super({
 			...options,
-			dbAction: new FileActions(folder, options, fileCpu),
+			adapter: new FileActions(folder, options, fileCpu),
 		});
 	}
 }
