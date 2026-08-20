@@ -1535,8 +1535,8 @@
 <span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span>
 <span class="w">  </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">myAdapter</span><span class="p">,</span>
 <span class="w">  </span><span class="nx">executor</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="p">(</span>
-<span class="w">    </span><span class="nx">ttl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">60</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1000</span><span class="p">,</span><span class="w">  </span><span class="c1">// 5 minutes</span>
-<span class="w">    </span><span class="nx">aware</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w">          </span><span class="c1">// per-collection isolation, default false</span>
+<span class="w">    </span><span class="nx">ttl</span><span class="p">,</span><span class="w">  </span><span class="c1">// default: 300000 (5 min)</span>
+<span class="w">    </span><span class="nx">aware</span><span class="w"> </span><span class="c1">// default: false</span>
 <span class="w">  </span><span class="p">)</span>
 <span class="p">});</span>
 </code></pre></div>
@@ -1586,13 +1586,13 @@
 <span class="c1">// Next operation on "users" creates a new queue</span>
 </code></pre></div>
 <h3 id="aware-mode">aware Mode</h3>
-<p>When <code>aware = true</code> (default), queues are isolated per collection:</p>
+<p>When <code>aware = true</code>, queues are isolated per collection:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">executor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="p">(</span><span class="mf">300000</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
 <span class="c1">// "users" -&gt; separate queue</span>
 <span class="c1">// "posts" -&gt; separate queue</span>
 <span class="c1">// "comments" -&gt; separate queue</span>
 </code></pre></div>
-<p>When <code>aware = false</code>, all operations share a single queue:</p>
+<p>When <code>aware = false</code> (default), all operations share a single queue:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">executor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="p">(</span><span class="mf">300000</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
 <span class="c1">// All operations -&gt; single shared queue</span>
 <span class="c1">// Behaves like simple Executor but with TTL cleanup</span>

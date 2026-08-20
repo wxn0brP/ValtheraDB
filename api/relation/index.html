@@ -745,10 +745,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-findpath-search-relations-select-findopts" class="md-nav__link">
+  <a href="#async-findpath-search-relations-select-dbfindopts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async find(path, search, relations, select?, findOpts?)
+        async find(path, search, relations, select?, dbFindOpts?)
       
     </span>
   </a>
@@ -760,6 +760,100 @@
     <span class="md-ellipsis">
       
         Relation Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relation Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-one-to-one-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "1" - One-to-One (Batch)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-one-to-one-individual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "11" - One-to-One (Individual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1n-one-to-many" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "1n" - One-to-Many
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nm-many-to-many" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "nm" - Many-to-Many
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Options
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nested-relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nested Relations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-as-option" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The as Option
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-select-option" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The select Option
       
     </span>
   </a>
@@ -1275,10 +1369,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-findpath-search-relations-select-findopts" class="md-nav__link">
+  <a href="#async-findpath-search-relations-select-dbfindopts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async find(path, search, relations, select?, findOpts?)
+        async find(path, search, relations, select?, dbFindOpts?)
       
     </span>
   </a>
@@ -1290,6 +1384,100 @@
     <span class="md-ellipsis">
       
         Relation Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relation Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-one-to-one-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "1" - One-to-One (Batch)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-one-to-one-individual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "11" - One-to-One (Individual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1n-one-to-many" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "1n" - One-to-Many
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nm-many-to-many" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "nm" - Many-to-Many
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Options
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nested-relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nested Relations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-as-option" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The as Option
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-select-option" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The select Option
       
     </span>
   </a>
@@ -1339,18 +1527,18 @@
 <p>Creates a new instance of the <code>Relation</code> class.</p>
 <ul>
 <li><strong>Parameters:</strong></li>
-<li><code>dbs</code> (<code>RelationTypes.DBS</code>): An object mapping database names to <code>DataBase</code> or <code>DataBaseRemote</code> instances.</li>
+<li><code>dbs</code> (<code>RelationTypes.DBS</code>): An object mapping database names to <code>ValtheraClass</code> or compatible instances.</li>
 </ul>
 <hr />
 <h3 id="async-findonepath-search-relations-select"><code>async findOne(path, search, relations, select?)</code></h3>
 <p>Finds a single entry in a collection and resolves its relations.</p>
 <ul>
 <li><strong>Parameters:</strong></li>
-<li><code>path</code> (<code>RelationTypes.Path</code>): A tuple specifying the database and collection.</li>
+<li><code>path</code> (<code>RelationTypes.Path</code>): A tuple <code>[dbName, collectionName]</code> specifying the database and collection.</li>
 <li><code>search</code> (<code>Search</code>): The search criteria.</li>
 <li><code>relations</code> (<code>RelationTypes.Relation</code>): The relations to resolve.</li>
 <li>
-<p><code>select</code> (<code>RelationTypes.FieldPath[]</code>, optional): Fields to select in the result.</p>
+<p><code>select</code> (<code>string[][] | Record&lt;string, any&gt;</code>, optional): Fields to include in the result. Accepts array of paths or an object with paths as values.</p>
 </li>
 <li>
 <p><strong>Returns:</strong></p>
@@ -1358,16 +1546,16 @@
 <li><code>Promise&lt;Object | null&gt;</code>: The found entry with resolved relations, or <code>null</code> if no match is found.</li>
 </ul>
 <hr />
-<h3 id="async-findpath-search-relations-select-findopts"><code>async find(path, search, relations, select?, findOpts?)</code></h3>
+<h3 id="async-findpath-search-relations-select-dbfindopts"><code>async find(path, search, relations, select?, dbFindOpts?)</code></h3>
 <p>Finds multiple entries in a collection and resolves their relations.</p>
 <ul>
 <li><strong>Parameters:</strong></li>
-<li><code>path</code> (<code>RelationTypes.Path</code>): A tuple specifying the database and collection.</li>
+<li><code>path</code> (<code>RelationTypes.Path</code>): A tuple <code>[dbName, collectionName]</code> specifying the database and collection.</li>
 <li><code>search</code> (<code>Search</code>): The search criteria.</li>
 <li><code>relations</code> (<code>RelationTypes.Relation</code>): The relations to resolve.</li>
-<li><code>select</code> (<code>RelationTypes.FieldPath[]</code>, optional): Fields to select in the results.</li>
+<li><code>select</code> (<code>string[][] | Record&lt;string, any&gt;</code>, optional): Fields to include in the results.</li>
 <li>
-<p><code>findOpts</code> (<code>DbFindOpts</code>, optional): Options for the find operation.</p>
+<p><code>dbFindOpts</code> (<code>DbFindOpts</code>, optional): Options for the find operation (pagination, sorting, etc.).</p>
 </li>
 <li>
 <p><strong>Returns:</strong></p>
@@ -1377,20 +1565,201 @@
 <hr />
 <h3 id="relation-types">Relation Types</h3>
 <p>The <code>Relation</code> class supports the following relation types:</p>
-<ol>
-<li><strong>One-to-One (<code>"1"</code>)</strong>: Resolves a single related entry.</li>
-<li><strong>One-to-Many (<code>"1n"</code>)</strong>: Resolves multiple related entries.</li>
-<li><strong>Many-to-Many (<code>"nm"</code>)</strong>: Resolves all entries in the related collection.</li>
-<li><strong>Legacy One-to-One (<code>"11"</code>)</strong>: Similar to <code>"1"</code>, but internally performs a <code>findOne</code> operation for each document during a <code>find</code> query. This mode is less performant but might be useful in specific scenarios, such as with custom adapters or legacy systems. This is considered a <strong>legacy mode</strong> but is still fully supported.</li>
-</ol>
+<h4 id="1-one-to-one-batch"><code>"1"</code> - One-to-One (Batch)</h4>
+<p>Resolves a single related entry per document using a batched <code>$in</code> query. This is the most performant one-to-one mode.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nx">author</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"main"</span><span class="p">,</span><span class="w"> </span><span class="s2">"users"</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">"_id"</span><span class="p">,</span><span class="w">        </span><span class="c1">// field on the source document</span>
+<span class="w">    </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">"_id"</span><span class="p">,</span><span class="w">        </span><span class="c1">// field on the related document</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"1"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="11-one-to-one-individual"><code>"11"</code> - One-to-One (Individual)</h4>
+<p>Similar to <code>"1"</code>, but internally performs a <code>findOne</code> operation for each document during a <code>find</code> query. Less performant but useful with custom adapters or legacy systems.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nx">author</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"main"</span><span class="p">,</span><span class="w"> </span><span class="s2">"users"</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">"_id"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">"authorId"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"11"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="1n-one-to-many"><code>"1n"</code> - One-to-Many</h4>
+<p>Resolves multiple related entries. Supports <code>dbFindOpts</code> for sorting/pagination of related items.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nx">posts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"main"</span><span class="p">,</span><span class="w"> </span><span class="s2">"posts"</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">"_id"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">"authorId"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"1n"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">,</span><span class="w"> </span><span class="nx">sortAsc</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="nm-many-to-many"><code>"nm"</code> - Many-to-Many</h4>
+<p>Resolves all entries via a pivot/join table. <strong>Requires</strong> the <code>through</code> option.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"main"</span><span class="p">,</span><span class="w"> </span><span class="s2">"tags"</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">"_id"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">"_id"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"nm"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">through</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">table</span><span class="o">:</span><span class="w"> </span><span class="s2">"post_tags"</span><span class="p">,</span><span class="w">  </span><span class="c1">// pivot collection name</span>
+<span class="w">      </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">"postId"</span><span class="p">,</span><span class="w">       </span><span class="c1">// pivot field referencing source</span>
+<span class="w">      </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">"tagId"</span><span class="p">,</span><span class="w">        </span><span class="c1">// pivot field referencing target</span>
+<span class="w">      </span><span class="nx">db</span><span class="o">:</span><span class="w"> </span><span class="s2">"main"</span><span class="w">          </span><span class="c1">// optional: database name for pivot (defaults to source db)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="configuration-options">Configuration Options</h3>
+<p>Each relation entry supports these options:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>path</code></td>
+<td><code>[string, string]</code></td>
+<td><strong>required</strong></td>
+<td><code>[dbName, collectionName]</code> of the related data</td>
+</tr>
+<tr>
+<td><code>pk</code></td>
+<td><code>string</code></td>
+<td><code>"_id"</code></td>
+<td>Field on the source document to match</td>
+</tr>
+<tr>
+<td><code>fk</code></td>
+<td><code>string</code></td>
+<td><code>"_id"</code></td>
+<td>Field on the related document to match</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>"1" \| "11" \| "1n" \| "nm"</code></td>
+<td><code>"1"</code></td>
+<td>Relationship type</td>
+</tr>
+<tr>
+<td><code>as</code></td>
+<td><code>string</code></td>
+<td>relation key name</td>
+<td>Field name in the result object</td>
+</tr>
+<tr>
+<td><code>select</code></td>
+<td><code>string[]</code></td>
+<td><code>undefined</code></td>
+<td>Fields to include from related documents</td>
+</tr>
+<tr>
+<td><code>dbFindOpts</code></td>
+<td><code>DbFindOpts</code></td>
+<td><code>{}</code></td>
+<td>Options for <code>"1n"</code> type (sorting, pagination)</td>
+</tr>
+<tr>
+<td><code>through</code></td>
+<td><code>Object</code></td>
+<td><code>undefined</code></td>
+<td>Pivot table config for <code>"nm"</code> type</td>
+</tr>
+<tr>
+<td><code>relations</code></td>
+<td><code>Relation</code></td>
+<td><code>undefined</code></td>
+<td>Nested relations to resolve on related documents</td>
+</tr>
+</tbody>
+</table>
+<h3 id="nested-relations">Nested Relations</h3>
+<p>Relations can be nested to resolve deeply linked data:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">relations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">author</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"main"</span><span class="p">,</span><span class="w"> </span><span class="s2">"users"</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">"_id"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">"_id"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">relations</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Resolve relations on the author document itself</span>
+<span class="w">      </span><span class="nx">recentPosts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"main"</span><span class="p">,</span><span class="w"> </span><span class="s2">"posts"</span><span class="p">],</span>
+<span class="w">        </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">"_id"</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">"authorId"</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"1n"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">comments</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"main"</span><span class="p">,</span><span class="w"> </span><span class="s2">"comments"</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">"_id"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">"postId"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"1n"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">relations</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Resolve relations on each comment</span>
+<span class="w">      </span><span class="nx">author</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"main"</span><span class="p">,</span><span class="w"> </span><span class="s2">"users"</span><span class="p">],</span>
+<span class="w">        </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">"authorId"</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">"_id"</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"1"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="the-as-option">The <code>as</code> Option</h3>
+<p>By default, the relation is stored under the key name used in the relations object. Use <code>as</code> to rename it:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">relations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">writer</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// key name</span>
+<span class="w">    </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"main"</span><span class="p">,</span><span class="w"> </span><span class="s2">"users"</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">"authorId"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">"_id"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span>
+<span class="w">    </span><span class="kr">as</span><span class="o">:</span><span class="w"> </span><span class="s2">"author"</span><span class="w">  </span><span class="c1">// stored as result.author, not result.writer</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="the-select-option">The <code>select</code> Option</h3>
+<p>Use <code>select</code> to limit which fields are included from related documents. The foreign key field is automatically added and removed to avoid duplication:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nx">author</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"main"</span><span class="p">,</span><span class="w"> </span><span class="s2">"users"</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">"_id"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">"_id"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">select</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"name"</span><span class="p">,</span><span class="w"> </span><span class="s2">"email"</span><span class="p">]</span><span class="w">  </span><span class="c1">// only these fields are returned</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>select</code> accepts an array of field paths. You can also pass an object to <code>findOne</code>/<code>find</code> as the <code>select</code> parameter for result-level field selection:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">post</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">relation</span><span class="p">.</span><span class="nx">findOne</span><span class="p">(</span>
+<span class="w">  </span><span class="p">[</span><span class="s2">"main"</span><span class="p">,</span><span class="w"> </span><span class="s2">"posts"</span><span class="p">],</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s2">"post123"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">relations</span><span class="p">,</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nx">author</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1">// object form</span>
+<span class="p">);</span>
+</code></pre></div>
 <hr />
 <h3 id="example-usage">Example Usage</h3>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">Relation</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db"</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraAutoCreate</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db/autoCreate"</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Relation</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db"</span><span class="p">;</span>
 
 <span class="c1">// Create database instances</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">db1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraAutoCreate</span><span class="p">(</span><span class="s2">"path/to/db1"</span><span class="p">);</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">db2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraAutoCreate</span><span class="p">(</span><span class="s2">"path/to/db2"</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">db1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="p">(</span><span class="s2">"./db1"</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">db2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="p">(</span><span class="s2">"./db2"</span><span class="p">);</span>
 
 <span class="c1">// Define databases</span>
 <span class="kd">const</span><span class="w"> </span><span class="nx">dbs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
@@ -1404,15 +1773,15 @@
 <span class="w">        </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"db1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"users"</span><span class="p">],</span>
 <span class="w">        </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">"authorId"</span><span class="p">,</span>
 <span class="w">        </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">"_id"</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span>
+<span class="w">        </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span>
 <span class="w">        </span><span class="nx">select</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"name"</span><span class="p">,</span><span class="w"> </span><span class="s2">"email"</span><span class="p">]</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nx">comments</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"db2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"comments"</span><span class="p">],</span>
 <span class="w">        </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">"_id"</span><span class="p">,</span>
 <span class="w">        </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">"postId"</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"1n"</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">select</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"content"</span><span class="p">,</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">]</span>
+<span class="w">        </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"1n"</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="kt">20</span><span class="p">,</span><span class="w"> </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">,</span><span class="w"> </span><span class="nx">sortAsc</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">};</span>
 
@@ -1435,12 +1804,11 @@
 <span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">category</span><span class="o">:</span><span class="w"> </span><span class="s2">"tech"</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="nx">relations</span><span class="p">,</span>
 <span class="w">    </span><span class="p">[[</span><span class="s2">"title"</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">"author.name"</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">"comments.content"</span><span class="p">]],</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="kt">10</span><span class="w"> </span><span class="p">}</span>
 <span class="p">);</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">posts</span><span class="p">);</span>
 </code></pre></div>
-<p>This example demonstrates how to use the <code>Relation</code> class to resolve relationships between collections in different databases.</p>
 
 
 

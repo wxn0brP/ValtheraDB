@@ -1685,15 +1685,16 @@ If a path segment points to an array, it will be replaced with an empty object:<
 <h3 id="select-and-exclude-interaction">Select and Exclude Interaction</h3>
 <p>When both <code>select</code> and <code>exclude</code> are used:</p>
 <ol>
-<li><code>select</code> is applied first (creates object with only selected fields)</li>
-<li><code>exclude</code> is applied second (removes fields from the selected result)</li>
+<li><code>exclude</code> is applied first (removes fields from the object)</li>
+<li><code>select</code> is applied second (creates object with only selected fields from the remaining)</li>
 </ol>
 <div class="highlight"><pre><span></span><code><span class="c1">// Original: { a: 1, b: 2, c: 3, d: 4 }</span>
 <span class="p">{</span>
-<span class="w">    </span><span class="nx">select</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span><span class="w"> </span><span class="s2">"b"</span><span class="p">,</span><span class="w"> </span><span class="s2">"c"</span><span class="p">],</span><span class="w">  </span><span class="c1">// Result: { a: 1, b: 2, c: 3 }</span>
-<span class="w">    </span><span class="nx">exclude</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"b"</span><span class="p">]</span><span class="w">            </span><span class="c1">// Result: { a: 1, c: 3 }</span>
+<span class="w">    </span><span class="nx">exclude</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"b"</span><span class="p">],</span><span class="w">            </span><span class="c1">// Step 1: { a: 1, c: 3, d: 4 }</span>
+<span class="w">    </span><span class="nx">select</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span><span class="w"> </span><span class="s2">"c"</span><span class="p">]</span><span class="w">         </span><span class="c1">// Step 2: { a: 1, c: 3 }</span>
 <span class="p">}</span>
 </code></pre></div>
+<p>The full execution order is always: <code>transform</code> -&gt; <code>exclude</code> -&gt; <code>select</code>.</p>
 <h3 id="non-existent-paths">Non-Existent Paths</h3>
 <ul>
 <li>Selecting non-existent paths silently returns <code>undefined</code> for that field</li>

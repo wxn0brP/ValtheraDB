@@ -765,7 +765,7 @@
   <a href="#pushset" class="md-nav__link">
     <span class="md-ellipsis">
       
-        $pushset
+        $pushSet
       
     </span>
   </a>
@@ -787,7 +787,18 @@
   <a href="#pullall" class="md-nav__link">
     <span class="md-ellipsis">
       
-        $pullall
+        $pullAll
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pushall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        $pushAll
       
     </span>
   </a>
@@ -890,6 +901,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        $set
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#unset" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -913,6 +935,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function-based-updater" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Function-Based Updater
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1373,7 +1406,7 @@
   <a href="#pushset" class="md-nav__link">
     <span class="md-ellipsis">
       
-        $pushset
+        $pushSet
       
     </span>
   </a>
@@ -1395,7 +1428,18 @@
   <a href="#pullall" class="md-nav__link">
     <span class="md-ellipsis">
       
-        $pullall
+        $pullAll
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pushall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        $pushAll
       
     </span>
   </a>
@@ -1498,6 +1542,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        $set
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#unset" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1521,6 +1576,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function-based-updater" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Function-Based Updater
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1562,10 +1628,10 @@
 <span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"developer"</span><span class="p">,</span><span class="w"> </span><span class="s2">"designer"</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="pushset"><code>$pushset</code></h3>
+<h3 id="pushset"><code>$pushSet</code></h3>
 <p>Adds an element to the end of an array and removes duplicates.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">$pushset</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="s2">"designer"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">$pushSet</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="s2">"designer"</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Input:</strong></p>
@@ -1594,10 +1660,10 @@
 <span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"designer"</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="pullall"><code>$pullall</code></h3>
+<h3 id="pullall"><code>$pullAll</code></h3>
 <p>Removes all occurrences of specified elements from an array.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">$pullall</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"developer"</span><span class="p">,</span><span class="w"> </span><span class="s2">"designer"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">$pullAll</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"developer"</span><span class="p">,</span><span class="w"> </span><span class="s2">"designer"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Input:</strong></p>
@@ -1608,6 +1674,22 @@
 <p><strong>Output:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"manager"</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="pushall"><code>$pushAll</code></h3>
+<p>Adds multiple elements to the end of an array.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">$pushAll</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"developer"</span><span class="p">,</span><span class="w"> </span><span class="s2">"designer"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Input:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"manager"</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"manager"</span><span class="p">,</span><span class="w"> </span><span class="s2">"developer"</span><span class="p">,</span><span class="w"> </span><span class="s2">"designer"</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="numbers">Numbers</h2>
@@ -1708,6 +1790,25 @@
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="others">Others</h2>
+<h3 id="set"><code>$set</code></h3>
+<p>Sets a field to a specific value. Functionally identical to using a plain field assignment in the updater object.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">$set</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"John"</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Input:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Note:</strong> <code>{ $set: { name: "John" } }</code> is equivalent to <code>{ name: "John" }</code>.</p>
 <h3 id="unset"><code>$unset</code></h3>
 <p>Removes a specified key from an object.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -1743,6 +1844,27 @@
 <span class="w">    </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="s2">"Doe"</span>
 <span class="p">}</span>
 </code></pre></div>
+<h2 id="function-based-updater">Function-Based Updater</h2>
+<p>Instead of using operator objects, you can provide a function for fully custom update logic:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Updater function signature:</span>
+<span class="p">(</span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="kt">T</span><span class="p">,</span><span class="w"> </span><span class="nx">context</span><span class="o">:</span><span class="w"> </span><span class="kt">VContext</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">Data</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ow">void</span>
+
+<span class="c1">// Example: double the counter field</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">(</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">(</span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">counter</span><span class="o">:</span><span class="w"> </span><span class="kt">user.counter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">})</span>
+<span class="p">);</span>
+
+<span class="c1">// Example: using context for external values</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">"active"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">(</span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">score</span><span class="o">:</span><span class="w"> </span><span class="kt">user.score</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">bonus</span><span class="w"> </span><span class="p">}),</span>
+<span class="w">  </span><span class="p">{},</span><span class="w">  </span><span class="c1">// context</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>The function receives the current document and a context object. It can either:
+1. <strong>Return</strong> a new object with the fields to update
+2. <strong>Mutate</strong> the document in place and return <code>void</code></p>
 
 
 

@@ -655,29 +655,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Functions
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Functions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#forgevaltheratarget" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        forgeValthera(target)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#forgetypedvaltherattarget" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -685,11 +662,6 @@
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1219,29 +1191,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Functions
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Functions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#forgevaltheratarget" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        forgeValthera(target)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#forgetypedvaltherattarget" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1249,11 +1198,6 @@
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1290,25 +1234,10 @@
 
 <h1 id="forge-proxy-access">Forge (Proxy Access)</h1>
 <p>Forge creates a Proxy that enables <code>db.collectionName.method()</code> syntax.</p>
-<h2 id="functions">Functions</h2>
-<h3 id="forgevaltheratarget"><code>forgeValthera(target)</code></h3>
-<p>Creates untyped proxy for dynamic collection access.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">forgeValthera</span><span class="p">,</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db"</span><span class="p">;</span>
-
-<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">forgeValthera</span><span class="o">&lt;</span><span class="s2">"users"</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s2">"posts"</span><span class="o">&gt;</span><span class="p">(</span>
-<span class="w">  </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span><span class="w"> </span><span class="nx">adapter</span><span class="w"> </span><span class="p">})</span>
-<span class="p">);</span>
-
-<span class="c1">// Now you can use:</span>
-<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">});</span>
-<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="w"> </span><span class="nx">authorId</span><span class="o">:</span><span class="w"> </span><span class="s2">"123"</span><span class="w"> </span><span class="p">});</span>
-
-<span class="c1">// Instead of:</span>
-<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">c</span><span class="p">(</span><span class="s2">"users"</span><span class="p">).</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">});</span>
-</code></pre></div>
-<h3 id="forgetypedvaltherattarget"><code>forgeTypedValthera&lt;T&gt;(target)</code></h3>
-<p>Creates typed proxy with TypeScript support.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">forgeTypedValthera</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db"</span><span class="p">;</span>
+<h2 id="forgetypedvaltherattarget"><code>forgeTypedValthera&lt;T&gt;(target)</code></h2>
+<p>Creates a typed proxy with TypeScript support. Accessing a property that doesn't exist on the target creates a <code>Collection</code> instance for that collection name.</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">forgeTypedValthera</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
 
 <span class="kd">interface</span><span class="w"> </span><span class="nx">User</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
@@ -1327,9 +1256,16 @@
 <h2 id="how-it-works">How it works</h2>
 <ul>
 <li>Accessing a non-existent property creates a <code>Collection</code> instance</li>
-<li>The collection is cached on the target object</li>
+<li>The collection is cached on the target object (subsequent accesses return the same instance)</li>
 <li>Existing properties (like <code>init</code>, <code>close</code>, <code>plugin</code>) are not affected</li>
 </ul>
+<div class="highlight"><pre><span></span><code><span class="c1">// Without forge - explicit collection access:</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">c</span><span class="p">(</span><span class="s2">"users"</span><span class="p">);</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">});</span>
+
+<span class="c1">// With forge - property access syntax:</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">});</span>
+</code></pre></div>
 <p><strong>Note:</strong> <code>ValtheraCreate()</code> and <code>VDB()</code> automatically use <code>forgeTypedValthera</code> internally.</p>
 
 

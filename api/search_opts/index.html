@@ -858,6 +858,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#function-based-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Function-Based Search
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2062,6 +2073,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#function-based-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Function-Based Search
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2297,9 +2319,31 @@
 </code></pre></div></p>
 <h3 id="other-operators">Other Operators</h3>
 <h4 id="subset">$subset</h4>
-<p>Allows for skipping advanced validation for specific fields, applying only basic validation. This is useful when validation data may conflict with predefined functions (starting with $), while user data might also contain similar keys. Use this operator as a compromise.
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$subset</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">$lt</span><span class="o">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// check if "$lt" is "John Doe"</span>
-</code></pre></div></p>
+<p>Disables advanced operator parsing for the wrapped fields, treating <code>$</code>-prefixed keys as literal field names. Use this when your data contains keys that start with <code>$</code> (like MongoDB-style fields) and you want to match them literally rather than having them interpreted as operators.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Without $subset: $lt would be interpreted as "less than" operator</span>
+<span class="c1">// With $subset: $lt is treated as a literal field name</span>
+<span class="p">{</span><span class="w"> </span><span class="nx">$subset</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">$lt</span><span class="o">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// checks if the field "$lt" equals "John Doe"</span>
+</code></pre></div>
+<h3 id="function-based-search">Function-Based Search</h3>
+<p>Instead of using operator objects, you can provide a function for fully custom search logic:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Search function signature:</span>
+<span class="p">(</span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="kt">T</span><span class="p">,</span><span class="w"> </span><span class="nx">context</span><span class="o">:</span><span class="w"> </span><span class="kt">VContext</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="kt">boolean</span>
+
+<span class="c1">// Example: find users older than 20</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">adults</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+<span class="w">  </span><span class="p">(</span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">age</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">20</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"active"</span>
+<span class="p">);</span>
+
+<span class="c1">// Example: using context to pass external state</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">18</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">adults</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+<span class="w">  </span><span class="p">(</span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">age</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">threshold</span><span class="p">,</span>
+<span class="w">  </span><span class="p">{},</span><span class="w">  </span><span class="c1">// dbFindOpts</span>
+<span class="w">  </span><span class="p">{},</span><span class="w">  </span><span class="c1">// findOpts</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">threshold</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1">// context</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>The function receives the document and a context object, and returns <code>true</code> to include the document in results.</p>
 <h2 id="examples">Examples</h2>
 <h3 id="complex-validation">Complex Validation</h3>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">criteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>

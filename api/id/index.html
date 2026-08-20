@@ -728,10 +728,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sortbyidsitems" class="md-nav__link">
+  <a href="#sortbyidsitems-key" class="md-nav__link">
     <span class="md-ellipsis">
       
-        sortByIds(items)
+        sortByIds(items, key?)
       
     </span>
   </a>
@@ -1308,10 +1308,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sortbyidsitems" class="md-nav__link">
+  <a href="#sortbyidsitems-key" class="md-nav__link">
     <span class="md-ellipsis">
       
-        sortByIds(items)
+        sortByIds(items, key?)
       
     </span>
   </a>
@@ -1406,8 +1406,13 @@
 <span class="kd">const</span><span class="w"> </span><span class="nx">timestamp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">convertIdToUnix</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span><span class="w"> </span><span class="c1">// 1700000000000</span>
 <span class="kd">const</span><span class="w"> </span><span class="nx">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(</span><span class="nx">timestamp</span><span class="p">);</span>
 </code></pre></div>
-<h3 id="sortbyidsitems"><code>sortByIds(items)</code></h3>
-<p>Sorts an array of objects by their <code>_id</code> field chronologically.</p>
+<h3 id="sortbyidsitems-key"><code>sortByIds(items, key?)</code></h3>
+<p>Sorts an array of objects by their ID field chronologically. Returns a new sorted array (does not mutate the original).</p>
+<ul>
+<li><strong>Parameters:</strong></li>
+<li><code>items</code> (<code>T[]</code>): Array of objects to sort.</li>
+<li><code>key</code> (<code>string</code>, optional, default: <code>"_id"</code>): The field name to sort by.</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">sortByIds</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
@@ -1417,6 +1422,9 @@
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">sorted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">sortByIds</span><span class="p">(</span><span class="nx">items</span><span class="p">);</span>
 <span class="c1">// [{ _id: "m1abc23-x-y", name: "First" }, { _id: "m2def45-a-b", name: "Second" }]</span>
+
+<span class="c1">// Using a custom ID key:</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">sorted2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">sortByIds</span><span class="p">(</span><span class="nx">items</span><span class="p">,</span><span class="w"> </span><span class="s2">"id"</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="compareidsa-b"><code>compareIds(a, b)</code></h3>
 <p>Compares two IDs (string or number).</p>

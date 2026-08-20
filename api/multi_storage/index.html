@@ -1258,33 +1258,80 @@
 <p>ValtheraDB provides two ways to work with multiple storage backends.</p>
 <h2 id="multibackend">MultiBackend</h2>
 <p>Queries across multiple adapters simultaneously.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">MultiBackend</span><span class="p">,</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db"</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">MultiBackend</span><span class="p">,</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">multi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">MultiBackend</span><span class="p">([</span>
 <span class="w">  </span><span class="nx">adapter1</span><span class="p">,</span>
 <span class="w">  </span><span class="nx">adapter2</span><span class="p">,</span>
 <span class="w">  </span><span class="nx">adapter3</span><span class="p">,</span>
-<span class="p">],</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// primaryIndex</span>
+<span class="p">],</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// primaryIndex (default: 0)</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span><span class="w"> </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">multi</span><span class="w"> </span><span class="p">});</span>
 </code></pre></div>
 <p><strong>Operation behavior:</strong></p>
-<ul>
-<li><code>add</code> -&gt; primary only</li>
-<li><code>find</code> -&gt; all backends, results merged</li>
-<li><code>findOne</code> -&gt; first match</li>
-<li><code>update/remove</code> -&gt; all backends</li>
-<li><code>getCollections</code> -&gt; unique from all</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>add</code></td>
+<td>Primary backend only</td>
+</tr>
+<tr>
+<td><code>find</code></td>
+<td>All backends, results merged (flattened)</td>
+</tr>
+<tr>
+<td><code>findOne</code></td>
+<td>Iterates backends, returns first non-null match</td>
+</tr>
+<tr>
+<td><code>update</code></td>
+<td>All backends, results merged</td>
+</tr>
+<tr>
+<td><code>updateOne</code></td>
+<td>Iterates backends, returns first non-null result</td>
+</tr>
+<tr>
+<td><code>remove</code></td>
+<td>All backends, results merged</td>
+</tr>
+<tr>
+<td><code>removeOne</code></td>
+<td>Iterates backends, returns first non-null result</td>
+</tr>
+<tr>
+<td><code>ensureCollection</code></td>
+<td>All backends</td>
+</tr>
+<tr>
+<td><code>issetCollection</code></td>
+<td>Returns <code>true</code> if any backend has the collection</td>
+</tr>
+<tr>
+<td><code>removeCollection</code></td>
+<td>All backends</td>
+</tr>
+<tr>
+<td><code>getCollections</code></td>
+<td>Unique union from all backends</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Use cases:</strong> replication, migration, read replicas</p>
 <h2 id="routedstorage">RoutedStorage</h2>
 <p>Routes collections to specific backends based on rules.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">RoutedStorage</span><span class="p">,</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db"</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">RoutedStorage</span><span class="p">,</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">routed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">RoutedStorage</span><span class="p">([</span>
 <span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">match</span><span class="o">:</span><span class="w"> </span><span class="s2">"logs"</span><span class="p">,</span><span class="w"> </span><span class="nx">backends</span><span class="o">:</span><span class="w"> </span><span class="kt">logAdapter</span><span class="w"> </span><span class="p">},</span>
 <span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">match</span><span class="o">:</span><span class="w"> </span><span class="sr">/^temp_/</span><span class="p">,</span><span class="w"> </span><span class="nx">backends</span><span class="o">:</span><span class="w"> </span><span class="kt">memoryAdapter</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">match</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">q</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">q</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">"archive"</span><span class="p">),</span><span class="w"> </span><span class="nx">backends</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">archiveAdapter</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">match</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">q</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">q</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">"archive"</span><span class="p">),</span><span class="w"> </span><span class="nx">backends</span><span class="o">:</span><span class="w"> </span><span class="kt">archiveAdapter</span><span class="w"> </span><span class="p">}</span>
 <span class="p">],</span><span class="w"> </span><span class="nx">defaultAdapter</span><span class="p">);</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span><span class="w"> </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">routed</span><span class="w"> </span><span class="p">});</span>
@@ -1295,11 +1342,50 @@
 <li><strong>RegExp</strong>: pattern match on collection name</li>
 <li><strong>Function</strong>: <code>(query) =&gt; boolean</code></li>
 </ul>
-<p><strong>Operation behavior:</strong> (if backends are array)</p>
-<ul>
-<li>Read operations -&gt; first matching backend</li>
-<li>Write operations -&gt; all matching backends</li>
-</ul>
+<p><strong>Operation behavior:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>add</code></td>
+<td>Writes to first matched backend, then replicates to all matched backends</td>
+</tr>
+<tr>
+<td><code>find</code></td>
+<td>First matched backend only</td>
+</tr>
+<tr>
+<td><code>findOne</code></td>
+<td>First matched backend only</td>
+</tr>
+<tr>
+<td><code>update</code></td>
+<td>All matched backends</td>
+</tr>
+<tr>
+<td><code>updateOne</code></td>
+<td>All matched backends</td>
+</tr>
+<tr>
+<td><code>remove</code></td>
+<td>All matched backends</td>
+</tr>
+<tr>
+<td><code>removeOne</code></td>
+<td>All matched backends</td>
+</tr>
+<tr>
+<td><code>getCollections</code></td>
+<td>Unique union from all rule backends</td>
+</tr>
+</tbody>
+</table>
+<p>When no rules match, the <code>defaultBackend</code> is used.</p>
 <p><strong>Use cases:</strong> hot/cold storage, per-collection backends, multi-tenant</p>
 <h2 id="comparison">Comparison</h2>
 <table>
@@ -1314,12 +1400,12 @@
 <tr>
 <td>Routing</td>
 <td>All backends for reads</td>
-<td>Per-collection</td>
+<td>Per-collection by rules</td>
 </tr>
 <tr>
 <td>Writes</td>
 <td>Primary only</td>
-<td>All matching</td>
+<td>All matching backends</td>
 </tr>
 <tr>
 <td>Use case</td>
