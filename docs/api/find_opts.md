@@ -156,4 +156,80 @@ Using all operators together to demonstrate the execution stack.
 
 ---
 
-This structured flow ensures flexible and predictable results, making it a powerful tool for refining and manipulating data.
+## Edge Cases and Important Notes
+
+### Nested Paths with Arrays
+
+When using dotted paths or array paths in `select` / `exclude`,
+**paths do not traverse through arrays**.
+If a path segment points to an array, it will be replaced with an empty object:
+
+```javascript
+// Original Object
+{
+    users: [
+        { name: "Alice", age: 30 },
+        { name: "Bob", age: 25 }
+    ]
+}
+
+// Find Options
+{
+    select: ["users.name"]
+}
+
+// Result - array is replaced with object!
+{
+    users: {
+        name: undefined  // array was replaced
+    }
+}
+```
+
+To work with array elements, use array paths with specific indices:
+
+```javascript
+{
+    select: [["users", "0", "name"]]
+}
+```
+
+### Empty Select vs Empty Exclude
+
+- `select: []` returns an **empty object** `{}`
+- `exclude: []` returns the **original object** unchanged
+
+### Transform Function Return Value
+
+The `transform` function can either:
+
+1. **Modify and return** the object (creates new reference)
+2. **Mutate in place** and return `undefined` (keeps original reference)
+
+```javascript
+// Option 1: Return new object
+{ transform: (doc) => ({ ...doc, modified: true }) }
+
+// Option 2: Mutate in place
+{ transform: (doc) => { doc.modified = true; } }
+```
+
+### Select and Exclude Interaction
+
+When both `select` and `exclude` are used:
+
+1. `select` is applied first (creates object with only selected fields)
+2. `exclude` is applied second (removes fields from the selected result)
+
+```javascript
+// Original: { a: 1, b: 2, c: 3, d: 4 }
+{
+    select: ["a", "b", "c"],  // Result: { a: 1, b: 2, c: 3 }
+    exclude: ["b"]            // Result: { a: 1, c: 3 }
+}
+```
+
+### Non-Existent Paths
+
+- Selecting non-existent paths silently returns `undefined` for that field
+- Excluding non-existent paths has no effect (no error thrown)

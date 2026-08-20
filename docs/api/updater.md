@@ -164,11 +164,16 @@ Decrements a numeric value by a given amount.
 
 ### `$merge`
 
-Merges a nested object, adding or updating properties.
+Merges a nested object, adding or updating properties. For arrays, concatenates them.
 
 ```javascript
 {
-    $merge: { settings: { theme: "dark" } }
+    $merge: { 
+        settings: {
+            theme: "dark",
+            roles: ["admin"]
+        }
+    }
 }
 ```
 
@@ -176,7 +181,11 @@ Merges a nested object, adding or updating properties.
 
 ```javascript
 {
-    settings: { theme: "light", language: "en" }
+    settings: {
+        theme: "light",
+        language: "en",
+        roles: ["user"]
+    }
 }
 ```
 
@@ -184,7 +193,11 @@ Merges a nested object, adding or updating properties.
 
 ```javascript
 {
-    settings: { theme: "dark", language: "en" }
+    settings: {
+        theme: "dark",
+        language: "en",
+        roles: ["user", "admin"]
+    }
 }
 ```
 

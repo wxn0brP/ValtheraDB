@@ -267,3 +267,37 @@ try {
   console.error('Validation error:', error.message);
 }
 ```
+
+### Undefined Values
+
+Properties with `undefined` values are treated as **missing keys**:
+
+```javascript
+const obj = { a: undefined };
+const criteria = { a: undefined };
+hasFieldsAdvanced(obj, criteria); // false - treated as missing key
+```
+
+If you need to check for `undefined` values, use `$exists` operator:
+
+```javascript
+{ $exists: { a: false } } // checks if key 'a' does not exist
+```
+
+### Operator Execution Order
+
+When using multiple operators including `$and` or `$or`, the execution order is:
+
+1. Basic field matching (non-`$` prefixed keys)
+2. `$subset` operator
+3. Comparison operators (`$gt`, `$lt`, `$in`, etc.)
+4. `$not` operator
+5. `$and` / `$or` operators (these are evaluated last and return immediately)
+
+This means `$and`/`$or` can short-circuit the evaluation.
+For complex queries, structure your criteria accordingly.
+
+### Null vs Undefined
+
+- `null` values are matched with `{ field: null }`
+- `undefined` values or missing keys require `$exists: { field: false }`
