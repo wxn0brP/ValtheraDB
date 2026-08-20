@@ -6,7 +6,7 @@
 
 ```typescript
 new ValtheraClass({
-  adapter: ActionsBase,
+  adapter: ActionsBase | (() => Promise<ActionsBase>),
   executor?: Executor,
   adapterOpts?: AdapterOpts,
   // Legacy (deprecated):
@@ -14,6 +14,8 @@ new ValtheraClass({
   idKey?: string,       // use adapterOpts.idKey
 })
 ```
+
+The `adapter` can be either an `ActionsBase` instance or a factory function that returns one. When a factory function is used, it is called lazily during `init()`.
 
 ### `AdapterOpts`
 
@@ -39,6 +41,46 @@ const db = new ValtheraClass({
 ```
 
 **Note:** The legacy `numberId` and `idKey` options at the top level are deprecated. Use `adapterOpts` instead.
+
+### `version`
+
+The version of the ValtheraDB core engine.
+
+```typescript
+db.version; // e.g., "0.11.6"
+```
+
+### `async init(...args)`
+
+Initializes the adapter. Must be called before performing any operations. If the adapter was provided as a factory function, it is called during this step. Calling `init()` on an already-initialized instance is a no-op.
+
+```typescript
+await db.init();
+```
+
+### `async close(...args)`
+
+Closes the adapter connection. Subsequent operations will not work until `init()` is called again.
+
+```typescript
+await db.close();
+```
+
+### `c<T>(collection)`
+
+Creates or retrieves a `Collection` instance for the given collection name. The collection is cached for reuse.
+
+- **Parameters:**
+  - `collection` (`string`): The name of the collection.
+- **Returns:**
+  - `Collection<T>`: A typed collection instance.
+
+```typescript
+const users = db.c("users");
+await users.add({ name: "Alice" });
+```
+
+**Note:** When using `forgeTypedValthera()` or `ValtheraCreate()`, you can access collections directly as properties (e.g., `db.users`).
 
 ### `plugin(plugin)`
 
@@ -121,6 +163,78 @@ Deletes the collection.
    	- `Promise<boolean>`: A promise that resolves when the collection is removed.
        - `true`: The collection was successfully removed.
        - `false`: The collection was not found (i.e., it did not exist, so there was nothing to remove).
+
+### `add(query)`
+
+Adds a document to a collection.
+
+- **Parameters:**
+  - `query` (`VQueryT.Add<T>`): The add query.
+- **Returns:** `Promise<T & { _id: string }>`
+
+### `find(query)`
+
+Finds documents matching criteria.
+
+- **Parameters:**
+  - `query` (`VQueryT.Find<T>`): The find query.
+- **Returns:** `Promise<T[]>`
+
+### `findOne(query)`
+
+Finds the first matching document.
+
+- **Parameters:**
+  - `query` (`VQueryT.FindOne<T>`): The findOne query.
+- **Returns:** `Promise<T | null>`
+
+### `update(query)`
+
+Updates all matching documents.
+
+- **Parameters:**
+  - `query` (`VQueryT.Update<T>`): The update query.
+- **Returns:** `Promise<T[]>`
+
+### `updateOne(query)`
+
+Updates the first matching document.
+
+- **Parameters:**
+  - `query` (`VQueryT.Update<T>`): The update query.
+- **Returns:** `Promise<T | null>`
+
+### `remove(query)`
+
+Removes all matching documents.
+
+- **Parameters:**
+  - `query` (`VQueryT.Remove<T>`): The remove query.
+- **Returns:** `Promise<T[]>`
+
+### `removeOne(query)`
+
+Removes the first matching document.
+
+- **Parameters:**
+  - `query` (`VQueryT.Remove<T>`): The remove query.
+- **Returns:** `Promise<T | null>`
+
+### `updateOneOrAdd(query)`
+
+Updates one entry or adds a new one if no match is found.
+
+- **Parameters:**
+  - `query` (`VQueryT.UpdateOneOrAdd<T>`): The updateOneOrAdd query.
+- **Returns:** `Promise<{ data: T; type: "added" | "updated" }>`
+
+### `toggleOne(query)`
+
+Removes one entry if it exists, or adds a new one if it doesn't. Useful for toggling flags.
+
+- **Parameters:**
+  - `query` (`VQueryT.ToggleOne<T>`): The toggleOne query.
+- **Returns:** `Promise<{ data: T; type: "added" | "removed" }>`
 
 ## Event Emitter
 
@@ -212,28 +326,30 @@ import { SmartExecutor } from "@wxn0brp/db-core";
 const db = new ValtheraClass({
   adapter: myAdapter,
   executor: new SmartExecutor(
-    ttl = 5 * 60 * 1000,  // 5 minutes
-    aware = true           // per-collection isolation
+    ttl,  // default: 300000 (5 min)
+    aware // default: false
   )
 });
 ```
 
 **Parameters:**
 - `ttl` (default: `300000`): Time-to-live for inactive queues in milliseconds
-- `aware` (default: `true`): Whether to isolate queues per collection
+- `aware` (default: `false`): Whether to isolate queues per collection
 
 **Behavior:**
-- Creates separate queues for each collection
-- Automatically cleans up idle queues after `ttl`
-- If `aware = false`, all operations share a single queue
+- When `aware = true`: creates separate queues for each collection, operations on different collections run in parallel
+- When `aware = false`: all operations share a single queue (behaves like simple `Executor` but with TTL cleanup)
+- Idle queues are automatically removed after `ttl`
 
 **Example - Custom TTL:**
 
 ```typescript
 const db = new ValtheraClass({
   adapter: myAdapter,
-  executor: new SmartExecutor(10 * 60 * 1000) // 10 minutes
+  executor: new SmartExecutor(10 * 60 * 1000, true) // 10 min, per-collection
 });
 ```
+
+**Note:** When an adapter has `smartExecutor = true`, `ValtheraClass` automatically enables `aware` mode on the `SmartExecutor`.
 
 See [Executor Tutorial](../dev/executor.md) for detailed explanation.

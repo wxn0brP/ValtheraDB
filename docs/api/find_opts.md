@@ -218,16 +218,18 @@ The `transform` function can either:
 
 When both `select` and `exclude` are used:
 
-1. `select` is applied first (creates object with only selected fields)
-2. `exclude` is applied second (removes fields from the selected result)
+1. `exclude` is applied first (removes fields from the object)
+2. `select` is applied second (creates object with only selected fields from the remaining)
 
 ```javascript
 // Original: { a: 1, b: 2, c: 3, d: 4 }
 {
-    select: ["a", "b", "c"],  // Result: { a: 1, b: 2, c: 3 }
-    exclude: ["b"]            // Result: { a: 1, c: 3 }
+    exclude: ["b"],            // Step 1: { a: 1, c: 3, d: 4 }
+    select: ["a", "c"]         // Step 2: { a: 1, c: 3 }
 }
 ```
+
+The full execution order is always: `transform` -> `exclude` -> `select`.
 
 ### Non-Existent Paths
 

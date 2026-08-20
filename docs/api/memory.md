@@ -15,7 +15,7 @@ Factory function that creates a typed in-memory database, optionally pre-populat
 **Example with pre-populated data:**
 
 ```typescript
-import { createMemoryValthera } from "@wxn0brp/db";
+import { createMemoryValthera } from "@wxn0brp/db-core";
 
 const db = createMemoryValthera({
   users: [
@@ -32,19 +32,34 @@ const users = await db.users.find({});
 console.log(users.length); // 2
 ```
 
+## How It Works
+
+The in-memory adapter uses a `Map<string, any[]>` internally. All data is isolated using `structuredClone` on read and write, ensuring that external mutations don't affect the database and vice versa.
+
+```typescript
+const db = createMemoryValthera();
+await db.users.add({ name: "Alice" });
+
+// External mutation does NOT affect stored data
+const user = await db.users.findOne({});
+user.name = "Bob"; // mutation
+const stored = await db.users.findOne({});
+console.log(stored.name); // still "Alice" - structuredClone isolation
+```
+
 ## Use Cases
 
 ### Unit Testing
 
 ```typescript
-import { createMemoryValthera } from "@wxn0brp/db";
-import { describe, it, expect } from "vitest";
+import { createMemoryValthera } from "@wxn0brp/db-core";
+import { describe, it, expect } from "bun:test";
 
 describe("UserService", () => {
   it("should create a user", async () => {
     const db = createMemoryValthera();
     const user = await db.users.add({ name: "Alice" });
-    
+
     expect(user._id).toBeDefined();
     expect(user.name).toBe("Alice");
   });

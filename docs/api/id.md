@@ -41,9 +41,13 @@ const timestamp = convertIdToUnix(id); // 1700000000000
 const date = new Date(timestamp);
 ```
 
-### `sortByIds(items)`
+### `sortByIds(items, key?)`
 
-Sorts an array of objects by their `_id` field chronologically.
+Sorts an array of objects by their ID field chronologically. Returns a new sorted array (does not mutate the original).
+
+- **Parameters:**
+  - `items` (`T[]`): Array of objects to sort.
+  - `key` (`string`, optional, default: `"_id"`): The field name to sort by.
 
 ```typescript
 import { sortByIds } from "@wxn0brp/db-core";
@@ -55,6 +59,9 @@ const items = [
 
 const sorted = sortByIds(items);
 // [{ _id: "m1abc23-x-y", name: "First" }, { _id: "m2def45-a-b", name: "Second" }]
+
+// Using a custom ID key:
+const sorted2 = sortByIds(items, "id");
 ```
 
 ### `compareIds(a, b)`

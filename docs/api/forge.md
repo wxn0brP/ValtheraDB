@@ -2,33 +2,13 @@
 
 Forge creates a Proxy that enables `db.collectionName.method()` syntax.
 
-## Functions
+## `forgeTypedValthera<T>(target)`
 
-### `forgeValthera(target)`
-
-Creates untyped proxy for dynamic collection access.
+Creates a typed proxy with TypeScript support. Accessing a property that doesn't exist on the target creates a `Collection` instance for that collection name.
 
 ```typescript
-import { forgeValthera, ValtheraClass } from "@wxn0brp/db";
-
-const db = forgeValthera<"users" | "posts">(
-  new ValtheraClass({ adapter })
-);
-
-// Now you can use:
-await db.users.add({ name: "Alice" });
-await db.posts.find({ authorId: "123" });
-
-// Instead of:
-await db.c("users").add({ name: "Alice" });
-```
-
-### `forgeTypedValthera<T>(target)`
-
-Creates typed proxy with TypeScript support.
-
-```typescript
-import { forgeTypedValthera } from "@wxn0brp/db";
+import { forgeTypedValthera } from "@wxn0brp/db-core";
+import { ValtheraClass } from "@wxn0brp/db-core";
 
 interface User {
   _id: string;
@@ -48,7 +28,16 @@ const user = await db.users.findOne({ email: "alice@example.com" });
 ## How it works
 
 - Accessing a non-existent property creates a `Collection` instance
-- The collection is cached on the target object
+- The collection is cached on the target object (subsequent accesses return the same instance)
 - Existing properties (like `init`, `close`, `plugin`) are not affected
+
+```typescript
+// Without forge - explicit collection access:
+const users = db.c("users");
+await users.add({ name: "Alice" });
+
+// With forge - property access syntax:
+await db.users.add({ name: "Alice" });
+```
 
 **Note:** `ValtheraCreate()` and `VDB()` automatically use `forgeTypedValthera` internally.

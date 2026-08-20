@@ -64,8 +64,8 @@ import { SmartExecutor, ValtheraClass } from "@wxn0brp/db-core";
 const db = new ValtheraClass({
   adapter: myAdapter,
   executor: new SmartExecutor(
-    ttl = 5 * 60 * 1000,  // 5 minutes
-    aware = true          // per-collection isolation, default false
+    ttl,  // default: 300000 (5 min)
+    aware // default: false
   )
 });
 ```
@@ -125,7 +125,7 @@ await db.users.add({ name: "Alice" });
 
 ### aware Mode
 
-When `aware = true` (default), queues are isolated per collection:
+When `aware = true`, queues are isolated per collection:
 
 ```typescript
 const executor = new SmartExecutor(300000, true);
@@ -134,7 +134,7 @@ const executor = new SmartExecutor(300000, true);
 // "comments" -> separate queue
 ```
 
-When `aware = false`, all operations share a single queue:
+When `aware = false` (default), all operations share a single queue:
 
 ```typescript
 const executor = new SmartExecutor(300000, false);

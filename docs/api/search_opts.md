@@ -177,10 +177,38 @@ Checks if a string ends with a specified value (case-insensitive).
 ### Other Operators
 
 #### $subset
-Allows for skipping advanced validation for specific fields, applying only basic validation. This is useful when validation data may conflict with predefined functions (starting with $), while user data might also contain similar keys. Use this operator as a compromise.
+Disables advanced operator parsing for the wrapped fields, treating `$`-prefixed keys as literal field names. Use this when your data contains keys that start with `$` (like MongoDB-style fields) and you want to match them literally rather than having them interpreted as operators.
+
 ```javascript
-{ $subset: { $lt: "John Doe" } } // check if "$lt" is "John Doe"
+// Without $subset: $lt would be interpreted as "less than" operator
+// With $subset: $lt is treated as a literal field name
+{ $subset: { $lt: "John Doe" } } // checks if the field "$lt" equals "John Doe"
 ```
+
+### Function-Based Search
+
+Instead of using operator objects, you can provide a function for fully custom search logic:
+
+```typescript
+// Search function signature:
+(data: T, context: VContext) => boolean
+
+// Example: find users older than 20
+const adults = await db.users.find(
+  (user, ctx) => user.age > 20 && user.status === "active"
+);
+
+// Example: using context to pass external state
+const threshold = 18;
+const adults = await db.users.find(
+  (user, ctx) => user.age >= ctx.threshold,
+  {},  // dbFindOpts
+  {},  // findOpts
+  { threshold }  // context
+);
+```
+
+The function receives the document and a context object, and returns `true` to include the document in results.
 
 ## Examples
 

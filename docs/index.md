@@ -31,6 +31,7 @@ In short, if you value flexibility and control over rigid conventions, you'll fe
 *   **Client-Server Ready:** Scale from an embedded solution to a client-server architecture when you need to.
 *   **Zero Configuration:** Point it to a directory, and you're good to go.
 *   **Flexible API:** `ValtheraCreate()` for simplicity, `VDB()` for adapter switching via environment variables.
+*   **Multiple Backends:** Dir, SQLite, MongoDB, browser storage, and more.
 
 ## Where to Go Next?
 

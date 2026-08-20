@@ -6,117 +6,110 @@ This documentation provides a detailed overview of the `Collection` class, desig
 
 ### Usage:
 
-```js
+```typescript
 const db = ValtheraCreate("db");
 const users = db.c("users");
+// or with forgeTypedValthera:
+const users = db.users;
 ```
 
-### `async add(collection, data, id_gen=true)`
-Adds data to a specified collection.
+### `async add(data, id_gen=true)`
+Adds data to the collection.
 
 - **Parameters:**
-	- `collection` (`string`): The name of the collection.
-	- `data` (`Object`): The data to add.
+	- `data` (`Arg<D>`): The data to add.
 	- `id_gen` (`boolean`, default: true): Whether to generate an ID for the entry.
 
 - **Returns:**
 	- `Promise<T & { _id: string }>`: If `id_gen` is true, a promise that resolves with the added data including a generated `_id`.
 	- `Promise<T>`: If `id_gen` is false, a promise that resolves with the added data.
 
-### `async find(collection, search, dbFindOpts, findOpts, context)`
-Finds data in a collection based on a query.
+### `async find(search, options, findOpts, context)`
+Finds data in the collection based on a query.
 
 - **Parameters:**
-	- `collection` (`string`): The name of the collection.
-	- `search` (`function|Object`, optional): The search query.
-	- `dbFindOpts` (`Object`, optional): Search options (e.g., `max`, `reverse`).
-	- `findOpts` (`Object`, optional): Options for updating the search result.
-	- `context` (`Object`, optional): The context object (for functions).
+	- `search` (`Search<D>`, optional, default: `{}`): The search query.
+	- `options` (`DbFindOpts<D>`, optional, default: `{}`): Post-retrieval options (e.g., `max`, `reverse`, `sortBy`, `limit`, `offset`).
+	- `findOpts` (`FindOpts<D>`, optional, default: `{}`): Post-matching options (`select`, `exclude`, `transform`).
+	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries).
 
 - **Returns:**
-	- `Promise<T[]>`: Found data. Empty array if no match is found.
+	- `Promise<D[]>`: Found data. Empty array if no match is found.
 
-### `async findOne(collection, search, findOpts, context)`
-Finds one matching entry in a collection.
+### `async findOne(search, findOpts, context)`
+Finds one matching entry in the collection.
 
 - **Parameters:**
-	- `collection` (`string`): The name of the collection.
-	- `search` (`function|Object`, optional): The search query.
-	- `findOpts` (`Object`, optional): Options for updating the search result.
-	- `context` (`Object`, optional): The context object (for functions).
+	- `search` (`Search<D>`, optional, default: `{}`): The search query.
+	- `findOpts` (`FindOpts<D>`, optional, default: `{}`): Post-matching options.
+	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries).
 
 - **Returns:**
-	- `Promise<T|null>`: Found data. Null if no match is found.
+	- `Promise<D>`: Found data. `undefined` if no match is found.
 
-### `async update(collection, search, updater, context)`
-Updates data in a collection.
+### `async update(search, updater, context)`
+Updates data in the collection.
 
 - **Parameters:**
-	- `collection` (`string`): The name of the collection.
-	- `search` (`function|Object`): The search query.
-	- `updater` (`function|Object`): Update arguments.
-	- `context` (`Object`, optional): The context object (for functions).
+	- `search` (`Search<D>`): The search query.
+	- `updater` (`Updater<D>`): Update arguments.
+	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries).
 
 - **Returns:**
-	- `Promise<T[] | null>`: Updated data. Null if no match is found.
+	- `Promise<D[]>`: Updated data. Empty array if no match is found.
 
-### `async updateOne(collection, search, updater, context)`
-Updates one entry in a collection.
+### `async updateOne(search, updater, context)`
+Updates one entry in the collection.
 
 - **Parameters:**
-	- `collection` (`string`): The name of the collection.
-	- `search` (`function|Object`): The search query.
-	- `updater` (`function|Object`): Update arguments.
-	- `context` (`Object`, optional): The context object (for functions).
+	- `search` (`Search<D>`): The search query.
+	- `updater` (`Updater<D>`): Update arguments.
+	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries).
 
 - **Returns:**
-	- `Promise<T | null>`: Updated data. Null if no match is found.
+	- `Promise<D | null>`: Updated data. Null if no match is found.
 
-### `async remove(collection, search, context)`
-Removes data from a collection.
+### `async remove(search, context)`
+Removes data from the collection.
 
 - **Parameters:**
-	- `collection` (`string`): The name of the collection.
-	- `search` (`function|Object`): The search query.
-	- `context` (`Object`, optional): The context object (for functions).
+	- `search` (`Search<D>`): The search query.
+	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries).
 
 - **Returns:**
-	- `Promise<T[] | null>`: Removed data. Null if no match is found.
+	- `Promise<D[]>`: Removed data. Empty array if no match is found.
 
-### `async removeOne(collection, search, context)`
-Removes one entry from a collection.
+### `async removeOne(search, context)`
+Removes one entry from the collection.
 
 - **Parameters:**
-	- `collection` (`string`): The name of the collection.
-	- `search` (`function|Object`): The search query.
-	- `context` (`Object`, optional): The context object (for functions).
+	- `search` (`Search<D>`): The search query.
+	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries).
 
 - **Returns:**
-	- `Promise<T | null>`: Removed data. Null if no match is found.
+	- `Promise<D | null>`: Removed data. Null if no match is found.
 
-### `async updateOneOrAdd(collection, search, updater, options)`
+### `async updateOneOrAdd(search, updater, options)`
 Updates one entry or adds a new one if it doesn't exist.
 
 - **Parameters:**
-	- `collection` (`string`): The name of the collection.
-	- `search` (`function|Object`): The search query.
-	- `updater` (`function|Object`): Update arguments.
-	- `options` (`Object`, optional): An object containing `add_arg`, `context`, and `id_gen`.
-		- `add_arg` (`Object`): Data to add if no match is found.
-		- `context` (`Object`): The context object (for functions).
+	- `search` (`Search<D>`): The search query.
+	- `updater` (`Updater<D>`): Update arguments.
+	- `options` (`Object`, optional): An object containing:
+		- `add_arg` (`Arg<D>`, default: `{}`): Data to merge when adding a new entry.
+		- `context` (`VContext`, default: `{}`): The context object (for function-based queries).
 		- `id_gen` (`boolean`, default: true): Whether to generate an ID for the new entry.
 
 - **Returns:**
 	- `Promise<{ data: T; type: "added" | "updated" }>`: A promise that resolves with the updated or added entry.
 
-### `async toggleOne(collection, search, data, context)`
-Asynchronously updates one entry in a database or adds a new one if it doesn't exist. Usage e.g. for toggling a flag.
+### `async toggleOne(search, data, context)`
+Removes one entry if it exists, or adds a new one if it doesn't. Usage e.g. for toggling a flag.
 
 - **Parameters:**
-	- `collection` (`string`): The name of the collection.
-	- `search` (`function|Object`): The search query.
-	- `data` (`Object`, optional): The data to use.
-	- `context` (`Object`, optional): The context object (for functions).
+	- `search` (`Search<D>`): The search query.
+	- `data` (`Arg<D>`, optional, default: `{}`): The data to use when adding.
+	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries).
 
 - **Returns:**
 	- `Promise<{ data: T; type: "added" | "removed" }>`: A promise that resolves with the removed or added entry.

@@ -28,13 +28,13 @@ Adds an element to the end of an array.
 }
 ```
 
-### `$pushset`
+### `$pushSet`
 
 Adds an element to the end of an array and removes duplicates.
 
 ```javascript
 {
-    $pushset: { tags: "designer" }
+    $pushSet: { tags: "designer" }
 }
 ```
 
@@ -80,13 +80,13 @@ Removes a specific element from an array.
 }
 ```
 
-### `$pullall`
+### `$pullAll`
 
 Removes all occurrences of specified elements from an array.
 
 ```javascript
 {
-    $pullall: { tags: ["developer", "designer"] }
+    $pullAll: { tags: ["developer", "designer"] }
 }
 ```
 
@@ -103,6 +103,32 @@ Removes all occurrences of specified elements from an array.
 ```javascript
 {
     tags: ["manager"]
+}
+```
+
+### `$pushAll`
+
+Adds multiple elements to the end of an array.
+
+```javascript
+{
+    $pushAll: { tags: ["developer", "designer"] }
+}
+```
+
+**Input:**
+
+```javascript
+{
+    tags: ["manager"]
+}
+```
+
+**Output:**
+
+```javascript
+{
+    tags: ["manager", "developer", "designer"]
 }
 ```
 
@@ -247,6 +273,36 @@ Deeply merges nested objects, adding or updating properties recursively.
 
 ## Others
 
+### `$set`
+
+Sets a field to a specific value. Functionally identical to using a plain field assignment in the updater object.
+
+```javascript
+{
+    $set: { name: "John" }
+}
+```
+
+**Input:**
+
+```javascript
+{
+    name: "Jane",
+    age: 30
+}
+```
+
+**Output:**
+
+```javascript
+{
+    name: "John",
+    age: 30
+}
+```
+
+**Note:** `{ $set: { name: "John" } }` is equivalent to `{ name: "John" }`.
+
 ### `$unset`
 
 Removes a specified key from an object.
@@ -301,3 +357,29 @@ Renames a key in an object.
     lastName: "Doe"
 }
 ```
+
+## Function-Based Updater
+
+Instead of using operator objects, you can provide a function for fully custom update logic:
+
+```typescript
+// Updater function signature:
+(data: T, context: VContext) => Data | void
+
+// Example: double the counter field
+await db.users.updateOne(
+  { name: "Alice" },
+  (user, ctx) => ({ counter: user.counter * 2 })
+);
+
+// Example: using context for external values
+await db.users.update(
+  { status: "active" },
+  (user, ctx) => ({ score: user.score + ctx.bonus }),
+  {},  // context
+);
+```
+
+The function receives the current document and a context object. It can either:
+1. **Return** a new object with the fields to update
+2. **Mutate** the document in place and return `void`

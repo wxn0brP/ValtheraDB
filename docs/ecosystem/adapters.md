@@ -45,12 +45,12 @@ To use an adapter manually, install the package and create an instance.
 | Adapter | Storage | Install | Repo |
 |---------|---------|---------|------|
 | dir | Directory of JSON5/JSON/YAML files | `bun add @wxn0brp/db-storage-dir` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-dir) |
-| sqlite | SQLite | `bun add @wxn0brp/db-storage-sqlite` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-sqlite) |
+| sqlite | SQLite (Bun/Node/better-sqlite3) | `bun add @wxn0brp/db-storage-sqlite` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-sqlite) |
 | mongodb | MongoDB | `bun add @wxn0brp/db-storage-mongodb` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-mongodb) |
 | bin | Single binary file (msgpack) | `bun add @wxn0brp/db-storage-bin` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-bin) |
 | c | Native C via bun:ffi (Linux) | built with `./build.sh` | [GitHub](https://github.com/wxn0brP/ValtheraDB-c-engine) |
 | csv | CSV files | `bun add @wxn0brp/db-storage-csv` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-csv) |
-| web-storage | Browser localStorage/sessionStorage | `bun add @wxn0brp/db-storage-web` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-web) |
+| web-storage | Browser localStorage/sessionStorage/IndexedDB | `bun add @wxn0brp/db-storage-web` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-web) |
 | length | Fixed-length binary records | `bun add @wxn0brp/db-storage-length` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-length) |
 | crypt | AES-256-GCM encrypted (wraps adapter) | `bun add @wxn0brp/db-storage-crypt` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-crypt) |
 | rocks | RocksDB key-value | `bun add @wxn0brp/db-storage-rocks` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-rocks) |
