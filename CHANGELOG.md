@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.120.1](https://github.com/wxn0brP/ValtheraDB/compare/v0.120.0...v0.120.1) (2026-09-26)
+
+
+### Features
+
+* remote docs support ([c1af6dc](https://github.com/wxn0brP/ValtheraDB/commit/c1af6dce62e90796a12055e0e07a399826396c4a))
+
 ## [0.120.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.112.1...v0.120.0) (2026-08-20)
 
 ### [0.112.1](https://github.com/wxn0brP/ValtheraDB/compare/v0.112.0...v0.112.1) (2026-08-11)
