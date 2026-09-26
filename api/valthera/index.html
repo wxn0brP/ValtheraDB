@@ -802,6 +802,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#createindexcollection-fields-opts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        createIndex(collection, fields, opts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transactioncollections-fn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        transaction(collections, fn)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1467,6 +1489,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/transaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transactions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1732,6 +1782,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#createindexcollection-fields-opts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        createIndex(collection, fields, opts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transactioncollections-fn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        transaction(collections, fn)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1858,6 +1930,7 @@
 <div class="highlight"><pre><span></span><code><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span>
 <span class="w">  </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">ActionsBase</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">ActionsBase</span><span class="o">&gt;</span><span class="p">),</span>
 <span class="w">  </span><span class="nx">executor?</span><span class="o">:</span><span class="w"> </span><span class="kt">Executor</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">executorAware?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">,</span><span class="w"> </span><span class="c1">// default: true</span>
 <span class="w">  </span><span class="nx">adapterOpts?</span><span class="o">:</span><span class="w"> </span><span class="kt">AdapterOpts</span><span class="p">,</span>
 <span class="w">  </span><span class="c1">// Legacy (deprecated):</span>
 <span class="w">  </span><span class="nx">numberId?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">,</span><span class="w">   </span><span class="c1">// use adapterOpts.numberId</span>
@@ -2063,6 +2136,24 @@
 <li><code>query</code> (<code>VQueryT.ToggleOne&lt;T&gt;</code>): The toggleOne query.</li>
 <li><strong>Returns:</strong> <code>Promise&lt;{ data: T; type: "added" | "removed" }&gt;</code></li>
 </ul>
+<h3 id="createindexcollection-fields-opts"><code>createIndex(collection, fields, opts)</code></h3>
+<p>Creates an index on a collection. Index support is adapter-dependent.</p>
+<ul>
+<li><strong>Parameters:</strong></li>
+<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
+<li><code>fields</code> (<code>string[]</code>): The fields to index.</li>
+<li><code>opts</code> (<code>IndexOpts</code>, optional): Index options (adapter-dependent).<ul>
+<li><code>unique</code> (<code>boolean</code>): Whether the index should enforce uniqueness.</li>
+<li><code>name</code> (<code>string</code>): Custom index name.</li>
+</ul>
+</li>
+<li><strong>Returns:</strong> <code>Promise&lt;void&gt;</code></li>
+</ul>
+<p><strong>Note:</strong> Not all adapters support indexes. Check your adapter's documentation.</p>
+<div class="highlight"><pre><span></span><code><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">createIndex</span><span class="p">(</span><span class="s2">"users"</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s2">"email"</span><span class="p">],</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">unique</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">});</span>
+</code></pre></div>
+<h3 id="transactioncollections-fn"><code>transaction(collections, fn)</code></h3>
+<p>See <a href="../../dev/transaction/">Transaction Docs</a></p>
 <h2 id="event-emitter">Event Emitter</h2>
 <h3 id="emitter"><code>emitter</code></h3>
 <p>Event emitter for subscribing to database operations. Uses VEE (Valthera Event Emitter).</p>
