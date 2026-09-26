@@ -8,6 +8,7 @@
 new ValtheraClass({
   adapter: ActionsBase | (() => Promise<ActionsBase>),
   executor?: Executor,
+  executorAware?: boolean, // default: true
   adapterOpts?: AdapterOpts,
   // Legacy (deprecated):
   numberId?: boolean,   // use adapterOpts.numberId
@@ -235,6 +236,28 @@ Removes one entry if it exists, or adds a new one if it doesn't. Useful for togg
 - **Parameters:**
   - `query` (`VQueryT.ToggleOne<T>`): The toggleOne query.
 - **Returns:** `Promise<{ data: T; type: "added" | "removed" }>`
+
+### `createIndex(collection, fields, opts)`
+
+Creates an index on a collection. Index support is adapter-dependent.
+
+- **Parameters:**
+  - `collection` (`string`): The name of the collection.
+  - `fields` (`string[]`): The fields to index.
+  - `opts` (`IndexOpts`, optional): Index options (adapter-dependent).
+    - `unique` (`boolean`): Whether the index should enforce uniqueness.
+    - `name` (`string`): Custom index name.
+- **Returns:** `Promise<void>`
+
+**Note:** Not all adapters support indexes. Check your adapter's documentation.
+
+```typescript
+await db.createIndex("users", ["email"], { unique: true });
+```
+
+### `transaction(collections, fn)`
+
+See [Transaction Docs](../dev/transaction.md)
 
 ## Event Emitter
 

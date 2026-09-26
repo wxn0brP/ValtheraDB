@@ -156,6 +156,28 @@ class MyAdapter extends ActionsBase {
 
 When an adapter has `smartExecutor = true`, ValtheraClass automatically enables `aware` mode on the SmartExecutor.
 
+## executorAware Option
+
+By default, `ValtheraClass` sets `executorAware: true` in its options. This means:
+
+- During `init()`, if the adapter signals `smartExecutor = true` AND you're using a `SmartExecutor`, the executor's `aware` mode is automatically enabled.
+- This allows per-collection queuing without manual configuration.
+
+You can disable this behavior by explicitly setting `executorAware: false`:
+
+```typescript
+const db = new ValtheraClass({
+  adapter: myAdapter,
+  executor: new SmartExecutor(),
+  executorAware: false // Prevent automatic aware mode activation
+});
+```
+
+**When to disable:**
+- When you want full control over executor behavior
+- When debugging concurrency issues
+- When your adapter signals `smartExecutor` but you prefer a single queue
+
 ## Custom Executor
 
 You can implement your own executor:

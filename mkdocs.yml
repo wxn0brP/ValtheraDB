@@ -40,6 +40,7 @@ nav:
       - Adapters: dev/adapter.md
       - Plugins: dev/plugin.md
       - Executor: dev/executor.md
+      - Transactions: dev/transaction.md
 
 markdown_extensions:
   - pymdownx.highlight
