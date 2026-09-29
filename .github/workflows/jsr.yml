@@ -2,8 +2,12 @@ name: Publish to JSR
 
 on:
   push:
-    tags:
-      - "*"
+    branches:
+      - master
+    paths:
+      - "jsr.json"
+      - ".github/workflows/jsr.yml"
+
   workflow_dispatch:
 
 jobs:
@@ -14,6 +18,9 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v7
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Publish to JSR
         run: npx jsr publish --allow-slow-types
