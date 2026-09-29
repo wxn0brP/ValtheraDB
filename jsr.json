@@ -1,0 +1,12 @@
+{
+	"name": "@wxn0brp/db",
+	"version": "0.120.2",
+	"exports": "./src/index.ts",
+	"publish": {
+		"include": [
+			"src",
+			"README.md",
+			"LICENSE"
+		]
+	}
+}
