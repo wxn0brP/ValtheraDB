@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.120.2](https://github.com/wxn0brP/ValtheraDB/compare/v0.120.1...v0.120.2) (2026-09-29)
+
+
+### Features
+
+* jsr ([1ab3b04](https://github.com/wxn0brP/ValtheraDB/commit/1ab3b04592c08402e3df14b6763bdbd12952b10f))
+
 ### [0.120.1](https://github.com/wxn0brP/ValtheraDB/compare/v0.120.0...v0.120.1) (2026-09-26)
 
 
