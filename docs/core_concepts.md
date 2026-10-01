@@ -70,6 +70,20 @@ ValtheraDB stems from a simple observation: developers write business logic, not
 
 ValtheraDB treats root-level operators as an internal feature. Users cannot accidentally turn their data input into query operators, which prevents NoSQL injection attacks by design. This is a deliberate choice, not a limitation. You can build with confidence knowing that malicious input cannot manipulate your queries.
 
+## Transactional Safety: Where You Need It
+
+Data consistency matters. ValtheraDB provides a unified transaction API where the underlying adapter supports transactions, while leaving the actual guarantees to the storage backend.
+
+The interface remains consistent, but transaction semantics depend on the adapter:
+
+1. **First-party adapters** implement their own transaction mechanisms, providing atomicity and rollback within the guarantees of their storage model.
+2. **Adapters backed by transactional engines** delegate transaction handling to their underlying engines, preserving the guarantees provided by those databases.
+3. **Specialized adapters** may not support transactions at all. They are designed for specific use cases where transactional behavior is unnecessary or would add unjustified complexity.
+
+This is a natural extension of the pluggable storage paradigm: the API stays uniform, and each adapter provides the strongest guarantees its backend allows. You choose the storage, and you choose the guarantees that come with it.
+
+ValtheraDB does not pretend that all storage is equal. Instead, it gives you the power to choose the right level of consistency for your use case, without locking you into a one-size-fits-all solution.
+
 ## ValtheraDB in the Developer Ecosystem
 
 ### Who is this database for?
