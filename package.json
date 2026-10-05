@@ -28,10 +28,10 @@
         "build": "tsc && tsc-alias"
     },
     "dependencies": {
-        "@wxn0brp/db-client": "^0.120.4",
-        "@wxn0brp/db-core": "^0.12.4",
-        "@wxn0brp/db-resolver": "^0.120.1",
-        "@wxn0brp/db-storage-dir": "^0.120.3",
+        "@wxn0brp/db-client": "^0.120.5",
+        "@wxn0brp/db-core": "^0.12.7",
+        "@wxn0brp/db-resolver": "^0.120.2",
+        "@wxn0brp/db-storage-dir": "^0.120.4",
         "json5": "^2.2.3"
     },
     "devDependencies": {
