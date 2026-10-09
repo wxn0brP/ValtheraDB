@@ -1140,6 +1140,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Registering Plugins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filtering-by-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filtering by Collection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1354,6 +1371,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Registering Plugins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filtering-by-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filtering by Collection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1452,17 +1486,19 @@
 <p>Plugins let you intercept and modify database operations before they reach the storage adapter.
 They're perfect for logging, caching, validation, or adding custom behavior across all operations.</p>
 <h2 id="plugin-interface">Plugin Interface</h2>
-<p>A plugin is an object with three properties:</p>
+<p>A plugin is an object with properties:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">ValtheraPlugin</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
 <span class="w">  </span><span class="nx">init</span><span class="o">?:</span><span class="w"> </span><span class="p">(</span><span class="nx">db</span><span class="o">:</span><span class="w"> </span><span class="kt">ValtheraClass</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span>
 <span class="w">  </span><span class="nx">execute</span><span class="p">(</span><span class="nx">ctx</span><span class="o">:</span><span class="w"> </span><span class="kt">PluginContext</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">collections?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[];</span>
 <span class="p">}</span>
 </code></pre></div>
 <ul>
 <li><strong><code>name</code></strong>: Unique identifier for the plugin</li>
 <li><strong><code>init</code></strong> (optional): Called once when the plugin is registered</li>
 <li><strong><code>execute</code></strong>: Called for every database operation</li>
+<li><strong><code>collections</code></strong> (optional): When set, the plugin only runs for operations on these collections</li>
 </ul>
 <h2 id="context-object">Context Object</h2>
 <p>The <code>execute</code> method receives a context object:</p>
@@ -1474,7 +1510,7 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 </code></pre></div>
 <p>The <code>op</code> field can be any of:</p>
 <ul>
-<li><code>getCollections</code>, <code>ensureCollection</code>, <code>issetCollection</code>, <code>removeCollection</code></li>
+<li><code>getCollections</code>, <code>ensureCollection</code>, <code>issetCollection</code>, <code>removeCollection</code>, <code>createIndex</code></li>
 <li><code>add</code>, <code>find</code>, <code>findOne</code>, <code>update</code>, <code>updateOne</code>, <code>remove</code>, <code>removeOne</code></li>
 <li><code>updateOneOrAdd</code>, <code>toggleOne</code></li>
 </ul>
@@ -1509,6 +1545,11 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 <span class="nx">unregister</span><span class="p">();</span>
 </code></pre></div>
 <p>The <code>plugin()</code> method returns a function that removes the plugin when called.</p>
+<h3 id="filtering-by-collection">Filtering by Collection</h3>
+<p>Pass collection names as the second argument to run the plugin only for those collections:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// The plugin only runs for operations on "users" and "posts"</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">unregister</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">plugin</span><span class="p">(</span><span class="nx">myPlugin</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s2">"users"</span><span class="p">,</span><span class="w"> </span><span class="s2">"posts"</span><span class="p">]);</span>
+</code></pre></div>
 <h2 id="execution-order">Execution Order</h2>
 <p>Plugins form a chain. When you call a database operation:</p>
 <ol>

@@ -1588,7 +1588,7 @@
 <span class="w">  </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">myAdapter</span><span class="p">,</span>
 <span class="w">  </span><span class="nx">executor</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="p">(</span>
 <span class="w">    </span><span class="nx">ttl</span><span class="p">,</span><span class="w">  </span><span class="c1">// default: 300000 (5 min)</span>
-<span class="w">    </span><span class="nx">aware</span><span class="w"> </span><span class="c1">// default: false</span>
+<span class="w">    </span><span class="nx">aware</span><span class="w"> </span><span class="c1">// default: true</span>
 <span class="w">  </span><span class="p">)</span>
 <span class="p">});</span>
 </code></pre></div>
@@ -1602,7 +1602,7 @@
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>ttl</code> (default: <code>300000</code>): Time-to-live for inactive queues (milliseconds)</li>
-<li><code>aware</code> (default: <code>false</code>): Whether to isolate queues per collection</li>
+<li><code>aware</code> (default: <code>true</code>): Whether to isolate queues per collection</li>
 </ul>
 <p><strong>When to use:</strong></p>
 <ul>

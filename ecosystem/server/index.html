@@ -916,6 +916,62 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#git-backed-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git-backed Server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Git-backed Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-start_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#squirrel-ap-routing-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Squirrel (AP Routing Layer)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Squirrel (AP Routing Layer)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-start_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#php-server-mariadbmysql" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1230,6 +1286,62 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#git-backed-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git-backed Server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Git-backed Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-start_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#squirrel-ap-routing-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Squirrel (AP Routing Layer)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Squirrel (AP Routing Layer)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-start_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#php-server-mariadbmysql" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1261,16 +1373,62 @@
 
 
 <h1 id="server">Server</h1>
-<p>HTTP server for ValtheraDB on port 14785. Built on FalconFrame with JWT auth,
-GateWarden permissions (RBAC/ACL/ABAC), Web GUI, and SQL/CSV import/export.</p>
+<p>Full-featured HTTP server for ValtheraDB on port 14785. Built on FalconFrame with enterprise-grade security and management features. The reference implementation for production deployments.</p>
+<ul>
+<li>JWT authentication with role-based access control</li>
+<li>GateWarden permissions (RBAC, ACL, ABAC)</li>
+<li>Web GUI for visual database management</li>
+<li>SQL and CSV import/export for data migration</li>
+<li>Configurable audit logging for security and compliance</li>
+<li>Rate limiting and HTTPS support</li>
+</ul>
+<p>All servers are available on Docker Hub (<code>wxn0brp/*</code>) and GitHub Container Registry (<code>ghcr.io/wxn0brp/*</code>).</p>
 <h2 id="quick-start">Quick Start</h2>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">14785</span>:14785<span class="w"> </span>ghcr.io/wxn0brp/valthera-server
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">14785</span>:14785<span class="w"> </span>wxn0brp/valtheradb-server
 </code></pre></div>
+<h2 id="git-backed-server">Git-backed Server</h2>
+<p>Stateless Docker container with all state stored in Git. The database files live in a Git repository - every flush creates a commit and pushes to the configured branch. No local volumes, no persistent storage - restart or replace the container freely.</p>
+<ul>
+<li>Stateless: no volumes, no local state, container is disposable</li>
+<li>Git as storage: every flush = commit + push, versioned and distributed</li>
+<li>Fully compatible with ValtheraDB server API</li>
+</ul>
+<h3 id="quick-start_1">Quick Start</h3>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">14785</span>:14785<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">WOLF_TOKEN</span><span class="o">=</span>your-token<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">GIT_URL</span><span class="o">=</span>your-repo-url<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>wxn0brp/valtheradb-server-git
+</code></pre></div>
+<p><code>WOLF_TOKEN</code> (auth token) and <code>GIT_URL</code> (repository URL) are required.</p>
+<p>-&gt; <a href="https://github.com/wxn0brP/ValtheraDB-server-git">GitHub</a></p>
+<h2 id="squirrel-ap-routing-layer">Squirrel (AP Routing Layer)</h2>
+<p>AP routing layer that sits between the client and multiple ValtheraDB storage nodes, providing hash-based distribution across unreliable servers. No consistency or durability guarantees - optimized for availability.</p>
+<ul>
+<li>API compatibility depends on mode: full in redirect-only (AP), partial in replication/catchup (AP+)</li>
+<li>Function-based queries are not fully supported in AP+ modes</li>
+<li>Collection management (create/drop) is limited - inconsistent state possible when servers are unavailable</li>
+<li>Routes requests via <code>307</code> redirect based on <code>_id</code> hash</li>
+<li>Epoch-based snapshots track server list changes</li>
+<li>Catchup mechanism queues writes when primary is down, replays on recovery</li>
+</ul>
+<h3 id="quick-start_2">Quick Start</h3>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">3000</span>:3000<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">SQUIRREL_DB</span><span class="o">=</span>mydb<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">SQUIRREL_AUTH</span><span class="o">=</span>your-token<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">SQUIRREL_SEEDS</span><span class="o">=</span><span class="s2">"http://s1@localhost:14785 http://s2@localhost:14786"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>wxn0brp/valtheradb-squirrel
+</code></pre></div>
+<p><code>SQUIRREL_DB</code>, <code>SQUIRREL_AUTH</code>, and <code>SQUIRREL_SEEDS</code> are required.</p>
+<p>-&gt; <a href="https://github.com/wxn0brP/ValtheraDB-squirrel">GitHub</a></p>
 <h2 id="php-server-mariadbmysql">PHP Server (MariaDB/MySQL)</h2>
 <p>Alternative PHP implementation for SQL databases.</p>
+<ul>
+<li>MariaDB/MySQL backend</li>
+<li>Function-based queries are not supported (PHP cannot execute JavaScript)</li>
+</ul>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/wxn0brP/ValtheraDB-server-php.git
 </code></pre></div>
-<p>Configure via <code>config.php</code>, API compatible with main server.</p>
+<p>Configure via <code>config.php</code>, API compatible with main server (except function-based search).</p>
 <p>-&gt; <a href="https://github.com/wxn0brP/ValtheraDB-server/tree/master/docs">Full Server Docs</a> |
 <a href="https://github.com/wxn0brP/ValtheraDB-server-php">PHP Server</a></p>
 

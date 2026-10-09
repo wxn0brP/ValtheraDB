@@ -1540,7 +1540,8 @@
 <blockquote>
 <p><strong>Experimental Feature:</strong> Transactions are highly experimental and may change or be removed at any time.</p>
 </blockquote>
-<p>Transactions allow you to execute multiple database operations atomically. If any operation fails, all changes are rolled back, ensuring data consistency.</p>
+<p>Transactions allow you to execute multiple database operations atomically.
+If any operation fails, all changes are rolled back, ensuring data consistency.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db"</span><span class="p">;</span>
 
@@ -1575,7 +1576,8 @@
 </code></pre></div>
 <p><strong>Why?</strong> ValtheraDB locks these collections for the duration of the transaction to prevent concurrent modifications.</p>
 <h3 id="2-transaction-object">2. Transaction Object</h3>
-<p>The <code>tx</code> object provides the same CRUD methods as <code>ValtheraClass</code>.</p>
+<p>The <code>tx</code> object provides the same CRUD methods as <code>ValtheraClass</code>.
+Besides CRUD, <code>tx</code> exposes <code>getCollections()</code>, <code>ensureCollection()</code>, <code>issetCollection()</code>, and <code>removeCollection()</code>.</p>
 <p><strong>Important:</strong> Operations on the original <code>db</code> reference are NOT part of the transaction. Always use <code>tx</code>.</p>
 <h3 id="3-automatic-rollback">3. Automatic Rollback</h3>
 <p>If the transaction function throws an error, all changes are automatically rolled back:</p>

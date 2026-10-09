@@ -664,6 +664,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#createindexfields-opts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        createIndex(fields, opts)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1445,6 +1456,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#createindexfields-opts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        createIndex(fields, opts)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1645,6 +1667,30 @@
 </ul>
 </li>
 </ul>
+<h3 id="createindexfields-opts"><code>createIndex(fields, opts)</code></h3>
+<p>Creates an index on this collection. Index support is adapter-dependent.</p>
+<ul>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>fields</code> (<code>string[]</code>): The fields to index.</li>
+<li><code>opts</code> (<code>IndexOpts</code>, optional): Index options (adapter-dependent).<ul>
+<li><code>unique</code> (<code>boolean</code>): Whether the index should enforce uniqueness.</li>
+<li><code>name</code> (<code>string</code>): Custom index name.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>Promise&lt;void&gt;</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>Note:</strong> Not all adapters support indexes. Check your adapter's documentation.</p>
+<div class="highlight"><pre><span></span><code><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">createIndex</span><span class="p">([</span><span class="s2">"email"</span><span class="p">],</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">unique</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">});</span>
+</code></pre></div>
 
 
 

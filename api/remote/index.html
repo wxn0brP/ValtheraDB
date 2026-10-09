@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#remote-valthera-and-graph-valthera-client-documentation" class="md-skip">
+        <a href="#remote-valthera-client-documentation" class="md-skip">
           Skip to content
         </a>
       
@@ -1294,25 +1294,31 @@
   
 
 
-<h1 id="remote-valthera-and-graph-valthera-client-documentation">Remote Valthera and Graph Valthera Client Documentation</h1>
+<h1 id="remote-valthera-client-documentation">Remote Valthera Client Documentation</h1>
 <h2 id="remote-object-structure"><code>remote</code> Object Structure</h2>
 <ul>
 <li><code>name</code> (<code>string</code>): The name of the Valthera.</li>
 <li><code>url</code> (<code>string</code>): The URL of the remote Valthera.</li>
 <li><code>auth</code> (<code>string</code>): The authentication token for accessing the Valthera.</li>
+<li><code>query</code> (<code>Record&lt;string, string&gt;</code>, optional): Extra query parameters appended to every request.</li>
+<li><code>headers</code> (<code>Record&lt;string, string&gt;</code>, optional): Extra headers sent with every request.</li>
+<li><code>body</code> (<code>Record&lt;string, any&gt;</code>, optional): Extra body fields merged into every request.</li>
 </ul>
 <h2 id="class-valtheraremoteremote">Class: <code>ValtheraRemote(remote)</code></h2>
-<p><code>ValtheraRemote</code> is an extended version of the <code>Valthera</code> class, designed to handle API requests. It provides the same functionalities as <code>Valthera</code>, but enables remote communication, allowing you to interact with Valthera through HTTP requests.</p>
+<p><code>ValtheraRemote</code> extends <code>BaseRemote</code> and implements <code>ValtheraCompatible</code>. Every call sends a <code>POST</code> request to <code>&lt;url&gt;/db/&lt;op&gt;</code> with the body <code>{ db, auth, query, keys }</code>. When the server responds with <code>{ err: true, msg }</code>, the client throws an <code>Error</code> carrying that message.</p>
+<p>Function values in queries are serialized into the <code>keys</code> field, so the server can execute them.</p>
+<p><strong>Note:</strong> <code>createIndex()</code> is a no-op on the remote client. Index creation is not forwarded to the server.</p>
 <h3 id="example-usage">Example Usage</h3>
-<p><div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">remoteDB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraRemote</span><span class="p">({</span>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">remoteDB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraRemote</span><span class="p">({</span>
 <span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">'myRemoteDB'</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="s1">'https://example.com/db'</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">auth</span><span class="o">:</span><span class="w"> </span><span class="s1">'your-auth-token'</span>
 <span class="p">});</span>
 </code></pre></div>
-or
+<p>or</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">remoteDB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraRemote</span><span class="p">(</span><span class="s1">'https://dbName:token@example.com/db'</span><span class="p">);</span>
-</code></pre></div></p>
+</code></pre></div>
+<p>In the URL form, the username part becomes the database name and the password part becomes the auth token.</p>
 
 
 

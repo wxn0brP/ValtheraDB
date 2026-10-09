@@ -649,10 +649,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pluginplugin" class="md-nav__link">
+  <a href="#pluginplugin-collections" class="md-nav__link">
     <span class="md-ellipsis">
       
-        plugin(plugin)
+        plugin(plugin, collections?)
       
     </span>
   </a>
@@ -1629,10 +1629,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pluginplugin" class="md-nav__link">
+  <a href="#pluginplugin-collections" class="md-nav__link">
     <span class="md-ellipsis">
       
-        plugin(plugin)
+        plugin(plugin, collections?)
       
     </span>
   </a>
@@ -1979,11 +1979,12 @@
 <span class="k">await</span><span class="w"> </span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">});</span>
 </code></pre></div>
 <p><strong>Note:</strong> When using <code>forgeTypedValthera()</code> or <code>ValtheraCreate()</code>, you can access collections directly as properties (e.g., <code>db.users</code>).</p>
-<h3 id="pluginplugin"><code>plugin(plugin)</code></h3>
+<h3 id="pluginplugin-collections"><code>plugin(plugin, collections?)</code></h3>
 <p>Registers a plugin to intercept database operations. Plugins form a middleware chain that can inspect, modify, or short-circuit queries before they reach the adapter.</p>
 <ul>
 <li><strong>Parameters:</strong><ul>
 <li><code>plugin</code> (<code>ValtheraPlugin</code>): The plugin instance to register.</li>
+<li><code>collections</code> (<code>string[] | string</code>, optional): When set, the plugin only runs for operations on these collections.</li>
 </ul>
 </li>
 <li><strong>Returns:</strong><ul>
@@ -1996,6 +1997,7 @@
 <span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
 <span class="w">  </span><span class="nx">init</span><span class="o">?:</span><span class="w"> </span><span class="p">(</span><span class="nx">db</span><span class="o">:</span><span class="w"> </span><span class="kt">ValtheraClass</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span>
 <span class="w">  </span><span class="nx">execute</span><span class="p">(</span><span class="nx">ctx</span><span class="o">:</span><span class="w"> </span><span class="kt">PluginContext</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">collections?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[];</span><span class="w"> </span><span class="c1">// limit the plugin to specific collections</span>
 <span class="p">}</span>
 
 <span class="kd">interface</span><span class="w"> </span><span class="nx">PluginContext</span><span class="w"> </span><span class="p">{</span>
@@ -2159,7 +2161,7 @@
 <p>Event emitter for subscribing to database operations. Uses VEE (Valthera Event Emitter).</p>
 <p><strong>Type:</strong> <code>VEE&lt;Events&gt;</code></p>
 <p><strong>Events:</strong>
-- Operation-specific events: <code>"find"</code>, <code>"add"</code>, <code>"update"</code>, <code>"updateOne"</code>, <code>"remove"</code>, <code>"removeOne"</code>, <code>"findOne"</code>, <code>"updateOneOrAdd"</code>, <code>"toggleOne"</code>, <code>"getCollections"</code>, <code>"ensureCollection"</code>, <code>"issetCollection"</code>, <code>"removeCollection"</code>
+- Operation-specific events: <code>"find"</code>, <code>"add"</code>, <code>"update"</code>, <code>"updateOne"</code>, <code>"remove"</code>, <code>"removeOne"</code>, <code>"findOne"</code>, <code>"updateOneOrAdd"</code>, <code>"toggleOne"</code>, <code>"getCollections"</code>, <code>"ensureCollection"</code>, <code>"issetCollection"</code>, <code>"removeCollection"</code>, <code>"createIndex"</code>
 - Wildcard event: <code>"*"</code> (fires for all operations)</p>
 <p><strong>Event Handler Signature:</strong>
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nx">query</span><span class="o">:</span><span class="w"> </span><span class="kt">VQuery</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span>
@@ -2215,13 +2217,13 @@
 <span class="w">  </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">myAdapter</span><span class="p">,</span>
 <span class="w">  </span><span class="nx">executor</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="p">(</span>
 <span class="w">    </span><span class="nx">ttl</span><span class="p">,</span><span class="w">  </span><span class="c1">// default: 300000 (5 min)</span>
-<span class="w">    </span><span class="nx">aware</span><span class="w"> </span><span class="c1">// default: false</span>
+<span class="w">    </span><span class="nx">aware</span><span class="w"> </span><span class="c1">// default: true</span>
 <span class="w">  </span><span class="p">)</span>
 <span class="p">});</span>
 </code></pre></div>
 <p><strong>Parameters:</strong>
 - <code>ttl</code> (default: <code>300000</code>): Time-to-live for inactive queues in milliseconds
-- <code>aware</code> (default: <code>false</code>): Whether to isolate queues per collection</p>
+- <code>aware</code> (default: <code>true</code>): Whether to isolate queues per collection</p>
 <p><strong>Behavior:</strong>
 - When <code>aware = true</code>: creates separate queues for each collection, operations on different collections run in parallel
 - When <code>aware = false</code>: all operations share a single queue (behaves like simple <code>Executor</code> but with TTL cleanup)
