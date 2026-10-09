@@ -5,19 +5,21 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 
 ## Plugin Interface
 
-A plugin is an object with three properties:
+A plugin is an object with properties:
 
 ```typescript
 interface ValtheraPlugin {
   name: string;
   init?: (db: ValtheraClass) => void;
   execute(ctx: PluginContext): Promise<any>;
+  collections?: string[];
 }
 ```
 
 - **`name`**: Unique identifier for the plugin
 - **`init`** (optional): Called once when the plugin is registered
 - **`execute`**: Called for every database operation
+- **`collections`** (optional): When set, the plugin only runs for operations on these collections
 
 ## Context Object
 
@@ -33,7 +35,7 @@ interface PluginContext {
 
 The `op` field can be any of:
 
-- `getCollections`, `ensureCollection`, `issetCollection`, `removeCollection`
+- `getCollections`, `ensureCollection`, `issetCollection`, `removeCollection`, `createIndex`
 - `add`, `find`, `findOne`, `update`, `updateOne`, `remove`, `removeOne`
 - `updateOneOrAdd`, `toggleOne`
 
@@ -76,6 +78,15 @@ unregister();
 ```
 
 The `plugin()` method returns a function that removes the plugin when called.
+
+### Filtering by Collection
+
+Pass collection names as the second argument to run the plugin only for those collections:
+
+```typescript
+// The plugin only runs for operations on "users" and "posts"
+const unregister = db.plugin(myPlugin, ["users", "posts"]);
+```
 
 ## Execution Order
 

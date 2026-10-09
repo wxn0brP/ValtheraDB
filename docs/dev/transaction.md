@@ -2,7 +2,8 @@
 
 > **Experimental Feature:** Transactions are highly experimental and may change or be removed at any time.
 
-Transactions allow you to execute multiple database operations atomically. If any operation fails, all changes are rolled back, ensuring data consistency.
+Transactions allow you to execute multiple database operations atomically.
+If any operation fails, all changes are rolled back, ensuring data consistency.
 
 ## Basic Usage
 
@@ -49,6 +50,7 @@ await db.transaction(
 ### 2. Transaction Object
 
 The `tx` object provides the same CRUD methods as `ValtheraClass`.
+Besides CRUD, `tx` exposes `getCollections()`, `ensureCollection()`, `issetCollection()`, and `removeCollection()`.
 
 **Important:** Operations on the original `db` reference are NOT part of the transaction. Always use `tx`.
 

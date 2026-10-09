@@ -6,9 +6,9 @@ This document explains how versioning works across our multi-repo structure, spe
 
 Our ecosystem consists of three types of packages:
 
-1.  **`@wxn0brp/db-core`** – The foundational logic and interfaces.
-2.  **`@wxn0brp/db`** – The meta-package (entry point) that re-exports core functionality.
-3.  **Adapters** (e.g., `@wxn0brp/db-storage-dir`) – Implementation-specific packages that depend on `db-core`.
+1.  **`@wxn0brp/db-core`**: The foundational logic and interfaces.
+2.  **`@wxn0brp/db`**: The meta-package (entry point) that re-exports core functionality.
+3.  **Adapters** (e.g., `@wxn0brp/db-storage-dir`): Implementation-specific packages that depend on `db-core`.
 
 ## 2. Core & Meta Package Versioning
 

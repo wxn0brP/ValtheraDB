@@ -65,7 +65,7 @@ const db = new ValtheraClass({
   adapter: myAdapter,
   executor: new SmartExecutor(
     ttl,  // default: 300000 (5 min)
-    aware // default: false
+    aware // default: true
   )
 });
 ```
@@ -80,7 +80,7 @@ const db = new ValtheraClass({
 **Parameters:**
 
 - `ttl` (default: `300000`): Time-to-live for inactive queues (milliseconds)
-- `aware` (default: `false`): Whether to isolate queues per collection
+- `aware` (default: `true`): Whether to isolate queues per collection
 
 **When to use:**
 

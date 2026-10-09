@@ -300,8 +300,8 @@ The `console.dir` output will show you the user object with a new `posts` array 
 
 ## What's Next?
 
-Congratulations! You've just scratched the surface of what ValtheraDB can do.
+You've built a working application with ValtheraDB. Here's what to explore next:
 
-- Ready to learn about the fundamental ideas behind ValtheraDB? Dive into our **[Core Concepts](core_concepts.md)** page.
-- Want to see all the powerful ways you can query your data? Check out the **[Search Options](api/search_opts.md)**.
-- Curious about how to perform complex data updates? Read the **[Updater](api/updater.md)** documentation.
+- Learn the fundamental ideas behind ValtheraDB on the **[Core Concepts](core_concepts.md)** page.
+- See all the ways you can query your data in the **[Search Options](api/search_opts.md)** reference.
+- Learn how to perform complex data updates in the **[Updater](api/updater.md)** documentation.

@@ -1,14 +1,14 @@
-# ValtheraDB Idea: A Database That Thinks Like a Developer
+# ValtheraDB Idea: A Database Built for Developer Workflows
 
-ValtheraDB is a project born from a simple conviction: a database should adapt to your programming style, not the other way around.
+ValtheraDB started from a simple conviction: a database should adapt to your programming style, not the other way around.
 
-Instead of yet another implementation of rigid paradigms, we created a flexible environment that understands the real challenges of modern applications. It is not just a tool for storing data, it is a philosophy of software development.
+Instead of another implementation of rigid paradigms, we created a flexible environment that addresses the real challenges of modern applications. It is not just a tool for storing data, it is a different approach to data management.
 
 ## Pluggable Storage Paradigm: Your Vision, Your Medium
 
 ### The ideas behind the concept
 
-In traditional databases, form determines substance, the choice of SQL vs NoSQL, local files vs server, defines the architecture of the entire application. ValtheraDB reverses this logic.
+In traditional databases, the storage format determines the architecture, the choice of SQL vs NoSQL, local files vs server, defines the structure of the entire application. ValtheraDB reverses this logic.
 
 The central idea: separating data logic from physical storage. Your code operates on objects and relationships, while the method of persistence is a replaceable module.
 
@@ -17,23 +17,23 @@ The central idea: separating data logic from physical storage. Your code operate
 1. **Evolution without revolution**
    Start with JSON files during prototyping. Move to IndexedDB for PWAs. End up with a remote server in production. All with the same business logic.
 2. **A natural language for data**
-   You do not think in "tables", "documents", or "graphs". You think in "users", "orders", "events". ValtheraDB speaks your language.
+   You do not think in "tables", "documents", or "graphs". You think in "users", "orders", "events". ValtheraDB uses concepts you already know.
 3. **Architecture without compromise**
    Every application has unique requirements. ValtheraDB lets you choose the optimal solution without sacrificing developer convenience.
 
 ### Metaphor: File system vs cloud
 
-Just as a file browser works the same for local disks and Dropbox, ValtheraDB provides a unified API regardless of backend. It is abstraction that truly abstracts.
+Just as a file browser works the same for local disks and Dropbox, ValtheraDB provides a unified API regardless of backend. The API stays consistent regardless of the storage backend.
 
-## Relation Engine: Unity in Diversity
+## Relation Engine: Cross-Database Relations
 
 ### The problem we are solving
 
-Modern applications are ecosystems: microservices, modules, separate databases for different functions. Traditional databases force a choice: either a monolith (everything in one DB) or chaos (manually gluing distributed data).
+Modern applications consist of microservices, modules, separate databases for different functions. Traditional databases force a choice: either a monolith (everything in one DB) or chaos (manually gluing distributed data).
 
-ValtheraDB proposes a third path: autonomous, yet connected data collections.
+ValtheraDB offers a third option: autonomous, yet connected data collections.
 
-### The philosophy of relationships
+### The approach to relationships
 
 1. **Declarativity over imperativity**
    Instead of writing algorithms for data joins, you describe relationships between them. The system executes your intent.
@@ -64,7 +64,7 @@ ValtheraDB stems from a simple observation: developers write business logic, not
 2. **Progressive specialization**
    Start with the simplest configuration (JSON files). Move to the advanced one (remote server) without changing a line of application code.
 3. **Expressiveness without complexity**
-   Powerful capabilities through a simple API. Complex inside, simple outside.
+   Comprehensive capabilities through a simple API. Complex inside, simple outside.
 
 ## Security by Design
 
@@ -116,4 +116,4 @@ It adapts to your needs: start simple, scale when necessary, and switch backends
 
 ---
 
-Ready to try it? Begin [your journey](./getting_started.md).
+Ready to try it? Get started [here](./getting_started.md).

@@ -83,12 +83,13 @@ await users.add({ name: "Alice" });
 
 **Note:** When using `forgeTypedValthera()` or `ValtheraCreate()`, you can access collections directly as properties (e.g., `db.users`).
 
-### `plugin(plugin)`
+### `plugin(plugin, collections?)`
 
 Registers a plugin to intercept database operations. Plugins form a middleware chain that can inspect, modify, or short-circuit queries before they reach the adapter.
 
 - **Parameters:**
   	- `plugin` (`ValtheraPlugin`): The plugin instance to register.
+  	- `collections` (`string[] | string`, optional): When set, the plugin only runs for operations on these collections.
 - **Returns:**
    	- `() => void`: A function that unregisters the plugin when called.
 
@@ -99,6 +100,7 @@ interface ValtheraPlugin {
   name: string;
   init?: (db: ValtheraClass) => void;
   execute(ctx: PluginContext): Promise<any>;
+  collections?: string[]; // limit the plugin to specific collections
 }
 
 interface PluginContext {
@@ -268,7 +270,7 @@ Event emitter for subscribing to database operations. Uses VEE (Valthera Event E
 **Type:** `VEE<Events>`
 
 **Events:**
-- Operation-specific events: `"find"`, `"add"`, `"update"`, `"updateOne"`, `"remove"`, `"removeOne"`, `"findOne"`, `"updateOneOrAdd"`, `"toggleOne"`, `"getCollections"`, `"ensureCollection"`, `"issetCollection"`, `"removeCollection"`
+- Operation-specific events: `"find"`, `"add"`, `"update"`, `"updateOne"`, `"remove"`, `"removeOne"`, `"findOne"`, `"updateOneOrAdd"`, `"toggleOne"`, `"getCollections"`, `"ensureCollection"`, `"issetCollection"`, `"removeCollection"`, `"createIndex"`
 - Wildcard event: `"*"` (fires for all operations)
 
 **Event Handler Signature:**
@@ -350,14 +352,14 @@ const db = new ValtheraClass({
   adapter: myAdapter,
   executor: new SmartExecutor(
     ttl,  // default: 300000 (5 min)
-    aware // default: false
+    aware // default: true
   )
 });
 ```
 
 **Parameters:**
 - `ttl` (default: `300000`): Time-to-live for inactive queues in milliseconds
-- `aware` (default: `false`): Whether to isolate queues per collection
+- `aware` (default: `true`): Whether to isolate queues per collection
 
 **Behavior:**
 - When `aware = true`: creates separate queues for each collection, operations on different collections run in parallel

@@ -113,3 +113,21 @@ Removes one entry if it exists, or adds a new one if it doesn't. Usage e.g. for 
 
 - **Returns:**
 	- `Promise<{ data: T; type: "added" | "removed" }>`: A promise that resolves with the removed or added entry.
+
+### `createIndex(fields, opts)`
+Creates an index on this collection. Index support is adapter-dependent.
+
+- **Parameters:**
+	- `fields` (`string[]`): The fields to index.
+	- `opts` (`IndexOpts`, optional): Index options (adapter-dependent).
+		- `unique` (`boolean`): Whether the index should enforce uniqueness.
+		- `name` (`string`): Custom index name.
+
+- **Returns:**
+	- `Promise<void>`
+
+**Note:** Not all adapters support indexes. Check your adapter's documentation.
+
+```typescript
+await db.users.createIndex(["email"], { unique: true });
+```
