@@ -60,5 +60,6 @@ In short, if you value flexibility and control over rigid conventions, you'll fe
     *   [Other Tools](ecosystem/tools.md): Benchmark, E2E tests, snapshot, resolver, and more.
 *   **Dev's Tutorials:**
     *   [Adapters](dev/adapter.md): Step-by-step guide to creating your own storage adapter.
+    *   [Publishing](dev/publishing.md): How to name, discover, and publish packages.
     *   [Plugins](dev/plugin.md): Learn how to write plugins.
     *   [Executor](dev/executor.md): Understand how operations are queued and executed.

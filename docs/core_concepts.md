@@ -23,7 +23,23 @@ The central idea: separating data logic from physical storage. Your code operate
 
 ### Metaphor: File system vs cloud
 
-Just as a file browser works the same for local disks and Dropbox, ValtheraDB provides a unified API regardless of backend. The API stays consistent regardless of the storage backend.
+Just as a file browser works the same for local disks and Dropbox, ValtheraDB provides a unified API regardless of backend. The API stays consistent regardless of the storage backend. This guarantee applies to CRUD adapters; specialized adapters, described in the next section, are the explicit exception.
+
+## Two Classes of Adapters: CRUD and Specialized
+
+The unified API described above is a guarantee, not an accident. It holds for **CRUD adapters**: any backend that stores collections of documents implements the full `ActionsBase` interface, and every CRUD adapter is verified by the same compliance suite. This is the default contract of ValtheraDB, and it does not change.
+
+Some data, however, is not a collection of documents. A structure whose very shape is the point, a sequence designed for appends rather than random access, an auxiliary index that answers a single kind of query - these are models a document store does not describe. Mapping them onto full CRUD would mean rewriting an entire structure per operation or pretending that a medium supports cheap random access. ValtheraDB would rather state a narrower contract honestly than advertise a uniform one that lies about the underlying medium.
+
+That is what **Specialized adapters** are: an opt-in exception for non-document data models. They keep the same `ActionsBase` boundary, speak Valthera's API where it maps cleanly to their model, and expose their own domain-specific methods, but they do not promise the full CRUD surface. Where such an adapter does answer CRUD calls, it applies them to a fixed shape rather than arbitrary documents.
+
+This is an extension of the pluggable storage paradigm, not a retreat from it:
+
+1. **The contract is unchanged.** `ActionsBase` remains the storage boundary. Only the scope of guarantees shrinks, and only for these adapters.
+2. **Opt-in by construction.** You never get a specialized adapter by accident - you choose one explicitly. For everyone using CRUD adapters, nothing changes.
+3. **Declared, not hidden.** Coverage is declared in the compliance suite through explicit skips - a mechanism any adapter may use, CRUD or specialized. Missing capability shows up in the test report instead of being assumed.
+
+**Practical rule:** if your priority is portability of business logic across arbitrary backends, stay with CRUD adapters. Reach for a specialized adapter when the shape of the data itself is the point.
 
 ## Relation Engine: Cross-Database Relations
 
@@ -66,6 +82,8 @@ ValtheraDB stems from a simple observation: developers write business logic, not
 3. **Expressiveness without complexity**
    Comprehensive capabilities through a simple API. Complex inside, simple outside.
 
+This symmetry applies to CRUD adapters. A specialized adapter deliberately trades cross-backend portability for a faithful fit to its data model - you pick one because the data is the point, not because the backend needs to be interchangeable.
+
 ## Security by Design
 
 ValtheraDB treats root-level operators as an internal feature. Users cannot accidentally turn their data input into query operators, which prevents NoSQL injection attacks by design. This is a deliberate choice, not a limitation. You can build with confidence knowing that malicious input cannot manipulate your queries.
@@ -78,7 +96,7 @@ The interface remains consistent, but transaction semantics depend on the adapte
 
 1. **First-party adapters** implement their own transaction mechanisms, providing atomicity and rollback within the guarantees of their storage model.
 2. **Adapters backed by transactional engines** delegate transaction handling to their underlying engines, preserving the guarantees provided by those databases.
-3. **Specialized adapters** may not support transactions at all. They are designed for specific use cases where transactional behavior is unnecessary or would add unjustified complexity.
+3. **Specialized adapters** may not support transactions at all. They are designed for specific data models where transactional behavior is unnecessary or would add unjustified complexity.
 
 This is a natural extension of the pluggable storage paradigm: the API stays uniform, and each adapter provides the strongest guarantees its backend allows. You choose the storage, and you choose the guarantees that come with it.
 

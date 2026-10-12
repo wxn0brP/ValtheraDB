@@ -1,8 +1,11 @@
 # ValtheraDB Storage Adapter Tutorial
 
 This guide shows you how to create custom storage adapters for ValtheraDB.
-Adapters are organized into **levels** based on complexity -
-start from the level that matches your needs.
+
+Adapters fall into two classes:
+
+- **CRUD adapters** implement the full `ActionsBase` interface and expose ValtheraDB's document API (`add`, `find`, `update`, `remove`, `count`). They are the default contract and are verified end to end by the compliance suite.
+- **Specialized adapters** expose a data model that is not a collection of documents. They still use `ActionsBase` as their boundary, but implement only the operations that map cleanly to their model - often over a fixed shape rather than arbitrary documents - and declare their partial coverage in the compliance suite.
 
 ## Architecture Overview
 
@@ -30,9 +33,12 @@ ValtheraDB uses a layered adapter architecture:
 |-------------------------------------|
 ```
 
-> Note: When you replace any layer, you implicitly take responsibility for all layers below it
+> Note: When you replace any layer, you implicitly take responsibility for all layers below it.
+> A specialized adapter (Variant D) keeps `ActionsBase` as its boundary but bypasses the layers below it, implementing only the operations its data model supports.
 
-## Level 1: CustomFileCpu Adapter (Easiest)
+## Variant A: CustomFileCpu Adapter
+
+**Kind:** CRUD
 
 **Best for:** Simple file-based storage (JSON, CSV, line-delimited formats)
 
@@ -54,18 +60,19 @@ Key points:
 - Implement `write()` - write array of objects to file
 - Implement collection management methods (`ensureCollection`, `issetCollection`, etc.)
 
-### When to Use Level 1
+### When to Use Variant A
 
-✅ Your data fits in memory (entire file is loaded on each operation)  
-✅ Simple file formats (JSON, CSV, YAML)  
-✅ You want minimal code  
-✅ Prototyping or small-scale applications  
+- ✅ Your data fits in memory (entire file is loaded on each operation)  
+- ✅ Simple file formats (JSON, CSV, YAML)  
+- ✅ You want minimal code  
+- ✅ Prototyping or small-scale applications  
+- ❌ Large datasets (GB+)  
+- ❌ Need for partial file reads  
+- ❌ Complex query optimization  
 
-❌ Large datasets (GB+)  
-❌ Need for partial file reads  
-❌ Complex query optimization  
+## Variant B: ActionsBase with FileCpu
 
-## Level 2: ActionsBase with FileCpu (Intermediate)
+**Kind:** CRUD
 
 **Best for:** File-based storage with custom file formats, streaming, or large datasets.
 
@@ -91,16 +98,17 @@ Key points:
 - Use `findUtil()` for multi-file queries
 - Handle file rotation (max file size)
 
-### When to Use Level 2
+### When to Use Variant B
 
-✅ Large files that don't fit in memory  
-✅ Custom file formats  
-✅ Streaming reads required  
-✅ Need control over file organization (sharding, rotation)  
+- ✅ Large files that don't fit in memory  
+- ✅ Custom file formats  
+- ✅ Streaming reads required  
+- ✅ Need control over file organization (sharding, rotation)  
+- ❌ Want minimal implementation code  
 
-❌ Want minimal implementation code  
+## Variant C: Full ActionsBase
 
-## Level 3: Full ActionsBase (Advanced)
+**Kind:** CRUD
 
 **Best for:** Database systems, remote APIs, complex storage or full control.
 
@@ -135,25 +143,51 @@ Key points:
 - Translate Valthera queries to MongoDB format
 - Manage connection lifecycle (`init()`)
 
-### When to Use Level 3
+### When to Use Variant C
 
-✅ Maximum performance control  
-✅ External database systems (SQL, NoSQL)  
-✅ Remote APIs / microservices  
-✅ Transaction support needed  
+- ✅ Maximum performance control  
+- ✅ External database systems (SQL, NoSQL)  
+- ✅ Remote APIs / microservices  
+- ✅ Transaction support needed  
+- ❌ Simple file-based storage  
+- ❌ Quick prototyping  
 
-❌ Simple file-based storage  
-❌ Quick prototyping  
+## Variant D: Specialized Adapter
 
-## Level Comparison
+**Kind:** Specialized
 
-| Feature | Level 1 | Level 2 | Level 3 |
-|---------|---------|---------|---------|
-| **Base Class** | `CustomActionsBase` | `ActionsBase` + `FileCpu` | `ActionsBase` |
-| **Implement** | `read`, `write` | `FileCpu` interface | All CRUD methods |
-| **Memory Usage** | Full file load | Streaming | Depends on impl |
-| **Best For** | JSON, CSV, XML | Custom formats | High performance, SQL, NoSQL, APIs |
-| **Code Lines** | ~50-80 | ~150-250 | 300+ |
+**Package name:** `@wxn0brp/db-spec-<name>` - see [Publishing](./publishing.md) for scopes, keywords, and the resolver contract.
+
+**Best for:** Non-document data models where a collection of documents is the wrong abstraction.
+
+**What you get:** Valthera's API where it maps cleanly to your data model, plus any domain-specific methods you expose. A specialized adapter may answer CRUD calls, but over a fixed shape rather than arbitrary documents - for example an append-only `{ _id, l }` log.
+
+**What you implement:** Only the operations your data model supports. Use `ActionsBase` as the boundary, implement the subset that makes sense, and add domain-specific operations on top.
+
+### When to Use Variant D
+
+- ✅ Your storage is not a collection of documents  
+- ✅ The shape of the data itself is the point  
+- ✅ Full CRUD would be a semantic lie or a costly mismatch  
+- ❌ You need portable business logic across arbitrary backends  
+- ❌ You rely on the unified CRUD contract  
+
+### Why Specialized Adapters Exist
+
+The unified document API is a guarantee for CRUD adapters (Variants A, B, C), and it does not change. Specialized adapters are an explicit, opt-in exception for data models that cannot be represented as documents. They keep the same `ActionsBase` boundary and the same opt-in discipline, but state a narrower contract rather than advertise a uniform one that lies about the medium. See [Core Concepts: Two Classes of Adapters](../core_concepts.md#two-classes-of-adapters-crud-and-specialized) for the full rationale.
+
+## Variant Comparison
+
+| Feature | Variant A | Variant B | Variant C | Variant D |
+|---------|-----------|-----------|-----------|-----------|
+| **Kind** | CRUD | CRUD | CRUD | Specialized |
+| **Base Class** | `CustomActionsBase` | `ActionsBase` + `FileCpu` | `ActionsBase` | `ActionsBase` (partial) |
+| **Implement** | `read`, `write` | `FileCpu` interface | All CRUD methods | Only supported methods |
+| **Memory Usage** | Full file load | Streaming | Depends on impl | Depends on data model |
+| **e2e Coverage** | Full | Full | Full (declared skips) | Partial (`skip` config) |
+| **Best For** | JSON, CSV, XML | Custom formats | SQL, NoSQL, APIs | Non-document models |
+
+> Compliance coverage is declared in `valthera-e2e/config.json` under `skip.domains` and `skip.tests`. Any adapter may declare skips, CRUD or specialized; the difference is how much it has to skip.
 
 ## Utility Functions Reference
 

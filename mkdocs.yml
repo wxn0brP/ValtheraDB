@@ -38,6 +38,7 @@ nav:
       - Other Tools: ecosystem/tools.md
   - Dev's Tutorials:
       - Adapters: dev/adapter.md
+      - Publishing: dev/publishing.md
       - Plugins: dev/plugin.md
       - Executor: dev/executor.md
       - Transactions: dev/transaction.md

@@ -1,7 +1,9 @@
 # Storage Adapters
 
-ValtheraDB uses pluggable storage engines -
-every adapter implements the same `ActionsBase` interface with identical CRUD API.
+ValtheraDB uses pluggable storage engines. Adapters fall into two classes:
+
+- **CRUD** - the full `ActionsBase` interface, named `db-storage-<name>`.
+- **Specialized** - non-document data models, named `db-spec-<name>`.
 
 ## Quick Start: VDB() API
 
@@ -34,6 +36,8 @@ env var -> `def` fallback -> `./vdb-data/<name>`
 
 In development, missing adapters are auto-installed.
 
+Short names resolve to first-party `@wxn0brp/db-storage-*` packages. Third-party adapters are referenced by their full id (`@scope/db-storage-<name>:<variant>`); see [Publishing](../dev/publishing.md).
+
 -> [Full Resolver Docs](https://github.com/wxn0brP/ValtheraDB-resolver#vdb-api)
 
 ---
@@ -62,4 +66,4 @@ To use an adapter manually, install the package and create an instance.
 
 ## Creating a Custom Adapter
 
-See the [Adapter Tutorial](../dev/adapter.md) for a step-by-step guide on building your own storage adapter.
+See the [Adapter Tutorial](../dev/adapter.md) for a step-by-step guide on building your own storage adapter - CRUD variants A/B/C and the specialized Variant D.
