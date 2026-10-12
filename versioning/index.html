@@ -405,15 +405,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-adapter-versioning-scheme-0cab" class="md-nav__link">
+  <a href="#3-adapter-plugin-versioning-scheme-0cab" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Adapter Versioning Scheme (0.CA.B)
+        3. Adapter &amp; Plugin Versioning Scheme (0.CA.B)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3. Adapter Versioning Scheme (0.CA.B)">
+    <nav class="md-nav" aria-label="3. Adapter &amp; Plugin Versioning Scheme (0.CA.B)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1156,6 +1156,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../dev/publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../dev/plugin/" class="md-nav__link">
         
   
@@ -1289,15 +1317,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-adapter-versioning-scheme-0cab" class="md-nav__link">
+  <a href="#3-adapter-plugin-versioning-scheme-0cab" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Adapter Versioning Scheme (0.CA.B)
+        3. Adapter &amp; Plugin Versioning Scheme (0.CA.B)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3. Adapter Versioning Scheme (0.CA.B)">
+    <nav class="md-nav" aria-label="3. Adapter &amp; Plugin Versioning Scheme (0.CA.B)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1359,34 +1387,72 @@
 
 
 <h1 id="ecosystem-versioning-compatibility-policy">Ecosystem Versioning &amp; Compatibility Policy</h1>
-<p>This document explains how versioning works across our multi-repo structure, specifically focusing on the relationship between the core library, the meta-package, and storage adapters.</p>
+<p>This document explains how versioning works across our multi-repo structure, specifically focusing on the relationship between the core library, the meta-package, adapters, and plugins.</p>
 <h2 id="1-package-structure">1. Package Structure</h2>
-<p>Our ecosystem consists of three types of packages:</p>
-<ol>
-<li><strong><code>@wxn0brp/db-core</code></strong>: The foundational logic and interfaces.</li>
-<li><strong><code>@wxn0brp/db</code></strong>: The meta-package (entry point) that re-exports core functionality.</li>
-<li><strong>Adapters</strong> (e.g., <code>@wxn0brp/db-storage-dir</code>): Implementation-specific packages that depend on <code>db-core</code>.</li>
-</ol>
+<p>Our ecosystem consists of these package families:</p>
+<table>
+<thead>
+<tr>
+<th>Family</th>
+<th>Naming</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Core</strong></td>
+<td><code>@wxn0brp/db-core</code></td>
+<td>Foundational logic and interfaces.</td>
+</tr>
+<tr>
+<td><strong>Meta-package</strong></td>
+<td><code>@wxn0brp/db</code></td>
+<td>Entry point that re-exports core functionality.</td>
+</tr>
+<tr>
+<td><strong>CRUD adapter</strong></td>
+<td><code>@wxn0brp/db-storage-&lt;name&gt;</code></td>
+<td>Full <code>ActionsBase</code> storage backend.</td>
+</tr>
+<tr>
+<td><strong>Specialized adapter</strong></td>
+<td><code>@wxn0brp/db-spec-&lt;name&gt;</code></td>
+<td>Non-document data model, partial CRUD surface.</td>
+</tr>
+<tr>
+<td><strong>Plugin</strong></td>
+<td><code>@wxn0brp/db-plugin-&lt;name&gt;</code></td>
+<td>Implements <code>ValtheraPlugin</code>.</td>
+</tr>
+<tr>
+<td><strong>Tool / integration</strong></td>
+<td><code>@wxn0brp/db-&lt;name&gt;</code></td>
+<td>CLI, resolver, server, clients, and similar.</td>
+</tr>
+</tbody>
+</table>
+<p>Adapters and plugins depend on <code>db-core</code> and follow the versioning scheme in section 3.</p>
+<p>Third-party packages keep the same name structure under their own npm scope (e.g. <code>@example/db-storage-postgres</code>); see <a href="../dev/publishing/">Publishing</a>.</p>
 <h2 id="2-core-meta-package-versioning">2. Core &amp; Meta Package Versioning</h2>
 <p>The relationship between the meta-package and the core is <strong>synchronized</strong>.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Package</th>
-<th style="text-align: left;">Version</th>
-<th style="text-align: left;">Meaning</th>
+<th>Package</th>
+<th>Version</th>
+<th>Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><code>@wxn0brp/db-core</code></td>
-<td style="text-align: left;"><code>0.11.0</code></td>
-<td style="text-align: left;">Core logic version</td>
+<td><code>@wxn0brp/db-core</code></td>
+<td><code>0.11.0</code></td>
+<td>Core logic version</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>@wxn0brp/db</code></td>
-<td style="text-align: left;"><code>0.110.0</code></td>
-<td style="text-align: left;"><strong>Matches Core version</strong></td>
+<td><code>@wxn0brp/db</code></td>
+<td><code>0.110.0</code></td>
+<td><strong>Matches Core version</strong></td>
 </tr>
 </tbody>
 </table>
@@ -1394,12 +1460,12 @@
 <li><strong>Rule:</strong> <code>@wxn0brp/db</code> always mirrors the <code>Minor</code> and <code>Patch</code> version of <code>@wxn0brp/db-core</code>.</li>
 <li><strong>Exception:</strong> If the meta-package itself requires a fix independent of core, the <code>Patch</code> version may increment slightly higher, but the <code>Minor</code> version will always match the Core.</li>
 </ul>
-<h2 id="3-adapter-versioning-scheme-0cab">3. Adapter Versioning Scheme (<code>0.CA.B</code>)</h2>
-<p>Adapters have independent lifecycles but strict compatibility requirements with <code>db-core</code>. To make compatibility visible directly in the version number, we use a custom encoding scheme.</p>
+<h2 id="3-adapter-plugin-versioning-scheme-0cab">3. Adapter &amp; Plugin Versioning Scheme (<code>0.CA.B</code>)</h2>
+<p>Adapters and plugins have independent lifecycles but strict compatibility requirements with <code>db-core</code>. To make compatibility visible directly in the version number, we use a custom encoding scheme.</p>
 <h3 id="the-formula">The Formula</h3>
 <div class="highlight"><pre><span></span><code>0.CA.B
-│ || |-- B: Adapter Patch (Bugfixes or Core Patch requirement)
-│ ||---- A: Adapter Series (Adapter Breaking Changes)
+│ || |-- B: Package Patch (Bugfixes or Core Patch requirement)
+│ ||---- A: Package Series (Breaking Changes)
 │ |----- C: Core Minor Version
 |------- Major (Always 0)
 </code></pre></div>
@@ -1407,26 +1473,26 @@
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Adapter Version</th>
-<th style="text-align: left;">Decoded Meaning</th>
+<th>Package Version</th>
+<th>Decoded Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><code>0.110.5</code></td>
-<td style="text-align: left;">Works with <strong>Core 0.11.x</strong>, Adapter Series <strong>0</strong>, Patch <strong>5</strong></td>
+<td><code>0.110.5</code></td>
+<td>Works with <strong>Core 0.11.x</strong>, Package Series <strong>0</strong>, Patch <strong>5</strong></td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>0.111.0</code></td>
-<td style="text-align: left;">Works with <strong>Core 0.11.x</strong>, Adapter Series <strong>1</strong> (Breaking Change), Patch <strong>0</strong></td>
+<td><code>0.111.0</code></td>
+<td>Works with <strong>Core 0.11.x</strong>, Package Series <strong>1</strong> (Breaking Change), Patch <strong>0</strong></td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>0.120.0</code></td>
-<td style="text-align: left;">Works with <strong>Core 0.12.x</strong>, Adapter Series <strong>0</strong>, Patch <strong>0</strong></td>
+<td><code>0.120.0</code></td>
+<td>Works with <strong>Core 0.12.x</strong>, Package Series <strong>0</strong>, Patch <strong>0</strong></td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>0.110.6</code></td>
-<td style="text-align: left;">Works with <strong>Core 0.11.x</strong>, Updated to require <strong>Core 0.11.2</strong> (Patch requirement)</td>
+<td><code>0.110.6</code></td>
+<td>Works with <strong>Core 0.11.x</strong>, Updated to require <strong>Core 0.11.2</strong> (Patch requirement)</td>
 </tr>
 </tbody>
 </table>
@@ -1434,31 +1500,31 @@
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Event</th>
-<th style="text-align: left;">Adapter Version Change</th>
-<th style="text-align: left;">Example</th>
+<th>Event</th>
+<th>Version Change</th>
+<th>Example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>Adapter Bugfix</strong></td>
-<td style="text-align: left;"><code>B + 1</code></td>
-<td style="text-align: left;"><code>0.110.5</code> -&gt; <code>0.110.6</code></td>
+<td><strong>Bugfix</strong></td>
+<td><code>B + 1</code></td>
+<td><code>0.110.5</code> -&gt; <code>0.110.6</code></td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Adapter Breaking Change</strong></td>
-<td style="text-align: left;"><code>A + 1</code>, <code>B = 0</code></td>
-<td style="text-align: left;"><code>0.110.5</code> -&gt; <code>0.111.0</code></td>
+<td><strong>Breaking Change</strong></td>
+<td><code>A + 1</code>, <code>B = 0</code></td>
+<td><code>0.110.5</code> -&gt; <code>0.111.0</code></td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Core Minor Update</strong> (e.g., 0.11 -&gt; 0.12)</td>
-<td style="text-align: left;"><code>C + 1</code>, <code>A = 0</code>, <code>B = 0</code></td>
-<td style="text-align: left;"><code>0.111.5</code> -&gt; <code>0.120.0</code></td>
+<td><strong>Core Minor Update</strong> (e.g., 0.11 -&gt; 0.12)</td>
+<td><code>C + 1</code>, <code>A = 0</code>, <code>B = 0</code></td>
+<td><code>0.111.5</code> -&gt; <code>0.120.0</code></td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Core Patch Requirement</strong> (e.g., security fix)</td>
-<td style="text-align: left;"><code>B + 1</code></td>
-<td style="text-align: left;"><code>0.110.5</code> -&gt; <code>0.110.6</code></td>
+<td><strong>Core Patch Requirement</strong> (e.g., security fix)</td>
+<td><code>B + 1</code></td>
+<td><code>0.110.5</code> -&gt; <code>0.110.6</code></td>
 </tr>
 </tbody>
 </table>

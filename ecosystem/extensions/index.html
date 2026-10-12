@@ -1049,6 +1049,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../dev/publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../dev/plugin/" class="md-nav__link">
         
   
@@ -1173,7 +1201,8 @@
 
 <h1 id="extensions">Extensions</h1>
 <p>Extensions add functionality on top of ValtheraDB -
-replication, indexing, and concurrency control.</p>
+replication, caching, and concurrency control.
+They are implemented as plugins (<code>ValtheraPlugin</code>), named <code>db-plugin-&lt;name&gt;</code>.</p>
 <table>
 <thead>
 <tr>
@@ -1185,16 +1214,22 @@ replication, indexing, and concurrency control.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>@wxn0brp/db-crdt</code></td>
+<td><code>@wxn0brp/db-plugin-crdt</code></td>
 <td>CRDT replication and sync between ValtheraDB instances</td>
-<td><code>bun add @wxn0brp/db-crdt</code></td>
-<td><a href="https://github.com/wxn0brP/ValtheraDB-crdt">GitHub</a></td>
+<td><code>bun add @wxn0brp/db-plugin-crdt</code></td>
+<td><a href="https://github.com/wxn0brP/ValtheraDB-plugin-crdt">GitHub</a></td>
 </tr>
 <tr>
-<td><code>@wxn0brp/db-lock</code></td>
+<td><code>@wxn0brp/db-plugin-lock</code></td>
 <td>File-based multi-process locking with stale detection</td>
-<td><code>bun add @wxn0brp/db-lock</code></td>
-<td><a href="https://github.com/wxn0brP/ValtheraDB-lock">GitHub</a></td>
+<td><code>bun add @wxn0brp/db-plugin-lock</code></td>
+<td><a href="https://github.com/wxn0brP/ValtheraDB-plugin-lock">GitHub</a></td>
+</tr>
+<tr>
+<td><code>@wxn0brp/db-plugin-redis-cache</code></td>
+<td>Redis cache for reads with automatic invalidation on writes</td>
+<td><code>bun add @wxn0brp/db-plugin-redis-cache</code></td>
+<td><a href="https://github.com/wxn0brP/ValtheraDB-plugin-redis-cache">GitHub</a></td>
 </tr>
 </tbody>
 </table>

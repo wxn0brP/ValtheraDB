@@ -1119,6 +1119,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../dev/publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../dev/plugin/" class="md-nav__link">
         
   
@@ -1283,8 +1311,11 @@
 
 
 <h1 id="storage-adapters">Storage Adapters</h1>
-<p>ValtheraDB uses pluggable storage engines -
-every adapter implements the same <code>ActionsBase</code> interface with identical CRUD API.</p>
+<p>ValtheraDB uses pluggable storage engines. Adapters fall into two classes:</p>
+<ul>
+<li><strong>CRUD</strong> - the full <code>ActionsBase</code> interface, named <code>db-storage-&lt;name&gt;</code>.</li>
+<li><strong>Specialized</strong> - non-document data models, named <code>db-spec-&lt;name&gt;</code>.</li>
+</ul>
 <h2 id="quick-start-vdb-api">Quick Start: VDB() API</h2>
 <p>The easiest way to use adapters -
 auto-resolves based on config or env vars.</p>
@@ -1308,6 +1339,7 @@ auto-resolves based on config or env vars.</p>
 <p><strong>Resolution order:</strong> <code>force</code> option -&gt; <code>VALTHERA_&lt;NAME&gt;</code>
 env var -&gt; <code>def</code> fallback -&gt; <code>./vdb-data/&lt;name&gt;</code></p>
 <p>In development, missing adapters are auto-installed.</p>
+<p>Short names resolve to first-party <code>@wxn0brp/db-storage-*</code> packages. Third-party adapters are referenced by their full id (<code>@scope/db-storage-&lt;name&gt;:&lt;variant&gt;</code>); see <a href="../../dev/publishing/">Publishing</a>.</p>
 <p>-&gt; <a href="https://github.com/wxn0brP/ValtheraDB-resolver#vdb-api">Full Resolver Docs</a></p>
 <hr />
 <h2 id="manual-installation">Manual Installation</h2>
@@ -1415,7 +1447,7 @@ env var -&gt; <code>def</code> fallback -&gt; <code>./vdb-data/&lt;name&gt;</cod
 </tbody>
 </table>
 <h2 id="creating-a-custom-adapter">Creating a Custom Adapter</h2>
-<p>See the <a href="../../dev/adapter/">Adapter Tutorial</a> for a step-by-step guide on building your own storage adapter.</p>
+<p>See the <a href="../../dev/adapter/">Adapter Tutorial</a> for a step-by-step guide on building your own storage adapter - CRUD variants A/B/C and the specialized Variant D.</p>
 
 
 
