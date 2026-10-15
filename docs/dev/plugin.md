@@ -35,8 +35,8 @@ interface PluginContext {
 
 The `op` field can be any of:
 
-- `getCollections`, `ensureCollection`, `issetCollection`, `removeCollection`, `createIndex`
-- `add`, `find`, `findOne`, `update`, `updateOne`, `remove`, `removeOne`
+- `getCollections`, `ensureCollection`, `issetCollection`, `removeCollection`, `createIndex`, `removeIndex`
+- `add`, `bulkAdd`, `find`, `findOne`, `update`, `updateOne`, `remove`, `removeOne`, `count`
 - `updateOneOrAdd`, `toggleOne`
 
 ## Basic Plugin Structure
@@ -142,7 +142,16 @@ const readOnlyPlugin: ValtheraPlugin = {
   name: "read-only",
   
   async execute(ctx) {
-    const writeOps = ["add", "update", "updateOne", "remove", "removeOne"];
+    const writeOps = [
+      "add",
+      "bulkAdd",
+      "update",
+      "updateOne",
+      "remove",
+      "removeOne",
+      "updateOneOrAdd",
+      "toggleOne",
+    ];
     
     if (writeOps.includes(ctx.op)) {
       throw new Error(`Operation ${ctx.op} is not allowed in read-only mode`);
@@ -160,14 +169,14 @@ Plugins can modify queries before they reach the adapter:
 ```typescript
 const softDeletePlugin: ValtheraPlugin = {
   name: "soft-delete",
-  
+
   async execute(ctx) {
-    // Add deleted filter to all find operations
+    // Hide soft-deleted documents from all read operations
     if (ctx.op === "find" || ctx.op === "findOne") {
       ctx.query.search ||= {};
-      ctx.query.search.deleted = { $ne: true };
+      ctx.query.search.$ne = { deleted: true };
     }
-    
+
     return ctx.next();
   }
 };
