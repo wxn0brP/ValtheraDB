@@ -1538,8 +1538,8 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 </code></pre></div>
 <p>The <code>op</code> field can be any of:</p>
 <ul>
-<li><code>getCollections</code>, <code>ensureCollection</code>, <code>issetCollection</code>, <code>removeCollection</code>, <code>createIndex</code></li>
-<li><code>add</code>, <code>find</code>, <code>findOne</code>, <code>update</code>, <code>updateOne</code>, <code>remove</code>, <code>removeOne</code></li>
+<li><code>getCollections</code>, <code>ensureCollection</code>, <code>issetCollection</code>, <code>removeCollection</code>, <code>createIndex</code>, <code>removeIndex</code></li>
+<li><code>add</code>, <code>bulkAdd</code>, <code>find</code>, <code>findOne</code>, <code>update</code>, <code>updateOne</code>, <code>remove</code>, <code>removeOne</code>, <code>count</code></li>
 <li><code>updateOneOrAdd</code>, <code>toggleOne</code></li>
 </ul>
 <h2 id="basic-plugin-structure">Basic Plugin Structure</h2>
@@ -1620,7 +1620,16 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 <span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"read-only"</span><span class="p">,</span>
 
 <span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">execute</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">writeOps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"add"</span><span class="p">,</span><span class="w"> </span><span class="s2">"update"</span><span class="p">,</span><span class="w"> </span><span class="s2">"updateOne"</span><span class="p">,</span><span class="w"> </span><span class="s2">"remove"</span><span class="p">,</span><span class="w"> </span><span class="s2">"removeOne"</span><span class="p">];</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">writeOps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">"add"</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">"bulkAdd"</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">"update"</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">"updateOne"</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">"remove"</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">"removeOne"</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">"updateOneOrAdd"</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">"toggleOne"</span><span class="p">,</span>
+<span class="w">    </span><span class="p">];</span>
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">writeOps</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">op</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Operation </span><span class="si">${</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">op</span><span class="si">}</span><span class="sb"> is not allowed in read-only mode`</span><span class="p">);</span>
@@ -1636,10 +1645,10 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 <span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"soft-delete"</span><span class="p">,</span>
 
 <span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">execute</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Add deleted filter to all find operations</span>
+<span class="w">    </span><span class="c1">// Hide soft-deleted documents from all read operations</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">op</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"find"</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">op</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"findOne"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">search</span><span class="w"> </span><span class="o">||=</span><span class="w"> </span><span class="p">{};</span>
-<span class="w">      </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">deleted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">$ne</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">};</span>
+<span class="w">      </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">$ne</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">deleted</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">};</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span>
