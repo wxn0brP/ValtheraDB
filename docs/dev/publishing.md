@@ -38,3 +38,23 @@ Plugins use the name `db-plugin-<name>` and the `vdb-plugin` keyword. Register t
 ## Specialized Adapters
 
 Specialized adapters use the name `db-spec-<name>` and the `vdb-spec` keyword; see [Variant D: Specialized Adapter](./adapter.md#variant-d-specialized-adapter).
+
+## Resolver Contract
+
+Every adapter exports a `DYNAMIC` record so `@wxn0brp/db-resolver` can load it by package name:
+
+```typescript
+export const DYNAMIC = {
+	def: (url: string) => createAdapter(url),
+};
+```
+
+`def` is the mandatory default factory, used whenever the resolver gets no explicit variant.
+
+```typescript
+export const DYNAMIC = {
+	def: (file: string) => createAdapter(file),
+	bun: (file: string) => createBunAdapter(file),
+	node: (file: string) => createNodeAdapter(file),
+};
+```
