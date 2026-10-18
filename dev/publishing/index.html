@@ -1142,6 +1142,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#resolver-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolver Contract
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1312,6 +1323,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#resolver-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolver Contract
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1380,6 +1402,19 @@
 <p>Plugins use the name <code>db-plugin-&lt;name&gt;</code> and the <code>vdb-plugin</code> keyword. Register them with <code>db.plugin()</code>; see <a href="../plugin/">Writing Plugins</a>.</p>
 <h2 id="specialized-adapters">Specialized Adapters</h2>
 <p>Specialized adapters use the name <code>db-spec-&lt;name&gt;</code> and the <code>vdb-spec</code> keyword; see <a href="../adapter/#variant-d-specialized-adapter">Variant D: Specialized Adapter</a>.</p>
+<h2 id="resolver-contract">Resolver Contract</h2>
+<p>Every adapter exports a <code>DYNAMIC</code> record so <code>@wxn0brp/db-resolver</code> can load it by package name:</p>
+<div class="highlight"><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">DYNAMIC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">def</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">createAdapter</span><span class="p">(</span><span class="nx">url</span><span class="p">),</span>
+<span class="p">};</span>
+</code></pre></div>
+<p><code>def</code> is the mandatory default factory, used whenever the resolver gets no explicit variant.</p>
+<div class="highlight"><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">DYNAMIC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">def</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">file</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">createAdapter</span><span class="p">(</span><span class="nx">file</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">bun</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">file</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">createBunAdapter</span><span class="p">(</span><span class="nx">file</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">node</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">file</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">createNodeAdapter</span><span class="p">(</span><span class="nx">file</span><span class="p">),</span>
+<span class="p">};</span>
+</code></pre></div>
 
 
 
