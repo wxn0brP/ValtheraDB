@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.120.6](https://github.com/wxn0brP/ValtheraDB/compare/v0.120.5...v0.120.6) (2026-10-26)
+
+
+### Bug Fixes
+
+* apply options to ValtheraClass in ValtheraCreate ([45907be](https://github.com/wxn0brP/ValtheraDB/commit/45907be5785b104bfbf83a2f6747e0ac20ade41d))
+
 ### [0.120.5](https://github.com/wxn0brP/ValtheraDB/compare/v0.120.4...v0.120.5) (2026-10-18)
 
 ### [0.120.4](https://github.com/wxn0brP/ValtheraDB/compare/v0.120.3...v0.120.4) (2026-10-15)
