@@ -17,6 +17,7 @@ ID Generation | api/id
 Relation | api/relation
 Updater | api/updater
 Remote | api/remote
+Errors | api/errors
 
 Ecosystem
 Storage Adapters | ecosystem/adapters
@@ -28,6 +29,7 @@ Other Tools | ecosystem/tools
 
 Dev's Tutorials
 Adapters | dev/adapter
+Publishing | dev/publishing
 Plugins | dev/plugin
 Executor | dev/executor
 Transaction | dev/transaction

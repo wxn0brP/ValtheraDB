@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../logo.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -29,10 +29,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -700,6 +700,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../api/create/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ValtheraCreate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../api/memory/" class="md-nav__link">
         
   
@@ -876,6 +904,34 @@
     
   
     Remote
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errors
   
 
     
@@ -1555,7 +1611,7 @@
 <p>If you run this code, a new folder named <code>my-blog-db</code> will be created in your project. This is where all your collections and documents will live. It's that simple!</p>
 <h2 id="step-3-adding-your-first-user">Step 3: Adding Your First User</h2>
 <p>Our blog will have authors, so let's create a <code>users</code> collection and add our first author to it. A "collection" is just a group of similar documents, like a table in a SQL database.</p>
-<p>The <code>db.add()</code> method adds a new document to a specified collection and automatically generates a unique <code>_id</code> for it.</p>
+<p>The <code>db.users.add()</code> method adds a new document to the <code>users</code> collection and automatically generates a unique <code>_id</code> for it.</p>
 <div class="highlight"><pre><span></span><code><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// Add a new document to the "users" collection</span>
 <span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">author</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span>
@@ -1602,9 +1658,9 @@
 
 <span class="nx">setup</span><span class="p">();</span>
 </code></pre></div>
-<p>Here we used <code>db.findOne()</code> to retrieve a single document that matches our query. It's a quick way to find a specific entry.</p>
+<p>Here we used <code>db.users.findOne()</code> to retrieve a single document that matches our query. It's a quick way to find a specific entry.</p>
 <h2 id="step-5-updating-data">Step 5: Updating Data</h2>
-<p>Sometimes, data changes! ValtheraDB provides easy ways to update existing documents. Let's say Jane Doe decided to update her email address. We can use <code>db.updateOne()</code> to modify her user record.</p>
+<p>Sometimes, data changes! ValtheraDB provides easy ways to update existing documents. Let's say Jane Doe decided to update her email address. We can use <code>users.updateOne()</code> to modify her user record.</p>
 <div class="highlight"><pre><span></span><code><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">updateAuthor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">;</span>
 <span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">updated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">users</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">(</span>
@@ -1625,9 +1681,9 @@
 
 <span class="nx">updateAuthor</span><span class="p">();</span>
 </code></pre></div>
-<p>The <code>db.updateOne()</code> method takes a search query and an updater object. It finds the <em>first</em> document matching the query and applies the updates. For more complex updates (like incrementing numbers or manipulating arrays), you can use <a href="../api/updater/">Updater Operators</a>.</p>
+<p>The <code>users.updateOne()</code> method takes a search query and an updater object. It finds the <em>first</em> document matching the query and applies the updates. For more complex updates (like incrementing numbers or manipulating arrays), you can use <a href="../api/updater/">Updater Operators</a>.</p>
 <h2 id="step-6-updating-or-adding-upsert">Step 6: Updating or Adding (Upsert)</h2>
-<p>Sometimes you need to ensure that a piece of data exists: updating it if it's already there or creating it if it's new. This is a common pattern known as "upsert", and ValtheraDB supports it with <code>db.updateOneOrAdd()</code>.</p>
+<p>Sometimes you need to ensure that a piece of data exists: updating it if it's already there or creating it if it's new. This is a common pattern known as "upsert", and ValtheraDB supports it with <code>posts.updateOneOrAdd()</code>.</p>
 <p>Let's try to update a post. If the post with a specific title exists, we'll update its content. If not, we'll add it as a new post.</p>
 <div class="highlight"><pre><span></span><code><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">upsertPost</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// First, get the author's ID for linking new posts</span>
@@ -1667,7 +1723,7 @@
 
 <span class="nx">upsertPost</span><span class="p">();</span>
 </code></pre></div>
-<p><code>db.updateOneOrAdd()</code> is incredibly flexible. The <code>add_arg</code> option allows you to specify additional data to be merged when a new document is created.</p>
+<p><code>posts.updateOneOrAdd()</code> is incredibly flexible. The <code>add_arg</code> option allows you to specify additional data to be merged when a new document is created.</p>
 <h2 id="step-7-bringing-it-all-together-with-relations">Step 7: Bringing It All Together with Relations</h2>
 <p>We now have users and posts, but they are in separate collections. How do we retrieve a user <em>and</em> all their posts in a single query? This is where ValtheraDB's <code>Relation</code> engine shines.</p>
 <p>Relations allow you to define relationships between your collections and fetch linked data effortlessly.</p>
@@ -1736,6 +1792,7 @@
 <li>Learn the fundamental ideas behind ValtheraDB on the <strong><a href="../core_concepts/">Core Concepts</a></strong> page.</li>
 <li>See all the ways you can query your data in the <strong><a href="../api/search_opts/">Search Options</a></strong> reference.</li>
 <li>Learn how to perform complex data updates in the <strong><a href="../api/updater/">Updater</a></strong> documentation.</li>
+<li>Handle failures gracefully with the <strong><a href="../api/errors/">Errors</a></strong> reference.</li>
 </ul>
 
 
@@ -1786,10 +1843,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

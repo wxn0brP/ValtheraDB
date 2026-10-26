@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../logo.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -29,10 +29,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -537,6 +537,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../api/create/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ValtheraCreate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../api/memory/" class="md-nav__link">
         
   
@@ -713,6 +741,34 @@
     
   
     Remote
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errors
   
 
     
@@ -1075,6 +1131,17 @@
     <span class="md-ellipsis">
       
         Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-actionsbase-gives-you-by-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What ActionsBase Gives You by Default
       
     </span>
   </a>
@@ -1486,6 +1553,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-actionsbase-gives-you-by-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What ActionsBase Gives You by Default
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#variant-a-customfilecpu-adapter" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1777,6 +1855,48 @@
 <p>Note: When you replace any layer, you implicitly take responsibility for all layers below it.
 A specialized adapter (Variant D) keeps <code>ActionsBase</code> as its boundary but bypasses the layers below it, implementing only the operations its data model supports.</p>
 </blockquote>
+<h2 id="what-actionsbase-gives-you-by-default">What <code>ActionsBase</code> Gives You by Default</h2>
+<p><code>ActionsBase</code> ships with default implementations and fields, so a minimal adapter only needs the abstract CRUD and collection methods:</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>capabilities</code></td>
+<td><code>{ transactions: false, indexes: false, persistent: true }</code> - override to describe your backend</td>
+</tr>
+<tr>
+<td><code>bulkAdd(query)</code></td>
+<td>Loops over <code>add()</code> per document</td>
+</tr>
+<tr>
+<td><code>count(query)</code></td>
+<td>Runs <code>find()</code> and returns its length</td>
+</tr>
+<tr>
+<td><code>createIndex(config)</code> / <code>removeIndex(config)</code></td>
+<td>No-op</td>
+</tr>
+<tr>
+<td><code>beginTransaction(id, collections)</code> / <code>commitTransaction(handle)</code> / <code>rollbackTransaction(handle)</code></td>
+<td>Throw <code>UnsupportedOperationError</code></td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>Set a <code>src/version.ts</code> string so it appears in error context</td>
+</tr>
+<tr>
+<td><code>adapterOpts</code></td>
+<td><code>{ numberId: false, idKey: "_id" }</code> - merged from <code>ValtheraClass</code> options</td>
+</tr>
+</tbody>
+</table>
+<p>Override any of these only when your backend has native support (bulk inserts, <code>countDocuments</code>, real indexes, transactions).</p>
+<p>Use the structured error classes from <code>@wxn0brp/db-core/errors</code> instead of bare <code>Error</code> throws: <code>AdapterInitError</code> in <code>init()</code>, <code>AdapterCloseError</code> in <code>close()</code>, <code>AdapterError</code> for driver failures, <code>QueryValidationError</code> for invalid input, and <code>TransactionError</code> inside transactions. Core wraps unknown errors into <code>AdapterError</code>; see <a href="../../api/errors/">Errors</a>.</p>
 <h2 id="variant-a-customfilecpu-adapter">Variant A: CustomFileCpu Adapter</h2>
 <p><strong>Kind:</strong> CRUD</p>
 <p><strong>Best for:</strong> Simple file-based storage (JSON, CSV, line-delimited formats)</p>
@@ -2021,10 +2141,10 @@ A specialized adapter (Variant D) keeps <code>ActionsBase</code> as its boundary
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

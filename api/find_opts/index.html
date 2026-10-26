@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../logo.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -29,10 +29,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -741,6 +741,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../create/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ValtheraCreate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../memory/" class="md-nav__link">
         
   
@@ -917,6 +945,34 @@
     
   
     Remote
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errors
   
 
     
@@ -1695,7 +1751,8 @@ This process is designed to:<br />
 <h3 id="nested-paths-with-arrays">Nested Paths with Arrays</h3>
 <p>When using dotted paths or array paths in <code>select</code> / <code>exclude</code>,
 <strong>paths do not traverse through arrays</strong>.
-If a path segment points to an array, it will be replaced with an empty object:</p>
+If a path segment points to an array (and the next segment is not a numeric index),
+the field is omitted from the result:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// Original Object</span>
 <span class="p">{</span>
 <span class="w">    </span><span class="nx">users</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
@@ -1709,16 +1766,21 @@ If a path segment points to an array, it will be replaced with an empty object:<
 <span class="w">    </span><span class="nx">select</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"users.name"</span><span class="p">]</span>
 <span class="p">}</span>
 
-<span class="c1">// Result - array is replaced with object!</span>
+<span class="c1">// Result - the "users" field is omitted entirely</span>
+<span class="p">{}</span>
+</code></pre></div>
+<p>To work with array elements, use paths with specific indices:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">select</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"users.0.name"</span><span class="p">]</span><span class="w"> </span><span class="c1">// or [["users", "0", "name"]]</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
 <span class="p">{</span>
 <span class="w">    </span><span class="nx">users</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kc">undefined</span><span class="w">  </span><span class="c1">// array was replaced</span>
+<span class="w">        </span><span class="s2">"0"</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span>
+<span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>To work with array elements, use array paths with specific indices:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nx">select</span><span class="o">:</span><span class="w"> </span><span class="p">[[</span><span class="s2">"users"</span><span class="p">,</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"name"</span><span class="p">]]</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="empty-select-vs-empty-exclude">Empty Select vs Empty Exclude</h3>
@@ -1727,15 +1789,19 @@ If a path segment points to an array, it will be replaced with an empty object:<
 <li><code>exclude: []</code> returns the <strong>original object</strong> unchanged</li>
 </ul>
 <h3 id="transform-function-return-value">Transform Function Return Value</h3>
-<p>The <code>transform</code> function can either:</p>
+<p>The <code>transform</code> function <strong>must return the resulting object</strong>. It can either:</p>
 <ol>
-<li><strong>Modify and return</strong> the object (creates new reference)</li>
-<li><strong>Mutate in place</strong> and return <code>undefined</code> (keeps original reference)</li>
+<li><strong>Modify and return</strong> the object (creates a new reference)</li>
+<li><strong>Mutate in place</strong> and return the same object</li>
 </ol>
 <div class="highlight"><pre><span></span><code><span class="c1">// Option 1: Return new object</span>
 <span class="p">{</span><span class="w"> </span><span class="nx">transform</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">doc</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="p">...</span><span class="nx">doc</span><span class="p">,</span><span class="w"> </span><span class="nx">modified</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">}</span>
 
-<span class="c1">// Option 2: Mutate in place</span>
+<span class="c1">// Option 2: Mutate and return the same reference</span>
+<span class="p">{</span><span class="w"> </span><span class="nx">transform</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">doc</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">doc</span><span class="p">.</span><span class="nx">modified</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">doc</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p><strong>Warning:</strong> returning <code>undefined</code> does not keep the original object. The result becomes <code>undefined</code> (or an empty object <code>{}</code> when <code>select</code> is used):</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// WRONG - do not do this</span>
 <span class="p">{</span><span class="w"> </span><span class="nx">transform</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">doc</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">doc</span><span class="p">.</span><span class="nx">modified</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <h3 id="select-and-exclude-interaction">Select and Exclude Interaction</h3>
@@ -1753,7 +1819,7 @@ If a path segment points to an array, it will be replaced with an empty object:<
 <p>The full execution order is always: <code>transform</code> -&gt; <code>exclude</code> -&gt; <code>select</code>.</p>
 <h3 id="non-existent-paths">Non-Existent Paths</h3>
 <ul>
-<li>Selecting non-existent paths silently returns <code>undefined</code> for that field</li>
+<li>Selecting non-existent paths <strong>omits</strong> the field from the result (no <code>undefined</code> placeholder is created)</li>
 <li>Excluding non-existent paths has no effect (no error thrown)</li>
 </ul>
 
@@ -1805,10 +1871,10 @@ If a path segment points to an array, it will be replaced with an empty object:<
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

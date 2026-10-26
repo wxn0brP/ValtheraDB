@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../logo.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -29,10 +29,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -537,6 +537,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../api/create/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ValtheraCreate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../api/memory/" class="md-nav__link">
         
   
@@ -713,6 +741,34 @@
     
   
     Remote
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errors
   
 
     
@@ -1249,6 +1305,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rewriting-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rewriting Operations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#modifying-results" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1480,6 +1547,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rewriting-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rewriting Operations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#modifying-results" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1532,16 +1610,23 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 <p>The <code>execute</code> method receives a context object:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">PluginContext</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">op</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">        </span><span class="c1">// Operation name: "find", "add", "update", etc.</span>
+<span class="w">  </span><span class="nx">kind</span><span class="o">:</span><span class="w"> </span><span class="kt">PluginOpKind</span><span class="p">;</span><span class="w"> </span><span class="c1">// Operation kind: "read" | "write" | "delete" | "collection" | "index" | "meta" | "control"</span>
+<span class="w">  </span><span class="nx">collection?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w"> </span><span class="c1">// Collection name (for string-only ops, this is the query itself)</span>
 <span class="w">  </span><span class="nx">query</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">;</span><span class="w">        </span><span class="c1">// The query object (or collection name string for some ops)</span>
 <span class="w">  </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Call the next plugin or adapter</span>
+<span class="w">  </span><span class="nx">setOp</span><span class="p">(</span><span class="nx">op</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">query?</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span><span class="w"> </span><span class="c1">// Rewrite the operation (and optionally the query)</span>
+<span class="w">  </span><span class="nx">setQuery</span><span class="p">(</span><span class="nx">query</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span><span class="w">           </span><span class="c1">// Rewrite the query for the current operation</span>
 <span class="p">}</span>
 </code></pre></div>
+<p>The <code>kind</code> field groups operations, so plugins can branch without hard-coding name lists (e.g., <code>ctx.kind === "write"</code> covers <code>add</code>, <code>bulkAdd</code>, <code>update</code>, <code>updateOne</code>, <code>updateOneOrAdd</code>, <code>toggleOne</code>). Unknown operation names fall back to <code>"write"</code>.</p>
 <p>The <code>op</code> field can be any of:</p>
 <ul>
-<li><code>getCollections</code>, <code>ensureCollection</code>, <code>issetCollection</code>, <code>removeCollection</code>, <code>createIndex</code>, <code>removeIndex</code></li>
-<li><code>add</code>, <code>bulkAdd</code>, <code>find</code>, <code>findOne</code>, <code>update</code>, <code>updateOne</code>, <code>remove</code>, <code>removeOne</code>, <code>count</code></li>
-<li><code>updateOneOrAdd</code>, <code>toggleOne</code></li>
+<li>Collection management (<code>kind: "collection"</code>): <code>ensureCollection</code>, <code>issetCollection</code>, <code>removeCollection</code></li>
+<li>Index management (<code>kind: "index"</code>): <code>createIndex</code>, <code>removeIndex</code></li>
+<li>CRUD (<code>kind: "read"</code>, <code>"write"</code>, <code>"delete"</code>): <code>add</code>, <code>bulkAdd</code>, <code>find</code>, <code>findOne</code>, <code>update</code>, <code>updateOne</code>, <code>remove</code>, <code>removeOne</code>, <code>count</code>, <code>updateOneOrAdd</code>, <code>toggleOne</code></li>
+<li>Metadata (<code>kind: "meta"</code>): <code>getCollections</code></li>
 </ul>
+<p><strong>Note:</strong> <code>capabilities()</code> and transaction control operations (<code>beginTransaction</code>, <code>commitTransaction</code>, <code>rollbackTransaction</code>) bypass the plugin chain.</p>
 <h2 id="basic-plugin-structure">Basic Plugin Structure</h2>
 <p>Here's the minimal plugin structure:</p>
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraPlugin</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db"</span><span class="p">;</span>
@@ -1620,18 +1705,7 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 <span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"read-only"</span><span class="p">,</span>
 
 <span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">execute</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">writeOps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">      </span><span class="s2">"add"</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">"bulkAdd"</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">"update"</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">"updateOne"</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">"remove"</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">"removeOne"</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">"updateOneOrAdd"</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">"toggleOne"</span><span class="p">,</span>
-<span class="w">    </span><span class="p">];</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">writeOps</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">op</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">kind</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"write"</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">kind</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"delete"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Operation </span><span class="si">${</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">op</span><span class="si">}</span><span class="sb"> is not allowed in read-only mode`</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
@@ -1649,6 +1723,26 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">op</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"find"</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">op</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"findOne"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">search</span><span class="w"> </span><span class="o">||=</span><span class="w"> </span><span class="p">{};</span>
 <span class="w">      </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">$ne</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">deleted</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<h2 id="rewriting-operations">Rewriting Operations</h2>
+<p>Use <code>setOp()</code> / <code>setQuery()</code> to rewrite the operation or its query before it reaches the adapter. <code>kind</code> and <code>collection</code> are updated automatically:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">aliasPlugin</span><span class="o">:</span><span class="w"> </span><span class="kt">ValtheraPlugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"alias"</span><span class="p">,</span>
+
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">execute</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Redirect reads on "user" to the "users" collection</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">query</span><span class="o">?</span><span class="p">.</span><span class="nx">collection</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"user"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">setQuery</span><span class="p">({</span><span class="w"> </span><span class="p">...</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">query</span><span class="p">,</span><span class="w"> </span><span class="nx">collection</span><span class="o">:</span><span class="w"> </span><span class="s2">"users"</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Re-route all "remove" calls to "removeOne"</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">op</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"remove"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">setOp</span><span class="p">(</span><span class="s2">"removeOne"</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span>
@@ -1723,10 +1817,10 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

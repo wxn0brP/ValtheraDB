@@ -14,14 +14,14 @@
         <link rel="prev" href="../collection/">
       
       
-        <link rel="next" href="../memory/">
+        <link rel="next" href="../create/">
       
       
         
       
       
       <link rel="icon" href="../../logo.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -29,10 +29,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -571,15 +571,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#class-valthera" class="md-nav__link">
+  <a href="#class-valtheraclass" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Class: Valthera
+        Class: ValtheraClass
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Class: Valthera">
+    <nav class="md-nav" aria-label="Class: ValtheraClass">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -638,6 +638,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#async-executetname-query-txhandle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        async execute&lt;T&gt;(name, query, txHandle?)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ctcollection" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -671,10 +682,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-ensurecollectioncollection" class="md-nav__link">
+  <a href="#ensurecollectioncollection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async ensureCollection(collection)
+        ensureCollection(collection)
       
     </span>
   </a>
@@ -682,10 +693,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-issetcollectioncollection" class="md-nav__link">
+  <a href="#issetcollectioncollection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async issetCollection(collection)
+        issetCollection(collection)
       
     </span>
   </a>
@@ -693,10 +704,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-removecollectioncollection" class="md-nav__link">
+  <a href="#removecollectioncollection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async removeCollection(collection)
+        removeCollection(collection)
       
     </span>
   </a>
@@ -708,6 +719,17 @@
     <span class="md-ellipsis">
       
         add(query)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bulkaddquery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bulkAdd(query)
       
     </span>
   </a>
@@ -803,10 +825,43 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#countquery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        count(query)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#createindexcollection-fields-opts" class="md-nav__link">
     <span class="md-ellipsis">
       
         createIndex(collection, fields, opts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removeindexcollection-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        removeIndex(collection, fields)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        async capabilities()
       
     </span>
   </a>
@@ -928,6 +983,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../create/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ValtheraCreate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1116,6 +1199,34 @@
     
   
     Remote
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errors
   
 
     
@@ -1579,15 +1690,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#class-valthera" class="md-nav__link">
+  <a href="#class-valtheraclass" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Class: Valthera
+        Class: ValtheraClass
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Class: Valthera">
+    <nav class="md-nav" aria-label="Class: ValtheraClass">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1646,6 +1757,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#async-executetname-query-txhandle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        async execute&lt;T&gt;(name, query, txHandle?)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ctcollection" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1679,10 +1801,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-ensurecollectioncollection" class="md-nav__link">
+  <a href="#ensurecollectioncollection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async ensureCollection(collection)
+        ensureCollection(collection)
       
     </span>
   </a>
@@ -1690,10 +1812,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-issetcollectioncollection" class="md-nav__link">
+  <a href="#issetcollectioncollection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async issetCollection(collection)
+        issetCollection(collection)
       
     </span>
   </a>
@@ -1701,10 +1823,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#async-removecollectioncollection" class="md-nav__link">
+  <a href="#removecollectioncollection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        async removeCollection(collection)
+        removeCollection(collection)
       
     </span>
   </a>
@@ -1716,6 +1838,17 @@
     <span class="md-ellipsis">
       
         add(query)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bulkaddquery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bulkAdd(query)
       
     </span>
   </a>
@@ -1811,10 +1944,43 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#countquery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        count(query)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#createindexcollection-fields-opts" class="md-nav__link">
     <span class="md-ellipsis">
       
         createIndex(collection, fields, opts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removeindexcollection-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        removeIndex(collection, fields)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        async capabilities()
       
     </span>
   </a>
@@ -1953,21 +2119,27 @@
 
 
 <h1 id="valtheradb-documentation">ValtheraDB Documentation</h1>
-<h2 id="class-valthera">Class: <code>Valthera</code></h2>
+<h2 id="class-valtheraclass">Class: <code>ValtheraClass</code></h2>
+<p>The main database class. It wraps a storage adapter (<code>ActionsBase</code>), queues operations, runs plugins, and emits events.</p>
+<blockquote>
+<p>The low-level <code>Valthera</code> wrapper (dir adapter with a preset format) is available from <code>@wxn0brp/db/valthera</code>, but for most use cases prefer <code>ValtheraCreate()</code> or <code>VDB()</code>.</p>
+</blockquote>
 <h3 id="constructor-options">Constructor Options</h3>
 <div class="highlight"><pre><span></span><code><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span>
 <span class="w">  </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">ActionsBase</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">ActionsBase</span><span class="o">&gt;</span><span class="p">),</span>
-<span class="w">  </span><span class="nx">executor?</span><span class="o">:</span><span class="w"> </span><span class="kt">Executor</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">executor?</span><span class="o">:</span><span class="w"> </span><span class="kt">ExecutorInterface</span><span class="p">,</span>
 <span class="w">  </span><span class="nx">executorAware?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">,</span><span class="w"> </span><span class="c1">// default: true</span>
 <span class="w">  </span><span class="nx">adapterOpts?</span><span class="o">:</span><span class="w"> </span><span class="kt">AdapterOpts</span><span class="p">,</span>
-<span class="w">  </span><span class="c1">// Legacy (deprecated):</span>
-<span class="w">  </span><span class="nx">numberId?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">,</span><span class="w">   </span><span class="c1">// use adapterOpts.numberId</span>
-<span class="w">  </span><span class="nx">idKey?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w">       </span><span class="c1">// use adapterOpts.idKey</span>
 <span class="p">})</span>
 </code></pre></div>
-<p>The <code>adapter</code> can be either an <code>ActionsBase</code> instance or a factory function that returns one. When a factory function is used, it is called lazily during <code>init()</code>.</p>
+<ul>
+<li><code>adapter</code> - a ready <code>ActionsBase</code> instance, or a factory function that returns one. A factory is called lazily during <code>init()</code>.</li>
+<li><code>executor</code> - controls operation queuing. Default: a <code>SmartExecutor</code> with a single queue (see <a href="#executor">Executor</a>).</li>
+<li><code>executorAware</code> - allows the executor to automatically switch to per-collection queues when the adapter supports it.</li>
+<li><code>adapterOpts</code> - forwarded to the adapter on <code>init()</code>.</li>
+</ul>
 <h3 id="adapteropts"><code>AdapterOpts</code></h3>
-<p>Configuration options for the storage adapter.</p>
+<p>Configuration options forwarded to the storage adapter.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">AdapterOpts</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">numberId?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span><span class="w">  </span><span class="c1">// Use numeric auto-incrementing IDs (default: false)</span>
 <span class="w">  </span><span class="nx">idKey?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">      </span><span class="c1">// Custom ID field name (default: "_id")</span>
@@ -1982,10 +2154,9 @@
 <span class="w">  </span><span class="p">}</span>
 <span class="p">});</span>
 </code></pre></div>
-<p><strong>Note:</strong> The legacy <code>numberId</code> and <code>idKey</code> options at the top level are deprecated. Use <code>adapterOpts</code> instead.</p>
 <h3 id="version"><code>version</code></h3>
 <p>The version of the ValtheraDB core engine.</p>
-<div class="highlight"><pre><span></span><code><span class="nx">db</span><span class="p">.</span><span class="nx">version</span><span class="p">;</span><span class="w"> </span><span class="c1">// e.g., "0.11.6"</span>
+<div class="highlight"><pre><span></span><code><span class="nx">db</span><span class="p">.</span><span class="nx">version</span><span class="p">;</span><span class="w"> </span><span class="c1">// matches the installed @wxn0brp/db-core version</span>
 </code></pre></div>
 <h3 id="async-initargs"><code>async init(...args)</code></h3>
 <p>Initializes the adapter. Must be called before performing any operations. If the adapter was provided as a factory function, it is called during this step. Calling <code>init()</code> on an already-initialized instance is a no-op.</p>
@@ -1995,6 +2166,14 @@
 <p>Closes the adapter connection. Subsequent operations will not work until <code>init()</code> is called again.</p>
 <div class="highlight"><pre><span></span><code><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
 </code></pre></div>
+<h3 id="async-executetname-query-txhandle"><code>async execute&lt;T&gt;(name, query, txHandle?)</code></h3>
+<p>Low-level entry point used internally by all operations. Runs an operation through the plugin chain, the executor, and the event emitter. Useful for advanced tooling and plugins.</p>
+<ul>
+<li><strong>Parameters:</strong></li>
+<li><code>name</code> (<code>keyof ValtheraCompatible</code>): Operation name (e.g., <code>"find"</code>, <code>"add"</code>).</li>
+<li><code>query</code> (<code>VQuery</code> or <code>string</code>): The query object, or a collection name for collection-level operations.</li>
+<li><code>txHandle</code> (<code>TransactionHandle</code>, optional): Attaches the operation to a transaction.</li>
+</ul>
 <h3 id="ctcollection"><code>c&lt;T&gt;(collection)</code></h3>
 <p>Creates or retrieves a <code>Collection</code> instance for the given collection name. The collection is cached for reuse.</p>
 <ul>
@@ -2029,9 +2208,13 @@
 <span class="p">}</span>
 
 <span class="kd">interface</span><span class="w"> </span><span class="nx">PluginContext</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">op</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">        </span><span class="c1">// Operation name (e.g., "find", "add", "update")</span>
-<span class="w">  </span><span class="nx">query</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">;</span><span class="w">        </span><span class="c1">// The query object or string</span>
-<span class="w">  </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Call next plugin or adapter</span>
+<span class="w">  </span><span class="nx">op</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">            </span><span class="c1">// Operation name (e.g., "find", "add", "update")</span>
+<span class="w">  </span><span class="nx">kind</span><span class="o">:</span><span class="w"> </span><span class="kt">PluginOpKind</span><span class="p">;</span><span class="w">    </span><span class="c1">// Operation kind: "read" | "write" | "delete" | "collection" | "index" | "meta" | "control"</span>
+<span class="w">  </span><span class="nx">collection?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">   </span><span class="c1">// Collection name (for string-only ops, this is the query itself)</span>
+<span class="w">  </span><span class="nx">query</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">;</span><span class="w">            </span><span class="c1">// The query object or string</span>
+<span class="w">  </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">;</span><span class="w">              </span><span class="c1">// Call the next plugin or adapter</span>
+<span class="w">  </span><span class="nx">setOp</span><span class="p">(</span><span class="nx">op</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">query?</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span><span class="w">  </span><span class="c1">// Rewrite the operation (and optionally the query)</span>
+<span class="w">  </span><span class="nx">setQuery</span><span class="p">(</span><span class="nx">query</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span><span class="w">            </span><span class="c1">// Rewrite the query for the current operation</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Example:</strong></p>
@@ -2048,6 +2231,7 @@
 <span class="kd">const</span><span class="w"> </span><span class="nx">unregister</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">plugin</span><span class="p">(</span><span class="nx">loggingPlugin</span><span class="p">);</span>
 <span class="c1">// Later: unregister() to remove the plugin</span>
 </code></pre></div>
+<p>See <a href="../../dev/plugin/">Writing Plugins</a> for the full tutorial.</p>
 <h3 id="async-getcollections"><code>async getCollections()</code></h3>
 <p>Gets the names of all available collections in the database.</p>
 <ul>
@@ -2056,11 +2240,11 @@
 </ul>
 </li>
 </ul>
-<h3 id="async-ensurecollectioncollection"><code>async ensureCollection(collection)</code></h3>
+<h3 id="ensurecollectioncollection"><code>ensureCollection(collection)</code></h3>
 <p>Ensures that the specified collection exists. If the collection does not exist, it will be created.</p>
 <ul>
 <li><strong>Parameters:</strong><ul>
-<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
+<li><code>collection</code> (<code>string | VQueryT.Collection</code>): The name of the collection.</li>
 </ul>
 </li>
 <li><strong>Returns:</strong><ul>
@@ -2073,11 +2257,11 @@
 </ul>
 </li>
 </ul>
-<h3 id="async-issetcollectioncollection"><code>async issetCollection(collection)</code></h3>
+<h3 id="issetcollectioncollection"><code>issetCollection(collection)</code></h3>
 <p>Checks if a collection exists.</p>
 <ul>
 <li><strong>Parameters:</strong><ul>
-<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
+<li><code>collection</code> (<code>string | VQueryT.Collection</code>): The name of the collection.</li>
 </ul>
 </li>
 <li><strong>Returns:</strong><ul>
@@ -2085,13 +2269,13 @@
 </ul>
 </li>
 </ul>
-<h3 id="async-removecollectioncollection"><code>async removeCollection(collection)</code></h3>
+<h3 id="removecollectioncollection"><code>removeCollection(collection)</code></h3>
 <p>Deletes the collection.</p>
 <ul>
 <li>
 <p><strong>Parameters:</strong></p>
 <ul>
-<li><code>collection</code> (<code>string</code>): The name of the collection to remove.</li>
+<li><code>collection</code> (<code>string | VQueryT.Collection</code>): The name of the collection to remove.</li>
 </ul>
 </li>
 <li>
@@ -2102,14 +2286,25 @@
 <li><code>false</code>: The collection was not found (i.e., it did not exist, so there was nothing to remove).</li>
 </ul>
 </li>
+<li>
+<p><strong>Note:</strong> Cached <code>Collection</code> instances for that name are invalidated; a subsequent <code>c(name)</code> creates a fresh instance.</p>
+</li>
 </ul>
 <h3 id="addquery"><code>add(query)</code></h3>
 <p>Adds a document to a collection.</p>
 <ul>
 <li><strong>Parameters:</strong></li>
-<li><code>query</code> (<code>VQueryT.Add&lt;T&gt;</code>): The add query.</li>
-<li><strong>Returns:</strong> <code>Promise&lt;T &amp; { _id: string }&gt;</code></li>
+<li><code>query</code> (<code>VQueryT.Add&lt;T&gt;</code>): The add query (<code>{ collection, data, id_gen? }</code>).</li>
+<li><strong>Returns:</strong> <code>Promise&lt;T &amp; { _id: string }&gt;</code> - with the generated ID key (<code>_id</code> or custom <code>idKey</code>).</li>
 </ul>
+<h3 id="bulkaddquery"><code>bulkAdd(query)</code></h3>
+<p>Adds multiple documents to a collection in one call.</p>
+<ul>
+<li><strong>Parameters:</strong></li>
+<li><code>query</code> (<code>VQueryT.BulkAdd&lt;T&gt;</code>): <code>{ collection, datas, id_gen? }</code>.</li>
+<li><strong>Returns:</strong> <code>Promise&lt;T[]&gt;</code> - added documents with generated IDs.</li>
+</ul>
+<p><strong>Note:</strong> The default implementation loops over <code>add()</code> internally; adapters with native bulk inserts override it.</p>
 <h3 id="findquery"><code>find(query)</code></h3>
 <p>Finds documents matching criteria.</p>
 <ul>
@@ -2166,6 +2361,14 @@
 <li><code>query</code> (<code>VQueryT.ToggleOne&lt;T&gt;</code>): The toggleOne query.</li>
 <li><strong>Returns:</strong> <code>Promise&lt;{ data: T; type: "added" | "removed" }&gt;</code></li>
 </ul>
+<h3 id="countquery"><code>count(query)</code></h3>
+<p>Counts matching documents.</p>
+<ul>
+<li><strong>Parameters:</strong></li>
+<li><code>query</code> (<code>VQueryT.Count&lt;T&gt;</code>): <code>{ collection, search }</code>. Function-based search is <strong>not</strong> supported here.</li>
+<li><strong>Returns:</strong> <code>Promise&lt;number&gt;</code></li>
+</ul>
+<p><strong>Note:</strong> The default implementation runs <code>find()</code> and returns its length; adapters with native counting override it.</p>
 <h3 id="createindexcollection-fields-opts"><code>createIndex(collection, fields, opts)</code></h3>
 <p>Creates an index on a collection. Index support is adapter-dependent.</p>
 <ul>
@@ -2182,6 +2385,31 @@
 <p><strong>Note:</strong> Not all adapters support indexes. Check your adapter's documentation.</p>
 <div class="highlight"><pre><span></span><code><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">createIndex</span><span class="p">(</span><span class="s2">"users"</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s2">"email"</span><span class="p">],</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">unique</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">});</span>
 </code></pre></div>
+<h3 id="removeindexcollection-fields"><code>removeIndex(collection, fields)</code></h3>
+<p>Removes an index from a collection. Index support is adapter-dependent.</p>
+<ul>
+<li><strong>Parameters:</strong></li>
+<li><code>collection</code> (<code>string</code>): The name of the collection.</li>
+<li><code>fields</code> (<code>string[]</code>): The indexed fields (same list used in <code>createIndex</code>).</li>
+<li><strong>Returns:</strong> <code>Promise&lt;void&gt;</code></li>
+</ul>
+<p><strong>Note:</strong> The default implementation is a no-op.</p>
+<h3 id="async-capabilities"><code>async capabilities()</code></h3>
+<p>Describes what the underlying adapter supports.</p>
+<ul>
+<li><strong>Returns:</strong> <code>Promise&lt;AdapterCapabilities&gt;</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">AdapterCapabilities</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">transactions</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span><span class="w"> </span><span class="c1">// supports transactions</span>
+<span class="w">  </span><span class="nx">indexes</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span><span class="w">      </span><span class="c1">// supports real indexes</span>
+<span class="w">  </span><span class="nx">persistent</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span><span class="w">   </span><span class="c1">// persists data between restarts</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">caps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">capabilities</span><span class="p">();</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">caps</span><span class="p">.</span><span class="nx">transactions</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">transaction</span><span class="p">([</span><span class="s2">"accounts"</span><span class="p">],</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="transactioncollections-fn"><code>transaction(collections, fn)</code></h3>
 <p>See <a href="../../dev/transaction/">Transaction Docs</a></p>
 <h2 id="event-emitter">Event Emitter</h2>
@@ -2189,16 +2417,18 @@
 <p>Event emitter for subscribing to database operations. Uses VEE (Valthera Event Emitter).</p>
 <p><strong>Type:</strong> <code>VEE&lt;Events&gt;</code></p>
 <p><strong>Events:</strong>
-- Operation-specific events: <code>"find"</code>, <code>"add"</code>, <code>"update"</code>, <code>"updateOne"</code>, <code>"remove"</code>, <code>"removeOne"</code>, <code>"findOne"</code>, <code>"updateOneOrAdd"</code>, <code>"toggleOne"</code>, <code>"getCollections"</code>, <code>"ensureCollection"</code>, <code>"issetCollection"</code>, <code>"removeCollection"</code>, <code>"createIndex"</code>
+- Operation-specific events: <code>"find"</code>, <code>"findOne"</code>, <code>"count"</code>, <code>"add"</code>, <code>"bulkAdd"</code>, <code>"update"</code>, <code>"updateOne"</code>, <code>"remove"</code>, <code>"removeOne"</code>, <code>"updateOneOrAdd"</code>, <code>"toggleOne"</code>, <code>"getCollections"</code>, <code>"ensureCollection"</code>, <code>"issetCollection"</code>, <code>"removeCollection"</code>, <code>"createIndex"</code>, <code>"removeIndex"</code>
 - Wildcard event: <code>"*"</code> (fires for all operations)</p>
+<p><strong>Note:</strong> <code>capabilities()</code> reads the adapter directly and does not emit an event.</p>
 <p><strong>Event Handler Signature:</strong>
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nx">query</span><span class="o">:</span><span class="w"> </span><span class="kt">VQuery</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nx">query</span><span class="o">:</span><span class="w"> </span><span class="kt">VQuery</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">,</span><span class="w"> </span><span class="nx">collection?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span>
 <span class="c1">// or for wildcard:</span>
-<span class="p">(</span><span class="nx">op</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">query</span><span class="o">:</span><span class="w"> </span><span class="kt">VQuery</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span>
+<span class="p">(</span><span class="nx">op</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">query</span><span class="o">:</span><span class="w"> </span><span class="kt">VQuery</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">,</span><span class="w"> </span><span class="nx">collection?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span>
 </code></pre></div></p>
+<p>The collection argument is the third parameter for operation-specific handlers (the fourth for the <code>"*"</code> handler). It is derived from the query: for <code>ensureCollection</code>, <code>issetCollection</code>, and <code>removeCollection</code> it is the collection name passed as the query, while for <code>getCollections</code> it is <code>undefined</code>.</p>
 <p><strong>Example - Subscribe to specific operation:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="nx">db</span><span class="p">.</span><span class="nx">emitter</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"find"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">query</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Found </span><span class="si">${</span><span class="nx">result</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> items in </span><span class="si">${</span><span class="nx">query</span><span class="p">.</span><span class="nx">collection</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="nx">db</span><span class="p">.</span><span class="nx">emitter</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"find"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">query</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">,</span><span class="w"> </span><span class="nx">collection</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Found </span><span class="si">${</span><span class="nx">result</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> items in </span><span class="si">${</span><span class="nx">collection</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
 <span class="p">});</span>
 
 <span class="nx">db</span><span class="p">.</span><span class="nx">emitter</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"add"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">query</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
@@ -2206,27 +2436,26 @@
 <span class="p">});</span>
 </code></pre></div>
 <p><strong>Example - Subscribe to all operations:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="nx">db</span><span class="p">.</span><span class="nx">emitter</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"*"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">op</span><span class="p">,</span><span class="w"> </span><span class="nx">query</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">metrics</span><span class="p">.</span><span class="nx">record</span><span class="p">(</span><span class="nx">op</span><span class="p">,</span><span class="w"> </span><span class="nx">query</span><span class="p">.</span><span class="nx">collection</span><span class="p">,</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
+<div class="highlight"><pre><span></span><code><span class="nx">db</span><span class="p">.</span><span class="nx">emitter</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"*"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">op</span><span class="p">,</span><span class="w"> </span><span class="nx">query</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">,</span><span class="w"> </span><span class="nx">collection</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">metrics</span><span class="p">.</span><span class="nx">record</span><span class="p">(</span><span class="nx">op</span><span class="p">,</span><span class="w"> </span><span class="nx">collection</span><span class="p">,</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
 <span class="p">});</span>
 </code></pre></div>
 <p><strong>Example - Audit logging:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="nx">db</span><span class="p">.</span><span class="nx">emitter</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"*"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">op</span><span class="p">,</span><span class="w"> </span><span class="nx">query</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="nx">db</span><span class="p">.</span><span class="nx">emitter</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"*"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">op</span><span class="p">,</span><span class="w"> </span><span class="nx">query</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">,</span><span class="w"> </span><span class="nx">collection</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">op</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"remove"</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">op</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"removeOne"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">auditLog</span><span class="p">.</span><span class="nx">record</span><span class="p">({</span>
 <span class="w">      </span><span class="nx">action</span><span class="o">:</span><span class="w"> </span><span class="s2">"delete"</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">collection</span><span class="o">:</span><span class="w"> </span><span class="kt">query.collection</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">collection</span><span class="p">,</span>
 <span class="w">      </span><span class="nx">timestamp</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">()</span>
 <span class="w">    </span><span class="p">});</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">});</span>
 </code></pre></div>
-<p><strong>Note:</strong> <code>db.emiter</code> is a deprecated alias for <code>db.emitter</code> (typo preserved for backward compatibility).</p>
 <h2 id="executor">Executor</h2>
 <h3 id="executor_1"><code>executor</code></h3>
-<p>Controls how database operations are queued and executed. Ensures operations on the same collection are serialized.</p>
+<p>Controls how database operations are queued and executed. Ensures operations are serialized safely.</p>
 <p><strong>Type:</strong> <code>ExecutorInterface</code></p>
-<p><strong>Default:</strong> <code>SmartExecutor</code> (per-collection queuing with TTL)</p>
+<p><strong>Default:</strong> <code>SmartExecutor</code> created as <code>new SmartExecutor(undefined, false)</code> - a single queue for all operations. Per-collection queues are enabled automatically during <code>init()</code> when the adapter signals <code>smartExecutor = true</code> (see below).</p>
 <h3 id="executor-classes">Executor Classes</h3>
 <h4 id="executor_2"><code>Executor</code></h4>
 <p>Simple FIFO queue. All operations are executed sequentially.</p>
@@ -2262,7 +2491,7 @@
 <span class="w">  </span><span class="nx">executor</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="p">(</span><span class="mf">10</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">60</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1000</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="c1">// 10 min, per-collection</span>
 <span class="p">});</span>
 </code></pre></div>
-<p><strong>Note:</strong> When an adapter has <code>smartExecutor = true</code>, <code>ValtheraClass</code> automatically enables <code>aware</code> mode on the <code>SmartExecutor</code>.</p>
+<p><strong>Note:</strong> The automatic <code>aware</code> activation in <code>ValtheraClass</code> happens only when all of the following are true: no explicit <code>executor</code> was passed, <code>executorAware</code> is <code>true</code> (default), the adapter has <code>smartExecutor = true</code>, and the executor is a <code>SmartExecutor</code>.</p>
 <p>See <a href="../../dev/executor/">Executor Tutorial</a> for detailed explanation.</p>
 
 
@@ -2313,10 +2542,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

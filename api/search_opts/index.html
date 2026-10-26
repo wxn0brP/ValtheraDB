@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../logo.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -29,10 +29,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -724,7 +724,7 @@
   <a href="#arrinc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        $arrinc
+        $arrInc
       
     </span>
   </a>
@@ -735,7 +735,7 @@
   <a href="#arrincall" class="md-nav__link">
     <span class="md-ellipsis">
       
-        $arrincall
+        $arrIncAll
       
     </span>
   </a>
@@ -1091,6 +1091,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../create/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ValtheraCreate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../memory/" class="md-nav__link">
         
   
@@ -1267,6 +1295,34 @@
     
   
     Remote
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errors
   
 
     
@@ -1995,7 +2051,7 @@
   <a href="#arrinc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        $arrinc
+        $arrInc
       
     </span>
   </a>
@@ -2006,7 +2062,7 @@
   <a href="#arrincall" class="md-nav__link">
     <span class="md-ellipsis">
       
-        $arrincall
+        $arrIncAll
       
     </span>
   </a>
@@ -2258,121 +2314,127 @@
 <h2 id="operators">Operators</h2>
 <h3 id="logical-operators">Logical Operators</h3>
 <h4 id="and">$and</h4>
-<p>Checks if all conditions in an array are true.
+<p>Checks if all conditions in an array are true.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nx">$and</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">$gt</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">$exists</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h4 id="or">$or</h4>
-<p>Checks if at least one condition in an array is true.
+<p>Checks if at least one condition in an array is true.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nx">$or</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">$lt</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">$gt</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">60</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h4 id="not">$not</h4>
-<p>Negates a condition.
+<p>Negates a condition.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nx">$not</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">$type</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h3 id="comparison-operators">Comparison Operators</h3>
 <h4 id="ne">$ne</h4>
-<p>Not equal comparison.
+<p>Not equal comparison.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$ne</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">"banned"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h4 id="gt">$gt</h4>
-<p>Greater than comparison.
+<p>Greater than comparison.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$gt</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">18</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h4 id="lt">$lt</h4>
-<p>Less than comparison.
+<p>Less than comparison.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$lt</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">score</span><span class="o">:</span><span class="w"> </span><span class="mf">100</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h4 id="gte">$gte</h4>
-<p>Greater than or equal comparison.
+<p>Greater than or equal comparison.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$gte</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="mf">9.99</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h4 id="lte">$lte</h4>
-<p>Less than or equal comparison.
+<p>Less than or equal comparison.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$lte</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">quantity</span><span class="o">:</span><span class="w"> </span><span class="mf">50</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h4 id="idgt">$idGt</h4>
-<p>Greater than comparison for IDs (accepts <code>string</code> or <code>number</code>).
+<p>Greater than comparison for IDs (accepts <code>string</code> or <code>number</code>).</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$idGt</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s2">"miblu25k-d-g"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h4 id="idlt">$idLt</h4>
-<p>Less than comparison for IDs (accepts <code>string</code> or <code>number</code>).
+<p>Less than comparison for IDs (accepts <code>string</code> or <code>number</code>).</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$idLt</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s2">"miblu25k-d-g"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h4 id="idgte">$idGte</h4>
-<p>Greater than or equal comparison for IDs (accepts <code>string</code> or <code>number</code>).
+<p>Greater than or equal comparison for IDs (accepts <code>string</code> or <code>number</code>).</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$idGte</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s2">"miblu25k-d-g"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h4 id="idlte">$idLte</h4>
-<p>Less than or equal comparison for IDs (accepts <code>string</code> or <code>number</code>).
+<p>Less than or equal comparison for IDs (accepts <code>string</code> or <code>number</code>).</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$idLte</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="s2">"miblu25k-d-g"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h4 id="in">$in</h4>
-<p>Checks if value is in an array.
+<p>Checks if value is in an array.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$in</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"active"</span><span class="p">,</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h4 id="nin">$nin</h4>
-<p>Checks if value is not in an array.
+<p>Checks if value is not in an array.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$nin</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">category</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"archived"</span><span class="p">,</span><span class="w"> </span><span class="s2">"deleted"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h4 id="between">$between</h4>
-<p>Checks if a number is between two values (inclusive).
+<p>Checks if a number is between two values (inclusive).</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$between</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">18</span><span class="p">,</span><span class="w"> </span><span class="mf">65</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h3 id="type-and-existence-operators">Type and Existence Operators</h3>
 <h4 id="exists">$exists</h4>
-<p>Checks if a field exists (or doesn't exist).
+<p>Checks if a field exists (or doesn't exist).</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$exists</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nx">deletedAt</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
+<p>For nested fields, use a nested object instead of dotted paths:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$exists</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">zipCode</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <h4 id="type">$type</h4>
-<p>Checks the type of a field.
+<p>Checks the type of a field.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$type</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="s2">"number"</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h3 id="array-operators">Array Operators</h3>
-<h4 id="arrinc">$arrinc</h4>
-<p>Checks if an array includes at least one of the specified values.
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$arrinc</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"developer"</span><span class="p">,</span><span class="w"> </span><span class="s2">"designer"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
-<h4 id="arrincall">$arrincall</h4>
-<p>Checks if an array includes all of the specified values.
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$arrincall</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">permissions</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"read"</span><span class="p">,</span><span class="w"> </span><span class="s2">"write"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
+<h4 id="arrinc">$arrInc</h4>
+<p>Checks if an array includes at least one of the specified values.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$arrInc</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"developer"</span><span class="p">,</span><span class="w"> </span><span class="s2">"designer"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h4 id="arrincall">$arrIncAll</h4>
+<p>Checks if an array includes all of the specified values.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$arrIncAll</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">permissions</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"read"</span><span class="p">,</span><span class="w"> </span><span class="s2">"write"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <h4 id="size">$size</h4>
-<p>Checks the length of an array or string.
+<p>Checks the length of an array or string.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$size</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h3 id="string-operators">String Operators</h3>
 <h4 id="regex">$regex</h4>
-<p>Tests a string against a regular expression.
+<p>Tests a string against a regular expression. Accepts a <code>RegExp</code> object or a string pattern.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$regex</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="sr">/^[^@]+@[^@]+\.[^@]+$/</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
+
+<span class="c1">// string pattern is also accepted:</span>
+<span class="p">{</span><span class="w"> </span><span class="nx">$regex</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">"^[^@]+@[^@]+\\.[^@]+$"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <h4 id="startswith">$startsWith</h4>
-<p>Checks if a string starts with a specified value.
+<p>Checks if a string starts with a specified value.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$startsWith</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Dr."</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h4 id="endswith">$endsWith</h4>
-<p>Checks if a string ends with a specified value.
+<p>Checks if a string ends with a specified value.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$endsWith</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">"@example.com"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div></p>
+</code></pre></div>
 <h4 id="istartswith">$iStartsWith</h4>
-<p>Checks if a string starts with a specified value (case-insensitive).
+<p>Checks if a string starts with a specified value (case-insensitive).</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$iStartsWith</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"dr"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// matches "Dr.", "DR.", "dr."</span>
-</code></pre></div></p>
+</code></pre></div>
 <h4 id="iendswith">$iEndsWith</h4>
-<p>Checks if a string ends with a specified value (case-insensitive).
+<p>Checks if a string ends with a specified value (case-insensitive).</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$iEndsWith</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">"@EXAMPLE.COM"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// matches "@example.com", "@Example.Com"</span>
-</code></pre></div></p>
+</code></pre></div>
 <h3 id="other-operators">Other Operators</h3>
 <h4 id="subset">$subset</h4>
 <p>Disables advanced operator parsing for the wrapped fields, treating <code>$</code>-prefixed keys as literal field names. Use this when your data contains keys that start with <code>$</code> (like MongoDB-style fields) and you want to match them literally rather than having them interpreted as operators.</p>
@@ -2415,7 +2477,7 @@
 <span class="w">      </span><span class="nx">$regex</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="sr">/^[^@]+@[^@]+\.[^@]+$/</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">$arrincall</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">roles</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"user"</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nx">$arrIncAll</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">roles</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"user"</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
 <span class="w">      </span><span class="nx">$not</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">$in</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"banned"</span><span class="p">,</span><span class="w"> </span><span class="s2">"suspended"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
@@ -2440,11 +2502,11 @@
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nx">$or</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">$exists</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"address.zipCode"</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">$exists</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">zipCode</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
 <span class="w">        </span><span class="p">{</span>
 <span class="w">          </span><span class="nx">$and</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nx">$exists</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"address.city"</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nx">$exists</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"address.country"</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nx">$exists</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">city</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nx">$exists</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">country</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 <span class="w">          </span><span class="p">]</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">]</span>
@@ -2462,25 +2524,27 @@
 <span class="kd">const</span><span class="w"> </span><span class="nx">isValid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">hasFieldsAdvanced</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="nx">criteria</span><span class="p">);</span><span class="w"> </span><span class="c1">// true</span>
 </code></pre></div>
 <h2 id="error-handling">Error Handling</h2>
-<p>The function will throw an error if:
+<p>The function throws a <code>QueryValidationError</code> (code <code>QUERY_INVALID</code>) if:
 - The <code>fields</code> parameter is not an object
-- The <code>fields</code> parameter is null</p>
+- The <code>fields</code> parameter is <code>null</code></p>
 <p>Always wrap the function call in a try-catch block when using with untrusted input:</p>
-<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">hasFieldsAdvanced</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/utils/hasFieldsAdvanced"</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">isValtheraError</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/errors"</span><span class="p">;</span>
+
+<span class="k">try</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">isValid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">hasFieldsAdvanced</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span><span class="w"> </span><span class="nx">criteria</span><span class="p">);</span>
 <span class="w">  </span><span class="c1">// Handle result</span>
 <span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c1">// Handle error</span>
-<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">'Validation error:'</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">isValtheraError</span><span class="p">(</span><span class="nx">error</span><span class="p">))</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">code</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="undefined-values">Undefined Values</h3>
-<p>Properties with <code>undefined</code> values are treated as <strong>missing keys</strong>:</p>
+<p>A field whose value is <code>undefined</code> is still an <strong>existing own key</strong>. It matches direct comparison and <code>$exists: { field: true }</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="kc">undefined</span><span class="w"> </span><span class="p">};</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">criteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="kc">undefined</span><span class="w"> </span><span class="p">};</span>
-<span class="nx">hasFieldsAdvanced</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span><span class="w"> </span><span class="nx">criteria</span><span class="p">);</span><span class="w"> </span><span class="c1">// false - treated as missing key</span>
+<span class="nx">hasFieldsAdvanced</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="kc">undefined</span><span class="w"> </span><span class="p">});</span><span class="w"> </span><span class="c1">// true - own key with undefined value</span>
+<span class="nx">hasFieldsAdvanced</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">$exists</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">});</span><span class="w"> </span><span class="c1">// true - key exists</span>
 </code></pre></div>
-<p>If you need to check for <code>undefined</code> values, use <code>$exists</code> operator:</p>
+<p>Only a <strong>missing key</strong> requires <code>$exists</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$exists</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// checks if key 'a' does not exist</span>
 </code></pre></div>
 <h3 id="operator-execution-order">Operator Execution Order</h3>
@@ -2497,7 +2561,8 @@ For complex queries, structure your criteria accordingly.</p>
 <h3 id="null-vs-undefined">Null vs Undefined</h3>
 <ul>
 <li><code>null</code> values are matched with <code>{ field: null }</code></li>
-<li><code>undefined</code> values or missing keys require <code>$exists: { field: false }</code></li>
+<li>Missing keys require <code>$exists: { field: false }</code></li>
+<li>A field explicitly set to <code>undefined</code> is an existing key and matches <code>$exists: { field: true }</code></li>
 </ul>
 
 
@@ -2548,10 +2613,10 @@ For complex queries, structure your criteria accordingly.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

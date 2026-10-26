@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../logo.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -29,10 +29,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -539,6 +539,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../create/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ValtheraCreate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../memory/" class="md-nav__link">
         
   
@@ -811,6 +839,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#n1-many-to-one-from-an-array-of-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "n1" - Many-to-One (from an array of keys)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -928,6 +967,34 @@
     
   
     Remote
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errors
   
 
     
@@ -1491,6 +1558,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#n1-many-to-one-from-an-array-of-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "n1" - Many-to-One (from an array of keys)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1577,7 +1655,7 @@
 
 
 <h1 id="relation-class-documentation">Relation Class Documentation</h1>
-<p>The <code>Relation</code> class provides a mechanism to handle relationships between collections in a database. It supports one-to-one, one-to-many, and many-to-many relationships.</p>
+<p>The <code>Relation</code> class provides a mechanism to handle relationships between collections in a database. It supports one-to-one, one-to-many, many-to-many, and many-to-one (<code>n1</code>) relationships.</p>
 <h2 id="class-relation">Class: <code>Relation</code></h2>
 <h3 id="constructor-relationdbs">Constructor: <code>Relation(dbs)</code></h3>
 <p>Creates a new instance of the <code>Relation</code> class.</p>
@@ -1644,14 +1722,15 @@
 <span class="p">}</span>
 </code></pre></div>
 <h4 id="1n-one-to-many"><code>"1n"</code> - One-to-Many</h4>
-<p>Resolves multiple related entries. Supports <code>dbFindOpts</code> for sorting/pagination of related items.</p>
+<p>Resolves multiple related entries.</p>
+<p><strong>Note:</strong> <code>dbFindOpts</code> (limit, sorting, etc.) is applied <strong>globally</strong> to the related query, not per source document. With <code>limit: 10</code>, at most 10 related documents are fetched in total and then grouped by parent. For per-parent limits, query the related collection directly.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nx">posts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"main"</span><span class="p">,</span><span class="w"> </span><span class="s2">"posts"</span><span class="p">],</span>
 <span class="w">    </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">"_id"</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">"authorId"</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"1n"</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">,</span><span class="w"> </span><span class="nx">sortAsc</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">,</span><span class="w"> </span><span class="nx">sortAsc</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -1669,6 +1748,17 @@
 <span class="w">      </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">"tagId"</span><span class="p">,</span><span class="w">        </span><span class="c1">// pivot field referencing target</span>
 <span class="w">      </span><span class="nx">db</span><span class="o">:</span><span class="w"> </span><span class="s2">"main"</span><span class="w">          </span><span class="c1">// optional: database name for pivot (defaults to source db)</span>
 <span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="n1-many-to-one-from-an-array-of-keys"><code>"n1"</code> - Many-to-One (from an array of keys)</h4>
+<p>Resolves a single related entry. The source document's <code>pk</code> field holds an <strong>array</strong> of related keys; the <strong>first</strong> key in the array is used to resolve one related document.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nx">editor</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"main"</span><span class="p">,</span><span class="w"> </span><span class="s2">"users"</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">"editorIds"</span><span class="p">,</span><span class="w">   </span><span class="c1">// array of user ids on the source document</span>
+<span class="w">    </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">"_id"</span><span class="p">,</span><span class="w">         </span><span class="c1">// field on the related document</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"n1"</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -1705,7 +1795,7 @@
 </tr>
 <tr>
 <td><code>type</code></td>
-<td><code>"1" \| "11" \| "1n" \| "nm"</code></td>
+<td><code>"1" \| "11" \| "1n" \| "nm" \| "n1"</code></td>
 <td><code>"1"</code></td>
 <td>Relationship type</td>
 </tr>
@@ -1725,7 +1815,7 @@
 <td><code>dbFindOpts</code></td>
 <td><code>DbFindOpts</code></td>
 <td><code>{}</code></td>
-<td>Options for <code>"1n"</code> type (sorting, pagination)</td>
+<td>Options for the related query (sorting, pagination); applied globally, not per parent</td>
 </tr>
 <tr>
 <td><code>through</code></td>
@@ -1837,7 +1927,7 @@
 <span class="w">        </span><span class="nx">pk</span><span class="o">:</span><span class="w"> </span><span class="s2">"_id"</span><span class="p">,</span>
 <span class="w">        </span><span class="nx">fk</span><span class="o">:</span><span class="w"> </span><span class="s2">"postId"</span><span class="p">,</span>
 <span class="w">        </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"1n"</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="kt">20</span><span class="p">,</span><span class="w"> </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">,</span><span class="w"> </span><span class="nx">sortAsc</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">dbFindOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">sortBy</span><span class="o">:</span><span class="w"> </span><span class="s2">"createdAt"</span><span class="p">,</span><span class="w"> </span><span class="nx">sortAsc</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">};</span>
 
@@ -1914,10 +2004,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

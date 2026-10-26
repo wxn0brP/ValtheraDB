@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../logo.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -29,10 +29,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -537,6 +537,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../api/create/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ValtheraCreate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../api/memory/" class="md-nav__link">
         
   
@@ -713,6 +741,34 @@
     
   
     Remote
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errors
   
 
     
@@ -1672,11 +1728,16 @@
 <span class="c1">// "posts" -&gt; separate queue</span>
 <span class="c1">// "comments" -&gt; separate queue</span>
 </code></pre></div>
-<p>When <code>aware = false</code> (default), all operations share a single queue:</p>
+<p>When <code>aware = false</code>, all operations share a single queue:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">executor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="p">(</span><span class="mf">300000</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
 <span class="c1">// All operations -&gt; single shared queue</span>
 <span class="c1">// Behaves like simple Executor but with TTL cleanup</span>
 </code></pre></div>
+<p><strong>Which default applies?</strong></p>
+<ul>
+<li>A standalone <code>new SmartExecutor()</code> uses <code>aware = true</code> (per-collection queues).</li>
+<li><code>ValtheraClass</code> without an explicit executor creates <code>new SmartExecutor(undefined, false)</code> - a single queue. It switches to per-collection queues during <code>init()</code> only if the adapter signals <code>smartExecutor = true</code> (and <code>executorAware</code> is not disabled).</li>
+</ul>
 <h2 id="adapter-integration">Adapter Integration</h2>
 <p>Adapters can signal support for SmartExecutor:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nx">MyAdapter</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">ActionsBase</span><span class="w"> </span><span class="p">{</span>
@@ -1685,17 +1746,17 @@
 <span class="w">  </span><span class="c1">// ... adapter methods</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>When an adapter has <code>smartExecutor = true</code>, ValtheraClass automatically enables <code>aware</code> mode on the SmartExecutor.</p>
+<p>When an adapter has <code>smartExecutor = true</code>, <code>ValtheraClass</code> automatically enables <code>aware</code> mode on the SmartExecutor - but only when no explicit <code>executor</code> was passed to the constructor.</p>
 <h2 id="executoraware-option">executorAware Option</h2>
 <p>By default, <code>ValtheraClass</code> sets <code>executorAware: true</code> in its options. This means:</p>
 <ul>
-<li>During <code>init()</code>, if the adapter signals <code>smartExecutor = true</code> AND you're using a <code>SmartExecutor</code>, the executor's <code>aware</code> mode is automatically enabled.</li>
+<li>During <code>init()</code>, if no explicit <code>executor</code> was passed, the adapter signals <code>smartExecutor = true</code>, and the default executor is a <code>SmartExecutor</code>, the executor's <code>aware</code> mode is automatically enabled.</li>
 <li>This allows per-collection queuing without manual configuration.</li>
 </ul>
-<p>You can disable this behavior by explicitly setting <code>executorAware: false</code>:</p>
+<p>If you pass your own <code>SmartExecutor</code>, its constructed <code>aware</code> value is used; <code>executorAware</code> does not change it.</p>
+<p>You can disable the automatic activation by setting <code>executorAware: false</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span>
 <span class="w">  </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">myAdapter</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">executor</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="p">(),</span>
 <span class="w">  </span><span class="nx">executorAware</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="w"> </span><span class="c1">// Prevent automatic aware mode activation</span>
 <span class="p">});</span>
 </code></pre></div>
@@ -1812,10 +1873,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

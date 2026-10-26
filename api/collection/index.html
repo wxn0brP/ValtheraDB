@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../logo.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -29,10 +29,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -577,6 +577,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#async-bulkadddatas-id_gentrue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        async bulkAdd(datas, id_gen=true)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#async-findsearch-options-findopts-context" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -592,6 +603,17 @@
     <span class="md-ellipsis">
       
         async findOne(search, findOpts, context)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-countsearch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        async count(search)
       
     </span>
   </a>
@@ -675,6 +697,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#removeindexfields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        removeIndex(fields)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -704,6 +737,34 @@
     
   
     Valthera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../create/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ValtheraCreate
   
 
     
@@ -900,6 +961,34 @@
     
   
     Remote
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errors
   
 
     
@@ -1397,6 +1486,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#async-bulkadddatas-id_gentrue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        async bulkAdd(datas, id_gen=true)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#async-findsearch-options-findopts-context" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1412,6 +1512,17 @@
     <span class="md-ellipsis">
       
         async findOne(search, findOpts, context)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-countsearch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        async count(search)
       
     </span>
   </a>
@@ -1495,6 +1606,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#removeindexfields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        removeIndex(fields)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1536,17 +1658,35 @@
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>data</code> (<code>Arg&lt;D&gt;</code>): The data to add.</li>
-<li><code>id_gen</code> (<code>boolean</code>, default: true): Whether to generate an ID for the entry.</li>
+<li><code>id_gen</code> (<code>boolean</code>, default: <code>true</code>): Whether to generate an ID for the entry.</li>
 </ul>
 </li>
 <li>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>Promise&lt;T &amp; { _id: string }&gt;</code>: If <code>id_gen</code> is true, a promise that resolves with the added data including a generated <code>_id</code>.</li>
-<li><code>Promise&lt;T&gt;</code>: If <code>id_gen</code> is false, a promise that resolves with the added data.</li>
+<li><code>Promise&lt;T &amp; { _id: string }&gt;</code>: If <code>id_gen</code> is <code>true</code>, a promise that resolves with the added data including a generated <code>_id</code>.</li>
+<li><code>Promise&lt;T&gt;</code>: If <code>id_gen</code> is <code>false</code>, a promise that resolves with the added data.</li>
 </ul>
 </li>
 </ul>
+<h3 id="async-bulkadddatas-id_gentrue"><code>async bulkAdd(datas, id_gen=true)</code></h3>
+<p>Adds multiple documents to the collection in one call.</p>
+<ul>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>datas</code> (<code>Arg&lt;D&gt;[]</code>): The documents to add.</li>
+<li><code>id_gen</code> (<code>boolean</code>, default: <code>true</code>): Whether to generate IDs for the entries.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>Promise&lt;(T &amp; { _id: string })[]&gt;</code>: Added documents including generated IDs (or plain documents when <code>id_gen</code> is <code>false</code>).</li>
+</ul>
+</li>
+</ul>
+<p><strong>Note:</strong> Adapters without native bulk support loop over <code>add()</code> internally.</p>
 <h3 id="async-findsearch-options-findopts-context"><code>async find(search, options, findOpts, context)</code></h3>
 <p>Finds data in the collection based on a query.</p>
 <ul>
@@ -1554,7 +1694,7 @@
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>search</code> (<code>Search&lt;D&gt;</code>, optional, default: <code>{}</code>): The search query.</li>
-<li><code>options</code> (<code>DbFindOpts&lt;D&gt;</code>, optional, default: <code>{}</code>): Post-retrieval options (e.g., <code>max</code>, <code>reverse</code>, <code>sortBy</code>, <code>limit</code>, <code>offset</code>).</li>
+<li><code>options</code> (<code>DbFindOpts&lt;D&gt;</code>, optional, default: <code>{}</code>): Post-retrieval options (e.g., <code>sum</code>, <code>reverse</code>, <code>sortBy</code>, <code>limit</code>, <code>offset</code>).</li>
 <li><code>findOpts</code> (<code>FindOpts&lt;D&gt;</code>, optional, default: <code>{}</code>): Post-matching options (<code>select</code>, <code>exclude</code>, <code>transform</code>).</li>
 <li><code>context</code> (<code>VContext</code>, optional, default: <code>{}</code>): The context object (for function-based queries).</li>
 </ul>
@@ -1580,10 +1720,27 @@
 <li>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>Promise&lt;D&gt;</code>: Found data. <code>undefined</code> if no match is found.</li>
+<li><code>Promise&lt;D | null&gt;</code>: Found data. <code>null</code> if no match is found.</li>
 </ul>
 </li>
 </ul>
+<h3 id="async-countsearch"><code>async count(search)</code></h3>
+<p>Counts matching entries in the collection.</p>
+<ul>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>search</code> (<code>Search&lt;D, false&gt;</code>, optional, default: <code>{}</code>): The search query. Function-based search is <strong>not</strong> supported here.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>Promise&lt;number&gt;</code>: Number of matching entries.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Note:</strong> Adapters without native counting compute it from <code>find()</code>.</p>
 <h3 id="async-updatesearch-updater-context"><code>async update(search, updater, context)</code></h3>
 <p>Updates data in the collection.</p>
 <ul>
@@ -1616,7 +1773,7 @@
 <li>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>Promise&lt;D | null&gt;</code>: Updated data. Null if no match is found.</li>
+<li><code>Promise&lt;D | null&gt;</code>: Updated data. <code>null</code> if no match is found.</li>
 </ul>
 </li>
 </ul>
@@ -1650,7 +1807,7 @@
 <li>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>Promise&lt;D | null&gt;</code>: Removed data. Null if no match is found.</li>
+<li><code>Promise&lt;D | null&gt;</code>: Removed data. <code>null</code> if no match is found.</li>
 </ul>
 </li>
 </ul>
@@ -1665,7 +1822,7 @@
 <li><code>options</code> (<code>Object</code>, optional): An object containing:<ul>
 <li><code>add_arg</code> (<code>Arg&lt;D&gt;</code>, default: <code>{}</code>): Data to merge when adding a new entry.</li>
 <li><code>context</code> (<code>VContext</code>, default: <code>{}</code>): The context object (for function-based queries).</li>
-<li><code>id_gen</code> (<code>boolean</code>, default: true): Whether to generate an ID for the new entry.</li>
+<li><code>id_gen</code> (<code>boolean</code>, default: <code>true</code>): Whether to generate an ID for the new entry.</li>
 </ul>
 </li>
 </ul>
@@ -1673,7 +1830,7 @@
 <li>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>Promise&lt;{ data: T; type: "added" | "updated" }&gt;</code>: A promise that resolves with the updated or added entry.</li>
+<li><code>Promise&lt;{ data: D; type: "added" | "updated" }&gt;</code>: A promise that resolves with the updated or added entry.</li>
 </ul>
 </li>
 </ul>
@@ -1691,7 +1848,7 @@
 <li>
 <p><strong>Returns:</strong></p>
 <ul>
-<li><code>Promise&lt;{ data: T; type: "added" | "removed" }&gt;</code>: A promise that resolves with the removed or added entry.</li>
+<li><code>Promise&lt;{ data: D; type: "added" | "removed" }&gt;</code>: A promise that resolves with the removed or added entry.</li>
 </ul>
 </li>
 </ul>
@@ -1718,6 +1875,25 @@
 </ul>
 <p><strong>Note:</strong> Not all adapters support indexes. Check your adapter's documentation.</p>
 <div class="highlight"><pre><span></span><code><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">createIndex</span><span class="p">([</span><span class="s2">"email"</span><span class="p">],</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">unique</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">});</span>
+</code></pre></div>
+<h3 id="removeindexfields"><code>removeIndex(fields)</code></h3>
+<p>Removes an index from this collection. Index support is adapter-dependent.</p>
+<ul>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>fields</code> (<code>string[]</code>): The indexed fields (same list used in <code>createIndex</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>Promise&lt;void&gt;</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>Note:</strong> The default implementation is a no-op.</p>
+<div class="highlight"><pre><span></span><code><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">removeIndex</span><span class="p">([</span><span class="s2">"email"</span><span class="p">]);</span>
 </code></pre></div>
 
 
@@ -1768,10 +1944,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

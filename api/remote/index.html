@@ -14,14 +14,14 @@
         <link rel="prev" href="../updater/">
       
       
-        <link rel="next" href="../../ecosystem/adapters/">
+        <link rel="next" href="../errors/">
       
       
         
       
       
       <link rel="icon" href="../../logo.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -29,10 +29,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -539,6 +539,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../create/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ValtheraCreate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../memory/" class="md-nav__link">
         
   
@@ -800,6 +828,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -809,6 +848,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1297,6 +1364,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1330,12 +1408,14 @@
 <li><code>auth</code> (<code>string</code>): The authentication token for accessing the Valthera.</li>
 <li><code>query</code> (<code>Record&lt;string, string&gt;</code>, optional): Extra query parameters appended to every request.</li>
 <li><code>headers</code> (<code>Record&lt;string, string&gt;</code>, optional): Extra headers sent with every request.</li>
+<li><code>fetch</code> (<code>Record&lt;string, any&gt;</code>, optional): Extra options merged into the underlying <code>fetch</code> call.</li>
 <li><code>body</code> (<code>Record&lt;string, any&gt;</code>, optional): Extra body fields merged into every request.</li>
 </ul>
 <h2 id="class-valtheraremoteremote">Class: <code>ValtheraRemote(remote)</code></h2>
-<p><code>ValtheraRemote</code> extends <code>BaseRemote</code> and implements <code>ValtheraCompatible</code>. Every call sends a <code>POST</code> request to <code>&lt;url&gt;/db/&lt;op&gt;</code> with the body <code>{ db, auth, query, keys }</code>. When the server responds with <code>{ err: true, msg }</code>, the client throws an <code>Error</code> carrying that message.</p>
-<p>Function values in queries are serialized into the <code>keys</code> field, so the server can execute them.</p>
-<p><strong>Note:</strong> <code>createIndex()</code> is a no-op on the remote client. Index creation is not forwarded to the server.</p>
+<p><code>ValtheraRemote</code> extends <code>BaseRemote</code> and implements <code>ValtheraCompatible</code>. Every call sends a <code>POST</code> request to <code>&lt;url&gt;/db/&lt;op&gt;</code> with the body <code>{ db, auth, query, keys, ...body }</code>. When the server responds with <code>{ err: true, msg }</code>, the client throws a <code>ValtheraError</code> carrying the server-provided <code>code</code>, <code>suggestion</code>, and <code>context</code>.</p>
+<p>Function values in queries are serialized into the <code>keys</code> field (paths to stringified functions), so the server can execute them.</p>
+<p>Supported operations: all CRUD and collection operations (<code>add</code>, <code>bulkAdd</code>, <code>find</code>, <code>findOne</code>, <code>update</code>, <code>updateOne</code>, <code>remove</code>, <code>removeOne</code>, <code>updateOneOrAdd</code>, <code>toggleOne</code>, <code>count</code>, collection management), plus <code>capabilities()</code>, which is forwarded to the server.</p>
+<p><strong>Note:</strong> <code>createIndex()</code> and <code>removeIndex()</code> are no-ops on the remote client. Index creation is not forwarded to the server.</p>
 <h3 id="example-usage">Example Usage</h3>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">remoteDB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraRemote</span><span class="p">({</span>
 <span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">'myRemoteDB'</span><span class="p">,</span>
@@ -1347,6 +1427,19 @@
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">remoteDB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraRemote</span><span class="p">(</span><span class="s1">'https://dbName:token@example.com/db'</span><span class="p">);</span>
 </code></pre></div>
 <p>In the URL form, the username part becomes the database name and the password part becomes the auth token.</p>
+<h3 id="error-handling">Error Handling</h3>
+<p>Server-side errors are rebuilt as <code>ValtheraError</code> instances on the client:</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">isValtheraError</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/errors"</span><span class="p">;</span>
+
+<span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">remoteDB</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="w"> </span><span class="nx">collection</span><span class="o">:</span><span class="w"> </span><span class="s2">"users"</span><span class="p">,</span><span class="w"> </span><span class="nx">search</span><span class="o">:</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="p">});</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">isValtheraError</span><span class="p">(</span><span class="nx">err</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">code</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">.</span><span class="nx">suggestion</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">.</span><span class="nx">context</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>See <a href="../errors/">Errors</a> for the full error model.</p>
 
 
 
@@ -1396,10 +1489,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

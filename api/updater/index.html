@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../logo.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -29,10 +29,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -539,6 +539,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../create/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ValtheraCreate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../memory/" class="md-nav__link">
         
   
@@ -973,6 +1001,34 @@
     
   
     Remote
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errors
   
 
     
@@ -1669,7 +1725,7 @@
 <h1 id="predefined-update-options-quick-reference">Predefined Update Options Quick Reference</h1>
 <h2 id="arrays">Arrays</h2>
 <h3 id="push"><code>$push</code></h3>
-<p>Adds an element to the end of an array.</p>
+<p>Adds an element to the end of an array. If the field is not an array yet, a new array with the element is created.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">    </span><span class="nx">$push</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tags</span><span class="o">:</span><span class="w"> </span><span class="s2">"designer"</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
@@ -1904,23 +1960,41 @@
 <p>Instead of using operator objects, you can provide a function for fully custom update logic:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// Updater function signature:</span>
 <span class="p">(</span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="kt">T</span><span class="p">,</span><span class="w"> </span><span class="nx">context</span><span class="o">:</span><span class="w"> </span><span class="kt">VContext</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">Data</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ow">void</span>
-
-<span class="c1">// Example: double the counter field</span>
+</code></pre></div>
+<p>The function receives the current document and a context object. It works in one of two modes:</p>
+<ol>
+<li><strong>Mutate in place and return <code>void</code></strong> - the mutated document is stored (safe way to change a few fields):</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="c1">// Example: double the counter field</span>
 <span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">(</span>
 <span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">(</span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">counter</span><span class="o">:</span><span class="w"> </span><span class="kt">user.counter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">})</span>
+<span class="w">  </span><span class="nx">user</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">counter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="p">);</span>
 
 <span class="c1">// Example: using context for external values</span>
 <span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span>
 <span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">"active"</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">(</span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">score</span><span class="o">:</span><span class="w"> </span><span class="kt">user.score</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">bonus</span><span class="w"> </span><span class="p">}),</span>
-<span class="w">  </span><span class="p">{},</span><span class="w">  </span><span class="c1">// context</span>
+<span class="w">  </span><span class="p">(</span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">score</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">bonus</span><span class="p">;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">bonus</span><span class="o">:</span><span class="w"> </span><span class="kt">10</span><span class="w"> </span><span class="p">},</span><span class="w">  </span><span class="c1">// context</span>
 <span class="p">);</span>
 </code></pre></div>
-<p>The function receives the current document and a context object. It can either:
-1. <strong>Return</strong> a new object with the fields to update
-2. <strong>Mutate</strong> the document in place and return <code>void</code></p>
+<ol>
+<li><strong>Return a new object</strong> - the returned object <strong>replaces the whole document</strong>. It is not merged with the original:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="c1">// Returns a full replacement document</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">(</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">user</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="p">...</span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="nx">counter</span><span class="o">:</span><span class="w"> </span><span class="kt">user.counter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">})</span>
+<span class="p">);</span>
+</code></pre></div>
+<p><strong>Warning:</strong> returning a partial object replaces the document entirely:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// WRONG: the document becomes { counter: 4 } and loses all other fields</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">(</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">user</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">counter</span><span class="o">:</span><span class="w"> </span><span class="kt">user.counter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">})</span>
+<span class="p">);</span>
+</code></pre></div>
+<p><strong>Note:</strong> for partial field updates, prefer mutation, plain field assignment (<code>{ counter: 5 }</code>), or operators like <code>$inc</code> and <code>$set</code>.</p>
 
 
 
@@ -1970,10 +2044,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

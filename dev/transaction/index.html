@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../logo.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -27,10 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -535,6 +535,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../api/create/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ValtheraCreate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../api/memory/" class="md-nav__link">
         
   
@@ -711,6 +739,34 @@
     
   
     Remote
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errors
   
 
     
@@ -1237,10 +1293,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-manual-commitrollback" class="md-nav__link">
+  <a href="#4-commit-and-rollback" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Manual Commit/Rollback
+        4. Commit and Rollback
       
     </span>
   </a>
@@ -1249,6 +1305,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transaction-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transaction Object
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1440,10 +1507,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-manual-commitrollback" class="md-nav__link">
+  <a href="#4-commit-and-rollback" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Manual Commit/Rollback
+        4. Commit and Rollback
       
     </span>
   </a>
@@ -1452,6 +1519,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transaction-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transaction Object
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1605,15 +1683,15 @@ If any operation fails, all changes are rolled back, ensuring data consistency.<
 <p><strong>Why?</strong> ValtheraDB locks these collections for the duration of the transaction to prevent concurrent modifications.</p>
 <h3 id="2-transaction-object">2. Transaction Object</h3>
 <p>The <code>tx</code> object provides the same CRUD methods as <code>ValtheraClass</code>.
-Besides CRUD, <code>tx</code> exposes <code>getCollections()</code>, <code>ensureCollection()</code>, <code>issetCollection()</code>, and <code>removeCollection()</code>.</p>
+Besides CRUD, <code>tx</code> exposes <code>getCollections()</code>, <code>ensureCollection()</code>, <code>issetCollection()</code>, and <code>removeCollection()</code>; see the full list in <a href="#transaction-object">Transaction Object</a>.</p>
 <p><strong>Important:</strong> Operations on the original <code>db</code> reference are NOT part of the transaction. Always use <code>tx</code>.</p>
 <h3 id="3-automatic-rollback">3. Automatic Rollback</h3>
 <p>If the transaction function throws an error, all changes are automatically rolled back:</p>
 <div class="highlight"><pre><span></span><code><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">transaction</span><span class="p">([</span><span class="s2">"accounts"</span><span class="p">],</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">tx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">c</span><span class="p">(</span><span class="s2">"accounts"</span><span class="p">).</span><span class="nx">update</span><span class="p">({</span>
-<span class="w">    </span><span class="nx">search</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">userId</span><span class="o">:</span><span class="w"> </span><span class="s2">"user123"</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">updater</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">$inc</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">balance</span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="mf">100</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="p">});</span>
+<span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">c</span><span class="p">(</span><span class="s2">"accounts"</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">userId</span><span class="o">:</span><span class="w"> </span><span class="s2">"user123"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">$inc</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">balance</span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="mf">100</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">);</span>
 
 <span class="w">  </span><span class="c1">// Simulate an error</span>
 <span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">"Payment failed"</span><span class="p">);</span>
@@ -1621,35 +1699,44 @@ Besides CRUD, <code>tx</code> exposes <code>getCollections()</code>, <code>ensur
 <span class="w">  </span><span class="c1">// The update above is rolled back</span>
 <span class="p">});</span>
 </code></pre></div>
-<h3 id="4-manual-commitrollback">4. Manual Commit/Rollback</h3>
-<p>You can manually commit or rollback within the transaction:</p>
-<div class="highlight"><pre><span></span><code><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">transaction</span><span class="p">([</span><span class="s2">"orders"</span><span class="p">],</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">tx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">c</span><span class="p">(</span><span class="s2">"orders"</span><span class="p">).</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">item</span><span class="o">:</span><span class="w"> </span><span class="s2">"Widget"</span><span class="p">,</span><span class="w"> </span><span class="nx">quantity</span><span class="o">:</span><span class="w"> </span><span class="kt">5</span><span class="w"> </span><span class="p">});</span>
+<h3 id="4-commit-and-rollback">4. Commit and Rollback</h3>
+<p><code>db.transaction()</code> handles commit and rollback automatically:</p>
+<ul>
+<li>If the function returns normally, the transaction is <strong>committed</strong>.</li>
+<li>If the function throws, the transaction is <strong>rolled back</strong> and the error is rethrown.</li>
+</ul>
+<p>To roll back intentionally, throw an error from inside the transaction function:</p>
+<div class="highlight"><pre><span></span><code><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">transaction</span><span class="p">([</span><span class="s2">"orders"</span><span class="p">,</span><span class="w"> </span><span class="s2">"inventory"</span><span class="p">],</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">tx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">inventory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">c</span><span class="p">(</span><span class="s2">"inventory"</span><span class="p">).</span><span class="nx">findOne</span><span class="p">({</span><span class="w"> </span><span class="nx">item</span><span class="o">:</span><span class="w"> </span><span class="s2">"Widget"</span><span class="w"> </span><span class="p">});</span>
 
-<span class="w">    </span><span class="c1">// Check some condition</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">inventory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">c</span><span class="p">(</span><span class="s2">"inventory"</span><span class="p">).</span><span class="nx">findOne</span><span class="p">({</span>
-<span class="w">      </span><span class="nx">search</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">item</span><span class="o">:</span><span class="w"> </span><span class="s2">"Widget"</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="p">});</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">inventory</span><span class="p">.</span><span class="nx">quantity</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">rollback</span><span class="p">();</span><span class="w"> </span><span class="c1">// Explicit rollback</span>
-<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">"Insufficient inventory"</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">commit</span><span class="p">();</span><span class="w"> </span><span class="c1">// Explicit commit</span>
-<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Error handling</span>
-<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="nx">err</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">inventory</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">inventory</span><span class="p">.</span><span class="nx">quantity</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Throwing triggers an automatic rollback</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">"Insufficient inventory"</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">c</span><span class="p">(</span><span class="s2">"orders"</span><span class="p">).</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">item</span><span class="o">:</span><span class="w"> </span><span class="s2">"Widget"</span><span class="p">,</span><span class="w"> </span><span class="nx">quantity</span><span class="o">:</span><span class="w"> </span><span class="kt">5</span><span class="w"> </span><span class="p">});</span>
 <span class="p">});</span>
 </code></pre></div>
+<p><strong>Important:</strong> do not call <code>tx.commit()</code> or <code>tx.rollback()</code> manually inside the transaction function. <code>db.transaction()</code> commits or rolls back after the function finishes, so a manual call leaves the automatic one operating on an already closed transaction. The exact error depends on the adapter (for example, the dir adapter throws <code>transaction handle mismatch</code>).</p>
+<h2 id="transaction-object">Transaction Object</h2>
+<p>The <code>tx</code> object provides the same CRUD surface as <code>ValtheraClass</code>, with the transaction handle attached to every operation:</p>
+<ul>
+<li>CRUD: <code>add</code>, <code>bulkAdd</code>, <code>find</code>, <code>findOne</code>, <code>update</code>, <code>updateOne</code>, <code>remove</code>, <code>removeOne</code>, <code>updateOneOrAdd</code>, <code>toggleOne</code>, <code>count</code></li>
+<li>Collections: <code>getCollections()</code>, <code>ensureCollection()</code>, <code>issetCollection()</code>, <code>removeCollection()</code></li>
+<li>Access a typed collection: <code>tx.c("users")</code></li>
+</ul>
 <h2 id="adapter-support">Adapter Support</h2>
 <p><strong>Not all adapters support transactions.</strong> Transaction support depends on the underlying storage backend.</p>
 <h3 id="checking-adapter-support">Checking Adapter Support</h3>
-<p>Adapters implement transaction methods:</p>
+<p>Adapters expose their capabilities, and <code>capabilities().transactions</code> tells you whether transactions are supported:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">caps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">capabilities</span><span class="p">();</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">caps</span><span class="p">.</span><span class="nx">transactions</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Fall back to non-transactional logic</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Under the hood, adapters implement transaction methods:</p>
 <ul>
-<li><code>beginTransaction(id)</code> - Start a transaction</li>
+<li><code>beginTransaction(id, collections)</code> - Start a transaction; <code>collections</code> is the list of collections declared in <code>db.transaction()</code></li>
 <li><code>commitTransaction(handle)</code> - Commit changes</li>
 <li><code>rollbackTransaction(handle)</code> - Roll back changes</li>
 </ul>
@@ -1661,16 +1748,16 @@ Besides CRUD, <code>tx</code> exposes <code>getCollections()</code>, <code>ensur
 <span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">accounts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">c</span><span class="p">(</span><span class="s2">"accounts"</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">// Deduct from sender</span>
-<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">accounts</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span>
-<span class="w">      </span><span class="nx">search</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">userId</span><span class="o">:</span><span class="w"> </span><span class="kt">fromUserId</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="nx">updater</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">$inc</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">balance</span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="nx">amount</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">accounts</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nx">userId</span><span class="o">:</span><span class="w"> </span><span class="kt">fromUserId</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nx">$inc</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">balance</span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="nx">amount</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">// Add to recipient</span>
-<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">accounts</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span>
-<span class="w">      </span><span class="nx">search</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">userId</span><span class="o">:</span><span class="w"> </span><span class="kt">toUserId</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="nx">updater</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">$inc</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">balance</span><span class="o">:</span><span class="w"> </span><span class="kt">amount</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">accounts</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nx">userId</span><span class="o">:</span><span class="w"> </span><span class="kt">toUserId</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nx">$inc</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">balance</span><span class="o">:</span><span class="w"> </span><span class="kt">amount</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">);</span>
 <span class="w">  </span><span class="p">});</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -1697,7 +1784,7 @@ Besides CRUD, <code>tx</code> exposes <code>getCollections()</code>, <code>ensur
 <span class="w">    </span><span class="c1">// Check inventory for all items</span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">item</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">items</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">inventory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">c</span><span class="p">(</span><span class="s2">"inventory"</span><span class="p">).</span><span class="nx">findOne</span><span class="p">({</span>
-<span class="w">        </span><span class="nx">search</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">productId</span><span class="o">:</span><span class="w"> </span><span class="kt">item.productId</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">productId</span><span class="o">:</span><span class="w"> </span><span class="kt">item.productId</span>
 <span class="w">      </span><span class="p">});</span>
 
 <span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">inventory</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">inventory</span><span class="p">.</span><span class="nx">quantity</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">item</span><span class="p">.</span><span class="nx">quantity</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1707,10 +1794,10 @@ Besides CRUD, <code>tx</code> exposes <code>getCollections()</code>, <code>ensur
 
 <span class="w">    </span><span class="c1">// Deduct inventory</span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">item</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">items</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">c</span><span class="p">(</span><span class="s2">"inventory"</span><span class="p">).</span><span class="nx">update</span><span class="p">({</span>
-<span class="w">        </span><span class="nx">search</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">productId</span><span class="o">:</span><span class="w"> </span><span class="kt">item.productId</span><span class="w"> </span><span class="p">},</span>
-<span class="w">        </span><span class="nx">updater</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">$inc</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">quantity</span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="nx">item</span><span class="p">.</span><span class="nx">quantity</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-<span class="w">      </span><span class="p">});</span>
+<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">c</span><span class="p">(</span><span class="s2">"inventory"</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">productId</span><span class="o">:</span><span class="w"> </span><span class="kt">item.productId</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">$inc</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">quantity</span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="nx">item</span><span class="p">.</span><span class="nx">quantity</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// Create order</span>
@@ -1722,10 +1809,10 @@ Besides CRUD, <code>tx</code> exposes <code>getCollections()</code>, <code>ensur
 <span class="w">    </span><span class="p">});</span>
 
 <span class="w">    </span><span class="c1">// Update user's order count</span>
-<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">c</span><span class="p">(</span><span class="s2">"users"</span><span class="p">).</span><span class="nx">update</span><span class="p">({</span>
-<span class="w">      </span><span class="nx">search</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="kt">userId</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="nx">updater</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">$inc</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">orderCount</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">c</span><span class="p">(</span><span class="s2">"users"</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nx">_id</span><span class="o">:</span><span class="w"> </span><span class="kt">userId</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nx">$inc</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">orderCount</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">);</span>
 <span class="w">  </span><span class="p">});</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -1786,10 +1873,10 @@ Besides CRUD, <code>tx</code> exposes <code>getCollections()</code>, <code>ensur
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

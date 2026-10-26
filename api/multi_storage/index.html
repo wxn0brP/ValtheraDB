@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../logo.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -29,10 +29,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -539,6 +539,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../create/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ValtheraCreate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../memory/" class="md-nav__link">
         
   
@@ -795,6 +823,34 @@
     
   
     Remote
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errors
   
 
     
@@ -1314,7 +1370,8 @@
 <p>ValtheraDB provides two ways to work with multiple storage backends.</p>
 <h2 id="multibackend">MultiBackend</h2>
 <p>Queries across multiple adapters simultaneously.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">MultiBackend</span><span class="p">,</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">MultiBackend</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/db/multiStorage"</span><span class="p">;</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">multi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">MultiBackend</span><span class="p">([</span>
 <span class="w">  </span><span class="nx">adapter1</span><span class="p">,</span>
@@ -1338,12 +1395,20 @@
 <td>Primary backend only</td>
 </tr>
 <tr>
+<td><code>bulkAdd</code></td>
+<td>Primary backend only (loops over <code>add</code>)</td>
+</tr>
+<tr>
 <td><code>find</code></td>
 <td>All backends, results merged (flattened)</td>
 </tr>
 <tr>
 <td><code>findOne</code></td>
 <td>Iterates backends, returns first non-null match</td>
+</tr>
+<tr>
+<td><code>count</code></td>
+<td>All backends via <code>find</code>, summed length</td>
 </tr>
 <tr>
 <td><code>update</code></td>
@@ -1363,7 +1428,7 @@
 </tr>
 <tr>
 <td><code>ensureCollection</code></td>
-<td>All backends</td>
+<td>All backends (returns <code>true</code> if any created it)</td>
 </tr>
 <tr>
 <td><code>issetCollection</code></td>
@@ -1371,27 +1436,35 @@
 </tr>
 <tr>
 <td><code>removeCollection</code></td>
-<td>All backends</td>
+<td>All backends (returns <code>true</code> if any removed it)</td>
 </tr>
 <tr>
 <td><code>getCollections</code></td>
 <td>Unique union from all backends</td>
+</tr>
+<tr>
+<td><code>createIndex</code> / <code>removeIndex</code></td>
+<td>No-op (inherited default)</td>
+</tr>
+<tr>
+<td><code>capabilities</code></td>
+<td>Inherited default values</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Use cases:</strong> replication, migration, read replicas</p>
 <h2 id="routedstorage">RoutedStorage</h2>
 <p>Routes collections to specific backends based on rules.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">RoutedStorage</span><span class="p">,</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">RoutedStorage</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/db/routedStorage"</span><span class="p">;</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">routed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">RoutedStorage</span><span class="p">([</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">match</span><span class="o">:</span><span class="w"> </span><span class="s2">"logs"</span><span class="p">,</span><span class="w"> </span><span class="nx">backends</span><span class="o">:</span><span class="w"> </span><span class="kt">logAdapter</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">match</span><span class="o">:</span><span class="w"> </span><span class="sr">/^temp_/</span><span class="p">,</span><span class="w"> </span><span class="nx">backends</span><span class="o">:</span><span class="w"> </span><span class="kt">memoryAdapter</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">match</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">q</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">q</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">"archive"</span><span class="p">),</span><span class="w"> </span><span class="nx">backends</span><span class="o">:</span><span class="w"> </span><span class="kt">archiveAdapter</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">match</span><span class="o">:</span><span class="w"> </span><span class="s2">"logs"</span><span class="p">,</span><span class="w"> </span><span class="nx">backends</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">logAdapter</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">match</span><span class="o">:</span><span class="w"> </span><span class="sr">/^temp_/</span><span class="p">,</span><span class="w"> </span><span class="nx">backends</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">memoryAdapter</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">match</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">q</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">q</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">"archive"</span><span class="p">),</span><span class="w"> </span><span class="nx">backends</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">archiveAdapter</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 <span class="p">],</span><span class="w"> </span><span class="nx">defaultAdapter</span><span class="p">);</span>
-
-<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span><span class="w"> </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">routed</span><span class="w"> </span><span class="p">});</span>
 </code></pre></div>
+<p><strong>Note:</strong> <code>backends</code> in each rule <strong>must be an array</strong> of backends. The <code>defaultBackend</code> accepts a single backend or an array.</p>
 <p><strong>Match types:</strong></p>
 <ul>
 <li><strong>String</strong>: exact collection name or <code>"*"</code> for all</li>
@@ -1409,7 +1482,11 @@
 <tbody>
 <tr>
 <td><code>add</code></td>
-<td>Writes to first matched backend, then replicates to all matched backends</td>
+<td>Writes to first matched backend, then replicates the result to all matched backends</td>
+</tr>
+<tr>
+<td><code>bulkAdd</code></td>
+<td>Loops over <code>add</code> (same routing per document)</td>
 </tr>
 <tr>
 <td><code>find</code></td>
@@ -1420,24 +1497,44 @@
 <td>First matched backend only</td>
 </tr>
 <tr>
+<td><code>count</code></td>
+<td>First matched backend only (via <code>find</code>)</td>
+</tr>
+<tr>
 <td><code>update</code></td>
-<td>All matched backends</td>
+<td>All matched backends (first result is returned)</td>
 </tr>
 <tr>
 <td><code>updateOne</code></td>
-<td>All matched backends</td>
+<td>All matched backends (first result is returned)</td>
 </tr>
 <tr>
 <td><code>remove</code></td>
-<td>All matched backends</td>
+<td>All matched backends (first result is returned)</td>
 </tr>
 <tr>
 <td><code>removeOne</code></td>
+<td>All matched backends (first result is returned)</td>
+</tr>
+<tr>
+<td><code>ensureCollection</code></td>
+<td>All matched backends (first result is returned)</td>
+</tr>
+<tr>
+<td><code>issetCollection</code></td>
+<td>First matched backend only</td>
+</tr>
+<tr>
+<td><code>removeCollection</code></td>
 <td>All matched backends</td>
 </tr>
 <tr>
 <td><code>getCollections</code></td>
-<td>Unique union from all rule backends</td>
+<td>Unique union from all rule backends and the default backend</td>
+</tr>
+<tr>
+<td><code>createIndex</code> / <code>removeIndex</code></td>
+<td>No-op (inherited default)</td>
 </tr>
 </tbody>
 </table>
@@ -1519,10 +1616,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

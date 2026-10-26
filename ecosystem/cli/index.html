@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../logo.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -29,10 +29,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -537,6 +537,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../api/create/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ValtheraCreate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../api/memory/" class="md-nav__link">
         
   
@@ -726,6 +754,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -882,6 +938,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -898,6 +972,47 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1181,6 +1296,36 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1201,11 +1346,26 @@
 
 <h1 id="cli">CLI</h1>
 <p>The <code>vdb</code> command-line tool for managing ValtheraDB databases.
-Supports add, find, update, remove, dev server, format, and upgrade.</p>
-<div class="highlight"><pre><span></span><code>bun<span class="w"> </span>add<span class="w"> </span>-g<span class="w"> </span>@wxn0brp/db-cli
-vdb<span class="w"> </span>-d<span class="w"> </span>./my-db<span class="w"> </span>find<span class="w"> </span>users<span class="w"> </span><span class="s1">'{ "name": "Jane" }'</span>
-vdb<span class="w"> </span>server<span class="w"> </span><span class="m">3000</span>
+Install globally using Bun (the package is distributed from GitHub):</p>
+<div class="highlight"><pre><span></span><code>bun<span class="w"> </span>add<span class="w"> </span>-g<span class="w"> </span>github:wxn0brP/ValtheraDB-cli
 </code></pre></div>
+<h2 id="examples">Examples</h2>
+<div class="highlight"><pre><span></span><code>vdb<span class="w"> </span>-d<span class="w"> </span>./my-db<span class="w"> </span>find<span class="w"> </span>users<span class="w"> </span><span class="s1">'{ "name": "Jane" }'</span>
+vdb<span class="w"> </span>-d<span class="w"> </span>./my-db<span class="w"> </span>count<span class="w"> </span>users<span class="w"> </span><span class="s1">'{ "active": true }'</span>
+vdb<span class="w"> </span>-d<span class="w"> </span>./my-db<span class="w"> </span>add<span class="w"> </span>users<span class="w"> </span><span class="s1">'{ "name": "Jane" }'</span>
+vdb<span class="w"> </span>-d<span class="w"> </span>./my-db<span class="w"> </span>bulkAdd<span class="w"> </span>users<span class="w"> </span><span class="s1">'[{ "name": "A" }, { "name": "B" }]'</span>
+vdb<span class="w"> </span>-d<span class="w"> </span>./my-db<span class="w"> </span>getCollections
+vdb<span class="w"> </span>-d<span class="w"> </span>./my-db<span class="w"> </span>capabilities
+vdb<span class="w"> </span>server<span class="w"> </span><span class="m">3000</span>
+vdb<span class="w"> </span>format<span class="w"> </span>./my-db<span class="w"> </span><span class="s2">"json5:x"</span>
+</code></pre></div>
+<h2 id="notes">Notes</h2>
+<ul>
+<li><code>-d, --dir &lt;path&gt;</code> selects the database directory (default: current directory).</li>
+<li><code>-j, --json</code> prints results as JSON; errors are printed as structured <code>ValtheraError</code> payloads.</li>
+<li><code>-p, --config-path &lt;path&gt;</code> loads adapter config from a YAML file (default: <code>./valthera.cli.yml</code>).</li>
+<li><code>vdb server</code> starts a <strong>development server</strong> without authentication; do not use it in production.</li>
+</ul>
 <p>-&gt; <a href="https://github.com/wxn0brP/ValtheraDB-cli">GitHub</a></p>
 
 
@@ -1256,10 +1416,10 @@ vdb<span class="w"> </span>server<span class="w"> </span><span class="m">3000</s
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>
