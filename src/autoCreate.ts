@@ -4,7 +4,7 @@ import { forgeTypedValthera } from "@wxn0brp/db-core";
 import { ValtheraClass } from "@wxn0brp/db-core/db/valthera";
 import { Data } from "@wxn0brp/db-core/types/data";
 import { ValtheraCompatible } from "@wxn0brp/db-core/types/valthera";
-import { createFileActions } from "@wxn0brp/db-storage-dir";
+import { createFileAdapter } from "@wxn0brp/db-storage-dir";
 import { DbDirOpts } from "@wxn0brp/db-storage-dir/types";
 import { Valthera } from "./valthera";
 
@@ -29,9 +29,16 @@ export function ValtheraAutoRemoteCreate(
 /**
  * Creates a new instance of forged Valthera.
  *
+ * The options object is shared by the database and the dir adapter:
+ * core options (`executor`, `executorAware`, `adapterOpts`) and dir adapter
+ * options (`format`, `maxFileSize`, `delimiter`, `stringifyArgs`) live side by side.
+ *
  * @param folder - The folder path where the database files are stored.
- * @param options - Optional configuration options.
+ * @param options - Optional database and dir adapter options.
  * @returns A new instance of Valthera.
+ *
+ * @example
+ * const db = ValtheraCreate("./data", { format: "json5", adapterOpts: { idKey: "id" } });
  */
 export function ValtheraCreate<T extends Record<string, Data> = {}>(
 	folder: string,
@@ -39,7 +46,8 @@ export function ValtheraCreate<T extends Record<string, Data> = {}>(
 ) {
 	return forgeTypedValthera<T>(
 		new ValtheraClass({
-			adapter: createFileActions(folder, options),
+			...options,
+			adapter: createFileAdapter(folder, options),
 		}),
 	);
 }
