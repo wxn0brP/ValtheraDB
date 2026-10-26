@@ -36,6 +36,24 @@ ValtheraDB uses a layered adapter architecture:
 > Note: When you replace any layer, you implicitly take responsibility for all layers below it.
 > A specialized adapter (Variant D) keeps `ActionsBase` as its boundary but bypasses the layers below it, implementing only the operations its data model supports.
 
+## What `ActionsBase` Gives You by Default
+
+`ActionsBase` ships with default implementations and fields, so a minimal adapter only needs the abstract CRUD and collection methods:
+
+| Member | Default |
+|--------|---------|
+| `capabilities` | `{ transactions: false, indexes: false, persistent: true }` - override to describe your backend |
+| `bulkAdd(query)` | Loops over `add()` per document |
+| `count(query)` | Runs `find()` and returns its length |
+| `createIndex(config)` / `removeIndex(config)` | No-op |
+| `beginTransaction(id, collections)` / `commitTransaction(handle)` / `rollbackTransaction(handle)` | Throw `UnsupportedOperationError` |
+| `version` | Set a `src/version.ts` string so it appears in error context |
+| `adapterOpts` | `{ numberId: false, idKey: "_id" }` - merged from `ValtheraClass` options |
+
+Override any of these only when your backend has native support (bulk inserts, `countDocuments`, real indexes, transactions).
+
+Use the structured error classes from `@wxn0brp/db-core/errors` instead of bare `Error` throws: `AdapterInitError` in `init()`, `AdapterCloseError` in `close()`, `AdapterError` for driver failures, `QueryValidationError` for invalid input, and `TransactionError` inside transactions. Core wraps unknown errors into `AdapterError`; see [Errors](../api/errors.md).
+
 ## Variant A: CustomFileCpu Adapter
 
 **Kind:** CRUD

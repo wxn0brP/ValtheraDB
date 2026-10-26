@@ -44,6 +44,7 @@ In short, if you value flexibility and control over rigid conventions, you'll fe
     *   [DB Find Options](api/db_find_opts.md)
     *   [Collection](api/collection.md)
     *   [Valthera Class](api/valthera.md)
+    *   [ValtheraCreate](api/create.md)
     *   [Memory DB](api/memory.md)
     *   [Multi Storage](api/multi_storage.md)
     *   [Forge](api/forge.md)
@@ -51,15 +52,17 @@ In short, if you value flexibility and control over rigid conventions, you'll fe
     *   [Relations](api/relation.md)
     *   [Update Operators](api/updater.md)
     *   [Remote](api/remote.md)
+    *   [Errors](api/errors.md)
 *   **Ecosystem:**
     *   [Storage Adapters](ecosystem/adapters.md): All supported storage backends with quick-start guides.
     *   [Server](ecosystem/server.md): Deploy your own ValtheraDB HTTP server.
     *   [CLI](ecosystem/cli.md): Command-line tool for database management.
     *   [Conduit](ecosystem/conduit.md): Embed ValtheraDB from any language via stdio protocol.
-    *   [Extensions](ecosystem/extensions.md): CRDT replication, indexing, and file locking.
-    *   [Other Tools](ecosystem/tools.md): Benchmark, E2E tests, snapshot, resolver, and more.
+    *   [Extensions](ecosystem/extensions.md): CRDT replication, caching, and file locking.
+    *   [Other Tools](ecosystem/tools.md): CLI, benchmark, E2E tests, string query, resolver, and more.
 *   **Dev's Tutorials:**
     *   [Adapters](dev/adapter.md): Step-by-step guide to creating your own storage adapter.
     *   [Publishing](dev/publishing.md): How to name, discover, and publish packages.
     *   [Plugins](dev/plugin.md): Learn how to write plugins.
     *   [Executor](dev/executor.md): Understand how operations are queued and executed.
+    *   [Transactions](dev/transaction.md): Group operations into atomic units.

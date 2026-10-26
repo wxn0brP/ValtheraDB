@@ -31,8 +31,6 @@ Reverses the order of the results.
 
 **Note:** When `sortBy` is not specified, `reverse` is applied immediately during file iteration. When `sortBy` is used, the final sort order is determined by `sortAsc`.
 
----
-
 ### **`offset`**
 
 Skips a specified number of entries from the beginning of the results.
@@ -50,8 +48,6 @@ Skips a specified number of entries from the beginning of the results.
 
 **Default:** `0`
 
----
-
 ### **`limit`**
 
 Limits the number of returned entries.
@@ -68,8 +64,6 @@ Limits the number of returned entries.
 ```
 
 **Default:** `-1` (no limit)
-
----
 
 ### **`sortBy`**
 
@@ -108,8 +102,6 @@ Sorts results by a specified field name, randomly, or by multiple fields.
 
 **Default:** `undefined` (no sorting, uses data order)
 
----
-
 ### **`sortAsc`**
 
 Determines the sort direction when `sortBy` is specified.
@@ -133,8 +125,6 @@ Determines the sort direction when `sortBy` is specified.
 ```
 
 **Default:** `true`
-
----
 
 ### **`groupBy`**
 
@@ -162,8 +152,6 @@ Groups results by one or more fields. When specified alongside aggregation opera
 
 **Default:** `undefined` (no grouping, single aggregate over all data)
 
----
-
 ### **`count`**
 
 Counts non-null, non-undefined values per field. Maps output keys to source fields.
@@ -188,8 +176,6 @@ Counts non-null, non-undefined values per field. Maps output keys to source fiel
 **Type:** `Record<string, string>` - `{ outputKey: sourceField }`
 
 **Default:** `undefined`
-
----
 
 ### **`min`**
 
@@ -216,8 +202,6 @@ Computes the minimum numeric value of a field. Maps output keys to source fields
 
 **Default:** `undefined`
 
----
-
 ### **`max`**
 
 Computes the maximum numeric value of a field. Maps output keys to source fields.
@@ -242,8 +226,6 @@ Computes the maximum numeric value of a field. Maps output keys to source fields
 **Type:** `Record<string, string>` - `{ outputKey: sourceField }`
 
 **Default:** `undefined`
-
----
 
 ### **`avg`**
 
@@ -270,8 +252,6 @@ Computes the average (mean) numeric value of a field. Maps output keys to source
 
 **Default:** `undefined`
 
----
-
 ### **`sum`**
 
 Computes the sum of numeric values of a field. Maps output keys to source fields.
@@ -296,8 +276,6 @@ Computes the sum of numeric values of a field. Maps output keys to source fields
 **Type:** `Record<string, string>` - `{ outputKey: sourceField }`
 
 **Default:** `undefined`
-
----
 
 ### **`distinct`**
 
@@ -324,11 +302,11 @@ Removes duplicate entries based on the value of a specified field. Only the firs
 
 **Default:** `undefined` (no deduplication)
 
----
-
 ## **Execution Flow**
 
-### Without Aggregation (`min`/`max`/`avg`/`sum`/`groupBy`/`count`)
+`limit: Infinity` is treated as "no limit" (`-1`).
+
+### Without Aggregation (`min`/`max`/`avg`/`sum`/`groupBy`/`count`), `sortBy`, or `distinct`
 
 1. Iterate through files
 2. Apply `reverse` during iteration (if specified)
@@ -338,26 +316,24 @@ Removes duplicate entries based on the value of a specified field. Only the firs
 ### With Aggregation (`min`/`max`/`avg`/`sum`/`groupBy`/`count`)
 
 1. Collect all entries from all files
-2. If `sortBy` is specified, sort entries:
+2. Group entries by `groupBy` fields (if specified)
+3. Per group, compute `min`, `max`, `avg`, `sum`, `count` (if specified)
+4. Apply `distinct` (if specified)
+5. If `sortBy` is specified, sort the aggregated rows:
    - If `sortBy === "random()"`: shuffle randomly
    - If `sortBy` is an array: sort by multiple fields in order
    - Otherwise: sort by field value using `compareSafe()`
-3. Group entries by `groupBy` fields (if specified)
-4. Per group, compute `min`, `max`, `avg`, `sum`, `count` (if specified)
-5. Apply `distinct` (if specified)
 6. Apply `offset` and `limit` to aggregated results
 
-### With `sortBy` (no aggregation)
+### With `sortBy` or `distinct` (no aggregation)
 
 1. Collect all entries from all files
-2. Sort entries:
+2. Apply `distinct` (if specified)
+3. Sort entries:
    - If `sortBy === "random()"`: shuffle randomly
    - If `sortBy` is an array: sort by multiple fields in order
    - Otherwise: sort by field value using `compareSafe()`
-3. Apply `distinct` (if specified)
 4. Apply `offset` and `limit` to sorted results
-
----
 
 ## **Examples**
 
@@ -471,11 +447,22 @@ Removes duplicate entries based on the value of a specified field. Only the firs
 ### Distinct Values
 
 ```javascript
-// Get unique categories with count
+// Get unique categories (first document per category)
 {
     dbFindOpts: {
-        distinct: "category",
-        count: { total: "id" }
+        distinct: "category"
+    }
+}
+```
+
+**Note:** when `distinct` is combined with aggregations, it is applied to the **aggregated rows**, not the raw documents. To count entries per category, use `groupBy`:
+
+```javascript
+// One row per category with the number of entries
+{
+    dbFindOpts: {
+        groupBy: "category",
+        count: { total: "_id" }
     }
 }
 ```

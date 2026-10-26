@@ -1,26 +1,30 @@
 # ValtheraDB Documentation
 
-## Class: `Valthera`
+## Class: `ValtheraClass`
+
+The main database class. It wraps a storage adapter (`ActionsBase`), queues operations, runs plugins, and emits events.
+
+> The low-level `Valthera` wrapper (dir adapter with a preset format) is available from `@wxn0brp/db/valthera`, but for most use cases prefer `ValtheraCreate()` or `VDB()`.
 
 ### Constructor Options
 
 ```typescript
 new ValtheraClass({
   adapter: ActionsBase | (() => Promise<ActionsBase>),
-  executor?: Executor,
+  executor?: ExecutorInterface,
   executorAware?: boolean, // default: true
   adapterOpts?: AdapterOpts,
-  // Legacy (deprecated):
-  numberId?: boolean,   // use adapterOpts.numberId
-  idKey?: string,       // use adapterOpts.idKey
 })
 ```
 
-The `adapter` can be either an `ActionsBase` instance or a factory function that returns one. When a factory function is used, it is called lazily during `init()`.
+- `adapter` - a ready `ActionsBase` instance, or a factory function that returns one. A factory is called lazily during `init()`.
+- `executor` - controls operation queuing. Default: a `SmartExecutor` with a single queue (see [Executor](#executor)).
+- `executorAware` - allows the executor to automatically switch to per-collection queues when the adapter supports it.
+- `adapterOpts` - forwarded to the adapter on `init()`.
 
 ### `AdapterOpts`
 
-Configuration options for the storage adapter.
+Configuration options forwarded to the storage adapter.
 
 ```typescript
 interface AdapterOpts {
@@ -41,14 +45,12 @@ const db = new ValtheraClass({
 });
 ```
 
-**Note:** The legacy `numberId` and `idKey` options at the top level are deprecated. Use `adapterOpts` instead.
-
 ### `version`
 
 The version of the ValtheraDB core engine.
 
 ```typescript
-db.version; // e.g., "0.11.6"
+db.version; // matches the installed @wxn0brp/db-core version
 ```
 
 ### `async init(...args)`
@@ -66,6 +68,15 @@ Closes the adapter connection. Subsequent operations will not work until `init()
 ```typescript
 await db.close();
 ```
+
+### `async execute<T>(name, query, txHandle?)`
+
+Low-level entry point used internally by all operations. Runs an operation through the plugin chain, the executor, and the event emitter. Useful for advanced tooling and plugins.
+
+- **Parameters:**
+  - `name` (`keyof ValtheraCompatible`): Operation name (e.g., `"find"`, `"add"`).
+  - `query` (`VQuery` or `string`): The query object, or a collection name for collection-level operations.
+  - `txHandle` (`TransactionHandle`, optional): Attaches the operation to a transaction.
 
 ### `c<T>(collection)`
 
@@ -104,9 +115,13 @@ interface ValtheraPlugin {
 }
 
 interface PluginContext {
-  op: string;        // Operation name (e.g., "find", "add", "update")
-  query: any;        // The query object or string
-  next: () => Promise<any>; // Call next plugin or adapter
+  op: string;            // Operation name (e.g., "find", "add", "update")
+  kind: PluginOpKind;    // Operation kind: "read" | "write" | "delete" | "collection" | "index" | "meta" | "control"
+  collection?: string;   // Collection name (for string-only ops, this is the query itself)
+  query: any;            // The query object or string
+  next: () => Promise<any>;              // Call the next plugin or adapter
+  setOp(op: string, query?: any): void;  // Rewrite the operation (and optionally the query)
+  setQuery(query: any): void;            // Rewrite the query for the current operation
 }
 ```
 
@@ -127,6 +142,8 @@ const unregister = db.plugin(loggingPlugin);
 // Later: unregister() to remove the plugin
 ```
 
+See [Writing Plugins](../dev/plugin.md) for the full tutorial.
+
 ### `async getCollections()`
 
 Gets the names of all available collections in the database.
@@ -134,46 +151,58 @@ Gets the names of all available collections in the database.
 - **Returns:**
    	- `Promise<string[]>`: A promise that resolves with an array of collection names.
 
-### `async ensureCollection(collection)`
+### `ensureCollection(collection)`
 
 Ensures that the specified collection exists. If the collection does not exist, it will be created.
 
 - **Parameters:**
-  	- `collection` (`string`): The name of the collection.
+  	- `collection` (`string | VQueryT.Collection`): The name of the collection.
 - **Returns:**
   	- `Promise<boolean>`: The returned value is **adapter-dependent** and must not be relied upon.
 - **Notes:**
 	- Guarantees that the collection exists after the method resolves.
 	- The boolean result has no standardized meaning and should be treated as `void`.
 
-### `async issetCollection(collection)`
+### `issetCollection(collection)`
 
 Checks if a collection exists.
 
 - **Parameters:**
-	- `collection` (`string`): The name of the collection.
+	- `collection` (`string | VQueryT.Collection`): The name of the collection.
 - **Returns:**
   	- `Promise<boolean>`: A promise that resolves to `true` if the collection exists, otherwise `false`.
 
-### `async removeCollection(collection)`
+### `removeCollection(collection)`
 
 Deletes the collection.
 
 - **Parameters:**
-   	- `collection` (`string`): The name of the collection to remove.
+   	- `collection` (`string | VQueryT.Collection`): The name of the collection to remove.
 
 - **Returns:**
    	- `Promise<boolean>`: A promise that resolves when the collection is removed.
        - `true`: The collection was successfully removed.
        - `false`: The collection was not found (i.e., it did not exist, so there was nothing to remove).
 
+- **Note:** Cached `Collection` instances for that name are invalidated; a subsequent `c(name)` creates a fresh instance.
+
 ### `add(query)`
 
 Adds a document to a collection.
 
 - **Parameters:**
-  - `query` (`VQueryT.Add<T>`): The add query.
-- **Returns:** `Promise<T & { _id: string }>`
+  - `query` (`VQueryT.Add<T>`): The add query (`{ collection, data, id_gen? }`).
+- **Returns:** `Promise<T & { _id: string }>` - with the generated ID key (`_id` or custom `idKey`).
+
+### `bulkAdd(query)`
+
+Adds multiple documents to a collection in one call.
+
+- **Parameters:**
+  - `query` (`VQueryT.BulkAdd<T>`): `{ collection, datas, id_gen? }`.
+- **Returns:** `Promise<T[]>` - added documents with generated IDs.
+
+**Note:** The default implementation loops over `add()` internally; adapters with native bulk inserts override it.
 
 ### `find(query)`
 
@@ -239,6 +268,16 @@ Removes one entry if it exists, or adds a new one if it doesn't. Useful for togg
   - `query` (`VQueryT.ToggleOne<T>`): The toggleOne query.
 - **Returns:** `Promise<{ data: T; type: "added" | "removed" }>`
 
+### `count(query)`
+
+Counts matching documents.
+
+- **Parameters:**
+  - `query` (`VQueryT.Count<T>`): `{ collection, search }`. Function-based search is **not** supported here.
+- **Returns:** `Promise<number>`
+
+**Note:** The default implementation runs `find()` and returns its length; adapters with native counting override it.
+
 ### `createIndex(collection, fields, opts)`
 
 Creates an index on a collection. Index support is adapter-dependent.
@@ -257,6 +296,38 @@ Creates an index on a collection. Index support is adapter-dependent.
 await db.createIndex("users", ["email"], { unique: true });
 ```
 
+### `removeIndex(collection, fields)`
+
+Removes an index from a collection. Index support is adapter-dependent.
+
+- **Parameters:**
+  - `collection` (`string`): The name of the collection.
+  - `fields` (`string[]`): The indexed fields (same list used in `createIndex`).
+- **Returns:** `Promise<void>`
+
+**Note:** The default implementation is a no-op.
+
+### `async capabilities()`
+
+Describes what the underlying adapter supports.
+
+- **Returns:** `Promise<AdapterCapabilities>`
+
+```typescript
+interface AdapterCapabilities {
+  transactions: boolean; // supports transactions
+  indexes: boolean;      // supports real indexes
+  persistent: boolean;   // persists data between restarts
+}
+```
+
+```typescript
+const caps = await db.capabilities();
+if (caps.transactions) {
+  await db.transaction(["accounts"], async tx => { /* ... */ });
+}
+```
+
 ### `transaction(collections, fn)`
 
 See [Transaction Docs](../dev/transaction.md)
@@ -270,21 +341,25 @@ Event emitter for subscribing to database operations. Uses VEE (Valthera Event E
 **Type:** `VEE<Events>`
 
 **Events:**
-- Operation-specific events: `"find"`, `"add"`, `"update"`, `"updateOne"`, `"remove"`, `"removeOne"`, `"findOne"`, `"updateOneOrAdd"`, `"toggleOne"`, `"getCollections"`, `"ensureCollection"`, `"issetCollection"`, `"removeCollection"`, `"createIndex"`
+- Operation-specific events: `"find"`, `"findOne"`, `"count"`, `"add"`, `"bulkAdd"`, `"update"`, `"updateOne"`, `"remove"`, `"removeOne"`, `"updateOneOrAdd"`, `"toggleOne"`, `"getCollections"`, `"ensureCollection"`, `"issetCollection"`, `"removeCollection"`, `"createIndex"`, `"removeIndex"`
 - Wildcard event: `"*"` (fires for all operations)
+
+**Note:** `capabilities()` reads the adapter directly and does not emit an event.
 
 **Event Handler Signature:**
 ```typescript
-(query: VQuery, result: any) => void
+(query: VQuery, result: any, collection?: string) => void
 // or for wildcard:
-(op: string, query: VQuery, result: any) => void
+(op: string, query: VQuery, result: any, collection?: string) => void
 ```
+
+The collection argument is the third parameter for operation-specific handlers (the fourth for the `"*"` handler). It is derived from the query: for `ensureCollection`, `issetCollection`, and `removeCollection` it is the collection name passed as the query, while for `getCollections` it is `undefined`.
 
 **Example - Subscribe to specific operation:**
 
 ```typescript
-db.emitter.on("find", (query, result) => {
-  console.log(`Found ${result.length} items in ${query.collection}`);
+db.emitter.on("find", (query, result, collection) => {
+  console.log(`Found ${result.length} items in ${collection}`);
 });
 
 db.emitter.on("add", (query, result) => {
@@ -295,36 +370,34 @@ db.emitter.on("add", (query, result) => {
 **Example - Subscribe to all operations:**
 
 ```typescript
-db.emitter.on("*", (op, query, result) => {
-  metrics.record(op, query.collection, Date.now());
+db.emitter.on("*", (op, query, result, collection) => {
+  metrics.record(op, collection, Date.now());
 });
 ```
 
 **Example - Audit logging:**
 
 ```typescript
-db.emitter.on("*", (op, query, result) => {
+db.emitter.on("*", (op, query, result, collection) => {
   if (op === "remove" || op === "removeOne") {
     auditLog.record({
       action: "delete",
-      collection: query.collection,
+      collection,
       timestamp: new Date()
     });
   }
 });
 ```
 
-**Note:** `db.emiter` is a deprecated alias for `db.emitter` (typo preserved for backward compatibility).
-
 ## Executor
 
 ### `executor`
 
-Controls how database operations are queued and executed. Ensures operations on the same collection are serialized.
+Controls how database operations are queued and executed. Ensures operations are serialized safely.
 
 **Type:** `ExecutorInterface`
 
-**Default:** `SmartExecutor` (per-collection queuing with TTL)
+**Default:** `SmartExecutor` created as `new SmartExecutor(undefined, false)` - a single queue for all operations. Per-collection queues are enabled automatically during `init()` when the adapter signals `smartExecutor = true` (see below).
 
 ### Executor Classes
 
@@ -375,6 +448,6 @@ const db = new ValtheraClass({
 });
 ```
 
-**Note:** When an adapter has `smartExecutor = true`, `ValtheraClass` automatically enables `aware` mode on the `SmartExecutor`.
+**Note:** The automatic `aware` activation in `ValtheraClass` happens only when all of the following are true: no explicit `executor` was passed, `executorAware` is `true` (default), the adapter has `smartExecutor = true`, and the executor is a `SmartExecutor`.
 
 See [Executor Tutorial](../dev/executor.md) for detailed explanation.

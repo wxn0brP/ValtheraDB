@@ -28,16 +28,25 @@ The `execute` method receives a context object:
 ```typescript
 interface PluginContext {
   op: string;        // Operation name: "find", "add", "update", etc.
+  kind: PluginOpKind; // Operation kind: "read" | "write" | "delete" | "collection" | "index" | "meta" | "control"
+  collection?: string; // Collection name (for string-only ops, this is the query itself)
   query: any;        // The query object (or collection name string for some ops)
   next: () => Promise<any>; // Call the next plugin or adapter
+  setOp(op: string, query?: any): void; // Rewrite the operation (and optionally the query)
+  setQuery(query: any): void;           // Rewrite the query for the current operation
 }
 ```
 
+The `kind` field groups operations, so plugins can branch without hard-coding name lists (e.g., `ctx.kind === "write"` covers `add`, `bulkAdd`, `update`, `updateOne`, `updateOneOrAdd`, `toggleOne`). Unknown operation names fall back to `"write"`.
+
 The `op` field can be any of:
 
-- `getCollections`, `ensureCollection`, `issetCollection`, `removeCollection`, `createIndex`, `removeIndex`
-- `add`, `bulkAdd`, `find`, `findOne`, `update`, `updateOne`, `remove`, `removeOne`, `count`
-- `updateOneOrAdd`, `toggleOne`
+- Collection management (`kind: "collection"`): `ensureCollection`, `issetCollection`, `removeCollection`
+- Index management (`kind: "index"`): `createIndex`, `removeIndex`
+- CRUD (`kind: "read"`, `"write"`, `"delete"`): `add`, `bulkAdd`, `find`, `findOne`, `update`, `updateOne`, `remove`, `removeOne`, `count`, `updateOneOrAdd`, `toggleOne`
+- Metadata (`kind: "meta"`): `getCollections`
+
+**Note:** `capabilities()` and transaction control operations (`beginTransaction`, `commitTransaction`, `rollbackTransaction`) bypass the plugin chain.
 
 ## Basic Plugin Structure
 
@@ -140,23 +149,12 @@ Prevent certain operations:
 ```typescript
 const readOnlyPlugin: ValtheraPlugin = {
   name: "read-only",
-  
+
   async execute(ctx) {
-    const writeOps = [
-      "add",
-      "bulkAdd",
-      "update",
-      "updateOne",
-      "remove",
-      "removeOne",
-      "updateOneOrAdd",
-      "toggleOne",
-    ];
-    
-    if (writeOps.includes(ctx.op)) {
+    if (ctx.kind === "write" || ctx.kind === "delete") {
       throw new Error(`Operation ${ctx.op} is not allowed in read-only mode`);
     }
-    
+
     return ctx.next();
   }
 };
@@ -175,6 +173,30 @@ const softDeletePlugin: ValtheraPlugin = {
     if (ctx.op === "find" || ctx.op === "findOne") {
       ctx.query.search ||= {};
       ctx.query.search.$ne = { deleted: true };
+    }
+
+    return ctx.next();
+  }
+};
+```
+
+## Rewriting Operations
+
+Use `setOp()` / `setQuery()` to rewrite the operation or its query before it reaches the adapter. `kind` and `collection` are updated automatically:
+
+```typescript
+const aliasPlugin: ValtheraPlugin = {
+  name: "alias",
+
+  async execute(ctx) {
+    // Redirect reads on "user" to the "users" collection
+    if (ctx.query?.collection === "user") {
+      ctx.setQuery({ ...ctx.query, collection: "users" });
+    }
+
+    // Re-route all "remove" calls to "removeOne"
+    if (ctx.op === "remove") {
+      ctx.setOp("removeOne");
     }
 
     return ctx.next();

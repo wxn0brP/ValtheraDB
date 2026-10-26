@@ -16,7 +16,7 @@ interface User {
   email: string;
 }
 
-const db = forgeTypedValthera<{ users: User[] }>(
+const db = forgeTypedValthera<{ users: User }>(
   new ValtheraClass({ adapter })
 );
 

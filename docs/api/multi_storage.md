@@ -7,7 +7,8 @@ ValtheraDB provides two ways to work with multiple storage backends.
 Queries across multiple adapters simultaneously.
 
 ```typescript
-import { MultiBackend, ValtheraClass } from "@wxn0brp/db-core";
+import { ValtheraClass } from "@wxn0brp/db-core";
+import { MultiBackend } from "@wxn0brp/db-core/db/multiStorage";
 
 const multi = new MultiBackend([
   adapter1,
@@ -23,16 +24,20 @@ const db = new ValtheraClass({ adapter: multi });
 | Operation | Behavior |
 |-----------|----------|
 | `add` | Primary backend only |
+| `bulkAdd` | Primary backend only (loops over `add`) |
 | `find` | All backends, results merged (flattened) |
 | `findOne` | Iterates backends, returns first non-null match |
+| `count` | All backends via `find`, summed length |
 | `update` | All backends, results merged |
 | `updateOne` | Iterates backends, returns first non-null result |
 | `remove` | All backends, results merged |
 | `removeOne` | Iterates backends, returns first non-null result |
-| `ensureCollection` | All backends |
+| `ensureCollection` | All backends (returns `true` if any created it) |
 | `issetCollection` | Returns `true` if any backend has the collection |
-| `removeCollection` | All backends |
+| `removeCollection` | All backends (returns `true` if any removed it) |
 | `getCollections` | Unique union from all backends |
+| `createIndex` / `removeIndex` | No-op (inherited default) |
+| `capabilities` | Inherited default values |
 
 **Use cases:** replication, migration, read replicas
 
@@ -41,16 +46,17 @@ const db = new ValtheraClass({ adapter: multi });
 Routes collections to specific backends based on rules.
 
 ```typescript
-import { RoutedStorage, ValtheraClass } from "@wxn0brp/db-core";
+import { ValtheraClass } from "@wxn0brp/db-core";
+import { RoutedStorage } from "@wxn0brp/db-core/db/routedStorage";
 
 const routed = new RoutedStorage([
-  { match: "logs", backends: logAdapter },
-  { match: /^temp_/, backends: memoryAdapter },
-  { match: (q) => q.collection.includes("archive"), backends: archiveAdapter }
+  { match: "logs", backends: [logAdapter] },
+  { match: /^temp_/, backends: [memoryAdapter] },
+  { match: (q) => q.collection.includes("archive"), backends: [archiveAdapter] }
 ], defaultAdapter);
-
-const db = new ValtheraClass({ adapter: routed });
 ```
+
+**Note:** `backends` in each rule **must be an array** of backends. The `defaultBackend` accepts a single backend or an array.
 
 **Match types:**
 
@@ -62,14 +68,20 @@ const db = new ValtheraClass({ adapter: routed });
 
 | Operation | Behavior |
 |-----------|----------|
-| `add` | Writes to first matched backend, then replicates to all matched backends |
+| `add` | Writes to first matched backend, then replicates the result to all matched backends |
+| `bulkAdd` | Loops over `add` (same routing per document) |
 | `find` | First matched backend only |
 | `findOne` | First matched backend only |
-| `update` | All matched backends |
-| `updateOne` | All matched backends |
-| `remove` | All matched backends |
-| `removeOne` | All matched backends |
-| `getCollections` | Unique union from all rule backends |
+| `count` | First matched backend only (via `find`) |
+| `update` | All matched backends (first result is returned) |
+| `updateOne` | All matched backends (first result is returned) |
+| `remove` | All matched backends (first result is returned) |
+| `removeOne` | All matched backends (first result is returned) |
+| `ensureCollection` | All matched backends (first result is returned) |
+| `issetCollection` | First matched backend only |
+| `removeCollection` | All matched backends |
+| `getCollections` | Unique union from all rule backends and the default backend |
+| `createIndex` / `removeIndex` | No-op (inherited default) |
 
 When no rules match, the `defaultBackend` is used.
 

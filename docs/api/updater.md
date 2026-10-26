@@ -4,7 +4,7 @@
 
 ### `$push`
 
-Adds an element to the end of an array.
+Adds an element to the end of an array. If the field is not an array yet, a new array with the element is created.
 
 ```javascript
 {
@@ -365,21 +365,45 @@ Instead of using operator objects, you can provide a function for fully custom u
 ```typescript
 // Updater function signature:
 (data: T, context: VContext) => Data | void
+```
 
+The function receives the current document and a context object. It works in one of two modes:
+
+1. **Mutate in place and return `void`** - the mutated document is stored (safe way to change a few fields):
+
+```typescript
 // Example: double the counter field
 await db.users.updateOne(
   { name: "Alice" },
-  (user, ctx) => ({ counter: user.counter * 2 })
+  user => { user.counter = user.counter * 2; }
 );
 
 // Example: using context for external values
 await db.users.update(
   { status: "active" },
-  (user, ctx) => ({ score: user.score + ctx.bonus }),
-  {},  // context
+  (user, ctx) => { user.score = user.score + ctx.bonus; },
+  { bonus: 10 },  // context
 );
 ```
 
-The function receives the current document and a context object. It can either:
-1. **Return** a new object with the fields to update
-2. **Mutate** the document in place and return `void`
+2. **Return a new object** - the returned object **replaces the whole document**. It is not merged with the original:
+
+```typescript
+// Returns a full replacement document
+await db.users.updateOne(
+  { name: "Alice" },
+  user => ({ ...user, counter: user.counter * 2 })
+);
+```
+
+**Warning:** returning a partial object replaces the document entirely:
+
+```typescript
+// WRONG: the document becomes { counter: 4 } and loses all other fields
+await db.users.updateOne(
+  { name: "Alice" },
+  user => ({ counter: user.counter * 2 })
+);
+```
+
+**Note:** for partial field updates, prefer mutation, plain field assignment (`{ counter: 5 }`), or operators like `$inc` and `$set`.

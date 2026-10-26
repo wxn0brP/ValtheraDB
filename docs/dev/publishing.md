@@ -49,7 +49,7 @@ export const DYNAMIC = {
 };
 ```
 
-`def` is the mandatory default factory, used whenever the resolver gets no explicit variant.
+`def` is the default factory, used whenever the resolver gets no explicit variant. Variants are resolved as exports of the same module: `VDB().sqlite.bun("db.sqlite")` calls the `bun` export.
 
 ```typescript
 export const DYNAMIC = {

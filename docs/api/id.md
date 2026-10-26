@@ -69,7 +69,7 @@ const sorted2 = sortByIds(items, "id");
 Compares two IDs (string or number).
 
 ```typescript
-import { compareIds } from "@wxn0brp/db-core";
+import { compareIds } from "@wxn0brp/db-core/utils/id";
 
 const result = compareIds("m1abc23-x-y", "m2def45-a-b");
 // Negative if first is older, positive if newer, 0 if equal
@@ -101,10 +101,10 @@ By default, ValtheraDB uses `_id` as the ID field. You can configure a custom ID
 ```typescript
 import { ValtheraCreate } from "@wxn0brp/db";
 
-const db = ValtheraCreate("./my-db", {
+const db = ValtheraCreate<{ users: { name: string } }>("./my-db", {
   adapterOpts: {
     idKey: "id", // Use "id" instead of "_id"
-  }
+  },
 });
 
 // Now all documents will use "id" as the ID field

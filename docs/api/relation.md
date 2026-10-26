@@ -1,6 +1,6 @@
 # Relation Class Documentation
 
-The `Relation` class provides a mechanism to handle relationships between collections in a database. It supports one-to-one, one-to-many, and many-to-many relationships.
+The `Relation` class provides a mechanism to handle relationships between collections in a database. It supports one-to-one, one-to-many, many-to-many, and many-to-one (`n1`) relationships.
 
 ## Class: `Relation`
 
@@ -77,7 +77,9 @@ Similar to `"1"`, but internally performs a `findOne` operation for each documen
 
 #### `"1n"` - One-to-Many
 
-Resolves multiple related entries. Supports `dbFindOpts` for sorting/pagination of related items.
+Resolves multiple related entries.
+
+**Note:** `dbFindOpts` (limit, sorting, etc.) is applied **globally** to the related query, not per source document. With `limit: 10`, at most 10 related documents are fetched in total and then grouped by parent. For per-parent limits, query the related collection directly.
 
 ```javascript
 {
@@ -86,7 +88,7 @@ Resolves multiple related entries. Supports `dbFindOpts` for sorting/pagination 
     pk: "_id",
     fk: "authorId",
     type: "1n",
-    dbFindOpts: { limit: 10, sortBy: "createdAt", sortAsc: false }
+    dbFindOpts: { sortBy: "createdAt", sortAsc: false }
   }
 }
 ```
@@ -112,6 +114,21 @@ Resolves all entries via a pivot/join table. **Requires** the `through` option.
 }
 ```
 
+#### `"n1"` - Many-to-One (from an array of keys)
+
+Resolves a single related entry. The source document's `pk` field holds an **array** of related keys; the **first** key in the array is used to resolve one related document.
+
+```javascript
+{
+  editor: {
+    path: ["main", "users"],
+    pk: "editorIds",   // array of user ids on the source document
+    fk: "_id",         // field on the related document
+    type: "n1"
+  }
+}
+```
+
 ---
 
 ### Configuration Options
@@ -123,10 +140,10 @@ Each relation entry supports these options:
 | `path` | `[string, string]` | **required** | `[dbName, collectionName]` of the related data |
 | `pk` | `string` | `"_id"` | Field on the source document to match |
 | `fk` | `string` | `"_id"` | Field on the related document to match |
-| `type` | `"1" \| "11" \| "1n" \| "nm"` | `"1"` | Relationship type |
+| `type` | `"1" \| "11" \| "1n" \| "nm" \| "n1"` | `"1"` | Relationship type |
 | `as` | `string` | relation key name | Field name in the result object |
 | `select` | `string[]` | `undefined` | Fields to include from related documents |
-| `dbFindOpts` | `DbFindOpts` | `{}` | Options for `"1n"` type (sorting, pagination) |
+| `dbFindOpts` | `DbFindOpts` | `{}` | Options for the related query (sorting, pagination); applied globally, not per parent |
 | `through` | `Object` | `undefined` | Pivot table config for `"nm"` type |
 | `relations` | `Relation` | `undefined` | Nested relations to resolve on related documents |
 
@@ -244,7 +261,7 @@ const relations = {
         pk: "_id",
         fk: "postId",
         type: "1n",
-        dbFindOpts: { limit: 20, sortBy: "createdAt", sortAsc: false }
+        dbFindOpts: { sortBy: "createdAt", sortAsc: false }
     }
 };
 

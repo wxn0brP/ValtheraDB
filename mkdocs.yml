@@ -22,6 +22,7 @@ nav:
       - DB Find Options: api/db_find_opts.md
       - Collection: api/collection.md
       - Valthera: api/valthera.md
+      - ValtheraCreate: api/create.md
       - Memory DB: api/memory.md
       - Multi Storage: api/multi_storage.md
       - Forge: api/forge.md
@@ -29,6 +30,7 @@ nav:
       - Relation: api/relation.md
       - Updater: api/updater.md
       - Remote: api/remote.md
+      - Errors: api/errors.md
   - Ecosystem:
       - Storage Adapters: ecosystem/adapters.md
       - Extensions: ecosystem/extensions.md

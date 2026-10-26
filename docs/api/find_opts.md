@@ -162,7 +162,8 @@ Using all operators together to demonstrate the execution stack.
 
 When using dotted paths or array paths in `select` / `exclude`,
 **paths do not traverse through arrays**.
-If a path segment points to an array, it will be replaced with an empty object:
+If a path segment points to an array (and the next segment is not a numeric index),
+the field is omitted from the result:
 
 ```javascript
 // Original Object
@@ -178,19 +179,24 @@ If a path segment points to an array, it will be replaced with an empty object:
     select: ["users.name"]
 }
 
-// Result - array is replaced with object!
-{
-    users: {
-        name: undefined  // array was replaced
-    }
-}
+// Result - the "users" field is omitted entirely
+{}
 ```
 
-To work with array elements, use array paths with specific indices:
+To work with array elements, use paths with specific indices:
 
 ```javascript
 {
-    select: [["users", "0", "name"]]
+    select: ["users.0.name"] // or [["users", "0", "name"]]
+}
+
+// Result
+{
+    users: {
+        "0": {
+            name: "Alice"
+        }
+    }
 }
 ```
 
@@ -201,16 +207,23 @@ To work with array elements, use array paths with specific indices:
 
 ### Transform Function Return Value
 
-The `transform` function can either:
+The `transform` function **must return the resulting object**. It can either:
 
-1. **Modify and return** the object (creates new reference)
-2. **Mutate in place** and return `undefined` (keeps original reference)
+1. **Modify and return** the object (creates a new reference)
+2. **Mutate in place** and return the same object
 
 ```javascript
 // Option 1: Return new object
 { transform: (doc) => ({ ...doc, modified: true }) }
 
-// Option 2: Mutate in place
+// Option 2: Mutate and return the same reference
+{ transform: (doc) => { doc.modified = true; return doc; } }
+```
+
+**Warning:** returning `undefined` does not keep the original object. The result becomes `undefined` (or an empty object `{}` when `select` is used):
+
+```javascript
+// WRONG - do not do this
 { transform: (doc) => { doc.modified = true; } }
 ```
 
@@ -233,5 +246,5 @@ The full execution order is always: `transform` -> `exclude` -> `select`.
 
 ### Non-Existent Paths
 
-- Selecting non-existent paths silently returns `undefined` for that field
+- Selecting non-existent paths **omits** the field from the result (no `undefined` placeholder is created)
 - Excluding non-existent paths has no effect (no error thrown)

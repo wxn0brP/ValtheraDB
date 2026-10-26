@@ -134,13 +134,18 @@ const executor = new SmartExecutor(300000, true);
 // "comments" -> separate queue
 ```
 
-When `aware = false` (default), all operations share a single queue:
+When `aware = false`, all operations share a single queue:
 
 ```typescript
 const executor = new SmartExecutor(300000, false);
 // All operations -> single shared queue
 // Behaves like simple Executor but with TTL cleanup
 ```
+
+**Which default applies?**
+
+- A standalone `new SmartExecutor()` uses `aware = true` (per-collection queues).
+- `ValtheraClass` without an explicit executor creates `new SmartExecutor(undefined, false)` - a single queue. It switches to per-collection queues during `init()` only if the adapter signals `smartExecutor = true` (and `executorAware` is not disabled).
 
 ## Adapter Integration
 
@@ -149,26 +154,27 @@ Adapters can signal support for SmartExecutor:
 ```typescript
 class MyAdapter extends ActionsBase {
   smartExecutor = true; // Signals support for per-collection queuing
-  
+
   // ... adapter methods
 }
 ```
 
-When an adapter has `smartExecutor = true`, ValtheraClass automatically enables `aware` mode on the SmartExecutor.
+When an adapter has `smartExecutor = true`, `ValtheraClass` automatically enables `aware` mode on the SmartExecutor - but only when no explicit `executor` was passed to the constructor.
 
 ## executorAware Option
 
 By default, `ValtheraClass` sets `executorAware: true` in its options. This means:
 
-- During `init()`, if the adapter signals `smartExecutor = true` AND you're using a `SmartExecutor`, the executor's `aware` mode is automatically enabled.
+- During `init()`, if no explicit `executor` was passed, the adapter signals `smartExecutor = true`, and the default executor is a `SmartExecutor`, the executor's `aware` mode is automatically enabled.
 - This allows per-collection queuing without manual configuration.
 
-You can disable this behavior by explicitly setting `executorAware: false`:
+If you pass your own `SmartExecutor`, its constructed `aware` value is used; `executorAware` does not change it.
+
+You can disable the automatic activation by setting `executorAware: false`:
 
 ```typescript
 const db = new ValtheraClass({
   adapter: myAdapter,
-  executor: new SmartExecutor(),
   executorAware: false // Prevent automatic aware mode activation
 });
 ```

@@ -53,14 +53,14 @@ To use an adapter manually, install the package and create an instance.
 | sqlite | SQLite (Bun/Node/better-sqlite3) | `bun add @wxn0brp/db-storage-sqlite` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-sqlite) |
 | mongodb | MongoDB | `bun add @wxn0brp/db-storage-mongodb` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-mongodb) |
 | bin | Single binary file (msgpack) | `bun add @wxn0brp/db-storage-bin` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-bin) |
-| dir-c | Native C via bun:ffi (Linux) | built with `./build.sh` | [GitHub](https://github.com/wxn0brP/ValtheraDB-c-engine) |
+| dir-c | Native C via bun:ffi (Linux) | Manual installation (see repo) | [GitHub](https://github.com/wxn0brP/ValtheraDB-c-engine) |
 | csv | CSV files | `bun add @wxn0brp/db-storage-csv` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-csv) |
 | web-storage | Browser localStorage/sessionStorage/IndexedDB | `bun add @wxn0brp/db-storage-web` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-web) |
-| length | Fixed-length binary records | `bun add @wxn0brp/db-storage-length` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-length) |
-| crypt | AES-256-GCM encrypted | `bun add @wxn0brp/db-storage-crypt` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-crypt) |
-| rocks | RocksDB key-value | `bun add @wxn0brp/db-storage-rocks` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-rocks) |
-| accdb | MS Access via ODBC | `bun add @wxn0brp/db-storage-accdb` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-accdb) |
-| xlsx | Excel via xlsx-js | `bun add @wxn0brp/db-storage-xlsx` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-xlsx) |
+| length | Fixed-length binary records | `bun add github:wxn0brP/ValtheraDB-storage-length#dist` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-length) |
+| crypt | AES-256-GCM encrypted | `bun add github:wxn0brP/ValtheraDB-storage-crypt#dist` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-crypt) |
+| rocks | RocksDB key-value | `bun add github:wxn0brP/ValtheraDB-storage-rocks#dist` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-rocks) |
+| accdb | MS Access via ODBC | `bun add github:wxn0brP/ValtheraDB-storage-accdb#dist` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-accdb) |
+| xlsx | Excel via xlsx-js | `bun add github:wxn0brP/ValtheraDB-storage-xlsx#dist` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-xlsx) |
 | rn | React Native AsyncStorage | `bun add @wxn0brp/db-storage-rn` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-rn) |
 | git | Git-backed storage (dir) | `bun add @wxn0brp/db-storage-git` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-git) |
 

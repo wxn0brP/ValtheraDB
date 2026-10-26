@@ -95,7 +95,7 @@ If you run this code, a new folder named `my-blog-db` will be created in your pr
 
 Our blog will have authors, so let's create a `users` collection and add our first author to it. A "collection" is just a group of similar documents, like a table in a SQL database.
 
-The `db.add()` method adds a new document to a specified collection and automatically generates a unique `_id` for it.
+The `db.users.add()` method adds a new document to the `users` collection and automatically generates a unique `_id` for it.
 
 ```typescript
 async function setup() {
@@ -149,11 +149,11 @@ async function setup() {
 setup();
 ```
 
-Here we used `db.findOne()` to retrieve a single document that matches our query. It's a quick way to find a specific entry.
+Here we used `db.users.findOne()` to retrieve a single document that matches our query. It's a quick way to find a specific entry.
 
 ## Step 5: Updating Data
 
-Sometimes, data changes! ValtheraDB provides easy ways to update existing documents. Let's say Jane Doe decided to update her email address. We can use `db.updateOne()` to modify her user record.
+Sometimes, data changes! ValtheraDB provides easy ways to update existing documents. Let's say Jane Doe decided to update her email address. We can use `users.updateOne()` to modify her user record.
 
 ```typescript
 async function updateAuthor() {
@@ -177,11 +177,11 @@ async function updateAuthor() {
 updateAuthor();
 ```
 
-The `db.updateOne()` method takes a search query and an updater object. It finds the *first* document matching the query and applies the updates. For more complex updates (like incrementing numbers or manipulating arrays), you can use [Updater Operators](api/updater.md).
+The `users.updateOne()` method takes a search query and an updater object. It finds the *first* document matching the query and applies the updates. For more complex updates (like incrementing numbers or manipulating arrays), you can use [Updater Operators](api/updater.md).
 
 ## Step 6: Updating or Adding (Upsert)
 
-Sometimes you need to ensure that a piece of data exists: updating it if it's already there or creating it if it's new. This is a common pattern known as "upsert", and ValtheraDB supports it with `db.updateOneOrAdd()`.
+Sometimes you need to ensure that a piece of data exists: updating it if it's already there or creating it if it's new. This is a common pattern known as "upsert", and ValtheraDB supports it with `posts.updateOneOrAdd()`.
 
 Let's try to update a post. If the post with a specific title exists, we'll update its content. If not, we'll add it as a new post.
 
@@ -225,7 +225,7 @@ async function upsertPost() {
 upsertPost();
 ```
 
-`db.updateOneOrAdd()` is incredibly flexible. The `add_arg` option allows you to specify additional data to be merged when a new document is created.
+`posts.updateOneOrAdd()` is incredibly flexible. The `add_arg` option allows you to specify additional data to be merged when a new document is created.
 
 ## Step 7: Bringing It All Together with Relations
 
@@ -305,3 +305,4 @@ You've built a working application with ValtheraDB. Here's what to explore next:
 - Learn the fundamental ideas behind ValtheraDB on the **[Core Concepts](core_concepts.md)** page.
 - See all the ways you can query your data in the **[Search Options](api/search_opts.md)** reference.
 - Learn how to perform complex data updates in the **[Updater](api/updater.md)** documentation.
+- Handle failures gracefully with the **[Errors](api/errors.md)** reference.

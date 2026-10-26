@@ -34,18 +34,26 @@ console.log(users.length); // 2
 
 ## How It Works
 
-The in-memory adapter uses a `Map<string, any[]>` internally. All data is isolated using `structuredClone` on read and write, ensuring that external mutations don't affect the database and vice versa.
+The in-memory adapter uses a `Map<string, any[]>` internally. Data read from the database is isolated with `structuredClone`, so mutating a document returned by `find()`/`findOne()` does not affect stored data and vice versa.
 
 ```typescript
 const db = createMemoryValthera();
 await db.users.add({ name: "Alice" });
 
-// External mutation does NOT affect stored data
+// Reads are isolated
 const user = await db.users.findOne({});
 user.name = "Bob"; // mutation
 const stored = await db.users.findOne({});
-console.log(stored.name); // still "Alice" - structuredClone isolation
+console.log(stored.name); // still "Alice" - reads are cloned
+
+// Writes are not cloned: the object returned by add() is the same reference stored internally
+const added = await db.users.add({ name: "Carol" });
+added.name = "Eve"; // mutates the stored document
+const stored2 = await db.users.findOne({ name: "Eve" });
+console.log(stored2.name); // "Eve"
 ```
+
+For full isolation, clone data yourself before adding it.
 
 ## Use Cases
 

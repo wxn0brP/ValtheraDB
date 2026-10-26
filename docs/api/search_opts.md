@@ -5,7 +5,9 @@
 ### Logical Operators
 
 #### $and
+
 Checks if all conditions in an array are true.
+
 ```javascript
 {
   $and: [
@@ -16,7 +18,9 @@ Checks if all conditions in an array are true.
 ```
 
 #### $or
+
 Checks if at least one condition in an array is true.
+
 ```javascript
 {
   $or: [
@@ -27,7 +31,9 @@ Checks if at least one condition in an array is true.
 ```
 
 #### $not
+
 Negates a condition.
+
 ```javascript
 {
   $not: { $type: { age: "string" } }
@@ -37,73 +43,97 @@ Negates a condition.
 ### Comparison Operators
 
 #### $ne
+
 Not equal comparison.
+
 ```javascript
 { $ne: { status: "banned" } }
 ```
 
 #### $gt
+
 Greater than comparison.
+
 ```javascript
 { $gt: { age: 18 } }
 ```
 
 #### $lt
+
 Less than comparison.
+
 ```javascript
 { $lt: { score: 100 } }
 ```
 
 #### $gte
+
 Greater than or equal comparison.
+
 ```javascript
 { $gte: { price: 9.99 } }
 ```
 
 #### $lte
+
 Less than or equal comparison.
+
 ```javascript
 { $lte: { quantity: 50 } }
 ```
 
 #### $idGt
+
 Greater than comparison for IDs (accepts `string` or `number`).
+
 ```javascript
 { $idGt: { _id: "miblu25k-d-g" } }
 ```
 
 #### $idLt
+
 Less than comparison for IDs (accepts `string` or `number`).
+
 ```javascript
 { $idLt: { _id: "miblu25k-d-g" } }
 ```
 
 #### $idGte
+
 Greater than or equal comparison for IDs (accepts `string` or `number`).
+
 ```javascript
 { $idGte: { _id: "miblu25k-d-g" } }
 ```
 
 #### $idLte
+
 Less than or equal comparison for IDs (accepts `string` or `number`).
+
 ```javascript
 { $idLte: { _id: "miblu25k-d-g" } }
 ```
 
 #### $in
+
 Checks if value is in an array.
+
 ```javascript
 { $in: { status: ["active", "pending"] } }
 ```
 
 #### $nin
+
 Checks if value is not in an array.
+
 ```javascript
 { $nin: { category: ["archived", "deleted"] } }
 ```
 
 #### $between
+
 Checks if a number is between two values (inclusive).
+
 ```javascript
 { $between: { age: [18, 65] } }
 ```
@@ -111,33 +141,49 @@ Checks if a number is between two values (inclusive).
 ### Type and Existence Operators
 
 #### $exists
+
 Checks if a field exists (or doesn't exist).
+
 ```javascript
 { $exists: { email: true, deletedAt: false } }
 ```
 
+For nested fields, use a nested object instead of dotted paths:
+
+```javascript
+{ $exists: { address: { zipCode: true } } }
+```
+
 #### $type
+
 Checks the type of a field.
+
 ```javascript
 { $type: { age: "number", name: "string" } }
 ```
 
 ### Array Operators
 
-#### $arrinc
+#### $arrInc
+
 Checks if an array includes at least one of the specified values.
+
 ```javascript
-{ $arrinc: { tags: ["developer", "designer"] } }
+{ $arrInc: { tags: ["developer", "designer"] } }
 ```
 
-#### $arrincall
+#### $arrIncAll
+
 Checks if an array includes all of the specified values.
+
 ```javascript
-{ $arrincall: { permissions: ["read", "write"] } }
+{ $arrIncAll: { permissions: ["read", "write"] } }
 ```
 
 #### $size
+
 Checks the length of an array or string.
+
 ```javascript
 { $size: { tags: 3 } }
 ```
@@ -145,31 +191,44 @@ Checks the length of an array or string.
 ### String Operators
 
 #### $regex
-Tests a string against a regular expression.
+
+Tests a string against a regular expression. Accepts a `RegExp` object or a string pattern.
+
 ```javascript
 { $regex: { email: /^[^@]+@[^@]+\.[^@]+$/ } }
+
+// string pattern is also accepted:
+{ $regex: { email: "^[^@]+@[^@]+\\.[^@]+$" } }
 ```
 
 #### $startsWith
+
 Checks if a string starts with a specified value.
+
 ```javascript
 { $startsWith: { name: "Dr." } }
 ```
 
 #### $endsWith
+
 Checks if a string ends with a specified value.
+
 ```javascript
 { $endsWith: { email: "@example.com" } }
 ```
 
 #### $iStartsWith
+
 Checks if a string starts with a specified value (case-insensitive).
+
 ```javascript
 { $iStartsWith: { name: "dr" } } // matches "Dr.", "DR.", "dr."
 ```
 
 #### $iEndsWith
+
 Checks if a string ends with a specified value (case-insensitive).
+
 ```javascript
 { $iEndsWith: { email: "@EXAMPLE.COM" } } // matches "@example.com", "@Example.Com"
 ```
@@ -177,7 +236,9 @@ Checks if a string ends with a specified value (case-insensitive).
 ### Other Operators
 
 #### $subset
+
 Disables advanced operator parsing for the wrapped fields, treating `$`-prefixed keys as literal field names. Use this when your data contains keys that start with `$` (like MongoDB-style fields) and you want to match them literally rather than having them interpreted as operators.
+
 
 ```javascript
 // Without $subset: $lt would be interpreted as "less than" operator
@@ -214,6 +275,7 @@ The function receives the document and a context object, and returns `true` to i
 
 ### Complex Validation
 
+
 ```javascript
 const criteria = {
   $and: [
@@ -228,7 +290,7 @@ const criteria = {
       $regex: { email: /^[^@]+@[^@]+\.[^@]+$/ }
     },
     {
-      $arrincall: { roles: ["user"] },
+      $arrIncAll: { roles: ["user"] },
       $not: { $in: { status: ["banned", "suspended"] } }
     }
   ]
@@ -247,6 +309,7 @@ const isValid = hasFieldsAdvanced(user, criteria); // true
 
 ### Nested Conditions
 
+
 ```javascript
 const criteria = {
   $and: [
@@ -256,11 +319,11 @@ const criteria = {
     },
     {
       $or: [
-        { $exists: { "address.zipCode": true } },
+        { $exists: { address: { zipCode: true } } },
         {
           $and: [
-            { $exists: { "address.city": true } },
-            { $exists: { "address.country": true } }
+            { $exists: { address: { city: true } } },
+            { $exists: { address: { country: true } } }
           ]
         }
       ]
@@ -280,33 +343,38 @@ const isValid = hasFieldsAdvanced(user, criteria); // true
 
 ## Error Handling
 
-The function will throw an error if:
+The function throws a `QueryValidationError` (code `QUERY_INVALID`) if:
 - The `fields` parameter is not an object
-- The `fields` parameter is null
+- The `fields` parameter is `null`
 
 Always wrap the function call in a try-catch block when using with untrusted input:
 
+
 ```javascript
+import { hasFieldsAdvanced } from "@wxn0brp/db-core/utils/hasFieldsAdvanced";
+import { isValtheraError } from "@wxn0brp/db-core/errors";
+
 try {
   const isValid = hasFieldsAdvanced(obj, criteria);
   // Handle result
 } catch (error) {
-  // Handle error
-  console.error('Validation error:', error.message);
+  if (isValtheraError(error)) console.error(error.code, error.message);
 }
 ```
 
 ### Undefined Values
 
-Properties with `undefined` values are treated as **missing keys**:
+A field whose value is `undefined` is still an **existing own key**. It matches direct comparison and `$exists: { field: true }`:
+
 
 ```javascript
 const obj = { a: undefined };
-const criteria = { a: undefined };
-hasFieldsAdvanced(obj, criteria); // false - treated as missing key
+hasFieldsAdvanced(obj, { a: undefined }); // true - own key with undefined value
+hasFieldsAdvanced(obj, { $exists: { a: true } }); // true - key exists
 ```
 
-If you need to check for `undefined` values, use `$exists` operator:
+Only a **missing key** requires `$exists`:
+
 
 ```javascript
 { $exists: { a: false } } // checks if key 'a' does not exist
@@ -328,4 +396,5 @@ For complex queries, structure your criteria accordingly.
 ### Null vs Undefined
 
 - `null` values are matched with `{ field: null }`
-- `undefined` values or missing keys require `$exists: { field: false }`
+- Missing keys require `$exists: { field: false }`
+- A field explicitly set to `undefined` is an existing key and matches `$exists: { field: true }`
