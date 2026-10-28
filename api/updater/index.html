@@ -1957,6 +1957,9 @@
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="function-based-updater">Function-Based Updater</h2>
+<blockquote>
+<p><strong>Deprecated:</strong> function-based updaters will be removed in a future release. Use operator objects, or compute the new document in application code and pass it as data.</p>
+</blockquote>
 <p>Instead of using operator objects, you can provide a function for fully custom update logic:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// Updater function signature:</span>
 <span class="p">(</span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="kt">T</span><span class="p">,</span><span class="w"> </span><span class="nx">context</span><span class="o">:</span><span class="w"> </span><span class="kt">VContext</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">Data</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ow">void</span>
