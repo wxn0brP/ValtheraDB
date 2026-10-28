@@ -43,7 +43,7 @@ Finds data in the collection based on a query.
 	- `search` (`Search<D>`, optional, default: `{}`): The search query.
 	- `options` (`DbFindOpts<D>`, optional, default: `{}`): Post-retrieval options (e.g., `sum`, `reverse`, `sortBy`, `limit`, `offset`).
 	- `findOpts` (`FindOpts<D>`, optional, default: `{}`): Post-matching options (`select`, `exclude`, `transform`).
-	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries).
+	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries). **Deprecated** together with function-based queries.
 
 - **Returns:**
 	- `Promise<D[]>`: Found data. Empty array if no match is found.
@@ -54,7 +54,7 @@ Finds one matching entry in the collection.
 - **Parameters:**
 	- `search` (`Search<D>`, optional, default: `{}`): The search query.
 	- `findOpts` (`FindOpts<D>`, optional, default: `{}`): Post-matching options.
-	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries).
+	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries). **Deprecated** together with function-based queries.
 
 - **Returns:**
 	- `Promise<D | null>`: Found data. `null` if no match is found.
@@ -76,7 +76,7 @@ Updates data in the collection.
 - **Parameters:**
 	- `search` (`Search<D>`): The search query.
 	- `updater` (`Updater<D>`): Update arguments.
-	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries).
+	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries). **Deprecated** together with function-based queries.
 
 - **Returns:**
 	- `Promise<D[]>`: Updated data. Empty array if no match is found.
@@ -87,7 +87,7 @@ Updates one entry in the collection.
 - **Parameters:**
 	- `search` (`Search<D>`): The search query.
 	- `updater` (`Updater<D>`): Update arguments.
-	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries).
+	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries). **Deprecated** together with function-based queries.
 
 - **Returns:**
 	- `Promise<D | null>`: Updated data. `null` if no match is found.
@@ -97,7 +97,7 @@ Removes data from the collection.
 
 - **Parameters:**
 	- `search` (`Search<D>`): The search query.
-	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries).
+	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries). **Deprecated** together with function-based queries.
 
 - **Returns:**
 	- `Promise<D[]>`: Removed data. Empty array if no match is found.
@@ -107,7 +107,7 @@ Removes one entry from the collection.
 
 - **Parameters:**
 	- `search` (`Search<D>`): The search query.
-	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries).
+	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries). **Deprecated** together with function-based queries.
 
 - **Returns:**
 	- `Promise<D | null>`: Removed data. `null` if no match is found.
@@ -120,7 +120,7 @@ Updates one entry or adds a new one if it doesn't exist.
 	- `updater` (`Updater<D>`): Update arguments.
 	- `options` (`Object`, optional): An object containing:
 		- `add_arg` (`Arg<D>`, default: `{}`): Data to merge when adding a new entry.
-		- `context` (`VContext`, default: `{}`): The context object (for function-based queries).
+		- `context` (`VContext`, default: `{}`): The context object (for function-based queries). **Deprecated** together with function-based queries.
 		- `id_gen` (`boolean`, default: `true`): Whether to generate an ID for the new entry.
 
 - **Returns:**
@@ -132,7 +132,7 @@ Removes one entry if it exists, or adds a new one if it doesn't. Usage e.g. for 
 - **Parameters:**
 	- `search` (`Search<D>`): The search query.
 	- `data` (`Arg<D>`, optional, default: `{}`): The data to use when adding.
-	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries).
+	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries). **Deprecated** together with function-based queries.
 
 - **Returns:**
 	- `Promise<{ data: D; type: "added" | "removed" }>`: A promise that resolves with the removed or added entry.

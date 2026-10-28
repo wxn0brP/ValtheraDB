@@ -360,6 +360,8 @@ Renames a key in an object.
 
 ## Function-Based Updater
 
+> **Deprecated:** function-based updaters will be removed in a future release. Use operator objects, or compute the new document in application code and pass it as data.
+
 Instead of using operator objects, you can provide a function for fully custom update logic:
 
 ```typescript

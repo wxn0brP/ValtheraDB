@@ -195,9 +195,12 @@ Checks the length of an array or string.
 Tests a string against a regular expression. Accepts a `RegExp` object or a string pattern.
 
 ```javascript
-{ $regex: { email: /^[^@]+@[^@]+\.[^@]+$/ } }
+{ $regex: { email: /^[^@]+@[^@]+\.[^@]+$/i } }
+```
 
-// string pattern is also accepted:
+> **Deprecated**: String patterns are deprecated and will be removed in a future version. Use a `RegExp` object instead.
+
+```javascript
 { $regex: { email: "^[^@]+@[^@]+\\.[^@]+$" } }
 ```
 
@@ -247,6 +250,8 @@ Disables advanced operator parsing for the wrapped fields, treating `$`-prefixed
 ```
 
 ### Function-Based Search
+
+> **Deprecated:** function-based search will be removed in a future release. Use operator objects, or a `ValtheraPlugin` for reusable logic. Capture external state in a closure instead of passing `context`.
 
 Instead of using operator objects, you can provide a function for fully custom search logic:
 
