@@ -782,6 +782,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TypeScript Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1205,6 +1233,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#operation-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operation Helpers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#basic-plugin-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1447,6 +1486,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#operation-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operation Helpers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#basic-plugin-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1610,7 +1660,7 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 <p>The <code>execute</code> method receives a context object:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">PluginContext</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">op</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">        </span><span class="c1">// Operation name: "find", "add", "update", etc.</span>
-<span class="w">  </span><span class="nx">kind</span><span class="o">:</span><span class="w"> </span><span class="kt">PluginOpKind</span><span class="p">;</span><span class="w"> </span><span class="c1">// Operation kind: "read" | "write" | "delete" | "collection" | "index" | "meta" | "control"</span>
+<span class="w">  </span><span class="nx">kind</span><span class="o">:</span><span class="w"> </span><span class="kt">PluginOpKind</span><span class="p">;</span><span class="w"> </span><span class="c1">// Operation kind: "read" | "write" | "delete" | "collection" | "index" | "meta" | "unknown" | "control"</span>
 <span class="w">  </span><span class="nx">collection?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w"> </span><span class="c1">// Collection name (for string-only ops, this is the query itself)</span>
 <span class="w">  </span><span class="nx">query</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">;</span><span class="w">        </span><span class="c1">// The query object (or collection name string for some ops)</span>
 <span class="w">  </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Call the next plugin or adapter</span>
@@ -1618,7 +1668,7 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 <span class="w">  </span><span class="nx">setQuery</span><span class="p">(</span><span class="nx">query</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span><span class="w">           </span><span class="c1">// Rewrite the query for the current operation</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The <code>kind</code> field groups operations, so plugins can branch without hard-coding name lists (e.g., <code>ctx.kind === "write"</code> covers <code>add</code>, <code>bulkAdd</code>, <code>update</code>, <code>updateOne</code>, <code>updateOneOrAdd</code>, <code>toggleOne</code>). Unknown operation names fall back to <code>"write"</code>.</p>
+<p>The <code>kind</code> field groups operations, so plugins can branch without hard-coding name lists (e.g., <code>ctx.kind === "write"</code> covers <code>add</code>, <code>bulkAdd</code>, <code>update</code>, <code>updateOne</code>, <code>updateOneOrAdd</code>, <code>toggleOne</code>). Unknown operation names get <code>kind: "unknown"</code> and are rejected with <code>QueryValidationError</code> before they reach the adapter, unless a plugin rewrites them with <code>setOp()</code> first.</p>
 <p>The <code>op</code> field can be any of:</p>
 <ul>
 <li>Collection management (<code>kind: "collection"</code>): <code>ensureCollection</code>, <code>issetCollection</code>, <code>removeCollection</code></li>
@@ -1627,6 +1677,34 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 <li>Metadata (<code>kind: "meta"</code>): <code>getCollections</code></li>
 </ul>
 <p><strong>Note:</strong> <code>capabilities()</code> and transaction control operations (<code>beginTransaction</code>, <code>commitTransaction</code>, <code>rollbackTransaction</code>) bypass the plugin chain.</p>
+<h2 id="operation-helpers">Operation Helpers</h2>
+<p><code>@wxn0brp/db-core/utils/opKind</code> exports the operation table and predicates, so plugins do not have to hard-code names:</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">OP_KINDS</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">getOpKind</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">isKnownOp</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">isCollectionOp</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">isDbOp</span><span class="p">,</span>
+<span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/utils/opKind"</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">DbOp</span><span class="p">,</span><span class="w"> </span><span class="nx">OpName</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/utils/opKind"</span><span class="p">;</span>
+
+<span class="nx">getOpKind</span><span class="p">(</span><span class="s2">"find"</span><span class="p">);</span><span class="w">                  </span><span class="c1">// "read"</span>
+<span class="nx">getOpKind</span><span class="p">(</span><span class="s2">"createIndex"</span><span class="p">);</span><span class="w">           </span><span class="c1">// "index"</span>
+<span class="nx">getOpKind</span><span class="p">(</span><span class="s2">"custom"</span><span class="p">);</span><span class="w">                </span><span class="c1">// "unknown"</span>
+<span class="nx">isKnownOp</span><span class="p">(</span><span class="s2">"custom"</span><span class="p">);</span><span class="w">                </span><span class="c1">// false</span>
+<span class="nx">isCollectionOp</span><span class="p">(</span><span class="s2">"find"</span><span class="p">);</span><span class="w">             </span><span class="c1">// true  - db[collection][op]</span>
+<span class="nx">isCollectionOp</span><span class="p">(</span><span class="s2">"ensureCollection"</span><span class="p">);</span><span class="w"> </span><span class="c1">// false - collection management</span>
+<span class="nx">isDbOp</span><span class="p">(</span><span class="s2">"getCollections"</span><span class="p">);</span><span class="w">           </span><span class="c1">// true  - db[op], but not control</span>
+</code></pre></div>
+<ul>
+<li><code>OP_KINDS</code> maps every known operation name to its kind; <code>OpName</code> is the union of its keys.</li>
+<li><code>getOpKind(op)</code> returns the kind, or <code>"unknown"</code> for names outside the contract.</li>
+<li><code>isKnownOp(op)</code> checks whether the name belongs to the adapter contract.</li>
+<li><code>isCollectionOp(op)</code> is true for collection-scoped operations: <code>read</code>, <code>write</code>, <code>delete</code>, and <code>index</code>.</li>
+<li><code>isDbOp(op)</code> is true for known non-control operations. Use <code>getOpKind(op) === "collection"</code> when you specifically mean <code>ensureCollection</code> / <code>issetCollection</code> / <code>removeCollection</code>.</li>
+<li><code>DbOp</code> is the subset routed through <code>execute()</code>: everything except <code>beginTransaction</code>, <code>commitTransaction</code>, <code>rollbackTransaction</code>, and <code>capabilities</code>.</li>
+</ul>
+<p>Do not treat every non-read operation as a mutation: unknown operations are not mutations. Check for <code>"write"</code> or <code>"delete"</code> explicitly.</p>
 <h2 id="basic-plugin-structure">Basic Plugin Structure</h2>
 <p>Here's the minimal plugin structure:</p>
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraPlugin</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db"</span><span class="p">;</span>

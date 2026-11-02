@@ -881,6 +881,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TypeScript Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1413,7 +1441,8 @@
 </ul>
 <h2 id="class-valtheraremoteremote">Class: <code>ValtheraRemote(remote)</code></h2>
 <p><code>ValtheraRemote</code> extends <code>BaseRemote</code> and implements <code>ValtheraCompatible</code>. Every call sends a <code>POST</code> request to <code>&lt;url&gt;/db/&lt;op&gt;</code> with the body <code>{ db, auth, query, keys, ...body }</code>. When the server responds with <code>{ err: true, msg }</code>, the client throws a <code>ValtheraError</code> carrying the server-provided <code>code</code>, <code>suggestion</code>, and <code>context</code>.</p>
-<p>Function values in queries are serialized into the <code>keys</code> field (paths to stringified functions), so the server can execute them.</p>
+<p>Function values in queries are serialized into the <code>keys</code> field (paths to stringified functions), so the server can execute them. The exception is <code>findOpts.transform</code>: when it is present, the client strips only <code>findOpts</code> from the request and applies <code>transform</code>, <code>exclude</code> and <code>select</code> locally. <code>dbFindOpts</code> is still sent and handled by the server. This avoids sending transform code to the server.</p>
+<p>Function-based <code>search</code> and <code>updater</code> are still serialized for compatibility.</p>
 <p>Supported operations: all CRUD and collection operations (<code>add</code>, <code>bulkAdd</code>, <code>find</code>, <code>findOne</code>, <code>update</code>, <code>updateOne</code>, <code>remove</code>, <code>removeOne</code>, <code>updateOneOrAdd</code>, <code>toggleOne</code>, <code>count</code>, collection management), plus <code>capabilities()</code>, which is forwarded to the server.</p>
 <p><strong>Note:</strong> <code>createIndex()</code> and <code>removeIndex()</code> are no-ops on the remote client. Index creation is not forwarded to the server.</p>
 <h3 id="example-usage">Example Usage</h3>

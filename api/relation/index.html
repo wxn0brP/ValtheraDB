@@ -1008,6 +1008,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TypeScript Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1663,7 +1691,6 @@
 <li><strong>Parameters:</strong></li>
 <li><code>dbs</code> (<code>RelationTypes.DBS</code>): An object mapping database names to <code>ValtheraClass</code> or compatible instances.</li>
 </ul>
-<hr />
 <h3 id="async-findonepath-search-relations-select"><code>async findOne(path, search, relations, select?)</code></h3>
 <p>Finds a single entry in a collection and resolves its relations.</p>
 <ul>
@@ -1679,7 +1706,6 @@
 </li>
 <li><code>Promise&lt;Object | null&gt;</code>: The found entry with resolved relations, or <code>null</code> if no match is found.</li>
 </ul>
-<hr />
 <h3 id="async-findpath-search-relations-select-dbfindopts"><code>async find(path, search, relations, select?, dbFindOpts?)</code></h3>
 <p>Finds multiple entries in a collection and resolves their relations.</p>
 <ul>
@@ -1696,7 +1722,6 @@
 </li>
 <li><code>Promise&lt;Object[]&gt;</code>: An array of found entries with resolved relations.</li>
 </ul>
-<hr />
 <h3 id="relation-types">Relation Types</h3>
 <p>The <code>Relation</code> class supports the following relation types:</p>
 <h4 id="1-one-to-one-batch"><code>"1"</code> - One-to-One (Batch)</h4>
@@ -1762,7 +1787,6 @@
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<hr />
 <h3 id="configuration-options">Configuration Options</h3>
 <p>Each relation entry supports these options:</p>
 <table>
@@ -1898,7 +1922,6 @@
 <span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nx">author</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1">// object form</span>
 <span class="p">);</span>
 </code></pre></div>
-<hr />
 <h3 id="example-usage">Example Usage</h3>
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Relation</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db"</span><span class="p">;</span>

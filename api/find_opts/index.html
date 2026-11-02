@@ -986,6 +986,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TypeScript Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1617,14 +1645,12 @@ This process is designed to:<br />
 1. <strong>Reduce data transfer size</strong> by removing unnecessary fields or selecting only the required ones.<br />
 2. <strong>Customize results</strong> by transforming objects to meet specific requirements.  </p>
 <p>This optimization improves both performance and result usability, ensuring the client receives precisely the needed data in a compact form.</p>
-<hr />
 <h2 id="execution-stack"><strong>Execution Stack</strong></h2>
 <ol>
 <li><strong><code>transform</code></strong></li>
 <li><strong><code>exclude</code></strong></li>
 <li><strong><code>select</code></strong></li>
 </ol>
-<hr />
 <h2 id="operators"><strong>Operators</strong></h2>
 <h3 id="select"><strong><code>select</code></strong></h3>
 <p>Selects only specific fields to include in the final object.</p>
@@ -1647,7 +1673,6 @@ This process is designed to:<br />
 <span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">"john@example.com"</span>
 <span class="p">}</span>
 </code></pre></div>
-<hr />
 <h3 id="exclude"><strong><code>exclude</code></strong></h3>
 <p>Excludes specific fields from the object, removing unwanted data.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// Original Object</span>
@@ -1670,7 +1695,6 @@ This process is designed to:<br />
 <span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">"active"</span>
 <span class="p">}</span>
 </code></pre></div>
-<hr />
 <h3 id="transform"><strong><code>transform</code></strong></h3>
 <p>Applies a custom updater function to modify the object.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// Original Object</span>
@@ -1697,7 +1721,6 @@ This process is designed to:<br />
 <span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">"active"</span>
 <span class="p">}</span>
 </code></pre></div>
-<hr />
 <h3 id="combined-example"><strong>Combined Example</strong></h3>
 <p>Using all operators together to demonstrate the execution stack.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// Original Object</span>
@@ -1746,7 +1769,6 @@ This process is designed to:<br />
 <span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">"inactive"</span>
 <span class="p">}</span>
 </code></pre></div>
-<hr />
 <h2 id="edge-cases-and-important-notes">Edge Cases and Important Notes</h2>
 <h3 id="nested-paths-with-arrays">Nested Paths with Arrays</h3>
 <p>When using dotted paths or array paths in <code>select</code> / <code>exclude</code>,

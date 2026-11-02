@@ -1240,6 +1240,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TypeScript Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2170,10 +2198,11 @@
 <p>Low-level entry point used internally by all operations. Runs an operation through the plugin chain, the executor, and the event emitter. Useful for advanced tooling and plugins.</p>
 <ul>
 <li><strong>Parameters:</strong></li>
-<li><code>name</code> (<code>keyof ValtheraCompatible</code>): Operation name (e.g., <code>"find"</code>, <code>"add"</code>).</li>
+<li><code>name</code> (<code>DbOp</code>): Operation name (e.g., <code>"find"</code>, <code>"add"</code>). <code>DbOp</code> covers every operation routed through <code>execute()</code>; transaction control (<code>beginTransaction</code>, <code>commitTransaction</code>, <code>rollbackTransaction</code>) and <code>capabilities</code> are excluded because they are called directly on the adapter.</li>
 <li><code>query</code> (<code>VQuery</code> or <code>string</code>): The query object, or a collection name for collection-level operations.</li>
 <li><code>txHandle</code> (<code>TransactionHandle</code>, optional): Attaches the operation to a transaction.</li>
 </ul>
+<p>Unknown operation names are rejected with <code>QueryValidationError</code> before the adapter call. A plugin may rewrite the operation with <code>setOp()</code> first.</p>
 <h3 id="ctcollection"><code>c&lt;T&gt;(collection)</code></h3>
 <p>Creates or retrieves a <code>Collection</code> instance for the given collection name. The collection is cached for reuse.</p>
 <ul>
@@ -2209,7 +2238,7 @@
 
 <span class="kd">interface</span><span class="w"> </span><span class="nx">PluginContext</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">op</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">            </span><span class="c1">// Operation name (e.g., "find", "add", "update")</span>
-<span class="w">  </span><span class="nx">kind</span><span class="o">:</span><span class="w"> </span><span class="kt">PluginOpKind</span><span class="p">;</span><span class="w">    </span><span class="c1">// Operation kind: "read" | "write" | "delete" | "collection" | "index" | "meta" | "control"</span>
+<span class="w">  </span><span class="nx">kind</span><span class="o">:</span><span class="w"> </span><span class="kt">PluginOpKind</span><span class="p">;</span><span class="w">    </span><span class="c1">// Operation kind: "read" | "write" | "delete" | "collection" | "index" | "meta" | "unknown" | "control"</span>
 <span class="w">  </span><span class="nx">collection?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">   </span><span class="c1">// Collection name (for string-only ops, this is the query itself)</span>
 <span class="w">  </span><span class="nx">query</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">;</span><span class="w">            </span><span class="c1">// The query object or string</span>
 <span class="w">  </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">;</span><span class="w">              </span><span class="c1">// Call the next plugin or adapter</span>
