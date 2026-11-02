@@ -31,6 +31,7 @@ nav:
       - Updater: api/updater.md
       - Remote: api/remote.md
       - Errors: api/errors.md
+      - TypeScript Types: api/types.md
   - Ecosystem:
       - Storage Adapters: ecosystem/adapters.md
       - Extensions: ecosystem/extensions.md

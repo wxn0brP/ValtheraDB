@@ -45,12 +45,12 @@ await db.transaction(
 );
 ```
 
-**Why?** ValtheraDB locks these collections for the duration of the transaction to prevent concurrent modifications.
+**Why?** ValtheraDB locks these collections for the duration of the transaction to prevent concurrent modifications. With per-collection queues, each declared collection is locked separately; when all operations share a single queue, the transaction takes one global lock for that queue.
 
 ### 2. Transaction Object
 
 The `tx` object provides the same CRUD methods as `ValtheraClass`.
-Besides CRUD, `tx` exposes `getCollections()`, `ensureCollection()`, `issetCollection()`, and `removeCollection()`; see the full list in [Transaction Object](#transaction-object).
+Besides CRUD, `tx` exposes `getCollections()`, `ensureCollection()`, `issetCollection()`, `removeCollection()`, `createIndex()`, and `removeIndex()`; see the full list in [Transaction Object](#transaction-object).
 
 **Important:** Operations on the original `db` reference are NOT part of the transaction. Always use `tx`.
 
@@ -102,7 +102,21 @@ The `tx` object provides the same CRUD surface as `ValtheraClass`, with the tran
 
 - CRUD: `add`, `bulkAdd`, `find`, `findOne`, `update`, `updateOne`, `remove`, `removeOne`, `updateOneOrAdd`, `toggleOne`, `count`
 - Collections: `getCollections()`, `ensureCollection()`, `issetCollection()`, `removeCollection()`
+- Indexes: `createIndex(collection, fields, opts)`, `removeIndex(collection, fields)`
+- Adapter capabilities: `capabilities()` (delegates to `db.capabilities()`)
 - Access a typed collection: `tx.c("users")`
+
+Index operations are sent through the same adapter methods as outside a transaction, with the transaction handle attached to the query. Support is still adapter-dependent: check `capabilities().indexes` first.
+
+```typescript
+await db.transaction(["users"], async (tx) => {
+  await tx.createIndex("users", ["email"], { unique: true });
+  await tx.c("users").createIndex(["name"]);
+  await tx.removeIndex("users", ["name"]);
+});
+```
+
+`tx.c()` returns a regular `Collection` bound to the transaction, so `tx.c("users").createIndex([...])` / `removeIndex([...])` work too. Removing a collection inside a transaction also invalidates the cached `Collection` instance on the parent database.
 
 ## Adapter Support
 

@@ -8,14 +8,10 @@ This process is designed to:
 
 This optimization improves both performance and result usability, ensuring the client receives precisely the needed data in a compact form.
 
----
-
 ## **Execution Stack**
 1. **`transform`**
 2. **`exclude`**
 3. **`select`**
-
----
 
 ## **Operators**
 
@@ -43,8 +39,6 @@ Selects only specific fields to include in the final object.
 }
 ```
 
----
-
 ### **`exclude`**
 Excludes specific fields from the object, removing unwanted data.
 
@@ -69,8 +63,6 @@ Excludes specific fields from the object, removing unwanted data.
     status: "active"
 }
 ```
-
----
 
 ### **`transform`**
 Applies a custom updater function to modify the object.
@@ -100,8 +92,6 @@ Applies a custom updater function to modify the object.
     status: "active"
 }
 ```
-
----
 
 ### **Combined Example**
 Using all operators together to demonstrate the execution stack.
@@ -153,8 +143,6 @@ Using all operators together to demonstrate the execution stack.
     status: "inactive"
 }
 ```
-
----
 
 ## Edge Cases and Important Notes
 

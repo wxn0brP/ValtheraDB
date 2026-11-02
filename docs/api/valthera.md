@@ -74,9 +74,11 @@ await db.close();
 Low-level entry point used internally by all operations. Runs an operation through the plugin chain, the executor, and the event emitter. Useful for advanced tooling and plugins.
 
 - **Parameters:**
-  - `name` (`keyof ValtheraCompatible`): Operation name (e.g., `"find"`, `"add"`).
+  - `name` (`DbOp`): Operation name (e.g., `"find"`, `"add"`). `DbOp` covers every operation routed through `execute()`; transaction control (`beginTransaction`, `commitTransaction`, `rollbackTransaction`) and `capabilities` are excluded because they are called directly on the adapter.
   - `query` (`VQuery` or `string`): The query object, or a collection name for collection-level operations.
   - `txHandle` (`TransactionHandle`, optional): Attaches the operation to a transaction.
+
+Unknown operation names are rejected with `QueryValidationError` before the adapter call. A plugin may rewrite the operation with `setOp()` first.
 
 ### `c<T>(collection)`
 
@@ -116,7 +118,7 @@ interface ValtheraPlugin {
 
 interface PluginContext {
   op: string;            // Operation name (e.g., "find", "add", "update")
-  kind: PluginOpKind;    // Operation kind: "read" | "write" | "delete" | "collection" | "index" | "meta" | "control"
+  kind: PluginOpKind;    // Operation kind: "read" | "write" | "delete" | "collection" | "index" | "meta" | "unknown" | "control"
   collection?: string;   // Collection name (for string-only ops, this is the query itself)
   query: any;            // The query object or string
   next: () => Promise<any>;              // Call the next plugin or adapter

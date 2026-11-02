@@ -40,8 +40,6 @@ Short names resolve to first-party `@wxn0brp/db-storage-*` packages. Third-party
 
 -> [Full Resolver Docs](https://github.com/wxn0brP/ValtheraDB-resolver#vdb-api)
 
----
-
 ## Manual Installation
 
 To use an adapter manually, install the package and create an instance.

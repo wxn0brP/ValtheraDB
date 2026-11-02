@@ -53,6 +53,7 @@ In short, if you value flexibility and control over rigid conventions, you'll fe
     *   [Update Operators](api/updater.md)
     *   [Remote](api/remote.md)
     *   [Errors](api/errors.md)
+    *   [TypeScript Types](api/types.md)
 *   **Ecosystem:**
     *   [Storage Adapters](ecosystem/adapters.md): All supported storage backends with quick-start guides.
     *   [Server](ecosystem/server.md): Deploy your own ValtheraDB HTTP server.

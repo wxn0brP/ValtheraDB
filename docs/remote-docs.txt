@@ -18,6 +18,7 @@ Relation | api/relation
 Updater | api/updater
 Remote | api/remote
 Errors | api/errors
+TypeScript Types | api/types
 
 Ecosystem
 Storage Adapters | ecosystem/adapters

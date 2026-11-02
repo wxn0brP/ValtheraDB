@@ -28,7 +28,7 @@ The `execute` method receives a context object:
 ```typescript
 interface PluginContext {
   op: string;        // Operation name: "find", "add", "update", etc.
-  kind: PluginOpKind; // Operation kind: "read" | "write" | "delete" | "collection" | "index" | "meta" | "control"
+  kind: PluginOpKind; // Operation kind: "read" | "write" | "delete" | "collection" | "index" | "meta" | "unknown" | "control"
   collection?: string; // Collection name (for string-only ops, this is the query itself)
   query: any;        // The query object (or collection name string for some ops)
   next: () => Promise<any>; // Call the next plugin or adapter
@@ -37,7 +37,7 @@ interface PluginContext {
 }
 ```
 
-The `kind` field groups operations, so plugins can branch without hard-coding name lists (e.g., `ctx.kind === "write"` covers `add`, `bulkAdd`, `update`, `updateOne`, `updateOneOrAdd`, `toggleOne`). Unknown operation names fall back to `"write"`.
+The `kind` field groups operations, so plugins can branch without hard-coding name lists (e.g., `ctx.kind === "write"` covers `add`, `bulkAdd`, `update`, `updateOne`, `updateOneOrAdd`, `toggleOne`). Unknown operation names get `kind: "unknown"` and are rejected with `QueryValidationError` before they reach the adapter, unless a plugin rewrites them with `setOp()` first.
 
 The `op` field can be any of:
 
@@ -47,6 +47,38 @@ The `op` field can be any of:
 - Metadata (`kind: "meta"`): `getCollections`
 
 **Note:** `capabilities()` and transaction control operations (`beginTransaction`, `commitTransaction`, `rollbackTransaction`) bypass the plugin chain.
+
+## Operation Helpers
+
+`@wxn0brp/db-core/utils/opKind` exports the operation table and predicates, so plugins do not have to hard-code names:
+
+```typescript
+import {
+  OP_KINDS,
+  getOpKind,
+  isKnownOp,
+  isCollectionOp,
+  isDbOp,
+} from "@wxn0brp/db-core/utils/opKind";
+import type { DbOp, OpName } from "@wxn0brp/db-core/utils/opKind";
+
+getOpKind("find");                  // "read"
+getOpKind("createIndex");           // "index"
+getOpKind("custom");                // "unknown"
+isKnownOp("custom");                // false
+isCollectionOp("find");             // true  - db[collection][op]
+isCollectionOp("ensureCollection"); // false - collection management
+isDbOp("getCollections");           // true  - db[op], but not control
+```
+
+- `OP_KINDS` maps every known operation name to its kind; `OpName` is the union of its keys.
+- `getOpKind(op)` returns the kind, or `"unknown"` for names outside the contract.
+- `isKnownOp(op)` checks whether the name belongs to the adapter contract.
+- `isCollectionOp(op)` is true for collection-scoped operations: `read`, `write`, `delete`, and `index`.
+- `isDbOp(op)` is true for known non-control operations. Use `getOpKind(op) === "collection"` when you specifically mean `ensureCollection` / `issetCollection` / `removeCollection`.
+- `DbOp` is the subset routed through `execute()`: everything except `beginTransaction`, `commitTransaction`, `rollbackTransaction`, and `capabilities`.
+
+Do not treat every non-read operation as a mutation: unknown operations are not mutations. Check for `"write"` or `"delete"` explicitly.
 
 ## Basic Plugin Structure
 

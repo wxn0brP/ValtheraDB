@@ -14,7 +14,9 @@
 
 `ValtheraRemote` extends `BaseRemote` and implements `ValtheraCompatible`. Every call sends a `POST` request to `<url>/db/<op>` with the body `{ db, auth, query, keys, ...body }`. When the server responds with `{ err: true, msg }`, the client throws a `ValtheraError` carrying the server-provided `code`, `suggestion`, and `context`.
 
-Function values in queries are serialized into the `keys` field (paths to stringified functions), so the server can execute them.
+Function values in queries are serialized into the `keys` field (paths to stringified functions), so the server can execute them. The exception is `findOpts.transform`: when it is present, the client strips only `findOpts` from the request and applies `transform`, `exclude` and `select` locally. `dbFindOpts` is still sent and handled by the server. This avoids sending transform code to the server.
+
+Function-based `search` and `updater` are still serialized for compatibility.
 
 Supported operations: all CRUD and collection operations (`add`, `bulkAdd`, `find`, `findOne`, `update`, `updateOne`, `remove`, `removeOne`, `updateOneOrAdd`, `toggleOne`, `count`, collection management), plus `capabilities()`, which is forwarded to the server.
 

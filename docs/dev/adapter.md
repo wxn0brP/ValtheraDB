@@ -52,6 +52,8 @@ ValtheraDB uses a layered adapter architecture:
 
 Override any of these only when your backend has native support (bulk inserts, `countDocuments`, real indexes, transactions).
 
+Index operations can also be issued inside a transaction (`tx.createIndex()` / `tx.removeIndex()`). They reach the same adapter methods, and the transaction handle is available as `query.transaction`; ignore it if your indexes are not transaction-scoped.
+
 Use the structured error classes from `@wxn0brp/db-core/errors` instead of bare `Error` throws: `AdapterInitError` in `init()`, `AdapterCloseError` in `close()`, `AdapterError` for driver failures, `QueryValidationError` for invalid input, and `TransactionError` inside transactions. Core wraps unknown errors into `AdapterError`; see [Errors](../api/errors.md).
 
 ## Variant A: CustomFileCpu Adapter

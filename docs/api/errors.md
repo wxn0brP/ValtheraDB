@@ -26,7 +26,7 @@ try {
 | `ADAPTER_ERROR` | Generic adapter/driver failure |
 | `ADAPTER_INIT` | Adapter initialization failed (`init()` or the adapter factory) |
 | `ADAPTER_CLOSE` | Adapter `close()` failed |
-| `QUERY_INVALID` | Invalid query shape (e.g., missing `collection`, non-object search) |
+| `QUERY_INVALID` | Invalid query shape (e.g., missing `collection`, non-object search, unknown operation name) |
 | `TRANSACTION_FAILED` | Transaction failed |
 | `TRANSACTION_ROLLBACK_FAILED` | Transaction failed **and** rollback failed |
 | `REMOTE_ERROR` | Reserved; not emitted by the current core or remote client |
@@ -42,7 +42,7 @@ All classes extend `ValtheraError`, so a single `isValtheraError(err)` check cov
 |-------|------|-------------|
 | `ValtheraError` | (provided) | Base class; also used to rebuild remote errors |
 | `UnsupportedOperationError` | `UNSUPPORTED_OPERATION` | Operation not supported by the adapter (e.g., `beginTransaction` on a non-transactional adapter) |
-| `QueryValidationError` | `QUERY_INVALID` | Query shape is invalid (missing `collection`, non-object search/updater, unsafe ID key, path traversal) |
+| `QueryValidationError` | `QUERY_INVALID` | Query shape is invalid (missing `collection`, non-object search/updater, unknown operation name, unsafe ID key, path traversal) |
 | `AdapterError` | `ADAPTER_ERROR` | Wrapper for adapter/driver errors raised during operations |
 | `AdapterInitError` | `ADAPTER_INIT` | Adapter `init()` or the adapter factory failed |
 | `AdapterCloseError` | `ADAPTER_CLOSE` | Adapter `close()` failed |

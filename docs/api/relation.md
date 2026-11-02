@@ -10,8 +10,6 @@ Creates a new instance of the `Relation` class.
 - **Parameters:**
   - `dbs` (`RelationTypes.DBS`): An object mapping database names to `ValtheraClass` or compatible instances.
 
----
-
 ### `async findOne(path, search, relations, select?)`
 Finds a single entry in a collection and resolves its relations.
 
@@ -23,8 +21,6 @@ Finds a single entry in a collection and resolves its relations.
 
 - **Returns:**
   - `Promise<Object | null>`: The found entry with resolved relations, or `null` if no match is found.
-
----
 
 ### `async find(path, search, relations, select?, dbFindOpts?)`
 Finds multiple entries in a collection and resolves their relations.
@@ -38,8 +34,6 @@ Finds multiple entries in a collection and resolves their relations.
 
 - **Returns:**
   - `Promise<Object[]>`: An array of found entries with resolved relations.
-
----
 
 ### Relation Types
 
@@ -128,8 +122,6 @@ Resolves a single related entry. The source document's `pk` field holds an **arr
   }
 }
 ```
-
----
 
 ### Configuration Options
 
@@ -228,8 +220,6 @@ const post = await relation.findOne(
   { title: true, author: { name: true } }  // object form
 );
 ```
-
----
 
 ### Example Usage
 
