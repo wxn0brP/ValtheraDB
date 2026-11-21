@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.121.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.120.6...v0.121.0) (2026-11-21)
+
+
+### Bug Fixes
+
+* dir adapter ([f1ec96d](https://github.com/wxn0brP/ValtheraDB/commit/f1ec96ddd2bbc3d78019d03a670959a1bd991cca))
+
 ### [0.120.6](https://github.com/wxn0brP/ValtheraDB/compare/v0.120.5...v0.120.6) (2026-10-26)
 
 
