@@ -1,6 +1,6 @@
 import { ValtheraClass } from "@wxn0brp/db-core/db/valthera";
 import type { VDB } from "@wxn0brp/db-resolver/v";
-import { FileActions } from "@wxn0brp/db-storage-dir";
+import { FileAdapter } from "@wxn0brp/db-storage-dir";
 import { vFileCpu } from "@wxn0brp/db-storage-dir/file/index";
 import { DbDirOpts } from "@wxn0brp/db-storage-dir/types";
 import type { ValtheraCreate } from ".";
@@ -16,7 +16,7 @@ export class Valthera extends ValtheraClass {
 		options.format ||= "json5:x";
 		super({
 			...options,
-			adapter: new FileActions(folder, options, fileCpu),
+			adapter: new FileAdapter(folder, options, fileCpu),
 		});
 	}
 }
