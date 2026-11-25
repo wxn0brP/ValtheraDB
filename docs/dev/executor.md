@@ -33,7 +33,8 @@ await Promise.all([
 A basic FIFO queue. All operations are executed one after another, regardless of collection.
 
 ```typescript
-import { Executor, ValtheraClass } from "@wxn0brp/db-core";
+import { ValtheraClass } from "@wxn0brp/db-core";
+import { Executor } from "@wxn0brp/db-core/helpers/executor";
 
 const db = new ValtheraClass({
   adapter: myAdapter,
@@ -59,7 +60,8 @@ const db = new ValtheraClass({
 Per-collection queues with automatic cleanup. Operations on different collections can run in parallel.
 
 ```typescript
-import { SmartExecutor, ValtheraClass } from "@wxn0brp/db-core";
+import { ValtheraClass } from "@wxn0brp/db-core";
+import { SmartExecutor } from "@wxn0brp/db-core/helpers/executor";
 
 const db = new ValtheraClass({
   adapter: myAdapter,
@@ -152,7 +154,7 @@ const executor = new SmartExecutor(300000, false);
 Adapters can signal support for SmartExecutor:
 
 ```typescript
-class MyAdapter extends ActionsBase {
+class MyAdapter extends AdapterBase {
   smartExecutor = true; // Signals support for per-collection queuing
 
   // ... adapter methods
@@ -189,7 +191,7 @@ const db = new ValtheraClass({
 You can implement your own executor:
 
 ```typescript
-import { ExecutorInterface } from "@wxn0brp/db-core";
+import { ExecutorInterface } from "@wxn0brp/db-core/helpers/executor";
 
 class MyCustomExecutor implements ExecutorInterface {
   async addOp(func: Function, query?: any, collection?: string): Promise<any> {

@@ -192,16 +192,10 @@ Checks the length of an array or string.
 
 #### $regex
 
-Tests a string against a regular expression. Accepts a `RegExp` object or a string pattern.
+Tests a string against a regular expression. Accepts a `RegExp` object.
 
 ```javascript
 { $regex: { email: /^[^@]+@[^@]+\.[^@]+$/i } }
-```
-
-> **Deprecated**: String patterns are deprecated and will be removed in a future version. Use a `RegExp` object instead.
-
-```javascript
-{ $regex: { email: "^[^@]+@[^@]+\\.[^@]+$" } }
 ```
 
 #### $startsWith
@@ -248,33 +242,6 @@ Disables advanced operator parsing for the wrapped fields, treating `$`-prefixed
 // With $subset: $lt is treated as a literal field name
 { $subset: { $lt: "John Doe" } } // checks if the field "$lt" equals "John Doe"
 ```
-
-### Function-Based Search
-
-> **Deprecated:** function-based search will be removed in a future release. Use operator objects, or a `ValtheraPlugin` for reusable logic. Capture external state in a closure instead of passing `context`.
-
-Instead of using operator objects, you can provide a function for fully custom search logic:
-
-```typescript
-// Search function signature:
-(data: T, context: VContext) => boolean
-
-// Example: find users older than 20
-const adults = await db.users.find(
-  (user, ctx) => user.age > 20 && user.status === "active"
-);
-
-// Example: using context to pass external state
-const threshold = 18;
-const adults = await db.users.find(
-  (user, ctx) => user.age >= ctx.threshold,
-  {},  // dbFindOpts
-  {},  // findOpts
-  { threshold }  // context
-);
-```
-
-The function receives the document and a context object, and returns `true` to include the document in results.
 
 ## Examples
 
@@ -348,24 +315,21 @@ const isValid = hasFieldsAdvanced(user, criteria); // true
 
 ## Error Handling
 
-The function throws a `QueryValidationError` (code `QUERY_INVALID`) if:
-- The `fields` parameter is not an object
-- The `fields` parameter is `null`
+`hasFieldsAdvanced` performs matching only. Operator value validation lives in `validateQuery`, which `ValtheraClass` runs by default before calling the adapter.
 
-Always wrap the function call in a try-catch block when using with untrusted input:
-
+Invalid operator payloads (`$in` without an array, `$between` without `[min, max]`, `$regex` without a `RegExp`, and so on) throw `QueryValidationError` with code `QUERY_INVALID`:
 
 ```javascript
-import { hasFieldsAdvanced } from "@wxn0brp/db-core/utils/hasFieldsAdvanced";
 import { isValtheraError } from "@wxn0brp/db-core/errors";
 
 try {
-  const isValid = hasFieldsAdvanced(obj, criteria);
-  // Handle result
+  await db.users.find({ $regex: { email: "^[^@]+@[^@]+$" } });
 } catch (error) {
   if (isValtheraError(error)) console.error(error.code, error.message);
 }
 ```
+
+If you call `hasFieldsAdvanced` directly, validate the criteria yourself when the input is untrusted. `validateSearch` is exported from `@wxn0brp/db-core/utils/validateQuery` for that purpose.
 
 ### Undefined Values
 

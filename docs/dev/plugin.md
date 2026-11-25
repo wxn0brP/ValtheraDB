@@ -85,7 +85,7 @@ Do not treat every non-read operation as a mutation: unknown operations are not 
 Here's the minimal plugin structure:
 
 ```typescript
-import { ValtheraPlugin } from "@wxn0brp/db";
+import type { ValtheraPlugin } from "@wxn0brp/db-core/types/plugin";
 
 const myPlugin: ValtheraPlugin = {
   name: "my-plugin",

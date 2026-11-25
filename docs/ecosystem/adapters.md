@@ -2,7 +2,7 @@
 
 ValtheraDB uses pluggable storage engines. Adapters fall into two classes:
 
-- **CRUD** - the full `ActionsBase` interface, named `db-storage-<name>`.
+- **CRUD** - the full `AdapterBase` interface, named `db-storage-<name>`.
 - **Specialized** - non-document data models, named `db-spec-<name>`.
 
 ## Quick Start: VDB() API
@@ -49,6 +49,8 @@ To use an adapter manually, install the package and create an instance.
 | dir | Directory of JSON5/JSON/YAML files | `bun add @wxn0brp/db-storage-dir` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-dir) |
 | dir-index | Directory storage with BTree index files (`.idx`) for binary-search queries | `bun add @wxn0brp/db-storage-dir-index` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-dir-index) |
 | sqlite | SQLite (Bun/Node/better-sqlite3) | `bun add @wxn0brp/db-storage-sqlite` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-sqlite) |
+| postgresql | PostgreSQL via `pg` (`strict` or `lazy` mode) | `bun add @wxn0brp/db-storage-postgresql pg` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-postgresql) |
+| mariadb | MariaDB / MySQL via `mariadb`, `mysql2`, or Bun SQL | `bun add @wxn0brp/db-storage-mariadb mariadb` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-mariadb) |
 | mongodb | MongoDB | `bun add @wxn0brp/db-storage-mongodb` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-mongodb) |
 | bin | Single binary file (msgpack) | `bun add @wxn0brp/db-storage-bin` | [GitHub](https://github.com/wxn0brP/ValtheraDB-storage-bin) |
 | dir-c | Native C via bun:ffi (Linux) | Manual installation (see repo) | [GitHub](https://github.com/wxn0brP/ValtheraDB-c-engine) |

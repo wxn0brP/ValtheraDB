@@ -32,6 +32,10 @@ const users = await db.users.find({});
 console.log(users.length); // 2
 ```
 
+## Capabilities
+
+`capabilities()` reports `{ transactions: false, indexes: false, persistent: false }`. The adapter sets `smartExecutor = true`, so `ValtheraClass` can use per-collection queues with the memory backend.
+
 ## How It Works
 
 The in-memory adapter uses a `Map<string, any[]>` internally. Data read from the database is isolated with `structuredClone`, so mutating a document returned by `find()`/`findOne()` does not affect stored data and vice versa.

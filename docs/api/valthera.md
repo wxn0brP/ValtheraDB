@@ -2,7 +2,7 @@
 
 ## Class: `ValtheraClass`
 
-The main database class. It wraps a storage adapter (`ActionsBase`), queues operations, runs plugins, and emits events.
+The main database class. It wraps a storage adapter (`AdapterBase`), queues operations, runs plugins, emits events, and validates queries by default.
 
 > The low-level `Valthera` wrapper (dir adapter with a preset format) is available from `@wxn0brp/db/valthera`, but for most use cases prefer `ValtheraCreate()` or `VDB()`.
 
@@ -10,17 +10,19 @@ The main database class. It wraps a storage adapter (`ActionsBase`), queues oper
 
 ```typescript
 new ValtheraClass({
-  adapter: ActionsBase | (() => Promise<ActionsBase>),
+  adapter: AdapterBase | (() => Promise<AdapterBase>),
   executor?: ExecutorInterface,
   executorAware?: boolean, // default: true
   adapterOpts?: AdapterOpts,
+  validateQueries?: boolean, // default: true
 })
 ```
 
-- `adapter` - a ready `ActionsBase` instance, or a factory function that returns one. A factory is called lazily during `init()`.
+- `adapter` - a ready `AdapterBase` instance, or a factory function that returns one. A factory is called lazily during `init()`.
 - `executor` - controls operation queuing. Default: a `SmartExecutor` with a single queue (see [Executor](#executor)).
 - `executorAware` - allows the executor to automatically switch to per-collection queues when the adapter supports it.
 - `adapterOpts` - forwarded to the adapter on `init()`.
+- `validateQueries` - validates query shape and operators before the adapter call. Default: `true`. Invalid queries throw `QueryValidationError` with code `QUERY_INVALID`. Set to `false` only when input is already validated elsewhere.
 
 ### `AdapterOpts`
 
@@ -28,9 +30,22 @@ Configuration options forwarded to the storage adapter.
 
 ```typescript
 interface AdapterOpts {
-  numberId?: boolean;  // Use numeric auto-incrementing IDs (default: false)
-  idKey?: string;      // Custom ID field name (default: "_id")
+  numberId?: boolean;    // Use numeric auto-incrementing IDs (default: false)
+  idKey?: string;        // Custom ID field name (default: "_id")
+  idGen?: IdGen;         // Custom ID generator (overrides numberId/default)
+  idParts?: number[];    // Part lengths for the default genId (default: [1, 1])
 }
+```
+
+`IdGen` receives only records that have no ID yet and returns IDs in the same order:
+
+```typescript
+type IdGen = (
+  data: Data[],
+  collection: string,
+  adapter: AdapterBase,
+  transaction?: TransactionHandle,
+) => Id[] | Promise<Id[]>;
 ```
 
 **Example:**
@@ -44,6 +59,20 @@ const db = new ValtheraClass({
   }
 });
 ```
+
+**Custom generator:**
+
+```typescript
+const db = new ValtheraClass({
+  adapter: myAdapter,
+  adapterOpts: {
+    idGen: (records, collection) =>
+      records.map(record => `${collection}:${crypto.randomUUID()}`),
+  },
+});
+```
+
+When both are set, `idGen` wins over `numberId`, and `numberId` wins over the default `genId`. `idParts` only affects the default generator. Existing IDs are never overwritten.
 
 ### `version`
 
@@ -78,7 +107,7 @@ Low-level entry point used internally by all operations. Runs an operation throu
   - `query` (`VQuery` or `string`): The query object, or a collection name for collection-level operations.
   - `txHandle` (`TransactionHandle`, optional): Attaches the operation to a transaction.
 
-Unknown operation names are rejected with `QueryValidationError` before the adapter call. A plugin may rewrite the operation with `setOp()` first.
+Unknown operation names are rejected with `QueryValidationError` before the adapter call. A plugin may rewrite the operation with `setOp()` first. Query shape validation runs after the plugin chain when `validateQueries` is enabled.
 
 ### `c<T>(collection)`
 
@@ -260,7 +289,16 @@ Updates one entry or adds a new one if no match is found.
 
 - **Parameters:**
   - `query` (`VQueryT.UpdateOneOrAdd<T>`): The updateOneOrAdd query.
-- **Returns:** `Promise<{ data: T; type: "added" | "updated" }>`
+- **Returns:** `ResultPromise<{ data: T; type: "added" | "updated" }>`
+
+`ResultPromise` is a `Promise` with two extra getters: `.data` and `.type`, so both styles work:
+
+```typescript
+const result = await db.updateOneOrAdd({ /* ... */ });
+// { data: {...}, type: "updated" }
+
+const type = await db.updateOneOrAdd({ /* ... */ }).type; // "added" | "updated"
+```
 
 ### `toggleOne(query)`
 
@@ -268,7 +306,7 @@ Removes one entry if it exists, or adds a new one if it doesn't. Useful for togg
 
 - **Parameters:**
   - `query` (`VQueryT.ToggleOne<T>`): The toggleOne query.
-- **Returns:** `Promise<{ data: T; type: "added" | "removed" }>`
+- **Returns:** `ResultPromise<{ data: T; type: "added" | "removed" }>`
 
 ### `count(query)`
 
@@ -408,7 +446,7 @@ Controls how database operations are queued and executed. Ensures operations are
 Simple FIFO queue. All operations are executed sequentially.
 
 ```typescript
-import { Executor } from "@wxn0brp/db-core";
+import { Executor } from "@wxn0brp/db-core/helpers/executor";
 
 const db = new ValtheraClass({
   adapter: myAdapter,
@@ -421,7 +459,7 @@ const db = new ValtheraClass({
 Per-collection queues with automatic cleanup. Operations on different collections can run in parallel.
 
 ```typescript
-import { SmartExecutor } from "@wxn0brp/db-core";
+import { SmartExecutor } from "@wxn0brp/db-core/helpers/executor";
 
 const db = new ValtheraClass({
   adapter: myAdapter,

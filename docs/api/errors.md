@@ -26,7 +26,7 @@ try {
 | `ADAPTER_ERROR` | Generic adapter/driver failure |
 | `ADAPTER_INIT` | Adapter initialization failed (`init()` or the adapter factory) |
 | `ADAPTER_CLOSE` | Adapter `close()` failed |
-| `QUERY_INVALID` | Invalid query shape (e.g., missing `collection`, non-object search, unknown operation name) |
+| `QUERY_INVALID` | Invalid query shape (e.g., missing `collection` or a required field, non-object search/updater, invalid operator payload, unknown operation name) |
 | `TRANSACTION_FAILED` | Transaction failed |
 | `TRANSACTION_ROLLBACK_FAILED` | Transaction failed **and** rollback failed |
 | `REMOTE_ERROR` | Reserved; not emitted by the current core or remote client |
@@ -42,12 +42,33 @@ All classes extend `ValtheraError`, so a single `isValtheraError(err)` check cov
 |-------|------|-------------|
 | `ValtheraError` | (provided) | Base class; also used to rebuild remote errors |
 | `UnsupportedOperationError` | `UNSUPPORTED_OPERATION` | Operation not supported by the adapter (e.g., `beginTransaction` on a non-transactional adapter) |
-| `QueryValidationError` | `QUERY_INVALID` | Query shape is invalid (missing `collection`, non-object search/updater, unknown operation name, unsafe ID key, path traversal) |
+| `QueryValidationError` | `QUERY_INVALID` | Query shape is invalid (missing `collection` or a required field, non-object search/updater, invalid operator payload, unknown operation name, unsafe ID key, path traversal) |
 | `AdapterError` | `ADAPTER_ERROR` | Wrapper for adapter/driver errors raised during operations |
 | `AdapterInitError` | `ADAPTER_INIT` | Adapter `init()` or the adapter factory failed |
 | `AdapterCloseError` | `ADAPTER_CLOSE` | Adapter `close()` failed |
 | `TransactionError` | `TRANSACTION_FAILED` / `TRANSACTION_ROLLBACK_FAILED` | Transaction failed, handle mismatch, or failed rollback |
 | `RemoteError` | `REMOTE_ERROR` | Reserved; not thrown by the current implementation |
+
+## Query Validation
+
+`ValtheraClass` validates queries by default (`validateQueries: true`). The check runs after the plugin chain and before the adapter call. It covers:
+
+- `collection` for every operation except `getCollections`
+- required fields per operation (`search` for reads and writes, `updater` for updates, `data` for `add`, `datas` for `bulkAdd`, `index` for index operations)
+- operator payload types (`$in` and `$nin` need arrays, `$between` needs `[min, max]`, `$regex` needs a `RegExp`, `$pushAll` and `$pullAll` need arrays, `$rename` needs a string)
+
+Validation checks structure and payload types only. It does not authorize fields or operators and does not make untrusted input safe. Do not pass raw user input as `search` or `updater`; construct queries from an allowlist and enforce authorization separately.
+
+Invalid queries throw `QueryValidationError`, which is not wrapped into `AdapterError`. Disable validation only for trusted, pre-validated input:
+
+```typescript
+const db = new ValtheraClass({
+  adapter,
+  validateQueries: false,
+});
+```
+
+Direct adapter calls (for example in tests) bypass `ValtheraClass` and therefore bypass this validation. Adapters that interpret queries themselves can call `validateQuery`, `validateSearch`, or `validateUpdater` from `@wxn0brp/db-core/utils/validateQuery`.
 
 ## Error Structure
 

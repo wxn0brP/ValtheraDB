@@ -29,6 +29,16 @@ const id = genId(); // "m1abc23-x-y"
 const customId = genId([2, 3]); // "m1abc23-xy-zab"
 ```
 
+The default generator used by `add` and `bulkAdd` reads part lengths from `adapterOpts.idParts`, so you can change the format without calling `genId` yourself:
+
+```typescript
+const db = ValtheraCreate("./data", {
+  adapterOpts: {
+    idParts: [2, 3],
+  },
+});
+```
+
 ### `convertIdToUnix(id)`
 
 Extracts Unix timestamp (milliseconds) from an ID.
@@ -113,3 +123,28 @@ const user = await db.users.add({ name: "Alice" });
 ```
 
 **Note:** The custom `idKey` applies to all collections in the database. When using `numberId: true`, the numeric auto-incrementing ID will also use the custom key.
+
+## Custom ID Generator
+
+`adapterOpts.idGen` replaces the built-in generator for all `add` and `bulkAdd` calls:
+
+```typescript
+import { ValtheraCreate } from "@wxn0brp/db";
+
+const db = ValtheraCreate("./data", {
+  adapterOpts: {
+    idGen: (records, collection) =>
+      records.map(record => `${collection}-${crypto.randomUUID()}`),
+  },
+});
+```
+
+The generator receives only records that do not have the configured `idKey` yet and must return IDs in the same order. It may be async.
+
+Resolution order:
+
+1. `adapterOpts.idGen`
+2. the numeric generator when `adapterOpts.numberId` is `true`
+3. `genId(adapterOpts.idParts)`
+
+Existing IDs are never overwritten. The numeric generator keeps its counter in the `__vdb_id` collection and increases it by the number of records added, not by one.

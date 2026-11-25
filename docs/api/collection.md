@@ -2,7 +2,9 @@
 
 This documentation provides a detailed overview of the `Collection` class, designed for performing CRUD operations on Valthera collections.
 
-## Class: `Collection<T extends object = Data>`
+All methods accept operator objects only. Runtime validation is enabled by default, and strict TypeScript types apply when `D` is explicit (see [TypeScript Types](./types.md)).
+
+## Class: `Collection<D = Data>`
 
 ### Usage:
 
@@ -36,25 +38,23 @@ Adds multiple documents to the collection in one call.
 
 **Note:** Adapters without native bulk support loop over `add()` internally.
 
-### `async find(search, options, findOpts, context)`
+### `async find(search, options, findOpts)`
 Finds data in the collection based on a query.
 
 - **Parameters:**
-	- `search` (`Search<D>`, optional, default: `{}`): The search query.
+	- `search` (`Search<D>`, optional, default: `{}`): The search query. Must be an operator object.
 	- `options` (`DbFindOpts<D>`, optional, default: `{}`): Post-retrieval options (e.g., `sum`, `reverse`, `sortBy`, `limit`, `offset`).
 	- `findOpts` (`FindOpts<D>`, optional, default: `{}`): Post-matching options (`select`, `exclude`, `transform`).
-	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries). **Deprecated** together with function-based queries.
 
 - **Returns:**
 	- `Promise<D[]>`: Found data. Empty array if no match is found.
 
-### `async findOne(search, findOpts, context)`
+### `async findOne(search, findOpts)`
 Finds one matching entry in the collection.
 
 - **Parameters:**
-	- `search` (`Search<D>`, optional, default: `{}`): The search query.
+	- `search` (`Search<D>`, optional, default: `{}`): The search query. Must be an operator object.
 	- `findOpts` (`FindOpts<D>`, optional, default: `{}`): Post-matching options.
-	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries). **Deprecated** together with function-based queries.
 
 - **Returns:**
 	- `Promise<D | null>`: Found data. `null` if no match is found.
@@ -63,51 +63,47 @@ Finds one matching entry in the collection.
 Counts matching entries in the collection.
 
 - **Parameters:**
-	- `search` (`Search<D, false>`, optional, default: `{}`): The search query. Function-based search is **not** supported here.
+	- `search` (`Search<D>`, optional, default: `{}`): The search query. Function-based search is **not** supported.
 
 - **Returns:**
 	- `Promise<number>`: Number of matching entries.
 
 **Note:** Adapters without native counting compute it from `find()`.
 
-### `async update(search, updater, context)`
+### `async update(search, updater)`
 Updates data in the collection.
 
 - **Parameters:**
 	- `search` (`Search<D>`): The search query.
-	- `updater` (`Updater<D>`): Update arguments.
-	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries). **Deprecated** together with function-based queries.
+	- `updater` (`Updater<D>`): Update arguments. Must be an operator object.
 
 - **Returns:**
 	- `Promise<D[]>`: Updated data. Empty array if no match is found.
 
-### `async updateOne(search, updater, context)`
+### `async updateOne(search, updater)`
 Updates one entry in the collection.
 
 - **Parameters:**
 	- `search` (`Search<D>`): The search query.
-	- `updater` (`Updater<D>`): Update arguments.
-	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries). **Deprecated** together with function-based queries.
+	- `updater` (`Updater<D>`): Update arguments. Must be an operator object.
 
 - **Returns:**
 	- `Promise<D | null>`: Updated data. `null` if no match is found.
 
-### `async remove(search, context)`
+### `async remove(search)`
 Removes data from the collection.
 
 - **Parameters:**
 	- `search` (`Search<D>`): The search query.
-	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries). **Deprecated** together with function-based queries.
 
 - **Returns:**
 	- `Promise<D[]>`: Removed data. Empty array if no match is found.
 
-### `async removeOne(search, context)`
+### `async removeOne(search)`
 Removes one entry from the collection.
 
 - **Parameters:**
 	- `search` (`Search<D>`): The search query.
-	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries). **Deprecated** together with function-based queries.
 
 - **Returns:**
 	- `Promise<D | null>`: Removed data. `null` if no match is found.
@@ -120,22 +116,20 @@ Updates one entry or adds a new one if it doesn't exist.
 	- `updater` (`Updater<D>`): Update arguments.
 	- `options` (`Object`, optional): An object containing:
 		- `add_arg` (`Arg<D>`, default: `{}`): Data to merge when adding a new entry.
-		- `context` (`VContext`, default: `{}`): The context object (for function-based queries). **Deprecated** together with function-based queries.
 		- `id_gen` (`boolean`, default: `true`): Whether to generate an ID for the new entry.
 
 - **Returns:**
-	- `Promise<{ data: D; type: "added" | "updated" }>`: A promise that resolves with the updated or added entry.
+	- `ResultPromise<{ data: D; type: "added" | "updated" }>`: A promise that resolves with the updated or added entry. The `.data` and `.type` getters are also available.
 
-### `async toggleOne(search, data, context)`
+### `async toggleOne(search, data)`
 Removes one entry if it exists, or adds a new one if it doesn't. Usage e.g. for toggling a flag.
 
 - **Parameters:**
 	- `search` (`Search<D>`): The search query.
 	- `data` (`Arg<D>`, optional, default: `{}`): The data to use when adding.
-	- `context` (`VContext`, optional, default: `{}`): The context object (for function-based queries). **Deprecated** together with function-based queries.
 
 - **Returns:**
-	- `Promise<{ data: D; type: "added" | "removed" }>`: A promise that resolves with the removed or added entry.
+	- `ResultPromise<{ data: D; type: "added" | "removed" }>`: A promise that resolves with the removed or added entry. The `.data` and `.type` getters are also available.
 
 ### `createIndex(fields, opts)`
 Creates an index on this collection. Index support is adapter-dependent.

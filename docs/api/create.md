@@ -32,7 +32,8 @@ The object is typed as `DbDirOpts`, which already contains every core option exc
 | --- | --- | --- |
 | `executor` | `ExecutorInterface` | Custom executor. Defaults to `SmartExecutor`. |
 | `executorAware` | `boolean` | Marks queries as executor-aware. Defaults to `true`. |
-| `adapterOpts` | `AdapterOpts` | `numberId` and `idKey` configuration. |
+| `validateQueries` | `boolean` | Validates query shape and operators before adapter calls. Defaults to `true`. |
+| `adapterOpts` | `AdapterOpts` | `numberId`, `idKey`, `idGen`, and `idParts` configuration. |
 
 ### Dir adapter options
 
@@ -66,6 +67,29 @@ const db = ValtheraCreate("./data", {
 const user = await db.users.add({ name: "Alice" });
 // { name: "Alice", id: "m1abc23-x-y" }
 ```
+
+### Custom ID generator
+
+```typescript
+const db = ValtheraCreate("./data", {
+  adapterOpts: {
+    idGen: (records, collection) =>
+      records.map(record => `${collection}-${crypto.randomUUID()}`),
+  },
+});
+```
+
+`idGen` receives only records without an ID and must return IDs in the same order. See [ID Generation](./id.md#custom-id-generator) for details.
+
+### Disable query validation
+
+```typescript
+const db = ValtheraCreate("./data", {
+  validateQueries: false,
+});
+```
+
+Use this only when input is validated before it reaches the database.
 
 ### Custom executor
 

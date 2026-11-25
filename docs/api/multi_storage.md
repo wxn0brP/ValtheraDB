@@ -8,7 +8,7 @@ Queries across multiple adapters simultaneously.
 
 ```typescript
 import { ValtheraClass } from "@wxn0brp/db-core";
-import { MultiBackend } from "@wxn0brp/db-core/db/multiStorage";
+import { MultiBackend } from "@wxn0brp/db-core/adapters/multiBackend";
 
 const multi = new MultiBackend([
   adapter1,
@@ -47,7 +47,7 @@ Routes collections to specific backends based on rules.
 
 ```typescript
 import { ValtheraClass } from "@wxn0brp/db-core";
-import { RoutedStorage } from "@wxn0brp/db-core/db/routedStorage";
+import { RoutedStorage } from "@wxn0brp/db-core/adapters/routedStorage";
 
 const routed = new RoutedStorage([
   { match: "logs", backends: [logAdapter] },

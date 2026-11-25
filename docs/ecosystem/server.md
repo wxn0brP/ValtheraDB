@@ -68,13 +68,12 @@ docker run -p 3000:3000 \
 Alternative PHP implementation for SQL databases.
 
 - MariaDB/MySQL backend
-- Function-based queries are not supported (PHP cannot execute JavaScript)
 
 ```bash
 git clone https://github.com/wxn0brP/ValtheraDB-server-php.git
 ```
 
-Configure via `config.php`, API compatible with main server (except function-based search).
+Configure via `config.php`; the API is compatible with the main server.
 
 -> [Full Server Docs](https://github.com/wxn0brP/ValtheraDB-server/tree/master/docs) |
 [PHP Server](https://github.com/wxn0brP/ValtheraDB-server-php)

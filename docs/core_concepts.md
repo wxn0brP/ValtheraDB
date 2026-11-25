@@ -27,15 +27,15 @@ Just as a file browser works the same for local disks and Dropbox, ValtheraDB pr
 
 ## Two Classes of Adapters: CRUD and Specialized
 
-The unified API described above is a guarantee, not an accident. It holds for **CRUD adapters**: any backend that stores collections of documents implements the full `ActionsBase` interface, and every CRUD adapter is verified by the same compliance suite. This is the default contract of ValtheraDB, and it does not change.
+The unified API described above is a guarantee, not an accident. It holds for **CRUD adapters**: any backend that stores collections of documents implements the full `AdapterBase` interface, and every CRUD adapter is verified by the same compliance suite. This is the default contract of ValtheraDB, and it does not change.
 
 Some data, however, is not a collection of documents. A structure whose very shape is the point, a sequence designed for appends rather than random access, an auxiliary index that answers a single kind of query - these are models a document store does not describe. Mapping them onto full CRUD would mean rewriting an entire structure per operation or pretending that a medium supports cheap random access. ValtheraDB would rather state a narrower contract honestly than advertise a uniform one that lies about the underlying medium.
 
-That is what **Specialized adapters** are: an opt-in exception for non-document data models. They keep the same `ActionsBase` boundary, speak Valthera's API where it maps cleanly to their model, and expose their own domain-specific methods, but they do not promise the full CRUD surface. Where such an adapter does answer CRUD calls, it applies them to a fixed shape rather than arbitrary documents.
+That is what **Specialized adapters** are: an opt-in exception for non-document data models. They keep the same `AdapterBase` boundary, speak Valthera's API where it maps cleanly to their model, and expose their own domain-specific methods, but they do not promise the full CRUD surface. Where such an adapter does answer CRUD calls, it applies them to a fixed shape rather than arbitrary documents.
 
 This is an extension of the pluggable storage paradigm, not a retreat from it:
 
-1. **The contract is unchanged.** `ActionsBase` remains the storage boundary. Only the scope of guarantees shrinks, and only for these adapters.
+1. **The contract is unchanged.** `AdapterBase` remains the storage boundary. Only the scope of guarantees shrinks, and only for these adapters.
 2. **Opt-in by construction.** You never get a specialized adapter by accident - you choose one explicitly. For everyone using CRUD adapters, nothing changes.
 3. **Declared, not hidden.** Coverage is declared in the compliance suite through explicit skips - a mechanism any adapter may use, CRUD or specialized. Missing capability shows up in the test report instead of being assumed.
 
@@ -86,7 +86,7 @@ This symmetry applies to CRUD adapters. A specialized adapter deliberately trade
 
 ## Security by Design
 
-ValtheraDB treats root-level operators as an internal feature. Users cannot accidentally turn their data input into query operators, which prevents NoSQL injection attacks by design. This is a deliberate choice, not a limitation. You can build with confidence knowing that malicious input cannot manipulate your queries.
+ValtheraDB keeps stored data separate from query structure. Document values remain data; they are not interpreted as query operators. This separation is deliberate and prevents user-provided document values from becoming executable query syntax. Queries must still be constructed intentionally, and authorization remains the application's responsibility.
 
 ## Transactional Safety: Where You Need It
 
