@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.130.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.121.0...v0.130.0) (2026-11-25)
+
 ## [0.121.0](https://github.com/wxn0brP/ValtheraDB/compare/v0.120.6...v0.121.0) (2026-11-21)
 
 
