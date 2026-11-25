@@ -862,6 +862,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#disabling-strict-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disabling Strict Mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#document-type" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -938,6 +949,17 @@
     <span class="md-ellipsis">
       
         Strict Mode Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-mode-and-runtime-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strict Mode and Runtime Validation
       
     </span>
   </a>
@@ -1425,6 +1447,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#disabling-strict-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disabling Strict Mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#document-type" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1508,6 +1541,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#strict-mode-and-runtime-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strict Mode and Runtime Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#notes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1539,17 +1583,20 @@
 
 
 <h1 id="typescript-types">TypeScript Types</h1>
-<p><code>Collection&lt;T&gt;</code> and the query types are generic over the document type. All checks described here happen at compile time; runtime behavior is unchanged.</p>
+<p><code>Collection&lt;T&gt;</code> and the query types are generic over the document type. All checks described here happen at compile time; runtime behavior is unchanged. Runtime query validation is a separate feature; see <a href="#strict-mode-and-runtime-validation">Strict Mode and Runtime Validation</a>.</p>
 <h2 id="strict-mode">Strict Mode</h2>
-<p>Strict mode is opt-in. <code>IsStrict</code> resolves to <code>false</code> while <code>TypeConfig</code> is empty, so query types accept any key by default.</p>
-<p>Enable it with a module augmentation:</p>
-<div class="highlight"><pre><span></span><code><span class="kr">declare</span><span class="w"> </span><span class="nx">module</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/types/config"</span><span class="w"> </span><span class="p">{</span>
+<p>Strict mode is on by default. With an empty <code>TypeConfig</code>, <code>IsStrict</code> resolves to <code>true</code>, so typed queries accept only fields declared in the document type. It applies to explicitly typed collections such as <code>db.c&lt;User&gt;("users")</code>. The default <code>T = Data</code> still accepts arbitrary keys.</p>
+<h2 id="disabling-strict-mode">Disabling Strict Mode</h2>
+<p>Add a module augmentation in a declaration file included by your TypeScript project:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// strict-mode.d.ts</span>
+<span class="kr">declare</span><span class="w"> </span><span class="nx">module</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/types/config"</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">interface</span><span class="w"> </span><span class="nx">TypeConfig</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">strict</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">strict</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The augmentation is project-wide.</p>
+<p><code>IsStrict</code> reads <code>TypeConfig.strict</code>, so <code>false</code> turns strict types off. The augmentation is project-wide and cannot be set per collection or per query. After changing it, restart the TypeScript language server or rebuild.</p>
+<p>This affects compile-time checks only. Runtime validation remains controlled by <code>validateQueries</code>; see <a href="#strict-mode-and-runtime-validation">Strict Mode and Runtime Validation</a>.</p>
 <h2 id="document-type">Document Type</h2>
 <p>The document type is set when the collection is created:</p>
 <div class="highlight"><pre><span></span><code><span class="kr">type</span><span class="w"> </span><span class="nx">User</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
@@ -1645,11 +1692,22 @@
 <span class="k">await</span><span class="w"> </span><span class="nx">users</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">$inc</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">});</span>
 <span class="k">await</span><span class="w"> </span><span class="nx">users</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="s2">"old"</span><span class="w"> </span><span class="p">});</span><span class="w">    </span><span class="c1">// error: wrong value type</span>
 </code></pre></div>
+<h2 id="strict-mode-and-runtime-validation">Strict Mode and Runtime Validation</h2>
+<p>Strict mode is a compile-time check. It does not inspect values at runtime.</p>
+<p>Runtime validation is controlled by <code>validateQueries</code> in <code>ValtheraClass</code>. It defaults to <code>true</code> and checks query shape before the adapter call: <code>collection</code> is required, operation-specific fields such as <code>search</code>, <code>updater</code>, <code>data</code>, and <code>datas</code> are required, and operator payloads are checked. Invalid queries throw <code>QueryValidationError</code> with code <code>QUERY_INVALID</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">adapter</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">validateQueries</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span><span class="w"> </span><span class="c1">// opt out; validate input yourself</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>The validated shape and the strict type shape are independent. A loose query can still fail runtime validation, and a valid runtime query can still be rejected by the compiler in strict mode.</p>
 <h2 id="notes">Notes</h2>
 <ul>
 <li>Strict mode checks field names and value types only. It does not change query semantics.</li>
 <li>In <code>VQueryT</code> query objects, payload fields use <code>NoInfer</code>, so <code>T</code> comes from the query generic rather than from <code>search</code>, <code>updater</code>, or <code>data</code>.</li>
 <li>Helpers are exported from <code>@wxn0brp/db-core/types/utils</code>: <code>WithId</code>, <code>FieldsOf</code>, <code>Leaf</code>, <code>NestedValue</code>, <code>DeepPartial</code>, <code>KeysMatching</code>, <code>PartialOfType</code>, and <code>PartialPickMatching</code>.</li>
+<li><code>TypedValthera</code>, <code>TypedCollections</code>, and <code>DocOf</code> from <code>@wxn0brp/db-core/types/typed</code> are the building blocks for adapter factories. <code>DocOf</code> accepts either a document type or an array of documents.</li>
+<li><code>validateQuery</code>, <code>validateSearch</code>, and <code>validateUpdater</code> are available from <code>@wxn0brp/db-core/utils/validateQuery</code> for adapters and tooling that bypass <code>ValtheraClass.execute()</code>.</li>
 </ul>
 
 

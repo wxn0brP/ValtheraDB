@@ -683,6 +683,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#custom-id-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom ID generator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-query-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disable query validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#custom-executor" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1504,6 +1526,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#custom-id-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom ID generator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-query-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disable query validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#custom-executor" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1591,9 +1635,14 @@
 <td>Marks queries as executor-aware. Defaults to <code>true</code>.</td>
 </tr>
 <tr>
+<td><code>validateQueries</code></td>
+<td><code>boolean</code></td>
+<td>Validates query shape and operators before adapter calls. Defaults to <code>true</code>.</td>
+</tr>
+<tr>
 <td><code>adapterOpts</code></td>
 <td><code>AdapterOpts</code></td>
-<td><code>numberId</code> and <code>idKey</code> configuration.</td>
+<td><code>numberId</code>, <code>idKey</code>, <code>idGen</code>, and <code>idParts</code> configuration.</td>
 </tr>
 </tbody>
 </table>
@@ -1646,6 +1695,21 @@
 <span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">add</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">});</span>
 <span class="c1">// { name: "Alice", id: "m1abc23-x-y" }</span>
 </code></pre></div>
+<h3 id="custom-id-generator">Custom ID generator</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="p">(</span><span class="s2">"./data"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">adapterOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">idGen</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">records</span><span class="p">,</span><span class="w"> </span><span class="nx">collection</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span>
+<span class="w">      </span><span class="nx">records</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">record</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">collection</span><span class="si">}</span><span class="sb">-</span><span class="si">${</span><span class="nx">crypto</span><span class="p">.</span><span class="nx">randomUUID</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">),</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><code>idGen</code> receives only records without an ID and must return IDs in the same order. See <a href="../id/#custom-id-generator">ID Generation</a> for details.</p>
+<h3 id="disable-query-validation">Disable query validation</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="p">(</span><span class="s2">"./data"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">validateQueries</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Use this only when input is validated before it reaches the database.</p>
 <h3 id="custom-executor">Custom executor</h3>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="p">(</span><span class="s2">"./data"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">executor</span><span class="o">:</span><span class="w"> </span><span class="kt">myExecutor</span><span class="p">,</span>

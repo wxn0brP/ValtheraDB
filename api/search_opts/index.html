@@ -858,17 +858,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#function-based-search" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Function-Based Search
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -2213,17 +2202,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#function-based-search" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Function-Based Search
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -2441,13 +2419,8 @@
 </code></pre></div>
 <h3 id="string-operators">String Operators</h3>
 <h4 id="regex">$regex</h4>
-<p>Tests a string against a regular expression. Accepts a <code>RegExp</code> object or a string pattern.</p>
+<p>Tests a string against a regular expression. Accepts a <code>RegExp</code> object.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$regex</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="sr">/^[^@]+@[^@]+\.[^@]+$/i</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-</code></pre></div>
-<blockquote>
-<p><strong>Deprecated</strong>: String patterns are deprecated and will be removed in a future version. Use a <code>RegExp</code> object instead.</p>
-</blockquote>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">$regex</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">"^[^@]+@[^@]+\\.[^@]+$"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <h4 id="startswith">$startsWith</h4>
 <p>Checks if a string starts with a specified value.</p>
@@ -2472,29 +2445,6 @@
 <span class="c1">// With $subset: $lt is treated as a literal field name</span>
 <span class="p">{</span><span class="w"> </span><span class="nx">$subset</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">$lt</span><span class="o">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// checks if the field "$lt" equals "John Doe"</span>
 </code></pre></div>
-<h3 id="function-based-search">Function-Based Search</h3>
-<blockquote>
-<p><strong>Deprecated:</strong> function-based search will be removed in a future release. Use operator objects, or a <code>ValtheraPlugin</code> for reusable logic. Capture external state in a closure instead of passing <code>context</code>.</p>
-</blockquote>
-<p>Instead of using operator objects, you can provide a function for fully custom search logic:</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// Search function signature:</span>
-<span class="p">(</span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="kt">T</span><span class="p">,</span><span class="w"> </span><span class="nx">context</span><span class="o">:</span><span class="w"> </span><span class="kt">VContext</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="kt">boolean</span>
-
-<span class="c1">// Example: find users older than 20</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">adults</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
-<span class="w">  </span><span class="p">(</span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">age</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">20</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"active"</span>
-<span class="p">);</span>
-
-<span class="c1">// Example: using context to pass external state</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">18</span><span class="p">;</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">adults</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
-<span class="w">  </span><span class="p">(</span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">age</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">threshold</span><span class="p">,</span>
-<span class="w">  </span><span class="p">{},</span><span class="w">  </span><span class="c1">// dbFindOpts</span>
-<span class="w">  </span><span class="p">{},</span><span class="w">  </span><span class="c1">// findOpts</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">threshold</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1">// context</span>
-<span class="p">);</span>
-</code></pre></div>
-<p>The function receives the document and a context object, and returns <code>true</code> to include the document in results.</p>
 <h2 id="examples">Examples</h2>
 <h3 id="complex-validation">Complex Validation</h3>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">criteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
@@ -2557,20 +2507,17 @@
 <span class="kd">const</span><span class="w"> </span><span class="nx">isValid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">hasFieldsAdvanced</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="nx">criteria</span><span class="p">);</span><span class="w"> </span><span class="c1">// true</span>
 </code></pre></div>
 <h2 id="error-handling">Error Handling</h2>
-<p>The function throws a <code>QueryValidationError</code> (code <code>QUERY_INVALID</code>) if:
-- The <code>fields</code> parameter is not an object
-- The <code>fields</code> parameter is <code>null</code></p>
-<p>Always wrap the function call in a try-catch block when using with untrusted input:</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">hasFieldsAdvanced</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/utils/hasFieldsAdvanced"</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">isValtheraError</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/errors"</span><span class="p">;</span>
+<p><code>hasFieldsAdvanced</code> performs matching only. Operator value validation lives in <code>validateQuery</code>, which <code>ValtheraClass</code> runs by default before calling the adapter.</p>
+<p>Invalid operator payloads (<code>$in</code> without an array, <code>$between</code> without <code>[min, max]</code>, <code>$regex</code> without a <code>RegExp</code>, and so on) throw <code>QueryValidationError</code> with code <code>QUERY_INVALID</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">isValtheraError</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/errors"</span><span class="p">;</span>
 
 <span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">isValid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">hasFieldsAdvanced</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span><span class="w"> </span><span class="nx">criteria</span><span class="p">);</span>
-<span class="w">  </span><span class="c1">// Handle result</span>
+<span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="w"> </span><span class="nx">$regex</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">"^[^@]+@[^@]+$"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">});</span>
 <span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">isValtheraError</span><span class="p">(</span><span class="nx">error</span><span class="p">))</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">code</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
+<p>If you call <code>hasFieldsAdvanced</code> directly, validate the criteria yourself when the input is untrusted. <code>validateSearch</code> is exported from <code>@wxn0brp/db-core/utils/validateQuery</code> for that purpose.</p>
 <h3 id="undefined-values">Undefined Values</h3>
 <p>A field whose value is <code>undefined</code> is still an <strong>existing own key</strong>. It matches direct comparison and <code>$exists: { field: true }</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="kc">undefined</span><span class="w"> </span><span class="p">};</span>

@@ -2148,30 +2148,42 @@
 
 <h1 id="valtheradb-documentation">ValtheraDB Documentation</h1>
 <h2 id="class-valtheraclass">Class: <code>ValtheraClass</code></h2>
-<p>The main database class. It wraps a storage adapter (<code>ActionsBase</code>), queues operations, runs plugins, and emits events.</p>
+<p>The main database class. It wraps a storage adapter (<code>AdapterBase</code>), queues operations, runs plugins, emits events, and validates queries by default.</p>
 <blockquote>
 <p>The low-level <code>Valthera</code> wrapper (dir adapter with a preset format) is available from <code>@wxn0brp/db/valthera</code>, but for most use cases prefer <code>ValtheraCreate()</code> or <code>VDB()</code>.</p>
 </blockquote>
 <h3 id="constructor-options">Constructor Options</h3>
 <div class="highlight"><pre><span></span><code><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">ActionsBase</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">ActionsBase</span><span class="o">&gt;</span><span class="p">),</span>
+<span class="w">  </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">AdapterBase</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">AdapterBase</span><span class="o">&gt;</span><span class="p">),</span>
 <span class="w">  </span><span class="nx">executor?</span><span class="o">:</span><span class="w"> </span><span class="kt">ExecutorInterface</span><span class="p">,</span>
 <span class="w">  </span><span class="nx">executorAware?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">,</span><span class="w"> </span><span class="c1">// default: true</span>
 <span class="w">  </span><span class="nx">adapterOpts?</span><span class="o">:</span><span class="w"> </span><span class="kt">AdapterOpts</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">validateQueries?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">,</span><span class="w"> </span><span class="c1">// default: true</span>
 <span class="p">})</span>
 </code></pre></div>
 <ul>
-<li><code>adapter</code> - a ready <code>ActionsBase</code> instance, or a factory function that returns one. A factory is called lazily during <code>init()</code>.</li>
+<li><code>adapter</code> - a ready <code>AdapterBase</code> instance, or a factory function that returns one. A factory is called lazily during <code>init()</code>.</li>
 <li><code>executor</code> - controls operation queuing. Default: a <code>SmartExecutor</code> with a single queue (see <a href="#executor">Executor</a>).</li>
 <li><code>executorAware</code> - allows the executor to automatically switch to per-collection queues when the adapter supports it.</li>
 <li><code>adapterOpts</code> - forwarded to the adapter on <code>init()</code>.</li>
+<li><code>validateQueries</code> - validates query shape and operators before the adapter call. Default: <code>true</code>. Invalid queries throw <code>QueryValidationError</code> with code <code>QUERY_INVALID</code>. Set to <code>false</code> only when input is already validated elsewhere.</li>
 </ul>
 <h3 id="adapteropts"><code>AdapterOpts</code></h3>
 <p>Configuration options forwarded to the storage adapter.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">AdapterOpts</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">numberId?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span><span class="w">  </span><span class="c1">// Use numeric auto-incrementing IDs (default: false)</span>
-<span class="w">  </span><span class="nx">idKey?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">      </span><span class="c1">// Custom ID field name (default: "_id")</span>
+<span class="w">  </span><span class="nx">numberId?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span><span class="w">    </span><span class="c1">// Use numeric auto-incrementing IDs (default: false)</span>
+<span class="w">  </span><span class="nx">idKey?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">        </span><span class="c1">// Custom ID field name (default: "_id")</span>
+<span class="w">  </span><span class="nx">idGen?</span><span class="o">:</span><span class="w"> </span><span class="kt">IdGen</span><span class="p">;</span><span class="w">         </span><span class="c1">// Custom ID generator (overrides numberId/default)</span>
+<span class="w">  </span><span class="nx">idParts?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">[];</span><span class="w">    </span><span class="c1">// Part lengths for the default genId (default: [1, 1])</span>
 <span class="p">}</span>
+</code></pre></div>
+<p><code>IdGen</code> receives only records that have no ID yet and returns IDs in the same order:</p>
+<div class="highlight"><pre><span></span><code><span class="kr">type</span><span class="w"> </span><span class="nx">IdGen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="kt">Data</span><span class="p">[],</span>
+<span class="w">  </span><span class="nx">collection</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">AdapterBase</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">transaction?</span><span class="o">:</span><span class="w"> </span><span class="kt">TransactionHandle</span><span class="p">,</span>
+<span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">Id</span><span class="p">[]</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Id</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">;</span>
 </code></pre></div>
 <p><strong>Example:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span>
@@ -2182,6 +2194,16 @@
 <span class="w">  </span><span class="p">}</span>
 <span class="p">});</span>
 </code></pre></div>
+<p><strong>Custom generator:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">myAdapter</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">adapterOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">idGen</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">records</span><span class="p">,</span><span class="w"> </span><span class="nx">collection</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span>
+<span class="w">      </span><span class="nx">records</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">record</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">collection</span><span class="si">}</span><span class="sb">:</span><span class="si">${</span><span class="nx">crypto</span><span class="p">.</span><span class="nx">randomUUID</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">),</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>When both are set, <code>idGen</code> wins over <code>numberId</code>, and <code>numberId</code> wins over the default <code>genId</code>. <code>idParts</code> only affects the default generator. Existing IDs are never overwritten.</p>
 <h3 id="version"><code>version</code></h3>
 <p>The version of the ValtheraDB core engine.</p>
 <div class="highlight"><pre><span></span><code><span class="nx">db</span><span class="p">.</span><span class="nx">version</span><span class="p">;</span><span class="w"> </span><span class="c1">// matches the installed @wxn0brp/db-core version</span>
@@ -2202,7 +2224,7 @@
 <li><code>query</code> (<code>VQuery</code> or <code>string</code>): The query object, or a collection name for collection-level operations.</li>
 <li><code>txHandle</code> (<code>TransactionHandle</code>, optional): Attaches the operation to a transaction.</li>
 </ul>
-<p>Unknown operation names are rejected with <code>QueryValidationError</code> before the adapter call. A plugin may rewrite the operation with <code>setOp()</code> first.</p>
+<p>Unknown operation names are rejected with <code>QueryValidationError</code> before the adapter call. A plugin may rewrite the operation with <code>setOp()</code> first. Query shape validation runs after the plugin chain when <code>validateQueries</code> is enabled.</p>
 <h3 id="ctcollection"><code>c&lt;T&gt;(collection)</code></h3>
 <p>Creates or retrieves a <code>Collection</code> instance for the given collection name. The collection is cached for reuse.</p>
 <ul>
@@ -2381,14 +2403,20 @@
 <ul>
 <li><strong>Parameters:</strong></li>
 <li><code>query</code> (<code>VQueryT.UpdateOneOrAdd&lt;T&gt;</code>): The updateOneOrAdd query.</li>
-<li><strong>Returns:</strong> <code>Promise&lt;{ data: T; type: "added" | "updated" }&gt;</code></li>
+<li><strong>Returns:</strong> <code>ResultPromise&lt;{ data: T; type: "added" | "updated" }&gt;</code></li>
 </ul>
+<p><code>ResultPromise</code> is a <code>Promise</code> with two extra getters: <code>.data</code> and <code>.type</code>, so both styles work:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">updateOneOrAdd</span><span class="p">({</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">});</span>
+<span class="c1">// { data: {...}, type: "updated" }</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">updateOneOrAdd</span><span class="p">({</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}).</span><span class="kr">type</span><span class="p">;</span><span class="w"> </span><span class="c1">// "added" | "updated"</span>
+</code></pre></div>
 <h3 id="toggleonequery"><code>toggleOne(query)</code></h3>
 <p>Removes one entry if it exists, or adds a new one if it doesn't. Useful for toggling flags.</p>
 <ul>
 <li><strong>Parameters:</strong></li>
 <li><code>query</code> (<code>VQueryT.ToggleOne&lt;T&gt;</code>): The toggleOne query.</li>
-<li><strong>Returns:</strong> <code>Promise&lt;{ data: T; type: "added" | "removed" }&gt;</code></li>
+<li><strong>Returns:</strong> <code>ResultPromise&lt;{ data: T; type: "added" | "removed" }&gt;</code></li>
 </ul>
 <h3 id="countquery"><code>count(query)</code></h3>
 <p>Counts matching documents.</p>
@@ -2488,7 +2516,7 @@
 <h3 id="executor-classes">Executor Classes</h3>
 <h4 id="executor_2"><code>Executor</code></h4>
 <p>Simple FIFO queue. All operations are executed sequentially.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Executor</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Executor</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/helpers/executor"</span><span class="p">;</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span>
 <span class="w">  </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">myAdapter</span><span class="p">,</span>
@@ -2497,7 +2525,7 @@
 </code></pre></div>
 <h4 id="smartexecutor"><code>SmartExecutor</code></h4>
 <p>Per-collection queues with automatic cleanup. Operations on different collections can run in parallel.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/helpers/executor"</span><span class="p">;</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span>
 <span class="w">  </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">myAdapter</span><span class="p">,</span>

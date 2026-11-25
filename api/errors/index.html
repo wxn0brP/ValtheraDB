@@ -845,6 +845,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#query-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#error-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1386,6 +1397,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#query-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#error-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1481,7 +1503,7 @@
 </tr>
 <tr>
 <td><code>QUERY_INVALID</code></td>
-<td>Invalid query shape (e.g., missing <code>collection</code>, non-object search, unknown operation name)</td>
+<td>Invalid query shape (e.g., missing <code>collection</code> or a required field, non-object search/updater, invalid operator payload, unknown operation name)</td>
 </tr>
 <tr>
 <td><code>TRANSACTION_FAILED</code></td>
@@ -1526,7 +1548,7 @@
 <tr>
 <td><code>QueryValidationError</code></td>
 <td><code>QUERY_INVALID</code></td>
-<td>Query shape is invalid (missing <code>collection</code>, non-object search/updater, unknown operation name, unsafe ID key, path traversal)</td>
+<td>Query shape is invalid (missing <code>collection</code> or a required field, non-object search/updater, invalid operator payload, unknown operation name, unsafe ID key, path traversal)</td>
 </tr>
 <tr>
 <td><code>AdapterError</code></td>
@@ -1555,6 +1577,21 @@
 </tr>
 </tbody>
 </table>
+<h2 id="query-validation">Query Validation</h2>
+<p><code>ValtheraClass</code> validates queries by default (<code>validateQueries: true</code>). The check runs after the plugin chain and before the adapter call. It covers:</p>
+<ul>
+<li><code>collection</code> for every operation except <code>getCollections</code></li>
+<li>required fields per operation (<code>search</code> for reads and writes, <code>updater</code> for updates, <code>data</code> for <code>add</code>, <code>datas</code> for <code>bulkAdd</code>, <code>index</code> for index operations)</li>
+<li>operator payload types (<code>$in</code> and <code>$nin</code> need arrays, <code>$between</code> needs <code>[min, max]</code>, <code>$regex</code> needs a <code>RegExp</code>, <code>$pushAll</code> and <code>$pullAll</code> need arrays, <code>$rename</code> needs a string)</li>
+</ul>
+<p>Validation checks structure and payload types only. It does not authorize fields or operators and does not make untrusted input safe. Do not pass raw user input as <code>search</code> or <code>updater</code>; construct queries from an allowlist and enforce authorization separately.</p>
+<p>Invalid queries throw <code>QueryValidationError</code>, which is not wrapped into <code>AdapterError</code>. Disable validation only for trusted, pre-validated input:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">adapter</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">validateQueries</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Direct adapter calls (for example in tests) bypass <code>ValtheraClass</code> and therefore bypass this validation. Adapters that interpret queries themselves can call <code>validateQuery</code>, <code>validateSearch</code>, or <code>validateUpdater</code> from <code>@wxn0brp/db-core/utils/validateQuery</code>.</p>
 <h2 id="error-structure">Error Structure</h2>
 <div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">ValtheraErrorOpts</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">code</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>

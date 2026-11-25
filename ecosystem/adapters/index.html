@@ -1397,7 +1397,7 @@
 <h1 id="storage-adapters">Storage Adapters</h1>
 <p>ValtheraDB uses pluggable storage engines. Adapters fall into two classes:</p>
 <ul>
-<li><strong>CRUD</strong> - the full <code>ActionsBase</code> interface, named <code>db-storage-&lt;name&gt;</code>.</li>
+<li><strong>CRUD</strong> - the full <code>AdapterBase</code> interface, named <code>db-storage-&lt;name&gt;</code>.</li>
 <li><strong>Specialized</strong> - non-document data models, named <code>db-spec-&lt;name&gt;</code>.</li>
 </ul>
 <h2 id="quick-start-vdb-api">Quick Start: VDB() API</h2>
@@ -1454,6 +1454,18 @@ env var -&gt; <code>def</code> fallback -&gt; <code>./vdb-data/&lt;name&gt;</cod
 <td>SQLite (Bun/Node/better-sqlite3)</td>
 <td><code>bun add @wxn0brp/db-storage-sqlite</code></td>
 <td><a href="https://github.com/wxn0brP/ValtheraDB-storage-sqlite">GitHub</a></td>
+</tr>
+<tr>
+<td>postgresql</td>
+<td>PostgreSQL via <code>pg</code> (<code>strict</code> or <code>lazy</code> mode)</td>
+<td><code>bun add @wxn0brp/db-storage-postgresql pg</code></td>
+<td><a href="https://github.com/wxn0brP/ValtheraDB-storage-postgresql">GitHub</a></td>
+</tr>
+<tr>
+<td>mariadb</td>
+<td>MariaDB / MySQL via <code>mariadb</code>, <code>mysql2</code>, or Bun SQL</td>
+<td><code>bun add @wxn0brp/db-storage-mariadb mariadb</code></td>
+<td><a href="https://github.com/wxn0brP/ValtheraDB-storage-mariadb">GitHub</a></td>
 </tr>
 <tr>
 <td>mongodb</td>

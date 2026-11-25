@@ -804,6 +804,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#custom-id-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom ID Generator
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1496,6 +1507,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#custom-id-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom ID Generator
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1537,6 +1559,13 @@
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">genId</span><span class="p">();</span><span class="w"> </span><span class="c1">// "m1abc23-x-y"</span>
 <span class="kd">const</span><span class="w"> </span><span class="nx">customId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">genId</span><span class="p">([</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]);</span><span class="w"> </span><span class="c1">// "m1abc23-xy-zab"</span>
+</code></pre></div>
+<p>The default generator used by <code>add</code> and <code>bulkAdd</code> reads part lengths from <code>adapterOpts.idParts</code>, so you can change the format without calling <code>genId</code> yourself:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="p">(</span><span class="s2">"./data"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">adapterOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">idParts</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">],</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">});</span>
 </code></pre></div>
 <h3 id="convertidtounixid"><code>convertIdToUnix(id)</code></h3>
 <p>Extracts Unix timestamp (milliseconds) from an ID.</p>
@@ -1603,6 +1632,25 @@
 <span class="c1">// { name: "Alice", id: "m1abc23-x-y" }</span>
 </code></pre></div>
 <p><strong>Note:</strong> The custom <code>idKey</code> applies to all collections in the database. When using <code>numberId: true</code>, the numeric auto-incrementing ID will also use the custom key.</p>
+<h2 id="custom-id-generator">Custom ID Generator</h2>
+<p><code>adapterOpts.idGen</code> replaces the built-in generator for all <code>add</code> and <code>bulkAdd</code> calls:</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ValtheraCreate</span><span class="p">(</span><span class="s2">"./data"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">adapterOpts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">idGen</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">records</span><span class="p">,</span><span class="w"> </span><span class="nx">collection</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span>
+<span class="w">      </span><span class="nx">records</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">record</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">collection</span><span class="si">}</span><span class="sb">-</span><span class="si">${</span><span class="nx">crypto</span><span class="p">.</span><span class="nx">randomUUID</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">),</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>The generator receives only records that do not have the configured <code>idKey</code> yet and must return IDs in the same order. It may be async.</p>
+<p>Resolution order:</p>
+<ol>
+<li><code>adapterOpts.idGen</code></li>
+<li>the numeric generator when <code>adapterOpts.numberId</code> is <code>true</code></li>
+<li><code>genId(adapterOpts.idParts)</code></li>
+</ol>
+<p>Existing IDs are never overwritten. The numeric generator keeps its counter in the <code>__vdb_id</code> collection and increases it by the number of records added, not by one.</p>
 
 
 

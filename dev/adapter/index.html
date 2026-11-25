@@ -1166,10 +1166,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-actionsbase-gives-you-by-default" class="md-nav__link">
+  <a href="#what-adapterbase-gives-you-by-default" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What ActionsBase Gives You by Default
+        What AdapterBase Gives You by Default
       
     </span>
   </a>
@@ -1216,15 +1216,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#variant-b-actionsbase-with-filecpu" class="md-nav__link">
+  <a href="#variant-b-adapterbase-with-filecpu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Variant B: ActionsBase with FileCpu
+        Variant B: AdapterBase with FileCpu
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Variant B: ActionsBase with FileCpu">
+    <nav class="md-nav" aria-label="Variant B: AdapterBase with FileCpu">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1266,15 +1266,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#variant-c-full-actionsbase" class="md-nav__link">
+  <a href="#variant-c-full-adapterbase" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Variant C: Full ActionsBase
+        Variant C: Full AdapterBase
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Variant C: Full ActionsBase">
+    <nav class="md-nav" aria-label="Variant C: Full AdapterBase">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1581,10 +1581,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-actionsbase-gives-you-by-default" class="md-nav__link">
+  <a href="#what-adapterbase-gives-you-by-default" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What ActionsBase Gives You by Default
+        What AdapterBase Gives You by Default
       
     </span>
   </a>
@@ -1631,15 +1631,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#variant-b-actionsbase-with-filecpu" class="md-nav__link">
+  <a href="#variant-b-adapterbase-with-filecpu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Variant B: ActionsBase with FileCpu
+        Variant B: AdapterBase with FileCpu
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Variant B: ActionsBase with FileCpu">
+    <nav class="md-nav" aria-label="Variant B: AdapterBase with FileCpu">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1681,15 +1681,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#variant-c-full-actionsbase" class="md-nav__link">
+  <a href="#variant-c-full-adapterbase" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Variant C: Full ActionsBase
+        Variant C: Full AdapterBase
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Variant C: Full ActionsBase">
+    <nav class="md-nav" aria-label="Variant C: Full AdapterBase">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1854,8 +1854,8 @@
 <p>This guide shows you how to create custom storage adapters for ValtheraDB.</p>
 <p>Adapters fall into two classes:</p>
 <ul>
-<li><strong>CRUD adapters</strong> implement the full <code>ActionsBase</code> interface and expose ValtheraDB's document API (<code>add</code>, <code>find</code>, <code>update</code>, <code>remove</code>, <code>count</code>). They are the default contract and are verified end to end by the compliance suite.</li>
-<li><strong>Specialized adapters</strong> expose a data model that is not a collection of documents. They still use <code>ActionsBase</code> as their boundary, but implement only the operations that map cleanly to their model - often over a fixed shape rather than arbitrary documents - and declare their partial coverage in the compliance suite.</li>
+<li><strong>CRUD adapters</strong> implement the full <code>AdapterBase</code> interface and expose ValtheraDB's document API (<code>add</code>, <code>find</code>, <code>update</code>, <code>remove</code>, <code>count</code>). They are the default contract and are verified end to end by the compliance suite.</li>
+<li><strong>Specialized adapters</strong> expose a data model that is not a collection of documents. They still use <code>AdapterBase</code> as their boundary, but implement only the operations that map cleanly to their model - often over a fixed shape rather than arbitrary documents - and declare their partial coverage in the compliance suite.</li>
 </ul>
 <h2 id="architecture-overview">Architecture Overview</h2>
 <p>ValtheraDB uses a layered adapter architecture:</p>
@@ -1865,7 +1865,7 @@
 |-------------------------------------|
                   |
 |-------------------------------------|
-|   ActionsBase / CustomActionsBase   |
+|   AdapterBase / CustomAdapterBase   |
 |        Collection management        |
 |-------------------------------------|
                   |
@@ -1881,10 +1881,10 @@
 </code></pre></div>
 <blockquote>
 <p>Note: When you replace any layer, you implicitly take responsibility for all layers below it.
-A specialized adapter (Variant D) keeps <code>ActionsBase</code> as its boundary but bypasses the layers below it, implementing only the operations its data model supports.</p>
+A specialized adapter (Variant D) keeps <code>AdapterBase</code> as its boundary but bypasses the layers below it, implementing only the operations its data model supports.</p>
 </blockquote>
-<h2 id="what-actionsbase-gives-you-by-default">What <code>ActionsBase</code> Gives You by Default</h2>
-<p><code>ActionsBase</code> ships with default implementations and fields, so a minimal adapter only needs the abstract CRUD and collection methods:</p>
+<h2 id="what-adapterbase-gives-you-by-default">What <code>AdapterBase</code> Gives You by Default</h2>
+<p><code>AdapterBase</code> ships with default implementations and fields, so a minimal adapter only needs the abstract CRUD and collection methods:</p>
 <table>
 <thead>
 <tr>
@@ -1919,13 +1919,15 @@ A specialized adapter (Variant D) keeps <code>ActionsBase</code> as its boundary
 </tr>
 <tr>
 <td><code>adapterOpts</code></td>
-<td><code>{ numberId: false, idKey: "_id" }</code> - merged from <code>ValtheraClass</code> options</td>
+<td><code>{ numberId: false, idKey: "_id" }</code> - merged from <code>ValtheraClass</code> options; <code>idGen</code> and <code>idParts</code> customize ID generation</td>
 </tr>
 </tbody>
 </table>
 <p>Override any of these only when your backend has native support (bulk inserts, <code>countDocuments</code>, real indexes, transactions).</p>
 <p>Index operations can also be issued inside a transaction (<code>tx.createIndex()</code> / <code>tx.removeIndex()</code>). They reach the same adapter methods, and the transaction handle is available as <code>query.transaction</code>; ignore it if your indexes are not transaction-scoped.</p>
 <p>Use the structured error classes from <code>@wxn0brp/db-core/errors</code> instead of bare <code>Error</code> throws: <code>AdapterInitError</code> in <code>init()</code>, <code>AdapterCloseError</code> in <code>close()</code>, <code>AdapterError</code> for driver failures, <code>QueryValidationError</code> for invalid input, and <code>TransactionError</code> inside transactions. Core wraps unknown errors into <code>AdapterError</code>; see <a href="../../api/errors/">Errors</a>.</p>
+<p>ID generation goes through <code>addId</code> / <code>addIdBulk</code> from <code>@wxn0brp/db-core/helpers/addId</code>, which respect <code>adapterOpts.idGen</code>, <code>adapterOpts.idParts</code>, and <code>numberId</code>. Do not generate IDs yourself unless you also honor those options.</p>
+<p><code>ValtheraClass.execute()</code> validates queries by default. Direct adapter calls bypass that check; if your adapter interprets <code>search</code> or <code>updater</code> itself, use <code>validateQuery</code>, <code>validateSearch</code>, or <code>validateUpdater</code> from <code>@wxn0brp/db-core/utils/validateQuery</code> when input is not already trusted.</p>
 <h2 id="variant-a-customfilecpu-adapter">Variant A: CustomFileCpu Adapter</h2>
 <p><strong>Kind:</strong> CRUD</p>
 <p><strong>Best for:</strong> Simple file-based storage (JSON, CSV, line-delimited formats)</p>
@@ -1936,7 +1938,7 @@ A specialized adapter (Variant D) keeps <code>ActionsBase</code> as its boundary
 <p><a href="https://github.com/wxn0brP/ValtheraDB-storage-csv/blob/HEAD/src/action.ts">ValtheraDB-storage-csv/src/action.ts</a></p>
 <p>Key points:</p>
 <ul>
-<li>Extend <code>CustomActionsBase</code></li>
+<li>Extend <code>CustomAdapterBase</code></li>
 <li>Initialize <code>this.fileCpu = new CustomFileCpu(this.read.bind(this), this.write.bind(this))</code></li>
 <li>Implement <code>read()</code> - parse file to array of objects</li>
 <li>Implement <code>write()</code> - write array of objects to file</li>
@@ -1952,7 +1954,7 @@ A specialized adapter (Variant D) keeps <code>ActionsBase</code> as its boundary
 <li>❌ Need for partial file reads  </li>
 <li>❌ Complex query optimization  </li>
 </ul>
-<h2 id="variant-b-actionsbase-with-filecpu">Variant B: ActionsBase with FileCpu</h2>
+<h2 id="variant-b-adapterbase-with-filecpu">Variant B: AdapterBase with FileCpu</h2>
 <p><strong>Kind:</strong> CRUD</p>
 <p><strong>Best for:</strong> File-based storage with custom file formats, streaming, or large datasets.</p>
 <p><strong>What you get:</strong> Query utilities. <code>updateOneOrAdd</code> and <code>toggleOne</code> support.</p>
@@ -1965,12 +1967,12 @@ A specialized adapter (Variant D) keeps <code>ActionsBase</code> as its boundary
 <p>See full implementation:</p>
 <ul>
 <li><a href="https://github.com/wxn0brP/ValtheraDB-storage-dir/blob/HEAD/src/file/index.ts">ValtheraDB-storage-dir/src/file/index.ts</a> - FileCpu implementation</li>
-<li><a href="https://github.com/wxn0brP/ValtheraDB-storage-dir/blob/HEAD/src/action.ts">ValtheraDB-storage-dir/src/action.ts</a> - ActionsBase implementation</li>
+<li><a href="https://github.com/wxn0brP/ValtheraDB-storage-dir/blob/HEAD/src/action.ts">ValtheraDB-storage-dir/src/action.ts</a> - AdapterBase implementation</li>
 </ul>
 <p>Key points:</p>
 <ul>
 <li>Implement <code>FileCpu</code> interface with streaming support</li>
-<li>Extend <code>ActionsBase</code> for collection management</li>
+<li>Extend <code>AdapterBase</code> for collection management</li>
 <li>Use <code>findUtil()</code> for multi-file queries</li>
 <li>Handle file rotation (max file size)</li>
 </ul>
@@ -1982,21 +1984,21 @@ A specialized adapter (Variant D) keeps <code>ActionsBase</code> as its boundary
 <li>✅ Need control over file organization (sharding, rotation)  </li>
 <li>❌ Want minimal implementation code  </li>
 </ul>
-<h2 id="variant-c-full-actionsbase">Variant C: Full ActionsBase</h2>
+<h2 id="variant-c-full-adapterbase">Variant C: Full AdapterBase</h2>
 <p><strong>Kind:</strong> CRUD</p>
 <p><strong>Best for:</strong> Database systems, remote APIs, complex storage or full control.</p>
 <p><strong>What you get:</strong> Some utilities.</p>
 <p><strong>What you implement:</strong> Everything - full control over storage logic.</p>
 <h3 id="interface_1">Interface</h3>
 <ul>
-<li><a href="https://github.com/wxn0brP/ValtheraDB-core/blob/HEAD/src/base/actions.ts">ValtheraDB-core/src/base/actions.ts</a></li>
+<li><a href="https://github.com/wxn0brP/ValtheraDB-core/blob/HEAD/src/base/adapter.ts">ValtheraDB-core/src/base/adapter.ts</a></li>
 </ul>
 <h3 id="example-sqlite-adapter">Example: SQLite Adapter</h3>
 <p>See full implementation:
 <a href="https://github.com/wxn0brP/ValtheraDB-storage-sqlite/blob/HEAD/src/index.ts">ValtheraDB-storage-sqlite/src/index.ts</a></p>
 <p>Key points:</p>
 <ul>
-<li>Extend <code>ActionsBase</code></li>
+<li>Extend <code>AdapterBase</code></li>
 <li>Translate Valthera queries to SQL</li>
 <li>Handle prepared statements</li>
 <li>Map SQL results to Valthera format</li>
@@ -2006,7 +2008,7 @@ A specialized adapter (Variant D) keeps <code>ActionsBase</code> as its boundary
 <a href="https://github.com/wxn0brP/ValtheraDB-storage-mongodb/blob/HEAD/src/actions.ts">ValtheraDB-storage-mongodb/src/actions.ts</a></p>
 <p>Key points:</p>
 <ul>
-<li>Extend <code>ActionsBase</code></li>
+<li>Extend <code>AdapterBase</code></li>
 <li>Translate Valthera queries to MongoDB format</li>
 <li>Manage connection lifecycle (<code>init()</code>)</li>
 </ul>
@@ -2024,7 +2026,7 @@ A specialized adapter (Variant D) keeps <code>ActionsBase</code> as its boundary
 <p><strong>Package name:</strong> <code>@wxn0brp/db-spec-&lt;name&gt;</code> - see <a href="../publishing/">Publishing</a> for scopes, keywords, and the resolver contract.</p>
 <p><strong>Best for:</strong> Non-document data models where a collection of documents is the wrong abstraction.</p>
 <p><strong>What you get:</strong> Valthera's API where it maps cleanly to your data model, plus any domain-specific methods you expose. A specialized adapter may answer CRUD calls, but over a fixed shape rather than arbitrary documents - for example an append-only <code>{ _id, l }</code> log.</p>
-<p><strong>What you implement:</strong> Only the operations your data model supports. Use <code>ActionsBase</code> as the boundary, implement the subset that makes sense, and add domain-specific operations on top.</p>
+<p><strong>What you implement:</strong> Only the operations your data model supports. Use <code>AdapterBase</code> as the boundary, implement the subset that makes sense, and add domain-specific operations on top.</p>
 <h3 id="when-to-use-variant-d">When to Use Variant D</h3>
 <ul>
 <li>✅ Your storage is not a collection of documents  </li>
@@ -2034,7 +2036,7 @@ A specialized adapter (Variant D) keeps <code>ActionsBase</code> as its boundary
 <li>❌ You rely on the unified CRUD contract  </li>
 </ul>
 <h3 id="why-specialized-adapters-exist">Why Specialized Adapters Exist</h3>
-<p>The unified document API is a guarantee for CRUD adapters (Variants A, B, C), and it does not change. Specialized adapters are an explicit, opt-in exception for data models that cannot be represented as documents. They keep the same <code>ActionsBase</code> boundary and the same opt-in discipline, but state a narrower contract rather than advertise a uniform one that lies about the medium. See <a href="../../core_concepts/#two-classes-of-adapters-crud-and-specialized">Core Concepts: Two Classes of Adapters</a> for the full rationale.</p>
+<p>The unified document API is a guarantee for CRUD adapters (Variants A, B, C), and it does not change. Specialized adapters are an explicit, opt-in exception for data models that cannot be represented as documents. They keep the same <code>AdapterBase</code> boundary and the same opt-in discipline, but state a narrower contract rather than advertise a uniform one that lies about the medium. See <a href="../../core_concepts/#two-classes-of-adapters-crud-and-specialized">Core Concepts: Two Classes of Adapters</a> for the full rationale.</p>
 <h2 id="variant-comparison">Variant Comparison</h2>
 <table>
 <thead>
@@ -2056,10 +2058,10 @@ A specialized adapter (Variant D) keeps <code>ActionsBase</code> as its boundary
 </tr>
 <tr>
 <td><strong>Base Class</strong></td>
-<td><code>CustomActionsBase</code></td>
-<td><code>ActionsBase</code> + <code>FileCpu</code></td>
-<td><code>ActionsBase</code></td>
-<td><code>ActionsBase</code> (partial)</td>
+<td><code>CustomAdapterBase</code></td>
+<td><code>AdapterBase</code> + <code>FileCpu</code></td>
+<td><code>AdapterBase</code></td>
+<td><code>AdapterBase</code> (partial)</td>
 </tr>
 <tr>
 <td><strong>Implement</strong></td>
@@ -2098,15 +2100,15 @@ A specialized adapter (Variant D) keeps <code>ActionsBase</code> as its boundary
 <h3 id="from-wxn0brpdb-core">From <code>@wxn0brp/db-core</code></h3>
 <div class="highlight"><pre><span></span><code><span class="c1">// ID generation</span>
 <span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">genId</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">addId</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/helpers/addId"</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">addId</span><span class="p">,</span><span class="w"> </span><span class="nx">addIdBulk</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/helpers/addId"</span><span class="p">;</span>
 
 <span class="c1">// Query helpers</span>
 <span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">hasFieldsAdvanced</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/utils/hasFieldsAdvanced"</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">updateFindObject</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/utils/updateFindObject"</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">updateObjectAdvanced</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/utils/updateObject"</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">updateFindObject</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/utils/projection"</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">updateObjectAdvanced</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/utils/updateOperators"</span><span class="p">;</span>
 
 <span class="c1">// Find utility for multi-file searches</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">findUtil</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/utils/action"</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">findUtil</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/utils/findUtil"</span><span class="p">;</span>
 
 <span class="c1">// Types</span>
 <span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">FileCpu</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/types/fileCpu"</span><span class="p">;</span>

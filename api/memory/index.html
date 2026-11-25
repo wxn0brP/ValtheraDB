@@ -638,6 +638,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capabilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-works" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1381,6 +1392,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capabilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-works" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1476,6 +1498,8 @@
 <span class="kd">const</span><span class="w"> </span><span class="nx">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">find</span><span class="p">({});</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">users</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="w"> </span><span class="c1">// 2</span>
 </code></pre></div>
+<h2 id="capabilities">Capabilities</h2>
+<p><code>capabilities()</code> reports <code>{ transactions: false, indexes: false, persistent: false }</code>. The adapter sets <code>smartExecutor = true</code>, so <code>ValtheraClass</code> can use per-collection queues with the memory backend.</p>
 <h2 id="how-it-works">How It Works</h2>
 <p>The in-memory adapter uses a <code>Map&lt;string, any[]&gt;</code> internally. Data read from the database is isolated with <code>structuredClone</code>, so mutating a document returned by <code>find()</code>/<code>findOne()</code> does not affect stored data and vice versa.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createMemoryValthera</span><span class="p">();</span>

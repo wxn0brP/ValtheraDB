@@ -966,17 +966,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#function-based-updater" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Function-Based Updater
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1719,17 +1708,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#function-based-updater" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Function-Based Updater
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1984,48 +1962,6 @@
 <span class="w">    </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="s2">"Doe"</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="function-based-updater">Function-Based Updater</h2>
-<blockquote>
-<p><strong>Deprecated:</strong> function-based updaters will be removed in a future release. Use operator objects, or compute the new document in application code and pass it as data.</p>
-</blockquote>
-<p>Instead of using operator objects, you can provide a function for fully custom update logic:</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// Updater function signature:</span>
-<span class="p">(</span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="kt">T</span><span class="p">,</span><span class="w"> </span><span class="nx">context</span><span class="o">:</span><span class="w"> </span><span class="kt">VContext</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">Data</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ow">void</span>
-</code></pre></div>
-<p>The function receives the current document and a context object. It works in one of two modes:</p>
-<ol>
-<li><strong>Mutate in place and return <code>void</code></strong> - the mutated document is stored (safe way to change a few fields):</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="c1">// Example: double the counter field</span>
-<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">(</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nx">user</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">counter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="p">);</span>
-
-<span class="c1">// Example: using context for external values</span>
-<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">"active"</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">(</span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">score</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">bonus</span><span class="p">;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">bonus</span><span class="o">:</span><span class="w"> </span><span class="kt">10</span><span class="w"> </span><span class="p">},</span><span class="w">  </span><span class="c1">// context</span>
-<span class="p">);</span>
-</code></pre></div>
-<ol>
-<li><strong>Return a new object</strong> - the returned object <strong>replaces the whole document</strong>. It is not merged with the original:</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="c1">// Returns a full replacement document</span>
-<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">(</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nx">user</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="p">...</span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="nx">counter</span><span class="o">:</span><span class="w"> </span><span class="kt">user.counter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">})</span>
-<span class="p">);</span>
-</code></pre></div>
-<p><strong>Warning:</strong> returning a partial object replaces the document entirely:</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// WRONG: the document becomes { counter: 4 } and loses all other fields</span>
-<span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">(</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nx">user</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">counter</span><span class="o">:</span><span class="w"> </span><span class="kt">user.counter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">})</span>
-<span class="p">);</span>
-</code></pre></div>
-<p><strong>Note:</strong> for partial field updates, prefer mutation, plain field assignment (<code>{ counter: 5 }</code>), or operators like <code>$inc</code> and <code>$set</code>.</p>
 
 
 

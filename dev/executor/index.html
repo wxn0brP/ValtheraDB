@@ -1672,7 +1672,8 @@
 <h2 id="executor-types">Executor Types</h2>
 <h3 id="executor-simple">Executor (Simple)</h3>
 <p>A basic FIFO queue. All operations are executed one after another, regardless of collection.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Executor</span><span class="p">,</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Executor</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/helpers/executor"</span><span class="p">;</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span>
 <span class="w">  </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">myAdapter</span><span class="p">,</span>
@@ -1694,7 +1695,8 @@
 </ul>
 <h3 id="smartexecutor-advanced">SmartExecutor (Advanced)</h3>
 <p>Per-collection queues with automatic cleanup. Operations on different collections can run in parallel.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="p">,</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">SmartExecutor</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/helpers/executor"</span><span class="p">;</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ValtheraClass</span><span class="p">({</span>
 <span class="w">  </span><span class="nx">adapter</span><span class="o">:</span><span class="w"> </span><span class="kt">myAdapter</span><span class="p">,</span>
@@ -1768,7 +1770,7 @@
 </ul>
 <h2 id="adapter-integration">Adapter Integration</h2>
 <p>Adapters can signal support for SmartExecutor:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nx">MyAdapter</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">ActionsBase</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nx">MyAdapter</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">AdapterBase</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">smartExecutor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// Signals support for per-collection queuing</span>
 
 <span class="w">  </span><span class="c1">// ... adapter methods</span>
@@ -1794,7 +1796,7 @@
 - When your adapter signals <code>smartExecutor</code> but you prefer a single queue</p>
 <h2 id="custom-executor">Custom Executor</h2>
 <p>You can implement your own executor:</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ExecutorInterface</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core"</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ExecutorInterface</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/helpers/executor"</span><span class="p">;</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nx">MyCustomExecutor</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">ExecutorInterface</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">addOp</span><span class="p">(</span><span class="nx">func</span><span class="o">:</span><span class="w"> </span><span class="kt">Function</span><span class="p">,</span><span class="w"> </span><span class="nx">query?</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">,</span><span class="w"> </span><span class="nx">collection?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>

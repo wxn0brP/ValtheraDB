@@ -1707,7 +1707,7 @@ They're perfect for logging, caching, validation, or adding custom behavior acro
 <p>Do not treat every non-read operation as a mutation: unknown operations are not mutations. Check for <code>"write"</code> or <code>"delete"</code> explicitly.</p>
 <h2 id="basic-plugin-structure">Basic Plugin Structure</h2>
 <p>Here's the minimal plugin structure:</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraPlugin</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db"</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ValtheraPlugin</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"@wxn0brp/db-core/types/plugin"</span><span class="p">;</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">myPlugin</span><span class="o">:</span><span class="w"> </span><span class="kt">ValtheraPlugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"my-plugin"</span><span class="p">,</span>
